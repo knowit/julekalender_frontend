@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './App.css';
 import Modal from 'react-modal';
-import Task from './components/task'
+//import Task from './components/task'
 import Test from './components/test'
 
 

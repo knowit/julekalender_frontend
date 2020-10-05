@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import './App.css';
-import Door from './components/door';
 import Modal from 'react-modal';
 import Task from './components/task'
+import Test from './components/test'
 
 
 function App() {
@@ -39,14 +39,11 @@ function App() {
   return (
     <>
       <header>
-        <nav>KNOWIT-LOGO <button>LEDERTAVLE</button><button>LOGG INN</button></nav>
-        <h1>Knowit kodekalender 2020</h1>
+        <nav>KNOWIT-LOGO HER <button>LEDERTAVLE</button><button>LOGG INN</button></nav>
+        <h1>KNOWIT KODEKALENDER 2020</h1>
       </header>
       <main>
-        {[...Array(24)].map((x, i) =>
-          <Door onClick={() => openDoor(i+1)} key={i} number={i + 1} />
-        )}
-        {selectedDoor}
+        <Test clickHandler={openDoor}/>
         <Modal
           isOpen={modalIsOpen}
           style={customStyles}
@@ -55,13 +52,9 @@ function App() {
         >
           <h2>Luke {selectedDoor}</h2>
           <button onClick={() => closeModal()}>close</button>
-          <div>I am a modal</div>
+          <div>1 + 1 = ?</div>
           <form>
             <input />
-            <button>tab navigation</button>
-            <button>stays</button>
-            <button>inside</button>
-            <button>the modal</button>
           </form>
         </Modal>
         

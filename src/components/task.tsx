@@ -1,19 +1,41 @@
 import React from 'react'
 import './Task.css';
+import Modal from 'react-modal';
 
 type TaskProps = {
-     number: number
-}; /* could also use interface */
+     number: number,
+     modalIsOpen: boolean,
+     closeHandler: () => void
+}; 
 
-const Task = ({ number }: TaskProps) =>
-     <dialog open={number !== 0} className="my-modal">
-          <h3>Well, hello there cowboy! 👋</h3>
-          <p>I'm a fancy modal.</p>
-          <div className="actions">
-               <button className="small ok-modal-btn">Ok!</button>
-               <button className="small close-modal-btn">Close</button>
-          </div>
-     </dialog>;
+
+const Task = ({ number, modalIsOpen, closeHandler }: TaskProps) => {
+
+     const customStyles = {
+          content : {
+            top                   : '50%',
+            left                  : '50%',
+            right                 : 'auto',
+            bottom                : 'auto',
+            marginRight           : '-50%',
+            transform             : 'translate(-50%, -50%)'
+          }
+        };
+
+     return <Modal
+     isOpen={modalIsOpen}
+     style={customStyles}
+     contentLabel="Task modal"
+     onRequestClose={closeHandler}
+   >
+     <h2>Luke {number}</h2>
+     <button onClick={() => closeHandler()}>close</button>
+     <div>1 + 1 = ?</div>
+     <form>
+       <input />
+     </form>
+   </Modal>
+}     
 
 
 export default Task;

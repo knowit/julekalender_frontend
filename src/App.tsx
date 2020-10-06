@@ -1,18 +1,15 @@
 import React, { useState } from 'react';
 import './App.css';
 import Modal from 'react-modal';
-//import Task from './components/task'
 import Test from './components/test'
+import Task from './components/task';
+import StarBackground from './effects/stars'
 
 
 function App() {
-
   Modal.setAppElement('#root');
-
   const [selectedDoor, selectDoor] = useState(0);
   const [modalIsOpen, setIsOpen] = useState(false);
-
-
 
   function openDoor(doorNumber: number) {
     selectDoor(doorNumber)
@@ -23,40 +20,16 @@ function App() {
     setIsOpen(false);
   }
 
- 
-
-  const customStyles = {
-    content : {
-      top                   : '50%',
-      left                  : '50%',
-      right                 : 'auto',
-      bottom                : 'auto',
-      marginRight           : '-50%',
-      transform             : 'translate(-50%, -50%)'
-    }
-  };
-
   return (
     <>
+      <StarBackground/>
       <header>
         <nav>KNOWIT-LOGO HER <button>LEDERTAVLE</button><button>LOGG INN</button></nav>
         <h1>KNOWIT KODEKALENDER 2020</h1>
       </header>
       <main>
         <Test clickHandler={openDoor}/>
-        <Modal
-          isOpen={modalIsOpen}
-          style={customStyles}
-          contentLabel="Task modal"
-          onRequestClose={closeModal}
-        >
-          <h2>Luke {selectedDoor}</h2>
-          <button onClick={() => closeModal()}>close</button>
-          <div>1 + 1 = ?</div>
-          <form>
-            <input />
-          </form>
-        </Modal>
+        <Task number={selectedDoor} modalIsOpen={modalIsOpen} closeHandler={closeModal} />
         
       </main>
       <footer>

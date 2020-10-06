@@ -1,22 +1,23 @@
 {
   "files": {
-    "main.css": "/julekalender_frontend/static/css/main.2fa6dd08.chunk.css",
-    "main.js": "/julekalender_frontend/static/js/main.f57cdea6.chunk.js",
-    "main.js.map": "/julekalender_frontend/static/js/main.f57cdea6.chunk.js.map",
+    "main.css": "/julekalender_frontend/static/css/main.4f307301.chunk.css",
+    "main.js": "/julekalender_frontend/static/js/main.e93fe02b.chunk.js",
+    "main.js.map": "/julekalender_frontend/static/js/main.e93fe02b.chunk.js.map",
     "runtime-main.js": "/julekalender_frontend/static/js/runtime-main.a76bf04a.js",
     "runtime-main.js.map": "/julekalender_frontend/static/js/runtime-main.a76bf04a.js.map",
-    "static/js/2.bd2b5b5e.chunk.js": "/julekalender_frontend/static/js/2.bd2b5b5e.chunk.js",
-    "static/js/2.bd2b5b5e.chunk.js.map": "/julekalender_frontend/static/js/2.bd2b5b5e.chunk.js.map",
+    "static/js/2.6cf0da61.chunk.js": "/julekalender_frontend/static/js/2.6cf0da61.chunk.js",
+    "static/js/2.6cf0da61.chunk.js.map": "/julekalender_frontend/static/js/2.6cf0da61.chunk.js.map",
     "index.html": "/julekalender_frontend/index.html",
-    "precache-manifest.c259e498614a629e18217c89b87dcf50.js": "/julekalender_frontend/precache-manifest.c259e498614a629e18217c89b87dcf50.js",
+    "precache-manifest.db8de8195e2806aae24b418adbc0c27e.js": "/julekalender_frontend/precache-manifest.db8de8195e2806aae24b418adbc0c27e.js",
     "service-worker.js": "/julekalender_frontend/service-worker.js",
-    "static/css/main.2fa6dd08.chunk.css.map": "/julekalender_frontend/static/css/main.2fa6dd08.chunk.css.map",
-    "static/js/2.bd2b5b5e.chunk.js.LICENSE.txt": "/julekalender_frontend/static/js/2.bd2b5b5e.chunk.js.LICENSE.txt"
+    "static/css/main.4f307301.chunk.css.map": "/julekalender_frontend/static/css/main.4f307301.chunk.css.map",
+    "static/js/2.6cf0da61.chunk.js.LICENSE.txt": "/julekalender_frontend/static/js/2.6cf0da61.chunk.js.LICENSE.txt",
+    "static/media/stars.css": "/julekalender_frontend/static/media/bck.e88e556e.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.a76bf04a.js",
-    "static/js/2.bd2b5b5e.chunk.js",
-    "static/css/main.2fa6dd08.chunk.css",
-    "static/js/main.f57cdea6.chunk.js"
+    "static/js/2.6cf0da61.chunk.js",
+    "static/css/main.4f307301.chunk.css",
+    "static/js/main.e93fe02b.chunk.js"
   ]
 }

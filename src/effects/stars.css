@@ -1,17 +1,22 @@
 @keyframes STAR-MOVE {
-	from {
-		top: 0;
-	}
-	to { 
-		top: -2000px;
-	}
+	100%{
+    background-position:0px -3000px;
+  }
 }
 
+html, body {
+  height: 100%;
+  overflow: auto;
+}
+
+
 #background {
-	background:url(../bck.svg) repeat 5% 5%;
+  background:url(../bck.svg) repeat;
+  background-size: cover;
 	position: absolute;
 	top: 0; left: 0; right: 0; bottom: 0;
-	z-index: -300;
+  z-index: -300;
+  height: 100%;
 	
 	-webkit-animation-name: STAR-MOVE;
 	-webkit-animation-duration: 200s;

@@ -11,8 +11,7 @@ html, body {
 
 
 #background {
-  background:url(../bck.svg) repeat;
-  background-size: cover;
+  background:url(svg/background.svg) repeat;
 	position: absolute;
 	top: 0; left: 0; right: 0; bottom: 0;
   z-index: -300;
@@ -25,7 +24,7 @@ html, body {
 }
 
 #midground {
-	background: url(../bck.svg) repeat 20% 20%;
+	background: url(svg/midground.svg) repeat;
 	position: absolute;
 	top: 0; left: 0; right: 0; bottom: 0;
 	z-index: -200;
@@ -37,7 +36,7 @@ html, body {
 }
 
 #foreground {
-	background: url(../bck.svg) repeat 35% 35%;
+	background: url(svg/foreground.svg) repeat;
 	position: absolute;
 	top: 0; left: 0; right: 0; bottom: 0;
 	z-index: -100;

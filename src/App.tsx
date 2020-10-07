@@ -24,7 +24,7 @@ function App() {
     <>
       <StarBackground/>
       <header>
-        <nav>KNOWIT-LOGO HER <button>LEDERTAVLE</button><button>LOGG INN</button></nav>
+        <nav><button>LEDERTAVLE</button><button>LOGG INN</button></nav>
         <h1>KNOWIT KODEKALENDER 2020</h1>
       </header>
       <main>

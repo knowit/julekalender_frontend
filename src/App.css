@@ -1,13 +1,32 @@
 body {
-  font-family: Arial, Helvetica, sans-serif;
-  text-align: center;
-  background-color:rgba(18, 38, 32, 1);
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    background-color: rgba(18, 38, 32, 1);
 }
 
 header {
-  color: white;
+    color: white;
+}
+
+header h1 {
+    font-size: 4em;
+}
+
+header button {
+    background: none!important;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+header button:hover {
+    text-decoration: underline;
 }
 
 footer {
-  color: white;
+    color: white;
+}
+
+footer a {
+    color: white;
 }

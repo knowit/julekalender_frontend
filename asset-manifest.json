@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.css": "/julekalender_frontend/static/css/main.ffd7bdac.chunk.css",
-    "main.js": "/julekalender_frontend/static/js/main.e93fe02b.chunk.js",
-    "main.js.map": "/julekalender_frontend/static/js/main.e93fe02b.chunk.js.map",
+    "main.css": "/julekalender_frontend/static/css/main.d3d01032.chunk.css",
+    "main.js": "/julekalender_frontend/static/js/main.54d32449.chunk.js",
+    "main.js.map": "/julekalender_frontend/static/js/main.54d32449.chunk.js.map",
     "runtime-main.js": "/julekalender_frontend/static/js/runtime-main.a76bf04a.js",
     "runtime-main.js.map": "/julekalender_frontend/static/js/runtime-main.a76bf04a.js.map",
     "static/js/2.6cf0da61.chunk.js": "/julekalender_frontend/static/js/2.6cf0da61.chunk.js",
     "static/js/2.6cf0da61.chunk.js.map": "/julekalender_frontend/static/js/2.6cf0da61.chunk.js.map",
     "index.html": "/julekalender_frontend/index.html",
-    "precache-manifest.759d8217386a5ab66307a1d6e5d8187e.js": "/julekalender_frontend/precache-manifest.759d8217386a5ab66307a1d6e5d8187e.js",
+    "precache-manifest.5c5c870a443362142586da6cb003af0b.js": "/julekalender_frontend/precache-manifest.5c5c870a443362142586da6cb003af0b.js",
     "service-worker.js": "/julekalender_frontend/service-worker.js",
-    "static/css/main.ffd7bdac.chunk.css.map": "/julekalender_frontend/static/css/main.ffd7bdac.chunk.css.map",
+    "static/css/main.d3d01032.chunk.css.map": "/julekalender_frontend/static/css/main.d3d01032.chunk.css.map",
     "static/js/2.6cf0da61.chunk.js.LICENSE.txt": "/julekalender_frontend/static/js/2.6cf0da61.chunk.js.LICENSE.txt",
-    "static/media/stars.css": "/julekalender_frontend/static/media/bck.e88e556e.svg"
+    "static/media/stars.css": "/julekalender_frontend/static/media/midground.770daafa.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.a76bf04a.js",
     "static/js/2.6cf0da61.chunk.js",
-    "static/css/main.ffd7bdac.chunk.css",
-    "static/js/main.e93fe02b.chunk.js"
+    "static/css/main.d3d01032.chunk.css",
+    "static/js/main.54d32449.chunk.js"
   ]
 }

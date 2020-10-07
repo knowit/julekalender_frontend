@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.css": "/julekalender_frontend/static/css/main.7732b307.chunk.css",
-    "main.js": "/julekalender_frontend/static/js/main.41dda7a1.chunk.js",
-    "main.js.map": "/julekalender_frontend/static/js/main.41dda7a1.chunk.js.map",
+    "main.css": "/julekalender_frontend/static/css/main.103b82d0.chunk.css",
+    "main.js": "/julekalender_frontend/static/js/main.6bdfe759.chunk.js",
+    "main.js.map": "/julekalender_frontend/static/js/main.6bdfe759.chunk.js.map",
     "runtime-main.js": "/julekalender_frontend/static/js/runtime-main.a76bf04a.js",
     "runtime-main.js.map": "/julekalender_frontend/static/js/runtime-main.a76bf04a.js.map",
     "static/js/2.6cf0da61.chunk.js": "/julekalender_frontend/static/js/2.6cf0da61.chunk.js",
     "static/js/2.6cf0da61.chunk.js.map": "/julekalender_frontend/static/js/2.6cf0da61.chunk.js.map",
     "index.html": "/julekalender_frontend/index.html",
-    "precache-manifest.e27ec5fbd4216e6b0b5605e0179a5d62.js": "/julekalender_frontend/precache-manifest.e27ec5fbd4216e6b0b5605e0179a5d62.js",
+    "precache-manifest.10a2dee20a6c00cbc10f25cb7a301fd7.js": "/julekalender_frontend/precache-manifest.10a2dee20a6c00cbc10f25cb7a301fd7.js",
     "service-worker.js": "/julekalender_frontend/service-worker.js",
-    "static/css/main.7732b307.chunk.css.map": "/julekalender_frontend/static/css/main.7732b307.chunk.css.map",
+    "static/css/main.103b82d0.chunk.css.map": "/julekalender_frontend/static/css/main.103b82d0.chunk.css.map",
     "static/js/2.6cf0da61.chunk.js.LICENSE.txt": "/julekalender_frontend/static/js/2.6cf0da61.chunk.js.LICENSE.txt",
     "static/media/stars.css": "/julekalender_frontend/static/media/midground.770daafa.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.a76bf04a.js",
     "static/js/2.6cf0da61.chunk.js",
-    "static/css/main.7732b307.chunk.css",
-    "static/js/main.41dda7a1.chunk.js"
+    "static/css/main.103b82d0.chunk.css",
+    "static/js/main.6bdfe759.chunk.js"
   ]
 }

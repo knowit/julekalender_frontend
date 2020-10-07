@@ -26,6 +26,8 @@ function App() {
       <header>
         <nav><button>LEDERTAVLE</button><button>LOGG INN</button></nav>
         <h1>KNOWIT KODEKALENDER 2020</h1>
+        <p>Løs lukene og bli med i trekningen av en telefon eller et nettbrett!</p>
+        <p>En ny luke åpnes hver dag frem til jul.</p>
       </header>
       <main>
         <Test clickHandler={openDoor}/>

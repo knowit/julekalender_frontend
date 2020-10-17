@@ -14,6 +14,7 @@
     "@types/react-modal": "^3.10.6",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-icons": "^3.11.0",
     "react-modal": "^3.11.2",
     "react-scripts": "3.4.3",
     "typescript": "^3.7.5"
@@ -38,5 +39,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "svg-url-loader": "^6.0.0"
   }
 }

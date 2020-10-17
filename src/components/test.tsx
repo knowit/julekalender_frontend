@@ -12,7 +12,7 @@ const Test = ({ clickHandler }: TestProps) => {
             xmlns="http://www.w3.org/2000/svg"
             version="1.1"
             viewBox="0 0 297 210"
-            width="50%"
+            width="100%"
         >
             <defs>
                 <path d="M-370.417 -84.667H-276.679V6.046999999999997H-370.417z"></path>

@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import React from 'react';
 import './Footer.css';
 
 import { ReactComponent as Logo } from './svg/knowitlogo.svg';

@@ -8,9 +8,9 @@ ReactDOM.render(
   <Auth0Provider
     domain="knowit-julekalender.eu.auth0.com"
     clientId="yAtCtCcXkAkwF4Crd7Cn9Wi10F0mVVc0"
-    redirectUri={window.location.origin}
+    redirectUri={window.location.href} //Denne må kanskje endrast?
     audience="https://YOUR_DOMAIN/api/v2/"
-    scope="read:current_user update:current_user_metadata"
+    scope="read:current_user update:current_user_metadata" //TODO: Lag scopes i backend? Sjekk opp
   >
     <App />
   </Auth0Provider>,

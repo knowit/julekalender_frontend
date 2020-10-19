@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { CSSProperties } from 'react'
 import './Task.css';
 import Modal from 'react-modal';
 
@@ -11,7 +11,7 @@ type TaskProps = {
 
 const Task = ({ number, modalIsOpen, closeHandler }: TaskProps) => {
 
-     const customStyles = {
+  const customStyles = {
           content : {
             top                   : '50%',
             left                  : '50%',
@@ -27,6 +27,7 @@ const Task = ({ number, modalIsOpen, closeHandler }: TaskProps) => {
      style={customStyles}
      contentLabel="Task modal"
      onRequestClose={closeHandler}
+     closeTimeoutMS={1500}
    >
      <h2>Luke {number}</h2>
      <button onClick={() => closeHandler()}>close</button>

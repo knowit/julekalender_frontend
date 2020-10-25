@@ -6,8 +6,7 @@ import Task from './components/task';
 import Footer from './components/Footer';
 import StarBackground from './effects/stars'
 import LoginButton from './components/LoginButton';
-
-
+import { ReactComponent as Logo } from './img/knowitlogo.svg';
 
 
 function App() {
@@ -20,26 +19,27 @@ function App() {
     setIsOpen(true);
   }
 
-  function closeModal(){
+  function closeModal() {
     setIsOpen(false);
   }
 
 
   return (
     <>
-      <StarBackground/>
+      <StarBackground />
       <header>
-        <nav><button>LEDERTAVLE</button><LoginButton/></nav>
-        <h1>Kodekalender 2020</h1>
-        <p>Løs lukene og bli med i trekningen av en telefon eller et nettbrett!</p>
-        <p>En ny luke åpnes hver dag frem til jul.</p>
+        <nav>
+          <a id="knowitlogo" href="https://www.knowit.no/" target="_blank" rel="noopener noreferrer"><Logo/></a>
+          <button>LEDERTAVLE</button>
+          <LoginButton />
+        </nav>
       </header>
       <main>
-        <Test clickHandler={openDoor}/>
+        <Test clickHandler={openDoor} />
         <Task number={selectedDoor} modalIsOpen={modalIsOpen} closeHandler={closeModal} />
-        
+
       </main>
-      <Footer/>
+      <Footer />
     </>
   );
 }

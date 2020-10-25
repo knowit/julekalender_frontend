@@ -1,12 +1,10 @@
 import React from 'react';
 import './Footer.css';
 
-import { ReactComponent as Logo } from './svg/knowitlogo.svg';
 import { FaFacebook, FaTwitter, FaMedium, FaGithub } from 'react-icons/fa';
 
 const Footer = () => {
     return <footer>
-        <a href="https://www.knowit.no/" target="_blank" rel="noopener noreferrer"><Logo id="knowitlogo"/></a>
         <div id="social">
           <a href="https://www.facebook.com/weareknowit" target="_blank" rel="noopener noreferrer"><FaFacebook aria-label="Facebook"/></a>
           <a href="https://twitter.com/knowitnorge" target="_blank" rel="noopener noreferrer"><FaTwitter aria-label="Facebook"/></a>

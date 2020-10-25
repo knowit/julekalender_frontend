@@ -46,3 +46,13 @@ footer {
 footer a {
     color: white;
 }
+
+#knowitlogo {
+    float: left;
+    width: 8rem;
+    margin-top: -0.5rem;
+}
+
+#doors {
+    margin-bottom: 3rem;
+}

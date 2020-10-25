@@ -11,3 +11,9 @@
 .ReactModal__Overlay--before-close{
     opacity: 0;
 }
+
+#task_modal {
+    background-image:url(svg/mistletoeborder.svg) !important;
+    background-repeat:no-repeat !important;
+    background-size:100% 100% !important;
+}

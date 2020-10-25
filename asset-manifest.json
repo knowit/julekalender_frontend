@@ -1,25 +1,24 @@
 {
   "files": {
-    "main.css": "/julekalender_frontend/static/css/main.1a6d2982.chunk.css",
-    "main.js": "/julekalender_frontend/static/js/main.ce73268a.chunk.js",
-    "main.js.map": "/julekalender_frontend/static/js/main.ce73268a.chunk.js.map",
+    "main.css": "/julekalender_frontend/static/css/main.2b7a69b7.chunk.css",
+    "main.js": "/julekalender_frontend/static/js/main.eb91ab48.chunk.js",
+    "main.js.map": "/julekalender_frontend/static/js/main.eb91ab48.chunk.js.map",
     "runtime-main.js": "/julekalender_frontend/static/js/runtime-main.a76bf04a.js",
     "runtime-main.js.map": "/julekalender_frontend/static/js/runtime-main.a76bf04a.js.map",
     "static/js/2.08212d48.chunk.js": "/julekalender_frontend/static/js/2.08212d48.chunk.js",
     "static/js/2.08212d48.chunk.js.map": "/julekalender_frontend/static/js/2.08212d48.chunk.js.map",
     "index.html": "/julekalender_frontend/index.html",
-    "precache-manifest.94ca408da05f8ef35506f43b3731359b.js": "/julekalender_frontend/precache-manifest.94ca408da05f8ef35506f43b3731359b.js",
+    "precache-manifest.02de689387760e1deebb6f146c117b24.js": "/julekalender_frontend/precache-manifest.02de689387760e1deebb6f146c117b24.js",
     "service-worker.js": "/julekalender_frontend/service-worker.js",
-    "static/css/main.1a6d2982.chunk.css.map": "/julekalender_frontend/static/css/main.1a6d2982.chunk.css.map",
+    "static/css/main.2b7a69b7.chunk.css.map": "/julekalender_frontend/static/css/main.2b7a69b7.chunk.css.map",
     "static/js/2.08212d48.chunk.js.LICENSE.txt": "/julekalender_frontend/static/js/2.08212d48.chunk.js.LICENSE.txt",
     "static/media/stars.css": "/julekalender_frontend/static/media/midground.770daafa.svg",
-    "static/media/knowitlogo.717cba50.svg": "/julekalender_frontend/static/media/knowitlogo.717cba50.svg",
-    "static/media/Task.css": "/julekalender_frontend/static/media/mistletoeborder.b8866a2f.svg"
+    "static/media/knowitlogo.717cba50.svg": "/julekalender_frontend/static/media/knowitlogo.717cba50.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.a76bf04a.js",
     "static/js/2.08212d48.chunk.js",
-    "static/css/main.1a6d2982.chunk.css",
-    "static/js/main.ce73268a.chunk.js"
+    "static/css/main.2b7a69b7.chunk.css",
+    "static/js/main.eb91ab48.chunk.js"
   ]
 }

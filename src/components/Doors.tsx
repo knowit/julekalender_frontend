@@ -1,10 +1,11 @@
+import './Doors.css'
 import React from "react";
 
-type TestProps = {
+type DoorsProps = {
     clickHandler: (doorNumber: number) => void
 }; /* could also use interface */
 
-const Test = ({ clickHandler }: TestProps) => {
+const Doors = ({ clickHandler }: DoorsProps) => {
 
 
     return (
@@ -1861,4 +1862,4 @@ const Test = ({ clickHandler }: TestProps) => {
     );
 }
 
-export default Test;
+export default Doors;

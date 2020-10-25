@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './App.css';
 import Modal from 'react-modal';
-import Test from './components/test'
+import Doors from './components/Doors'
 import Task from './components/task';
 import Footer from './components/Footer';
 import StarBackground from './effects/stars'
@@ -35,7 +35,7 @@ function App() {
         </nav>
       </header>
       <main>
-        <Test clickHandler={openDoor} />
+        <Doors clickHandler={openDoor} />
         <Task number={selectedDoor} modalIsOpen={modalIsOpen} closeHandler={closeModal} />
 
       </main>

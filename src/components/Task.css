@@ -1,7 +1,7 @@
 .ReactModal__Overlay {
     opacity: 0;
-    transition: opacity 1500ms ease-in-out;
-    background-color: rgb(255, 255, 255, 0.50);
+    transition: opacity 1000ms ease-in-out;
+    background-color: rgb(255, 255, 255, 0.5) !important;
 }
 
 .ReactModal__Overlay--after-open{
@@ -12,8 +12,21 @@
     opacity: 0;
 }
 
+#task{
+    padding: 2rem;
+}
+
+#task-close{
+    background: none!important;
+    border: none !important;
+    float: left;
+    cursor: pointer;
+    padding: 0;
+}
+
 #task_modal {
-    background-image:url(svg/mistletoeborder.svg) !important;
-    background-repeat:no-repeat !important;
-    background-size:100% 100% !important;
+    /* background-image:url(svg/mistletoeborder.svg) !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+    background-position: center !important; */
 }

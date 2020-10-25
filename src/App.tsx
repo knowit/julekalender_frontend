@@ -37,7 +37,6 @@ function App() {
       <main>
         <Doors clickHandler={openDoor} />
         <Task number={selectedDoor} modalIsOpen={modalIsOpen} closeHandler={closeModal} />
-
       </main>
       <Footer />
     </>

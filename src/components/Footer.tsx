@@ -1,7 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
+import Popover from '@trendmicro/react-popover';
 import './Footer.css';
 
-import { FaFacebook, FaTwitter, FaMedium, FaGithub } from 'react-icons/fa';
+import { FaFacebook, FaTwitter, FaMedium, FaGithub, FaRegQuestionCircle } from 'react-icons/fa';
+
+const RewardTooltip = () => {
+  const [popoverVisible, setPopoverVisible] = useState(false);
+
+  // TODO: Follow scroll? Gi faen i popover?
+  return (
+    <span>
+      <FaRegQuestionCircle id="reward-tooltip" onClick={() => setPopoverVisible(!popoverVisible)} />
+
+      <Popover show={popoverVisible} target={document.querySelector("#reward-tooltip")}>
+        <Popover.Body className="popover-body">
+          Velg blant tilgjengelige basemodeller. Fjorårets vinner vant en iPhone 11 Pro. Vinneren trekkes kort tid etter juleferien er over.
+        </Popover.Body>
+      </Popover>
+    </span>
+  );
+};
 
 // TODO: Mobile responsiveness
 const Footer = () => (
@@ -20,6 +38,7 @@ const Footer = () => (
         valgfri telefon eller nettbrett. Løs så mange luker som mulig for å
         øke vinnersjansene dine!
       </p>
+      <RewardTooltip />
       <p>
         🎄 <em>Lykke til og god jul!</em> 🎄
       </p>

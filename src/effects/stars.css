@@ -4,45 +4,37 @@
   }
 }
 
-html, body {
-  height: 100%;
-  overflow: auto;
+.background-animation {
+	position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+
+	animation-name: STAR-MOVE;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
 }
 
+.background-animation.paused {
+  animation-play-state: paused;
+}
 
 #background {
   background:url(svg/background.svg) repeat;
-	position: absolute;
-	top: 0; left: 0; right: 0; bottom: 0;
   z-index: -300;
   height: 100%;
 	
-	-webkit-animation-name: STAR-MOVE;
-	-webkit-animation-duration: 200s;
-	-webkit-animation-timing-function: linear;
-	-webkit-animation-iteration-count: infinite;
+	animation-duration: 200s;
 }
 
 #midground {
 	background: url(svg/midground.svg) repeat;
-	position: absolute;
-	top: 0; left: 0; right: 0; bottom: 0;
 	z-index: -200;
 	
-	-webkit-animation-name: STAR-MOVE;
-	-webkit-animation-duration: 150s;
-	-webkit-animation-timing-function: linear;
-	-webkit-animation-iteration-count: infinite;
+	animation-duration: 150s;
 }
 
 #foreground {
 	background: url(svg/foreground.svg) repeat;
-	position: absolute;
-	top: 0; left: 0; right: 0; bottom: 0;
 	z-index: -100;
 	
-	-webkit-animation-name: STAR-MOVE;
-	-webkit-animation-duration: 100s;
-	-webkit-animation-timing-function: linear;
-	-webkit-animation-iteration-count: infinite;
+	animation-duration: 100s;
 }

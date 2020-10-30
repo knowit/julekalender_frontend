@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/accessible-emoji */
 import React from 'react';
 import './Footer.css';
 
@@ -21,6 +22,7 @@ const Footer = () => (
       øke vinnersjansene dine!
     </p>
     <p>
+      {/* TODO: Fix emoji accessibility (?) */}
       🎄 <em>Lykke til og god jul!</em> 🎄
     </p>
 

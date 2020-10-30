@@ -1,3 +1,8 @@
+html, body {
+  height: 100%;
+  overflow: auto;
+}
+
 body {
     font-family: Helvetica, sans-serif;
     text-align: center;

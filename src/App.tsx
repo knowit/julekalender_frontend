@@ -26,7 +26,7 @@ function App() {
 
   return (
     <>
-      <StarBackground />
+      <StarBackground paused={modalIsOpen}/>
       <header>
         <nav>
           <a id="knowitlogo" href="https://www.knowit.no/" target="_blank" rel="noopener noreferrer"><Logo/></a>

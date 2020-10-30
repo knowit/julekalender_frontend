@@ -1,11 +1,17 @@
 import React from 'react'
 import './stars.css'
 
-const StarBackground = () => {
+type StarBackgroundProps = {
+  paused: boolean;
+};
+
+const StarBackground  = ({ paused }: StarBackgroundProps) => {
+  const classes = `background-animation ${paused ? 'paused' : ''}`;
+
     return <>
-    <div id="background"></div>
-    <div id="midground"></div>
-    <div id="foreground"></div>
+    <div className={classes} id="background" ></div>
+    <div className={classes} id="midground" ></div>
+    <div className={classes} id="foreground" ></div>
     </>
 }
 

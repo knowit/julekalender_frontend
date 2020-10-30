@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/julekalender_frontend/static/css/main.2b7a69b7.chunk.css",
-    "main.js": "/julekalender_frontend/static/js/main.7be24f50.chunk.js",
-    "main.js.map": "/julekalender_frontend/static/js/main.7be24f50.chunk.js.map",
+    "main.css": "/julekalender_frontend/static/css/main.c3abd62b.chunk.css",
+    "main.js": "/julekalender_frontend/static/js/main.c4a4ba1e.chunk.js",
+    "main.js.map": "/julekalender_frontend/static/js/main.c4a4ba1e.chunk.js.map",
     "runtime-main.js": "/julekalender_frontend/static/js/runtime-main.a76bf04a.js",
     "runtime-main.js.map": "/julekalender_frontend/static/js/runtime-main.a76bf04a.js.map",
     "static/js/2.08212d48.chunk.js": "/julekalender_frontend/static/js/2.08212d48.chunk.js",
     "static/js/2.08212d48.chunk.js.map": "/julekalender_frontend/static/js/2.08212d48.chunk.js.map",
     "index.html": "/julekalender_frontend/index.html",
-    "precache-manifest.bb3ef9f09481dd28ff3fd1c940bdecef.js": "/julekalender_frontend/precache-manifest.bb3ef9f09481dd28ff3fd1c940bdecef.js",
+    "precache-manifest.2c1986c9312d8d833952e943c2dafb74.js": "/julekalender_frontend/precache-manifest.2c1986c9312d8d833952e943c2dafb74.js",
     "service-worker.js": "/julekalender_frontend/service-worker.js",
-    "static/css/main.2b7a69b7.chunk.css.map": "/julekalender_frontend/static/css/main.2b7a69b7.chunk.css.map",
+    "static/css/main.c3abd62b.chunk.css.map": "/julekalender_frontend/static/css/main.c3abd62b.chunk.css.map",
     "static/js/2.08212d48.chunk.js.LICENSE.txt": "/julekalender_frontend/static/js/2.08212d48.chunk.js.LICENSE.txt",
     "static/media/stars.css": "/julekalender_frontend/static/media/midground.770daafa.svg",
     "static/media/knowitlogo.717cba50.svg": "/julekalender_frontend/static/media/knowitlogo.717cba50.svg"
@@ -18,7 +18,7 @@
   "entrypoints": [
     "static/js/runtime-main.a76bf04a.js",
     "static/js/2.08212d48.chunk.js",
-    "static/css/main.2b7a69b7.chunk.css",
-    "static/js/main.7be24f50.chunk.js"
+    "static/css/main.c3abd62b.chunk.css",
+    "static/js/main.c4a4ba1e.chunk.js"
   ]
 }

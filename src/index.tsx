@@ -6,8 +6,8 @@ import { Auth0Provider } from "@auth0/auth0-react";
 
 ReactDOM.render(
   <Auth0Provider
-    domain="knowit-julekalender.eu.auth0.com"
-    clientId="yAtCtCcXkAkwF4Crd7Cn9Wi10F0mVVc0"
+    domain="knowit-konkurranser.eu.auth0.com"
+    clientId="6TmycgoSWgFT8EU6COixHKne9JmLx5F4"
     redirectUri={window.location.href} //Denne må kanskje endrast?
     //audience="https://YOUR_DOMAIN/api/v2/" TODO HOST på APIET
     scope="read:current_user update:current_user_metadata" //TODO: Lag scopes i backend? Sjekk opp

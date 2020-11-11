@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { FC }  from 'react'
 import './Task.css';
 import Modal from 'react-modal';
 import ReactMarkdown from 'react-markdown'
@@ -10,7 +10,7 @@ type TaskProps = {
 };
 
 
-const Task = ({ number, modalIsOpen, closeHandler }: TaskProps) => {
+const Task: FC<TaskProps> = ({ number, modalIsOpen, closeHandler }) => {
 
   const customStyles = {
     content: {

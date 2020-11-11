@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/julekalender_frontend/static/css/main.6ba38071.chunk.css",
+    "main.css": "/julekalender_frontend/static/css/main.98b56bdd.chunk.css",
     "main.js": "/julekalender_frontend/static/js/main.cb9ba12c.chunk.js",
     "main.js.map": "/julekalender_frontend/static/js/main.cb9ba12c.chunk.js.map",
     "runtime-main.js": "/julekalender_frontend/static/js/runtime-main.a76bf04a.js",
@@ -8,9 +8,9 @@
     "static/js/2.6e9279d2.chunk.js": "/julekalender_frontend/static/js/2.6e9279d2.chunk.js",
     "static/js/2.6e9279d2.chunk.js.map": "/julekalender_frontend/static/js/2.6e9279d2.chunk.js.map",
     "index.html": "/julekalender_frontend/index.html",
-    "precache-manifest.dc5979830bd8b97255bc457e43cb2afd.js": "/julekalender_frontend/precache-manifest.dc5979830bd8b97255bc457e43cb2afd.js",
+    "precache-manifest.5c4084f3a3e2bc6a85a73f0da595478b.js": "/julekalender_frontend/precache-manifest.5c4084f3a3e2bc6a85a73f0da595478b.js",
     "service-worker.js": "/julekalender_frontend/service-worker.js",
-    "static/css/main.6ba38071.chunk.css.map": "/julekalender_frontend/static/css/main.6ba38071.chunk.css.map",
+    "static/css/main.98b56bdd.chunk.css.map": "/julekalender_frontend/static/css/main.98b56bdd.chunk.css.map",
     "static/js/2.6e9279d2.chunk.js.LICENSE.txt": "/julekalender_frontend/static/js/2.6e9279d2.chunk.js.LICENSE.txt",
     "static/media/stars.css": "/julekalender_frontend/static/media/midground.770daafa.svg",
     "static/media/knowitlogo.717cba50.svg": "/julekalender_frontend/static/media/knowitlogo.717cba50.svg"
@@ -18,7 +18,7 @@
   "entrypoints": [
     "static/js/runtime-main.a76bf04a.js",
     "static/js/2.6e9279d2.chunk.js",
-    "static/css/main.6ba38071.chunk.css",
+    "static/css/main.98b56bdd.chunk.css",
     "static/js/main.cb9ba12c.chunk.js"
   ]
 }

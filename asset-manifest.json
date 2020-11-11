@@ -1,24 +1,24 @@
 {
   "files": {
-    "main.css": "/julekalender_frontend/static/css/main.aa8d9b40.chunk.css",
-    "main.js": "/julekalender_frontend/static/js/main.8a98c7a1.chunk.js",
-    "main.js.map": "/julekalender_frontend/static/js/main.8a98c7a1.chunk.js.map",
+    "main.css": "/julekalender_frontend/static/css/main.6ba38071.chunk.css",
+    "main.js": "/julekalender_frontend/static/js/main.cb9ba12c.chunk.js",
+    "main.js.map": "/julekalender_frontend/static/js/main.cb9ba12c.chunk.js.map",
     "runtime-main.js": "/julekalender_frontend/static/js/runtime-main.a76bf04a.js",
     "runtime-main.js.map": "/julekalender_frontend/static/js/runtime-main.a76bf04a.js.map",
-    "static/js/2.08212d48.chunk.js": "/julekalender_frontend/static/js/2.08212d48.chunk.js",
-    "static/js/2.08212d48.chunk.js.map": "/julekalender_frontend/static/js/2.08212d48.chunk.js.map",
+    "static/js/2.6e9279d2.chunk.js": "/julekalender_frontend/static/js/2.6e9279d2.chunk.js",
+    "static/js/2.6e9279d2.chunk.js.map": "/julekalender_frontend/static/js/2.6e9279d2.chunk.js.map",
     "index.html": "/julekalender_frontend/index.html",
-    "precache-manifest.93378dfc40bb518cce2d5a763c8d4005.js": "/julekalender_frontend/precache-manifest.93378dfc40bb518cce2d5a763c8d4005.js",
+    "precache-manifest.dc5979830bd8b97255bc457e43cb2afd.js": "/julekalender_frontend/precache-manifest.dc5979830bd8b97255bc457e43cb2afd.js",
     "service-worker.js": "/julekalender_frontend/service-worker.js",
-    "static/css/main.aa8d9b40.chunk.css.map": "/julekalender_frontend/static/css/main.aa8d9b40.chunk.css.map",
-    "static/js/2.08212d48.chunk.js.LICENSE.txt": "/julekalender_frontend/static/js/2.08212d48.chunk.js.LICENSE.txt",
+    "static/css/main.6ba38071.chunk.css.map": "/julekalender_frontend/static/css/main.6ba38071.chunk.css.map",
+    "static/js/2.6e9279d2.chunk.js.LICENSE.txt": "/julekalender_frontend/static/js/2.6e9279d2.chunk.js.LICENSE.txt",
     "static/media/stars.css": "/julekalender_frontend/static/media/midground.770daafa.svg",
     "static/media/knowitlogo.717cba50.svg": "/julekalender_frontend/static/media/knowitlogo.717cba50.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.a76bf04a.js",
-    "static/js/2.08212d48.chunk.js",
-    "static/css/main.aa8d9b40.chunk.css",
-    "static/js/main.8a98c7a1.chunk.js"
+    "static/js/2.6e9279d2.chunk.js",
+    "static/css/main.6ba38071.chunk.css",
+    "static/js/main.cb9ba12c.chunk.js"
   ]
 }

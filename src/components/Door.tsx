@@ -1,6 +1,5 @@
 import React from 'react';
 import './Door.css';
-
 import { Link, useParams } from "react-router-dom";
 import ReactMarkdown from 'react-markdown';
 import Light from './Light';
@@ -9,7 +8,7 @@ import { ReactComponent as Border } from './svg/mistletoeborder.svg';
 
 
 const Door = () => {
-    let { id } = useParams()
+    let { id } = useParams();
 
     const markdown = `# Heading  
     Bacon ipsum dolor amet salami picanha swine bacon pork chop frankfurter, meatloaf biltong filet mignon shoulder. Jerky flank kielbasa tenderloin venison andouille rump sirloin pig alcatra. Jerky turducken tongue, flank pig cupim pancetta sausage shoulder filet mignon hamburger chislic burgdoggen t-bone pork loin. Tongue frankfurter biltong short loin jerky shank salami, chislic beef corned beef jowl doner.

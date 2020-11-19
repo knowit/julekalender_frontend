@@ -39,7 +39,7 @@ const Light: FC<LightParams> = ({nr}) => {
         fontSize="64.504"
         transform="translate(22.576 125.867)"
       >
-        {/* Om tallet har ett siffer, prefix med nbsp for å sentrere det bedre i svg'en*/}
+        {/* Om tallet har ett siffer, prefix med nbsp for å sentrere det bedre i */}
         {nr < 10 ? `\u00A0${nr}` : nr}
       </text>
     </svg>

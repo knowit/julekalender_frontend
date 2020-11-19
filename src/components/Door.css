@@ -46,7 +46,7 @@
 @media only screen and (max-width: 768px) {
     .Door {
         margin: 0 0.5rem 0 0.5rem;
-        padding: 2rem 0.5rem 5rem 0.5rem;
+        padding: 2rem 1rem 5rem 1rem;
     }
 }
 

@@ -1,11 +1,11 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "2e1275e27ea367f63abddcbd69fe0afc",
+    "revision": "f76cf13f33cdd9837cc5af80a1b5c682",
     "url": "/index.html"
   },
   {
-    "revision": "6ea83612b11da068e4aa",
-    "url": "/static/css/main.9f009f96.chunk.css"
+    "revision": "8e7682b04380a43a537a",
+    "url": "/static/css/main.bb773115.chunk.css"
   },
   {
     "revision": "30e5fea49908a2606059",
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/js/2.7c9b5aac.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "6ea83612b11da068e4aa",
-    "url": "/static/js/main.da90fc6c.chunk.js"
+    "revision": "8e7682b04380a43a537a",
+    "url": "/static/js/main.2f98ce34.chunk.js"
   },
   {
     "revision": "24fc2a0b56bb461e0baf",
@@ -40,8 +40,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/media/midground.770daafa.svg"
   },
   {
-    "revision": "c2dd0cd4af53d77a8d159676f11563ba",
-    "url": "/static/media/mistletoeborder.c2dd0cd4.svg"
+    "revision": "2505f3b48c0c442a05e56ffbbe4cc301",
+    "url": "/static/media/mistletoeborder.2505f3b4.svg"
   },
   {
     "revision": "4348a70a4433a28d9e767b95084fe768",

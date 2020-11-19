@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "68b47165c318049831c30840205f1ef7",
+    "revision": "d5d125019f8c7f76666435b7d3ddc87b",
     "url": "/julekalender_frontend/index.html"
   },
   {
-    "revision": "186c47ac403e002b5996",
-    "url": "/julekalender_frontend/static/css/main.bab001e0.chunk.css"
+    "revision": "2f1be799a576ae250c3e",
+    "url": "/julekalender_frontend/static/css/main.0a81c656.chunk.css"
   },
   {
-    "revision": "6d4558539c8b7a015f1a",
-    "url": "/julekalender_frontend/static/js/2.6e9279d2.chunk.js"
+    "revision": "ecc8b041f84b3e4fc5cb",
+    "url": "/julekalender_frontend/static/js/2.ecf64218.chunk.js"
   },
   {
     "revision": "f11637696e9dc30bb77c67bc7e5f2f9d",
-    "url": "/julekalender_frontend/static/js/2.6e9279d2.chunk.js.LICENSE.txt"
+    "url": "/julekalender_frontend/static/js/2.ecf64218.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "186c47ac403e002b5996",
-    "url": "/julekalender_frontend/static/js/main.0b22c271.chunk.js"
+    "revision": "2f1be799a576ae250c3e",
+    "url": "/julekalender_frontend/static/js/main.46d3974b.chunk.js"
   },
   {
     "revision": "537a51ebde584d8b138a",
@@ -38,6 +38,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "770daafaa33f3b19b165a35563a80104",
     "url": "/julekalender_frontend/static/media/midground.770daafa.svg"
+  },
+  {
+    "revision": "c2dd0cd4af53d77a8d159676f11563ba",
+    "url": "/julekalender_frontend/static/media/mistletoeborder.c2dd0cd4.svg"
   },
   {
     "revision": "4348a70a4433a28d9e767b95084fe768",

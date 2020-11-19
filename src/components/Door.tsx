@@ -26,7 +26,7 @@ const Door = () => {
         <Border className="Border" />
         </div>
         <div className="Door">
-            <Link className="BackButton" to="/">🠘 Tilbake til lukene</Link>
+            <Link className="BackButton" to="/">&larr; Tilbake til lukene</Link>
 
             <ReactMarkdown>{markdown}</ReactMarkdown>
             <form>

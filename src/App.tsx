@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import './App.css';
 import Modal from 'react-modal';
 import Doors from './components/Doors'
-import Task from './components/task';
 import Footer from './components/Footer';
 import StarBackground from './effects/stars'
 import LoginButton from './components/LoginButton';
@@ -17,18 +16,8 @@ import Door from './components/Door';
 
 function App() {
   Modal.setAppElement('#root');
-  const [selectedDoor, selectDoor] = useState(0);
   const [modalIsOpen, setIsOpen] = useState(false);
   const [leaderBoardOpen, toggleLeaderBoard] = useState(false);
-
-  function openDoor(doorNumber: number) {
-    selectDoor(doorNumber)
-    setIsOpen(true);
-  }
-
-  function closeModal() {
-    setIsOpen(false);
-  }
 
   function closeLeaderBoard() {
     toggleLeaderBoard(false);
@@ -49,14 +38,13 @@ function App() {
           <main>
             <Switch>
               <Route exact path="/">
-                <Doors clickHandler={openDoor} />
-                <Task number={selectedDoor} modalIsOpen={modalIsOpen} closeHandler={closeModal} />
+                <Doors/>
               </Route>
               <Route path="/luke/:id">
                 <Door />
               </Route>
               <Route>
-                <Doors clickHandler={openDoor} />
+                <Doors/>
               </Route>
             </Switch>
           </main>

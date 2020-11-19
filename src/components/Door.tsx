@@ -27,7 +27,6 @@ const Door = () => {
         </div>
         <div className="Door">
             <Link className="BackButton" to="/">&larr; Tilbake til lukene</Link>
-
             <ReactMarkdown>{markdown}</ReactMarkdown>
             <form>
                 <input placeholder="Ditt svar:" />

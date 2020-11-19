@@ -1,26 +1,26 @@
 {
   "files": {
-    "main.css": "/static/css/main.5a6178c8.chunk.css",
-    "main.js": "/static/js/main.ae85d791.chunk.js",
-    "main.js.map": "/static/js/main.ae85d791.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.3d352632.js",
-    "runtime-main.js.map": "/static/js/runtime-main.3d352632.js.map",
-    "static/js/2.ecf64218.chunk.js": "/static/js/2.ecf64218.chunk.js",
-    "static/js/2.ecf64218.chunk.js.map": "/static/js/2.ecf64218.chunk.js.map",
-    "index.html": "/index.html",
-    "precache-manifest.7514168f0c5d8da642d53cc327d70231.js": "/precache-manifest.7514168f0c5d8da642d53cc327d70231.js",
-    "service-worker.js": "/service-worker.js",
-    "static/css/main.5a6178c8.chunk.css.map": "/static/css/main.5a6178c8.chunk.css.map",
-    "static/js/2.ecf64218.chunk.js.LICENSE.txt": "/static/js/2.ecf64218.chunk.js.LICENSE.txt",
-    "static/media/stars.css": "/static/media/midground.770daafa.svg",
-    "static/media/knowitlogo.717cba50.svg": "/static/media/knowitlogo.717cba50.svg",
-    "static/media/mistletoeborder.c2dd0cd4.svg": "/static/media/mistletoeborder.c2dd0cd4.svg",
-    "static/media/pointsdecor.4348a70a.svg": "/static/media/pointsdecor.4348a70a.svg"
+    "main.css": "/julekalender.knowit.no/static/css/main.5fd038b9.chunk.css",
+    "main.js": "/julekalender.knowit.no/static/js/main.ae85d791.chunk.js",
+    "main.js.map": "/julekalender.knowit.no/static/js/main.ae85d791.chunk.js.map",
+    "runtime-main.js": "/julekalender.knowit.no/static/js/runtime-main.2d8e81b4.js",
+    "runtime-main.js.map": "/julekalender.knowit.no/static/js/runtime-main.2d8e81b4.js.map",
+    "static/js/2.ecf64218.chunk.js": "/julekalender.knowit.no/static/js/2.ecf64218.chunk.js",
+    "static/js/2.ecf64218.chunk.js.map": "/julekalender.knowit.no/static/js/2.ecf64218.chunk.js.map",
+    "index.html": "/julekalender.knowit.no/index.html",
+    "precache-manifest.c940e2d9ad5aa567594fc75184111fe7.js": "/julekalender.knowit.no/precache-manifest.c940e2d9ad5aa567594fc75184111fe7.js",
+    "service-worker.js": "/julekalender.knowit.no/service-worker.js",
+    "static/css/main.5fd038b9.chunk.css.map": "/julekalender.knowit.no/static/css/main.5fd038b9.chunk.css.map",
+    "static/js/2.ecf64218.chunk.js.LICENSE.txt": "/julekalender.knowit.no/static/js/2.ecf64218.chunk.js.LICENSE.txt",
+    "static/media/stars.css": "/julekalender.knowit.no/static/media/midground.770daafa.svg",
+    "static/media/knowitlogo.717cba50.svg": "/julekalender.knowit.no/static/media/knowitlogo.717cba50.svg",
+    "static/media/mistletoeborder.c2dd0cd4.svg": "/julekalender.knowit.no/static/media/mistletoeborder.c2dd0cd4.svg",
+    "static/media/pointsdecor.4348a70a.svg": "/julekalender.knowit.no/static/media/pointsdecor.4348a70a.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.3d352632.js",
+    "static/js/runtime-main.2d8e81b4.js",
     "static/js/2.ecf64218.chunk.js",
-    "static/css/main.5a6178c8.chunk.css",
+    "static/css/main.5fd038b9.chunk.css",
     "static/js/main.ae85d791.chunk.js"
   ]
 }

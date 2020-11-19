@@ -1,7 +1,7 @@
 footer {
   margin: auto;
   max-width: 40rem;
-  text-shadow: rgba(18, 38, 32, 1) 0 0 50px, rgba(18, 38, 32, 1) 0 0 40px, rgba(18, 38, 32, 1) 0 0 30px, rgba(18, 38, 32, 1) 0 0 15px;
+  /*text-shadow: rgba(18, 38, 32, 1) 0 0 50px, rgba(18, 38, 32, 1) 0 0 40px, rgba(18, 38, 32, 1) 0 0 30px, rgba(18, 38, 32, 1) 0 0 15px;*/
 }
 
 #social {

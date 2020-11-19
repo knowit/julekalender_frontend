@@ -34,7 +34,7 @@ function App() {
     <>
       <StarBackground paused={modalIsOpen} />
       <div className="FlexContainer">
-        <div className={`Wrapper ${leaderBoardOpen ? 'open' : ''}`}>
+        <div>
           <header>
             <nav>
               <a id="knowitlogo" href="https://www.knowit.no/" target="_blank" rel="noopener noreferrer"><Logo /></a>
@@ -49,10 +49,7 @@ function App() {
 
           <Footer />
         </div>
-        <aside className={`Leaderboard ${leaderBoardOpen ? 'open' : ''}`}>
-          <LeaderBoard closeHandler={closeLeaderBoard}/>
-        </aside>
-
+        <LeaderBoard open={leaderBoardOpen} closeHandler={closeLeaderBoard}/>
       </div>
     </>
   );

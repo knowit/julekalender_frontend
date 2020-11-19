@@ -11,7 +11,6 @@ import { ReactComponent as Logo } from './img/knowitlogo.svg';
 import {
   Switch,
   Route,
-  useParams
 } from "react-router-dom";
 import Door from './components/Door';
 

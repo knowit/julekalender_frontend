@@ -21,7 +21,7 @@ const Door = () => {
     Tongue alcatra meatball, jerky short ribs flank corned beef capicola. Pancetta filet mignon ground round, ham hock landjaeger doner meatloaf brisket alcatra meatball t-bone. Salami chislic porchetta capicola. Leberkas cow beef filet mignon corned beef, kielbasa burgdoggen buffalo sausage ground round drumstick beef ribs jerky. Doner beef bacon hamburger, porchetta frankfurter tail tenderloin shoulder pork. Swine turkey biltong kielbasa ball tip. Hamburger short loin kielbasa, cow biltong sirloin prosciutto tri-tip brisket pork belly.`
 
     return <div className="DoorWrapper">
-        <Light />
+        <Light nr={id} />
         <div className="BorderWrapper">
         <Border className="Border" />
         </div>

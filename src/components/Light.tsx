@@ -1,6 +1,10 @@
-import React from "react";
+import React, { FC } from "react";
 
-function Light() {
+type LightParams = {
+  nr: Number;
+}
+
+const Light: FC<LightParams> = ({nr}) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -36,7 +40,7 @@ function Light() {
         fontSize="64.504"
         transform="translate(22.576 125.867)"
       >
-        24
+        {nr < 10 ? ` ${nr}` : nr}
       </text>
     </svg>
   );

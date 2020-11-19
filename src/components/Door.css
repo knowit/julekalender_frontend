@@ -4,8 +4,6 @@
     margin-right: auto;
     margin-top: 5rem;
     position: relative;
-    padding: 2rem;
-
 }
 
 .BorderWrapper{
@@ -22,24 +20,25 @@
     width: 7rem;
     float: right;
     position: absolute;
-    right: 3rem;
-    top: 5rem;
+    right: 2rem;
+    top: 3rem;
 }
 
 .BackButton {
-    color: black;
-    font-size: 1.5rem;
+    color: darkgray;
+    font-size: 1.2rem;
     text-decoration: none;
-    margin-left: -1rem;
+    margin-left: -2rem;
 }
 
 .door{
     background-color: whitesmoke;
     color: black;
-    padding-top: 1rem;
+    padding-top: 2rem;
     padding-left: 5rem;
     padding-right: 5rem;
     padding-bottom: 5rem;
+    margin: 0 2rem 0 2rem;
 }
 
 .door pre {

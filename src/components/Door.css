@@ -24,6 +24,11 @@
     top: 3rem;
 }
 
+.LightNumber{
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 600;
+}
+
 .BackButton {
     color: darkgray;
     font-size: 1.2rem;

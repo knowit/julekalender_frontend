@@ -31,8 +31,7 @@ const Footer = () => (
     <h2>Jobbe i Knowit?</h2>
     <p>
       Dersom du ønsker å vite mer om Knowit må du gjerne ta kontakt med
-      Sigmund Marius Nilssen på <a href="mailto:julenissen@knowit.no">julenissen@knowit.no</a>
-      for en uformell prat.
+      Sigmund Marius Nilssen på <a href="mailto:julenissen@knowit.no">julenissen@knowit.no</a> for en uformell prat.
     </p>
     <div id="social">
       <a href="https://www.facebook.com/weareknowit" target="_blank" rel="noopener noreferrer"><FaFacebook aria-label="Facebook"/></a>

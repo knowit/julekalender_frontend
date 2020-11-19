@@ -2,7 +2,7 @@
   "name": "julelalender_react",
   "version": "0.1.0",
   "private": true,
-  "homepage": "julekalender.knowit.no",
+  "homepage": "",
   "dependencies": {
     "@auth0/auth0-react": "^1.1.0",
     "@testing-library/jest-dom": "^4.2.4",

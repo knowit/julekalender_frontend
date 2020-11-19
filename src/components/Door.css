@@ -36,7 +36,7 @@
     margin-left: -2rem;
 }
 
-.door{
+.Door{
     background-color: whitesmoke;
     color: black;
     padding-top: 2rem;
@@ -46,6 +46,11 @@
     margin: 0 2rem 0 2rem;
 }
 
-.door pre {
+.Door pre {
     white-space: pre-wrap;
+}
+
+.Door form {
+    margin-top: 3rem;
+    text-align: center;
 }

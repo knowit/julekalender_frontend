@@ -1,17 +1,29 @@
 .DoorWrapper {
-    max-width: 50%;
+    max-width: 80rem;
     margin-left: auto;
     margin-right: auto;
     margin-top: 5rem;
+    position: relative;
+    padding: 2rem;
 
 }
 
+.BorderWrapper{
+    overflow-x: hidden;
+    overflow-y: hidden;
+    margin-bottom: -5rem;
+}
+
+.Border {
+    width: 80rem;
+}
 
 .Light {
     width: 7rem;
     float: right;
-    margin-top: -2.5rem;
-    margin-right: -2rem;
+    position: absolute;
+    right: 3rem;
+    top: 5rem;
 }
 
 .BackButton {
@@ -24,6 +36,7 @@
 .door{
     background-color: whitesmoke;
     color: black;
+    padding-top: 1rem;
     padding-left: 5rem;
     padding-right: 5rem;
     padding-bottom: 5rem;

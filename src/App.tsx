@@ -8,6 +8,12 @@ import StarBackground from './effects/stars'
 import LoginButton from './components/LoginButton';
 import LeaderBoard from './components/LeaderBoard';
 import { ReactComponent as Logo } from './img/knowitlogo.svg';
+import {
+  Switch,
+  Route,
+  useParams
+} from "react-router-dom";
+import Door from './components/Door';
 
 
 function App() {
@@ -29,7 +35,6 @@ function App() {
     toggleLeaderBoard(false);
   }
 
-
   return (
     <>
       <StarBackground paused={modalIsOpen} />
@@ -43,13 +48,22 @@ function App() {
             </nav>
           </header>
           <main>
-            <Doors clickHandler={openDoor} />
-            <Task number={selectedDoor} modalIsOpen={modalIsOpen} closeHandler={closeModal} />
+            <Switch>
+              <Route exact path="/">
+                <Doors clickHandler={openDoor} />
+                <Task number={selectedDoor} modalIsOpen={modalIsOpen} closeHandler={closeModal} />
+              </Route>
+              <Route path="/luke/:id">
+                <Door />
+              </Route>
+              <Route>
+                <Doors clickHandler={openDoor} />
+              </Route>
+            </Switch>
           </main>
-
           <Footer />
         </div>
-        <LeaderBoard open={leaderBoardOpen} closeHandler={closeLeaderBoard}/>
+        <LeaderBoard open={leaderBoardOpen} closeHandler={closeLeaderBoard} />
       </div>
     </>
   );

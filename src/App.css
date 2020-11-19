@@ -6,7 +6,6 @@ html, body {
 body {
     color: white;
     font-family: Helvetica, sans-serif;
-    text-align: center;
     background-color: rgba(18, 38, 32, 1);
 }
 
@@ -32,17 +31,17 @@ nav button {
     background: none!important;
     font-size: 1.1rem;
     border: none;
-    color: white;
+    color: whitesmoke;
     cursor: pointer;
 }
 
 footer {
-    color: white;
+    color: whitesmoke;
     padding-bottom: 5rem;
 }
 
 footer a {
-    color: white;
+    color: whitesmoke;
 }
 
 #knowitlogo {

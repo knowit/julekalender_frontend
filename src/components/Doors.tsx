@@ -1,5 +1,6 @@
 import './Doors.css'
 import React from "react";
+import { Link } from 'react-router-dom';
 
 type DoorsProps = {
     clickHandler: (doorNumber: number) => void
@@ -1167,7 +1168,8 @@ const Doors = ({ clickHandler }: DoorsProps) => {
 				H635.06z"/>
 		</g>
 	</g>
-	<g id="luke1" tabIndex={5} onClick={()=>clickHandler(1)} onKeyPress={ (e) => {if(['Enter', ' '].includes(e.key)) clickHandler(1)}}>
+	<Link to="/luke/1">
+	<g id="luke1" tabIndex={5}>
 		<path fill="#D8D4CB" d="M473.79,401.97c-3.72-7.03,6.2-16.86,10.32-27.12c0.24-0.61,0.91-2.29,2.51-3.06
 			c1.71-0.83,3.62-0.1,4.34,0.16c4.43,1.63,9.03,2.76,13.45,4.41c9.68,3.63,14.59,2.63,16.29,6.59c0.36,0.83,0.39,1.58,0.45,3.08
 			c0.2,4.78-1.56,6.89-4.4,14.19c-2.15,5.53-1.95,3.42-5.93,11.4c-1.88,3.77-2,4.2-2.76,4.67c-3.59,2.22-8.51-2.61-19.63-7.71
@@ -1209,6 +1211,8 @@ const Doors = ({ clickHandler }: DoorsProps) => {
 				V482.67z"/>
 		</g>
 	</g>
+	</Link>
+
 </g>
 <g id="blader">
 	<path fill="#6CAB85" d="M-21.57,184.18c23.72-2.89,47.31-6.78,70.67-11.82c21.43-4.63,42.66-10.21,63.57-16.8

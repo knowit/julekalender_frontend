@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import './App.css';
-import Modal from 'react-modal';
 import Doors from './components/Doors'
 import Footer from './components/Footer';
 import StarBackground from './effects/stars'
@@ -15,8 +14,6 @@ import Door from './components/Door';
 
 
 function App() {
-  Modal.setAppElement('#root');
-  const [modalIsOpen, setIsOpen] = useState(false);
   const [leaderBoardOpen, toggleLeaderBoard] = useState(false);
 
   function closeLeaderBoard() {
@@ -25,7 +22,8 @@ function App() {
 
   return (
     <>
-      <StarBackground paused={modalIsOpen} />
+      {/*TODO: Kanskje pause bakgrunn når dør åpen?*/}
+      <StarBackground paused={false} />
       <div className="FlexContainer">
         <div>
           <header>

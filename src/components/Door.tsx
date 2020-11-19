@@ -20,10 +20,10 @@ const Door = () => {
     
     Tongue alcatra meatball, jerky short ribs flank corned beef capicola. Pancetta filet mignon ground round, ham hock landjaeger doner meatloaf brisket alcatra meatball t-bone. Salami chislic porchetta capicola. Leberkas cow beef filet mignon corned beef, kielbasa burgdoggen buffalo sausage ground round drumstick beef ribs jerky. Doner beef bacon hamburger, porchetta frankfurter tail tenderloin shoulder pork. Swine turkey biltong kielbasa ball tip. Hamburger short loin kielbasa, cow biltong sirloin prosciutto tri-tip brisket pork belly.`
 
-    return <div className="DoorWrapper">
+    return <main className="DoorWrapper">
         <Light nr={id} />
         <div className="BorderWrapper">
-        <Border className="Border" />
+            <Border className="Border" />
         </div>
         <div className="Door">
             <Link className="BackButton" to="/">&larr; Tilbake til lukene</Link>
@@ -33,7 +33,7 @@ const Door = () => {
                 <input placeholder="Ditt svar:" />
                 <input type="submit" value="Send inn svar" />
             </form>
-        </div></div>;
+        </div></main>;
 }
 
 

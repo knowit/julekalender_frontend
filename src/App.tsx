@@ -35,20 +35,18 @@ function App() {
               <LoginButton />
             </nav>
           </header>
-          <main>
-            <Switch>
-              <Route exact path="/">
-                <Doors/>
-              </Route>
-              <Route path="/luke/:id">
-                <Door />
-              </Route>
-              <Route>
-                <Doors/>
-              </Route>
-            </Switch>
-          </main>
-          <Footer />
+          <Switch>
+            <Route exact path="/">
+              <Doors />
+              <Footer />
+            </Route>
+            <Route path="/luke/:id">
+              <Door />
+            </Route>
+            <Route>
+              <Doors />
+            </Route>
+          </Switch>
         </div>
         <LeaderBoard open={leaderBoardOpen} closeHandler={closeLeaderBoard} />
       </div>

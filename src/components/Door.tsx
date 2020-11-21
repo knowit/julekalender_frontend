@@ -16,7 +16,7 @@ const Door = () => {
     const [answer, setAnswer] = useState<string>('');
     const [doorSolvedStatus, setDoorSolvedStatus] = useState(false);
     const [attempt, setAttempt] = useState(false);
-    const [isLoading, setIsLoading] = useState<boolean>(false);
+    const [isLoading, setIsLoading] = useState<boolean>(true);
     const [challenge, setChallenge] = useState<Challenge>({} as Challenge);
     const [fubar, setError] = useState<Error>();
 

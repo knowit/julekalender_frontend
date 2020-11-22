@@ -1,0 +1,56 @@
+.CommentSection {
+    max-width: 100%;
+    margin: 4rem auto;
+}
+
+.CommentForm {
+    display: flex;
+    width: 78%;
+    margin: 2rem auto;
+    align-items: flex-end;
+}
+
+.CommentForm .SubmitButton {
+    height: 4rem;
+    width: 15%;
+    margin-left: 1rem;
+}
+
+.CommentForm textarea {
+    resize: vertical;
+    width: 80%;
+    border-radius: 10px;
+    padding: 1rem;
+    height: 4rem;
+}
+
+.ProfileImage {
+    border-radius: 50%;
+    margin-right: 1rem;
+}
+
+.CommentView {
+    margin: 1rem auto;
+    background-color: whitesmoke;
+    color: black;
+    max-width: 75%;
+    display: flex;
+    padding: 1rem;
+}
+
+.CommentData {
+    width: 100%;
+}
+
+.CommentData time {
+    float: right;
+}
+
+.CommentName {
+    font-weight: 600;
+}
+
+.CommentFlourish {
+    width: 10rem;
+}
+

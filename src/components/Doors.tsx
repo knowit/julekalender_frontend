@@ -254,7 +254,7 @@ const Doors = () => {
 					C2094.39,422.09,2089.39,422.08,2089.43,425.3z"/>
 								</g>
 							</g>
-							<text transform="matrix(1 0 0 1 2106.324 447.2211)" font-family="'Arial-BoldMT'" font-size="66px">24</text>
+							<text transform="matrix(1 0 0 1 2106.324 447.2211)" fontFamily="'Arial-BoldMT'" fontSize="66px">24</text>
 						</g>
 					</Link>
 					<Link to={getLinkLocation(23)} tabIndex={26} title="Luke 23">
@@ -287,7 +287,7 @@ const Doors = () => {
 					C2009.61,544.43,2008.22,544.94,2007.44,546.05z"/>
 								</g>
 							</g>
-							<text transform="matrix(1 0 0 1 2018.3242 597.2208)" font-family="'Arial-BoldMT'" font-size="66px">23</text>
+							<text transform="matrix(1 0 0 1 2018.3242 597.2208)" fontFamily="'Arial-BoldMT'" fontSize="66px">23</text>
 						</g>
 					</Link>
 					<Link to={getLinkLocation(22)} tabIndex={25} title="Luke 22">
@@ -323,7 +323,7 @@ const Doors = () => {
 					c-1.34,0.16-2.5,1.04-2.5,2.5C1949.53,509.21,1950.68,510.64,1952.03,510.48z"/>
 								</g>
 							</g>
-							<text transform="matrix(1 0 0 1 1906.3242 483.2208)" font-family="'Arial-BoldMT'" font-size="66px">22</text>
+							<text transform="matrix(1 0 0 1 1906.3242 483.2208)" fontFamily="'Arial-BoldMT'" fontSize="66px">22</text>
 						</g>
 					</Link>
 					<Link to={getLinkLocation(21)} tabIndex={24} title="Luke 21">
@@ -356,7 +356,7 @@ const Doors = () => {
 					C1806.69,251.48,1806.42,249.66,1805.17,249.12z"/>
 								</g>
 							</g>
-							<text transform="matrix(1 0 0 1 1748.324 321.2209)" font-family="'Arial-BoldMT'" font-size="66px">21</text>
+							<text transform="matrix(1 0 0 1 1748.324 321.2209)" fontFamily="'Arial-BoldMT'" fontSize="66px">21</text>
 						</g>
 					</Link>
 					<Link to={getLinkLocation(20)} tabIndex={23} title="Luke 20">
@@ -389,7 +389,7 @@ const Doors = () => {
 					C1816.05,465.64,1816.56,464.3,1816.36,462.96z"/>
 								</g>
 							</g>
-							<text transform="matrix(1 0 0 1 1730.324 495.2209)" font-family="'Arial-BoldMT'" font-size="66px">20</text>
+							<text transform="matrix(1 0 0 1 1730.324 495.2209)" fontFamily="'Arial-BoldMT'" fontSize="66px">20</text>
 						</g>
 					</Link>
 					<Link to={getLinkLocation(19)} tabIndex={22} title="Luke 19">
@@ -421,7 +421,7 @@ const Doors = () => {
 					c0.56-2.24,1.43-4.05,2.87-5.95c0.82-1.08,0.17-2.8-0.9-3.42C1795.7,695.88,1794.38,696.45,1793.56,697.52z"/>
 								</g>
 							</g>
-							<text transform="matrix(1 0 0 1 1799.3242 757.0544)" font-family="'Arial-BoldMT'" font-size="66px">19</text>
+							<text transform="matrix(1 0 0 1 1799.3242 757.0544)" fontFamily="'Arial-BoldMT'" fontSize="66px">19</text>
 						</g>
 					</Link>
 					<Link to={getLinkLocation(18)} tabIndex={21} title="Luke 18">
@@ -454,7 +454,7 @@ const Doors = () => {
 					C1734.38,716.98,1736.15,716.68,1736.72,715.45z"/>
 							</g>
 						</g>
-						<text transform="matrix(1 0 0 1 1649.324 716.2208)" font-family="'Arial-BoldMT'" font-size="66px">18</text>
+						<text transform="matrix(1 0 0 1 1649.324 716.2208)" fontFamily="'Arial-BoldMT'" fontSize="66px">18</text>
 					</g>
 					</Link>
 					<Link to={getLinkLocation(17)} tabIndex={20} title="Luke 17">
@@ -489,7 +489,7 @@ const Doors = () => {
 					c0.39-0.36,0.84-0.71,1.04-0.86c1.09-0.79,1.63-2.17,0.9-3.42C1592.56,897.98,1590.87,897.37,1589.77,898.16z"/>
 							</g>
 						</g>
-						<text transform="matrix(1 0 0 1 1585.324 970.2208)" font-family="'Arial-BoldMT'" font-size="66px">17</text>
+						<text transform="matrix(1 0 0 1 1585.324 970.2208)" fontFamily="'Arial-BoldMT'" fontSize="66px">17</text>
 					</g>
 					</Link>
 					<Link to={getLinkLocation(16)} tabIndex={19} title="Luke 16">
@@ -522,7 +522,7 @@ const Doors = () => {
 					C1410.86,716.21,1409.55,711.38,1406.45,712.27z"/>
 							</g>
 						</g>
-						<text transform="matrix(1 0 0 1 1379.3242 795.2213)" font-family="'Arial-BoldMT'" font-size="66px">16</text>
+						<text transform="matrix(1 0 0 1 1379.3242 795.2213)" fontFamily="'Arial-BoldMT'" fontSize="66px">16</text>
 					</g>
 					</Link>
 					<Link to={getLinkLocation(15)} tabIndex={18} title="Luke 15">
@@ -556,7 +556,7 @@ const Doors = () => {
 					C1467.91,535.74,1469.27,536.3,1470.6,536.08z"/>
 							</g>
 						</g>
-						<text transform="matrix(1 0 0 1 1422.3241 504.2209)" font-family="'Arial-BoldMT'" font-size="66px">15</text>
+						<text transform="matrix(1 0 0 1 1422.3241 504.2209)" fontFamily="'Arial-BoldMT'" fontSize="66px">15</text>
 					</g>
 					</Link>
 					<Link to={getLinkLocation(14)} tabIndex={17} title="Luke 14">
@@ -590,7 +590,7 @@ const Doors = () => {
 					C1358.96,403.23,1363.96,403.22,1364.05,400.01z"/>
 							</g>
 						</g>
-						<text transform="matrix(1 0 0 1 1268.145 420.2206)" font-family="'Arial-BoldMT'" font-size="66px">14</text>
+						<text transform="matrix(1 0 0 1 1268.145 420.2206)" fontFamily="'Arial-BoldMT'" fontSize="66px">14</text>
 					</g>
 					</Link>
 					<Link to={getLinkLocation(13)} tabIndex={16} title="Luke 13">
@@ -623,7 +623,7 @@ const Doors = () => {
 					c0-2.12,0.39-4.25,1.23-6.12c0.55-1.23,0.35-2.69-0.9-3.42C1345.51,909.65,1343.72,909.94,1343.16,911.17z"/>
 							</g>
 						</g>
-						<text transform="matrix(1 0 0 1 1356.145 964.2206)" font-family="'Arial-BoldMT'" font-size="66px">13</text>
+						<text transform="matrix(1 0 0 1 1356.145 964.2206)" fontFamily="'Arial-BoldMT'" fontSize="66px">13</text>
 					</g>
 					</Link>
 					<Link to={getLinkLocation(12)} tabIndex={15} title="Luke 12">
@@ -654,7 +654,7 @@ const Doors = () => {
 					c-0.83-5.14-1.11-10.56,0.52-15.47c0.62-1.87,1.74-3.82,3.08-5.3C1270.7,1125.7,1267.18,1122.15,1265.01,1124.54z"/>
 							</g>
 						</g>
-						<text transform="matrix(1 0 0 1 1266.4227 1186.9429)" font-family="'Arial-BoldMT'" font-size="66px">12</text>
+						<text transform="matrix(1 0 0 1 1266.4227 1186.9429)" fontFamily="'Arial-BoldMT'" fontSize="66px">12</text>
 					</g>
 					</Link>
 					<Link to={getLinkLocation(11)} tabIndex={14} title="Luke 11">
@@ -687,8 +687,8 @@ const Doors = () => {
 					C1159.83,988.41,1158.52,983.58,1155.42,984.47z"/>
 							</g>
 						</g>
-						<text transform="matrix(1 0 0 1 1133.324 1065.2212)" font-family="'Arial-BoldMT'" font-size="66px">1</text>
-						<text transform="matrix(1 0 0 1 1166.3884 1065.2212)" font-family="'Arial-BoldMT'" font-size="66px">1</text>
+						<text transform="matrix(1 0 0 1 1133.324 1065.2212)" fontFamily="'Arial-BoldMT'" fontSize="66px">1</text>
+						<text transform="matrix(1 0 0 1 1166.3884 1065.2212)" fontFamily="'Arial-BoldMT'" fontSize="66px">1</text>
 					</g>
 					</Link>
 					<Link to={getLinkLocation(10)} tabIndex={13} title="Luke 10">
@@ -720,7 +720,7 @@ const Doors = () => {
 					c-0.46-1.96-0.54-4.28-0.17-6.21c0.26-1.32-0.37-2.7-1.75-3.08C1180.41,751.14,1178.82,751.89,1178.56,753.22z"/>
 							</g>
 						</g>
-						<text transform="matrix(1 0 0 1 1191.677 786.2212)" font-family="'Arial-BoldMT'" font-size="66px">10</text>
+						<text transform="matrix(1 0 0 1 1191.677 786.2212)" fontFamily="'Arial-BoldMT'" fontSize="66px">10</text>
 					</g>
 					</Link>
 					<Link to={getLinkLocation(9)} tabIndex={12} title="Luke 9">
@@ -754,7 +754,7 @@ const Doors = () => {
 					C1074.08,381.43,1072.93,380.53,1071.58,380.39z"/>
 							</g>
 						</g>
-						<text transform="matrix(1 0 0 1 1042.677 462.2212)" font-family="'Arial-BoldMT'" font-size="66px">9</text>
+						<text transform="matrix(1 0 0 1 1042.677 462.2212)" fontFamily="'Arial-BoldMT'" fontSize="66px">9</text>
 					</g>
 					</Link>
 					<Link to={getLinkLocation(8)} tabIndex={11} title="Luke 8">
@@ -787,7 +787,7 @@ const Doors = () => {
 					C1049.88,809.48,1048.14,809.36,1047.25,810.38z"/>
 							</g>
 						</g>
-						<text transform="matrix(1 0 0 1 1072.677 878.2212)" font-family="'Arial-BoldMT'" font-size="66px">8</text>
+						<text transform="matrix(1 0 0 1 1072.677 878.2212)" fontFamily="'Arial-BoldMT'" fontSize="66px">8</text>
 					</g>
 					</Link>
 					<Link to={getLinkLocation(7)} tabIndex={10} title="Luke 7">
@@ -823,7 +823,7 @@ const Doors = () => {
 					C895.49,656.65,894.03,655.67,892.75,656.13z"/>
 							</g>
 						</g>
-						<text transform="matrix(1 0 0 1 890.6771 744.2212)" font-family="'Arial-BoldMT'" font-size="66px">7</text>
+						<text transform="matrix(1 0 0 1 890.6771 744.2212)" fontFamily="'Arial-BoldMT'" fontSize="66px">7</text>
 					</g>
 					</Link>
 					<Link to={getLinkLocation(6)} tabIndex={9} title="Luke 6">
@@ -856,7 +856,7 @@ const Doors = () => {
 					c0.23,2.41,0.05,4.3-0.68,6.55C879.03,435.44,883.86,436.76,884.84,433.7z"/>
 							</g>
 						</g>
-						<text transform="matrix(1 0 0 1 812.6771 435.2213)" font-family="'Arial-BoldMT'" font-size="66px">6</text>
+						<text transform="matrix(1 0 0 1 812.6771 435.2213)" fontFamily="'Arial-BoldMT'" fontSize="66px">6</text>
 					</g>
 					</Link>
 					<Link to={getLinkLocation(5)} tabIndex={8} title="Luke 5">
@@ -889,7 +889,7 @@ const Doors = () => {
 					c0.57-1.23,0.35-2.69-0.9-3.42C822.67,837.85,820.89,838.14,820.33,839.37z"/>
 							</g>
 						</g>
-						<text transform="matrix(1 0 0 1 854.6771 896.2213)" font-family="'Arial-BoldMT'" font-size="66px">5</text>
+						<text transform="matrix(1 0 0 1 854.6771 896.2213)" fontFamily="'Arial-BoldMT'" fontSize="66px">5</text>
 					</g>
 					</Link>
 					<Link to={getLinkLocation(4)} tabIndex={7} title="Luke 4">
@@ -923,7 +923,7 @@ const Doors = () => {
 					C734.9,892.88,736.67,893.03,737.54,891.99z"/>
 							</g>
 						</g>
-						<text transform="matrix(1 0 0 1 673.6772 867.221)" font-family="'Arial-BoldMT'" font-size="66px">4</text>
+						<text transform="matrix(1 0 0 1 673.6772 867.221)" fontFamily="'Arial-BoldMT'" fontSize="66px">4</text>
 					</g>
 					</Link>
 					<Link to={getLinkLocation(3)} tabIndex={6} title="Luke 3">
@@ -956,7 +956,7 @@ const Doors = () => {
 					C537.96,837.43,536.65,832.6,533.54,833.49z"/>
 							</g>
 						</g>
-						<text transform="matrix(1 0 0 1 526.6772 913.221)" font-family="'Arial-BoldMT'" font-size="66px">3</text>
+						<text transform="matrix(1 0 0 1 526.6772 913.221)" fontFamily="'Arial-BoldMT'" fontSize="66px">3</text>
 					</g>
 					</Link>
 					<Link to={getLinkLocation(2)} tabIndex={5} title="Luke 2">
@@ -988,7 +988,7 @@ const Doors = () => {
 					c-1.98,0.83-3.93,1.21-6.03,1.2C615.96,652.05,615.96,657.05,619.18,657.06z"/>
 							</g>
 						</g>
-						<text transform="matrix(1 0 0 1 601.6772 623.221)" font-family="'Arial-BoldMT'" font-size="66px">2</text>
+						<text transform="matrix(1 0 0 1 601.6772 623.221)" fontFamily="'Arial-BoldMT'" fontSize="66px">2</text>
 					</g>
 					</Link>
 					<Link to={getLinkLocation(1)} tabIndex={4} title="Luke 1">
@@ -1021,7 +1021,7 @@ const Doors = () => {
 					C463.44,402.31,462.13,397.48,459.02,398.37z"/>
 							</g>
 						</g>
-						<text transform="matrix(1 0 0 1 448.6665 482.6665)" font-family="'Arial-BoldMT'" font-size="66px">1</text>
+						<text transform="matrix(1 0 0 1 448.6665 482.6665)" fontFamily="'Arial-BoldMT'" fontSize="66px">1</text>
 					</g>
 					</Link>
 				</g>
@@ -1333,7 +1333,7 @@ const Doors = () => {
 					<path fill="#6CAB85" d="M468.35,158.35c7.86,1.47,14.25,1.34,18.82,0.89c9.23-0.91,14.14-3.46,18.15-0.46
 		c3.01,2.25,4.55,6.92,3.02,9.56c-1.78,3.06-7.3,2.73-11.29,2.49c-3.89-0.24-7.39-1.16-11.82-2.96
 		C480.95,166.13,474.95,163.23,468.35,158.35z"/>
-					<path fill="#6CAB85" stroke="#245650" stroke-width="4" stroke-miterlimit="10" d="M478.79,144.81" />
+					<path fill="#6CAB85" stroke="#245650" strokeWidth="4" strokeMiterlimit="10" d="M478.79,144.81" />
 					<path fill="#6CAB85" d="M301.23,152.23c-0.95,0-1.92-0.02-2.91-0.05c-7.67-0.18-13.88-2.46-15.08-2.85
 		c-3.35-1.08-6.42-2.58-12.58-5.59c-1.68-0.82-5.23-2.59-5.06-3.04c0.12-0.3,1.86,0.27,5.03,0.55c1.6,0.14,2.73,0.14,4.36,0.13
 		c9.05-0.05,16.54-2.01,16.54-2.01c2.58-0.65,4.86-1.4,6.88-2.07c3.2-1.05,5.72-1.88,7.97-1.88c1.67,0,3.04,0.46,4.19,1.4
@@ -1428,7 +1428,7 @@ const Doors = () => {
 					<path fill="#6CAB85" d="M813.51,80.31c7.97,0.72,14.32-0.01,18.82-0.9c9.1-1.78,13.75-4.78,18.03-2.17
 		c3.21,1.96,5.2,6.45,3.92,9.23c-1.47,3.22-7,3.41-11,3.55c-3.9,0.13-7.47-0.45-12.05-1.82C826.8,86.86,820.54,84.54,813.51,80.31z"
 					/>
-					<path fill="#6CAB85" stroke="#245650" stroke-width="4" stroke-miterlimit="10" d="M817.37,64.31" />
+					<path fill="#6CAB85" stroke="#245650" strokeWidth="4" strokeMiterlimit="10" d="M817.37,64.31" />
 					<path fill="#6CAB85" d="M636.08,86.78c-2.8,0-6.47-0.36-12.94-1.49c-4.55-0.8-9.17-1.76-13.72-2.85l-14.32-3.44l14.72-0.55
 		c7.29-0.27,14.23-1.57,20.63-3.85c2.5-0.89,4.71-1.86,6.65-2.71c4.9-2.14,8.77-3.83,12.06-1.63c3.31,2.21,4.49,7.66,2.47,11.43
 		c-2.26,4.23-7.82,4.63-13.2,5.01C637.69,86.75,636.93,86.78,636.08,86.78z"/>
@@ -1589,7 +1589,7 @@ const Doors = () => {
 					<path fill="#6CAB85" d="M1033.43,168.18c2.22,4.45,3.62,8.19,4.46,10.73c2.05,6.14,2.06,8.68,4.68,11.71
 		c0.77,0.89,4.8,5.55,9.04,4.46c4.22-1.08,6.81-7.34,5.24-11.16c-1.28-3.12-4.83-3.38-10.56-6.24
 		C1040.81,174.95,1036.61,171.47,1033.43,168.18z"/>
-					<path fill="#6CAB85" stroke="#245650" stroke-width="4" stroke-miterlimit="10" d="M231.74,50.39" />
+					<path fill="#6CAB85" stroke="#245650" strokeWidth="4" strokeMiterlimit="10" d="M231.74,50.39" />
 					<path fill="#6CAB85" d="M1174.14,190.27c23.72-2.89,47.31-6.78,70.67-11.82c21.43-4.63,42.66-10.21,63.57-16.8
 		c19.33-6.1,38.39-13.06,57.08-20.92c17.16-7.21,34.01-15.15,50.47-23.84c15.57-8.22,30.79-17.11,45.6-26.64
 		c2.57-1.65,5.13-3.33,7.67-5.02c1.35-0.9,0.08-3.09-1.28-2.19c-15.28,10.14-31,19.61-47.11,28.36
@@ -1754,7 +1754,7 @@ const Doors = () => {
 					<path fill="#6CAB85" d="M1669.12,166.46c7.86,1.47,14.25,1.34,18.82,0.89c9.23-0.91,14.14-3.46,18.15-0.46
 		c3.01,2.25,4.55,6.92,3.02,9.56c-1.78,3.06-7.3,2.73-11.29,2.49c-3.89-0.24-7.39-1.16-11.82-2.96
 		C1681.72,174.25,1675.72,171.34,1669.12,166.46z"/>
-					<path fill="#6CAB85" stroke="#245650" stroke-width="4" stroke-miterlimit="10" d="M1674.49,150.9" />
+					<path fill="#6CAB85" stroke="#245650" strokeWidth="4" strokeMiterlimit="10" d="M1674.49,150.9" />
 					<path fill="#6CAB85" d="M1466.22,149.37c9.27,0.53,16.49-0.67,21.52-1.94c8.83-2.24,14.11-5.52,17.27-2.94
 		c2.33,1.91,2.68,6.35,0.96,8.92c-2.04,3.07-6.81,2.96-11.89,2.84c-2.73-0.06-6.02-0.42-14.59-2.78
 		C1476.14,152.55,1471.6,151.21,1466.22,149.37z"/>
@@ -1833,7 +1833,7 @@ const Doors = () => {
 					<path fill="#6CAB85" d="M2009.22,86.4c7.97,0.72,14.32-0.01,18.82-0.9c9.1-1.78,13.75-4.78,18.03-2.17
 		c3.21,1.96,5.2,6.45,3.92,9.23c-1.47,3.22-7,3.41-11,3.55c-3.9,0.13-7.47-0.45-12.05-1.82
 		C2022.51,92.95,2016.25,90.63,2009.22,86.4z"/>
-					<path fill="#6CAB85" stroke="#245650" stroke-width="4" stroke-miterlimit="10" d="M2013.08,70.4" />
+					<path fill="#6CAB85" stroke="#245650" strokeWidth="4" strokeMiterlimit="10" d="M2013.08,70.4" />
 					<path fill="#6CAB85" d="M1796.49,87.57c9.27-0.35,16.35-2.22,21.23-3.97c8.57-3.06,13.52-6.83,16.91-4.56
 		c2.51,1.68,3.27,6.06,1.82,8.79c-1.74,3.25-6.49,3.59-11.56,3.95c-2.73,0.19-6.04,0.16-14.79-1.38
 		C1806.68,89.8,1802.02,88.9,1796.49,87.57z"/>
@@ -2001,7 +2001,7 @@ const Doors = () => {
 					<path fill="#6CAB85" d="M2248.05,204.37c-2.71,0-5.73-1.77-8.51-4.98c-2-2.32-2.6-4.4-3.5-7.55c-0.37-1.28-0.78-2.73-1.37-4.49
 		c-1.19-3.56-2.67-7.12-4.41-10.6l1.63-1.16c3.74,3.87,7.98,7,12.59,9.3c1.75,0.87,3.29,1.5,4.65,2.05c3.11,1.26,5.36,2.17,6.4,4.71
 		c0.9,2.21,0.64,5.23-0.69,7.87c-1.22,2.42-3.13,4.12-5.24,4.65C2249.1,204.31,2248.57,204.37,2248.05,204.37L2248.05,204.37z"/>
-					<path fill="#6CAB85" stroke="#245650" stroke-width="4" stroke-miterlimit="10" d="M1427.45,56.48" />
+					<path fill="#6CAB85" stroke="#245650" strokeWidth="4" strokeMiterlimit="10" d="M1427.45,56.48" />
 				</g>
 				<g id="Bær">
 					<circle fill="#AD4A4A" cx="1149.27" cy="142.13" r="14.32" />

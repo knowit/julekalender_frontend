@@ -54,7 +54,7 @@
     white-space: pre-wrap;
 }
 
-.Door form {
+.Door .input {
     margin-top: 3rem;
     text-align: center;
 }

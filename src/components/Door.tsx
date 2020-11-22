@@ -6,18 +6,24 @@ import Light from './Light';
 import { ReactComponent as Border } from './svg/mistletoeborder.svg';
 import Axios from 'axios';
 import Challenge from '../api/Challange';
+import { useAuth0 } from '@auth0/auth0-react';
 
 
 
 const Door = () => {
     let { doorNumber } = useParams();
+    const { isAuthenticated } = useAuth0();
+
 
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [challange, setChallange] = useState<Challenge>();
 
     useEffect(() => {
-        Axios.get<Challenge>(`http://10.205.4.110:8080/challenges/${doorNumber}`, { headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" } })
+        Axios.get<Challenge>(`http://localhost:8080/challenges/${doorNumber}`, { headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" } })
             .then(response => {
+                if (response.status === 202) {
+                    alert("Hei, ingen juksing!")
+                }
                 setChallange(response.data);
                 setIsLoading(false)
             })
@@ -47,10 +53,15 @@ const Door = () => {
         <div className="Door">
             <Link className="BackButton" to="/">&larr; Tilbake til lukene</Link>
             <ReactMarkdown>{challange.markdown}</ReactMarkdown>
-            <form>
-                <input placeholder="Ditt svar:" />
-                <input type="submit" value="Send inn svar" />
-            </form>
+
+            <div className="input">
+                {isAuthenticated && <form>
+                    <input placeholder="Ditt svar:" />
+                    <input type="submit" value="Send inn svar" />
+                </form>}
+                {!isAuthenticated && <p>Logg inn for å delta!</p>}
+            </div>
+
         </div></main>;
 }
 

@@ -39,7 +39,7 @@ function App() {
               <Footer />
             </Route>
             {/* Match door 1-24 only*/}
-            <Route path="/luke/:id(0?[1-9]|1[0-9]|2[0-4])">
+            <Route path="/luke/:doorNumber(0?[1-9]|1[0-9]|2[0-4])">
               <Door />
             </Route>
             {/* 404? - Route to main view*/}

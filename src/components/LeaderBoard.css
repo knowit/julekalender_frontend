@@ -4,6 +4,7 @@
 }
 
 .Leaderboard {
+    text-align: center;
     background-color: rgba(37, 86, 80, 1);
     border-radius: 25px 0 0 25px;
     box-sizing: border-box;

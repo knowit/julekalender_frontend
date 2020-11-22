@@ -28,8 +28,8 @@ function App() {
         <div>
           <header>
             <nav>
-              <a id="knowitlogo" href="https://www.knowit.no/" target="_blank" rel="noopener noreferrer"><Logo /></a>
-              <button onClick={() => toggleLeaderBoard(!leaderBoardOpen)}>LEDERTAVLE</button>
+              <a id="knowitlogo" href="https://www.knowit.no/" target="_blank" rel="noopener noreferrer" tabIndex={1}><Logo /></a>
+              <button onClick={() => toggleLeaderBoard(!leaderBoardOpen)} tabIndex={2}>LEDERTAVLE</button>
               <LoginButton />
             </nav>
           </header>
@@ -38,9 +38,11 @@ function App() {
               <Doors />
               <Footer />
             </Route>
-            <Route path="/luke/:id">
+            {/* Match door 1-24 only*/}
+            <Route path="/luke/:id(0?[1-9]|1[0-9]|2[0-4])">
               <Door />
             </Route>
+            {/* 404? - Route to main view*/}
             <Route>
               <Doors />
             </Route>

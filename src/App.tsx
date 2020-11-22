@@ -9,6 +9,7 @@ import { ReactComponent as Logo } from './img/knowitlogo.svg';
 import {
   Switch,
   Route,
+  Redirect,
 } from "react-router-dom";
 import Door from './components/Door';
 
@@ -44,7 +45,7 @@ function App() {
             </Route>
             {/* 404? - Route to main view*/}
             <Route>
-              <Doors />
+              <Redirect to="/"/>
             </Route>
           </Switch>
         </div>

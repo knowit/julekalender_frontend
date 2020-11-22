@@ -7,6 +7,7 @@ import { ReactComponent as Border } from './svg/mistletoeborder.svg';
 import Axios from 'axios';
 import Challenge from '../api/Challange';
 import { useAuth0 } from '@auth0/auth0-react';
+import Comments from './Comments';
 
 
 
@@ -45,24 +46,28 @@ const Door = () => {
         return null
     }
 
-    return <main className="DoorWrapper">
-        <Light nr={doorNumber} />
-        <div className="BorderWrapper">
-            <Border className="Border" />
-        </div>
-        <div className="Door">
-            <Link className="BackButton" to="/">&larr; Tilbake til lukene</Link>
-            <ReactMarkdown>{challange.markdown}</ReactMarkdown>
-
-            <div className="input">
-                {isAuthenticated && <form>
-                    <input placeholder="Ditt svar:" />
-                    <input type="submit" value="Send inn svar" />
-                </form>}
-                {!isAuthenticated && <p>Logg inn for å delta!</p>}
+    return <>
+        <main className="DoorWrapper">
+            <Light nr={doorNumber} />
+            <div className="BorderWrapper">
+                <Border className="Border" />
             </div>
+            <div className="Door">
+                <Link className="BackButton" to="/">&larr; Tilbake til lukene</Link>
+                <ReactMarkdown>{challange.markdown}</ReactMarkdown>
 
-        </div></main>;
+                <div className="input">
+                    {isAuthenticated && <form>
+                        <input placeholder="Ditt svar:" />
+                        <input type="submit" value="Send inn svar" />
+                    </form>}
+                    {!isAuthenticated && <p>Logg inn for å delta!</p>}
+                </div>
+
+            </div>
+            {isAuthenticated && <Comments />}
+        </main>
+    </>
 }
 
 

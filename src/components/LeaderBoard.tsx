@@ -3,6 +3,7 @@ import React, { FC, useEffect, useState } from 'react';
 import Leaderboard from '../api/Leaderboard';
 import './LeaderBoard.css';
 import { ReactComponent as Flourish } from './svg/pointsdecor.svg';
+import _ from 'lodash';
 
 type LeaderBoardProps = {
     closeHandler: () => void,
@@ -29,7 +30,6 @@ const LeaderBoard: FC<LeaderBoardProps> = ({ closeHandler, open }) => {
     if (isLoading){
         return null
     }
-
 
     return <aside className={`Leaderboard ${open ? 'open' : ''}`}>
         <button title="Lukk ledertavle" id="CloseLeaderboard" onClick={() => closeHandler()}>

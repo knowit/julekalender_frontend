@@ -1,9 +1,9 @@
 import Axios from 'axios';
 import React, { FC, useEffect, useState } from 'react';
-import Leaderboard from '../api/Leaderboard';
 import './LeaderBoard.css';
 import { ReactComponent as Flourish } from './svg/pointsdecor.svg';
 import _ from 'lodash';
+import Leaderboard from '../api/Leaderboard';
 
 type LeaderBoardProps = {
     closeHandler: () => void,

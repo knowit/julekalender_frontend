@@ -1,4 +1,6 @@
-import React, { FC } from 'react';
+import Axios from 'axios';
+import React, { FC, useEffect, useState } from 'react';
+import Leaderboard from '../api/Leaderboard';
 import './LeaderBoard.css';
 import { ReactComponent as Flourish } from './svg/pointsdecor.svg';
 
@@ -8,6 +10,27 @@ type LeaderBoardProps = {
 };
 
 const LeaderBoard: FC<LeaderBoardProps> = ({ closeHandler, open }) => {
+
+    const [isLoading, setIsLoading] = useState<boolean>(true);
+    const [lb, setLB] = useState<Leaderboard>();
+
+    useEffect(() => {
+        Axios.get<Leaderboard>(`http://10.205.4.110:3000/leaderboard`, { headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" } })
+            .then(response => {
+                setLB(response.data);
+                setIsLoading(false)
+            })
+    }, [])
+
+    if (lb === []) {
+        return null
+    }
+ 
+    if (isLoading){
+        return null
+    }
+
+
     return <aside className={`Leaderboard ${open ? 'open' : ''}`}>
         <button title="Lukk ledertavle" id="CloseLeaderboard" onClick={() => closeHandler()}>
             {/*X-icon svg*/}
@@ -24,29 +47,7 @@ const LeaderBoard: FC<LeaderBoardProps> = ({ closeHandler, open }) => {
             </thead>
             <tbody>
                 <tr>
-                    <td>24</td>
-                    <td>
-                        <ul>
-                            <li>Per</li>
-                            <li>Kari</li>
-                            <li>Per</li>
-                            <li>Kari</li>
-                            <li>Per</li>
-                            <li>Kari</li>
-                            <li>PerPerPerPerPerPerPerPer</li>
-                            <li>Kari</li>
-                            <li>Per</li>
-                            <li>Kari</li>
-                        </ul></td>
-                </tr>
-                <tr>
-                    <td>23</td>
-                    <td>
-                        <ul>
-                            <li>Ole</li>
-                            <li>Siri</li>
-                            <li>Donald</li>
-                        </ul></td>
+                    {JSON.stringify(lb)}
                 </tr>
             </tbody>
         </table>

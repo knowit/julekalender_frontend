@@ -15,12 +15,11 @@ const Door = () => {
     let { doorNumber } = useParams();
     const { isAuthenticated } = useAuth0();
 
-
-    const [isLoading, setIsLoading] = useState<boolean>(true);
-    const [challange, setChallange] = useState<Challenge>();
+    const [isLoading, setIsLoading] = useState<boolean>(false);
+    const [challange, setChallange] = useState<Challenge>({} as Challenge);
 
     useEffect(() => {
-        Axios.get<Challenge>(`http://localhost:8080/challenges/${doorNumber}`, { headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" } })
+        Axios.get<Challenge>(`http://***REMOVED***/challenges/${doorNumber}`, { headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" } })
             .then(response => {
                 if (response.status === 202) {
                     alert("Hei, ingen juksing!")
@@ -28,8 +27,7 @@ const Door = () => {
                 setChallange(response.data);
                 setIsLoading(false)
             })
-    }, [doorNumber])
-
+    }, [])
 
     if (isLoading) {
         return null
@@ -48,13 +46,14 @@ const Door = () => {
 
     return <>
         <main className="DoorWrapper">
+            <Link className="BackButton" to="/">&larr; Tilbake til lukene</Link>
+
             <Light nr={doorNumber} />
             <div className="BorderWrapper">
                 <Border className="Border" />
             </div>
             <div className="Door">
-                <Link className="BackButton" to="/">&larr; Tilbake til lukene</Link>
-                <ReactMarkdown>{challange.markdown}</ReactMarkdown>
+                <div dangerouslySetInnerHTML={{__html: challange.content}}/>
 
                 <div className="input">
                     {isAuthenticated && <form>

@@ -5,9 +5,9 @@ interface ForumPost {
 interface Challenge {
     id: number,
     title: string,
-    markdown: string,
+    content: string,
     author: string,
-    door: 1,
+    door: number,
     answer: string,
     forumPosts: ForumPost[]
 }

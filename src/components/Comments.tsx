@@ -18,20 +18,38 @@ interface CommentProps {
 }
 
 const CommentView: FC<CommentProps> = ({ comment }) => {
-    return <div className="CommentView">
+
+    const subComments: Comment[] = [{ content: "Foo bar baz", likes: 3 }, { content: "Foo bar baz", likes: 3 }, { content: "Foo bar baz", likes: 3 }]
+
+    return <div className="Comment"><div className="CommentView">
         <img className="ProfileImage" src="https://placekitten.com/100/100" alt="User avatar" />
-            <div className="CommentData">
-                <span className="CommentName">Name</span><time>12. des 14:27</time>
-                <p>{comment.content}</p>
-            </div>
+        <div className="CommentData">
+            <span className="CommentName">Name</span><time>12. des 14:27</time>
+            <p>{comment.content}</p>
+        </div>
+    </div>
+        <div className="SubComments">
+            {subComments.map(comment => <SubComment comment={comment} />)}
+        </div>
+    </div>
+}
+
+
+const SubComment: FC<CommentProps> = ({ comment }) => {
+    return <div className="SubComment">
+        <img className="ProfileImage" src="https://placekitten.com/100/100" alt="User avatar" />
+        <div className="CommentData">
+            <span className="CommentName">Name</span><time>12. des 14:27</time>
+            <p>{comment.content}</p>
+        </div>
     </div>
 }
 
 const CommentForm = () => {
     return <form className="CommentForm">
-            <TextareaAutosize name="comment" id="comment" placeholder="Legg igjen en kommentar, gjerne i Markdown :)" />
-            <button className="SubmitButton" onClick={(e) => { e.preventDefault(); alert("click") }} value="Lagre">Skriv kommentar!</button>
-        </form>
+        <TextareaAutosize name="comment" id="comment" placeholder="Legg igjen en kommentar, gjerne i Markdown :)" />
+        <button className="SubmitButton" onClick={(e) => { e.preventDefault(); alert("click") }} value="Lagre">Skriv kommentar!</button>
+    </form>
 }
 
 

@@ -28,20 +28,25 @@
     opacity: 1;
 }
 
+.Leaderboard ul {
+    text-align: left;
+    list-style-type: none;
+}
+
 .Leaderboard table{
     margin: auto;
-    border-spacing: 15px;
+    border-spacing: 10px;
     border-collapse: collapse;
     border-style: hidden;
 }
 
 .Leaderboard table th {
-    padding: 1rem;
+    padding: 0.5rem;
     border: 2px solid white;
 }
 
 .Leaderboard table td {
-    padding: 1rem;
+    padding: 0.5rem;
     border: 2px solid white;
 }
 

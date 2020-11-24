@@ -30,7 +30,7 @@ const Gdpr = () => {
                 <p>Påmelding/deltagelse i konkurranse.</p>
 
                 <h3>4. Grunnlaget for behandlingen</h3>
-                <p>Innhentede er nødvendig for å delta i konkurransen, diskusjonsfelt og for å kontakte vinner, samt vise statistikk over løste oppgaver.</p>
+                <p>Innhentede data er nødvendig for å delta i konkurransen, diskusjonsfelt og for å kontakte vinner, samt vise statistikk over løste oppgaver.</p>
 
                 <h3>5. Innhenting av personopplysninger</h3>
                 <p>Vi bruker informasjonskapsler/cookies på våre nettsider for å gi deg som besøker siden best brukeropplevelse.</p>

@@ -2,7 +2,7 @@ import Axios from 'axios';
 import React, { FC, useEffect, useState } from 'react';
 import './LeaderBoard.css';
 import { ReactComponent as Flourish } from './svg/pointsdecor.svg';
-import Leaderboard from '../api/Leaderboard';
+import Leaderboard, { DoorKey } from '../api/Leaderboard';
 
 type LeaderBoardProps = {
     closeHandler: () => void,
@@ -22,11 +22,11 @@ const LeaderBoard: FC<LeaderBoardProps> = ({ closeHandler, open }) => {
             })
     }, [])
 
-    if (lb === []) {
+    if (lb === undefined) {
         return null
     }
- 
-    if (isLoading){
+
+    if (isLoading) {
         return null
     }
 
@@ -46,7 +46,8 @@ const LeaderBoard: FC<LeaderBoardProps> = ({ closeHandler, open }) => {
             </thead>
             <tbody>
                 <tr>
-                    {JSON.stringify(lb)}
+                    {Object.keys(lb)
+                    .map((k) => <><td>{k}</td><td>{lb[k as DoorKey]}</td></>)}
                 </tr>
             </tbody>
         </table>

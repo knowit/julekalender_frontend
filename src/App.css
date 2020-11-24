@@ -35,6 +35,16 @@ nav button {
     cursor: pointer;
 }
 
+#gdprLink {
+    color: whitesmoke;
+    text-decoration: none;
+    font-size: 1.1rem;
+}
+
+#gdprLink:hover {
+    text-decoration: underline;
+}
+
 footer {
     color: whitesmoke;
     padding-bottom: 5rem;

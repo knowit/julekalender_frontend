@@ -1,0 +1,38 @@
+.gdprContainer {
+    margin: auto;
+    max-width: 80rem;
+    margin: 5rem auto 0 auto;
+}
+
+.gdprBackButton {
+    color: darkgray;
+    font-size: 1.2rem;
+    text-decoration: none;
+    margin-left: .5rem;
+}
+
+.gdprBorderWrapper {
+    /*overflow: hidden;*/
+    margin: 0 2rem -5rem 0;
+}
+
+.gdprBorder {
+    width: 80rem;
+}
+
+.gdprContentWrapper {
+    background-color: white;
+    color: black;
+    text-align: center;
+    overflow: hidden;
+    margin: 0 2rem 0 2rem;
+}
+
+.gdprContentTitle {
+    margin-top: 2.5rem;
+}
+
+.gdprContentText {
+    text-align: left;
+    margin: 0 1rem 1rem 1rem;
+}

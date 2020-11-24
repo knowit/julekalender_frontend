@@ -11,6 +11,10 @@
     line-height: 2.5rem;
 }
 
+.gdprContainer p {
+    margin-left: 1.35rem;
+}
+
 .gdprBackButton {
     color: darkgray;
     font-size: 1.2rem;
@@ -19,7 +23,6 @@
 }
 
 .gdprBorderWrapper {
-    /*overflow: hidden;*/
     margin: 0 2rem -5rem 0;
 }
 

@@ -52,14 +52,13 @@ const Door = () => {
                 <Border className="Border" />
             </div>
             <div className="Door">
-                <div dangerouslySetInnerHTML={{__html: challange.content}}/>
+                <div dangerouslySetInnerHTML={{ __html: challange.content }} />
 
                 <div className="input">
-                    {isAuthenticated && <form>
+                    {isAuthenticated ? <form>
                         <input placeholder="Ditt svar:" />
                         <input type="submit" value="Send inn svar" />
-                    </form>}
-                    {!isAuthenticated && <p>Logg inn for å delta!</p>}
+                    </form> : <p>Logg inn for å delta!</p>}
                 </div>
 
             </div>

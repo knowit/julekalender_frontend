@@ -13,5 +13,4 @@ interface Challenge {
 }
 
 
-
 export default Challenge

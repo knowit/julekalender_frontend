@@ -12,7 +12,7 @@ const Gdpr = () => {
             </div>
             <div className='gdprContentWrapper'>
                 <h1 className='gdprContentTitle'>Personvernerklæring for Kodekalenderen 2020</h1>
-                <div className="tldr"><h2>0. <i>TL,DR</i></h2>
+                <div className="tldr"><h2>0. <i>TL;DR</i></h2>
                 <ul>
                     <li>Vi bruker cookies for innlogging.</li>
                     <li>Registrert epostadresse kan brukes til å kontakte deg om du vinner.</li>
@@ -30,7 +30,7 @@ const Gdpr = () => {
                 <p>Påmelding/deltagelse i konkurranse.</p>
 
                 <h3>4. Grunnlaget for behandlingen</h3>
-                <p>TODO</p>
+                <p>Innhentede er nødvendig for å delta i konkurransen, diskusjonsfelt og for å kontakte vinner, samt vise statistikk over løste oppgaver.</p>
 
                 <h3>5. Innhenting av personopplysninger</h3>
                 <p>Vi bruker informasjonskapsler/cookies på våre nettsider for å gi deg som besøker siden best brukeropplevelse.</p>

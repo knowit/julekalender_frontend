@@ -3,6 +3,7 @@ import React from 'react';
 import './Footer.css';
 
 import { FaFacebook, FaTwitter, FaMedium, FaGithub } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 // TODO: Mobile responsiveness
 const Footer = () => (
@@ -26,7 +27,7 @@ const Footer = () => (
       🎄 <em>Lykke til og god jul!</em> 🎄
     </p>
 
-    <br />
+    <Link id='gdprLink' to='/gdpr' title='gdpr'>Les om vår håndtering av personopplysninger</Link>
 
     <h2>Jobbe i Knowit?</h2>
     <p>

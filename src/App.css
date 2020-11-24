@@ -41,7 +41,7 @@ nav button {
     font-size: 1.1rem;
 }
 
-#gdprLink:hover {
+#gdprLink {
     text-decoration: underline;
 }
 

@@ -11,7 +11,7 @@ import Comments from './Comments';
 
 
 const Door = () => {
-    let { doorNumber } = useParams();
+    let { doorNumber } : any = useParams();
     const { isAuthenticated } = useAuth0();
 
     const [isLoading, setIsLoading] = useState<boolean>(false);

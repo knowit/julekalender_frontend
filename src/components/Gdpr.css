@@ -1,7 +1,14 @@
 .gdprContainer {
     margin: auto;
     max-width: 80rem;
-    margin: 5rem auto 0 auto;
+    margin: 5rem auto 5rem auto;
+    text-align: left;
+}
+
+.tldr {
+    font-size: 1.2rem;
+    margin-bottom: 3rem;
+    line-height: 2.5rem;
 }
 
 .gdprBackButton {
@@ -21,10 +28,9 @@
 }
 
 .gdprContentWrapper {
+    padding: 2rem 3rem;
     background-color: white;
     color: black;
-    text-align: center;
-    overflow: hidden;
     margin: 0 2rem 0 2rem;
 }
 

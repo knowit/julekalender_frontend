@@ -32,7 +32,6 @@ function App() {
           <header>
             <nav>
               <a id="knowitlogo" href="https://www.knowit.no/" target="_blank" rel="noopener noreferrer" tabIndex={1}><Logo /></a>
-              <Link id='gdprLink' to='/gdpr' title='gdpr'>GDPR</Link>
               <button onClick={() => toggleLeaderBoard(!leaderBoardOpen)} tabIndex={2}>LEDERTAVLE</button>
               <LoginButton />
             </nav>

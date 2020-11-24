@@ -11,7 +11,7 @@ import Comments from './Comments';
 
 
 const Door = () => {
-    let { doorNumber } : any = useParams();
+    let { doorNumber } = useParams<Record<string, string>>();
     const { isAuthenticated } = useAuth0();
 
     const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -26,7 +26,7 @@ const Door = () => {
                 setChallange(response.data);
                 setIsLoading(false)
             })
-    }, [])
+    }, [doorNumber])
 
     if (isLoading) {
         return null
@@ -47,7 +47,7 @@ const Door = () => {
         <main className="DoorWrapper">
             <Link className="BackButton" to="/">&larr; Tilbake til lukene</Link>
 
-            <Light nr={doorNumber} />
+            <Light nr={parseInt(doorNumber)} />
             <div className="BorderWrapper">
                 <Border className="Border" />
             </div>

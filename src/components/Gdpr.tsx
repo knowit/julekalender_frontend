@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import './Gdpr.css'
 
 
+
 const Gdpr = () => {
     return (
         <div className='gdprContainer'>

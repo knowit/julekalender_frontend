@@ -11,7 +11,6 @@ import {
   Switch,
   Route,
   Redirect,
-  Link,
 } from "react-router-dom";
 import Door from './components/Door';
 

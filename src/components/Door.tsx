@@ -3,7 +3,7 @@ import './Door.css';
 import { Link, Redirect, useParams } from "react-router-dom";
 import Light from './Light';
 import { ReactComponent as Border } from './svg/mistletoeborder.svg';
-import Axios from 'axios';
+import Axios, { AxiosError } from 'axios';
 import Challenge from '../api/Challange';
 import { useAuth0 } from '@auth0/auth0-react';
 import Comments from './Comments';
@@ -16,6 +16,7 @@ const Door = () => {
 
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [challange, setChallange] = useState<Challenge>({} as Challenge);
+    const [fubar, setError] = useState<Error>();
 
     useEffect(() => {
         Axios.get<Challenge>(`http://10.205.4.110:3000/challenges/${doorNumber}`, { headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" } })
@@ -26,6 +27,7 @@ const Door = () => {
                 setChallange(response.data);
                 setIsLoading(false)
             })
+            .catch((e: AxiosError) => setError(e))
     }, [doorNumber])
 
     if (isLoading) {
@@ -41,6 +43,10 @@ const Door = () => {
 
     if (challange === undefined) {
         return null
+    }
+
+    if (fubar !== undefined) {
+    return <><h1>Ooops...</h1><pre>{fubar.message}</pre></>
     }
 
     return <>

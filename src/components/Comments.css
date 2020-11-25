@@ -69,10 +69,76 @@
     display: flex;
     padding: 0.5rem;
     border-bottom: 1px solid black;
-    width:90%;
+    width: 90%;
 }
 
 .SubComment .ProfileImage {
     height: 4rem;
 }
 
+.CommentFooter {
+    color: black;
+    background-color: whitesmoke;
+    padding: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: left;
+}
+
+.CommentFooter h4 {
+    margin-top: 5px;
+}
+
+.CommentFooterItem {
+    flex: 1 1 50px;
+    flex: 0 1 50px;
+    margin: 0 2rem 0 0;
+}
+
+.favoriteSvg {
+    fill: #AE4A4A;
+    opacity: 50%;
+    cursor: pointer;
+}
+
+.favoriteSvg:hover {
+    opacity: unset;
+}
+
+.favoriteSvgLiked {
+    fill: #AE4A4A;
+    cursor: pointer;
+}
+
+.btnReplies {
+    white-space: nowrap;
+    background-color: whitesmoke;
+    border: none;
+    outline: none;
+}
+
+.btnReplies p {
+    margin: 5px 0 0 0;
+    float: left;
+}
+
+.btnReplies:hover {
+    cursor: pointer;
+}
+
+.Chevron {
+    transition: all .5s;
+}
+
+.Rotate {
+    transform: rotate(-180deg);
+}
+
+.LikeWrapper {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.LikeWrapper p {
+    margin: 5px 0 0 5px;
+}

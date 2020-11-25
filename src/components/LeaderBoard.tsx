@@ -45,10 +45,8 @@ const LeaderBoard: FC<LeaderBoardProps> = ({ closeHandler, open }) => {
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    {Object.keys(lb)
-                    .map((k) => <><td>{k}</td><td>{lb[k as DoorKey]}</td></>)}
-                </tr>
+                {Object.keys(lb)
+                    .map((k) => <tr key="k"><td>{k}</td><td>{lb[k as DoorKey]}</td></tr>)}
             </tbody>
         </table>
     </aside>;

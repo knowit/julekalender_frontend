@@ -115,10 +115,45 @@
 .AnswerBox {
     color: black;
     background-color: whitesmoke;
+    padding: 1rem 1rem 1rem 10rem;
 }
 
 .AnswerBox .ProfileImage {
     height: 4rem;
+    padding: 0;
+}
+
+.AnswerBoxInput {
+    width: 100%;
+}
+
+#AnswerText {
+    background-color: whitesmoke;
+    border: none;
+    outline: none;
+    resize: none;
+    border-bottom: 1px solid #122620;
+}
+
+#AnswerText::placeholder {
+    font-style: italic;
+}
+
+.AnswerBoxButtons {
+    background-color: whitesmoke;
+    text-align: right;
+}
+
+.AnswerBoxBtn {
+    width: 5rem;
+    margin: 1rem 2rem 1rem 0;
+    outline: none;
+    border: none;
+    background-color: whitesmoke;
+}
+
+.AnswerBoxBtn:hover {
+    cursor: pointer;
 }
 
 .btnReplies {

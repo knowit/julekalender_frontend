@@ -19,8 +19,10 @@ interface CommentProps {
 
 const CommentView: FC<CommentProps> = ({ comment }) => {
     const [replies, setReplies] = useState(false) // Hide/Show replies
+    const [answer, setAnswer] = useState(false) // Hide/Show answer
+    const [displayReplies, setDisplayReplies] = useState(true) // Hide/Show the show replies button when the reply section is open
 
-    // Dummy Data
+    // Placeholder data
     const data = {
         liked: false,
         likes: 12,
@@ -31,6 +33,12 @@ const CommentView: FC<CommentProps> = ({ comment }) => {
         setReplies(!replies)
     }
 
+    const toggleAnswer = () => {
+        setAnswer(!answer)
+        setDisplayReplies(answer ? true : false)
+        setReplies(answer && replies ? true : false)
+    }
+
     const subComments: Comment[] = [{ content: "Foo bar baz", likes: 3 }, { content: "Foo bar baz", likes: 3 }, { content: "Foo bar baz", likes: 3 }]
 
     return (
@@ -39,7 +47,7 @@ const CommentView: FC<CommentProps> = ({ comment }) => {
                 <img className="ProfileImage" src="https://placekitten.com/100/100" alt="User avatar" />
                 <div className="CommentData">
                     <span className="CommentName">Name</span><time>12. des 14:27</time>
-                    <p>{comment.content}</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris mattis gravida est id dapibus. Quisque at massa lacinia, ultrices metus et, efficitur orci. Nam lacinia porta congue. Pellentesque purus massa, tempus a semper sit amet, blandit vitae massa. Curabitur sed velit elit. In sem nisi, convallis id maximus sed, laoreet ut turpis. Maecenas mattis lorem id lacus vulputate rhoncus. Proin ornare finibus commodo. Nam maximus quis massa at molestie. Aenean rutrum est sit amet pretium dapibus. Vivamus eget posuere mi. Quisque quis turpis vulputate nisl condimentum ornare sed vel magna. Maecenas ultricies pretium lacus. Pellentesque sodales dignissim felis. Vestibulum ipsum nibh, molestie eu rhoncus eu, vestibulum non odio.</p>
                 </div>
             </div>
             <div className='CommentFooter'>
@@ -47,22 +55,26 @@ const CommentView: FC<CommentProps> = ({ comment }) => {
                     <Favorite className={data.liked ? 'favoriteSvgLiked' : 'favoriteSvg'}/>
                     <p>{data.likes}</p>
                 </div>
-                <button className='CommentFooterItem btnAnswer'>SVAR</button>
-                <button className='CommentFooterItem btnReplies' onClick={toggleReplies}>
-                    <p>vis {data.repliesNumber} svar </p>
-                    <Chevron className={replies ? 'Chevron Rotate' : 'Chevron'}/>
-                </button>
+                <button className='CommentFooterItem btnAnswer' onClick={toggleAnswer}>SVAR</button>
+                {   displayReplies &&
+                        <button className='CommentFooterItem btnReplies' onClick={toggleReplies}>
+                            <p>vis {data.repliesNumber} svar </p>
+                            <Chevron className={replies ? 'Chevron Rotate' : 'Chevron'}/>
+                        </button>
+                }
             </div>
-            <div className='AnswerBox'>
-                <div>
-                    <img className="ProfileImage" src="https://placekitten.com/100/100" alt="User avatar"/>
-                    <TextareaAutosize  placeholder='Legg til svar'/>
+            { answer &&
+                <div className='AnswerBox'>
+                    <div className='AnswerBoxInput'>
+                        <img className="ProfileImage" src="https://placekitten.com/100/100" alt="User avatar"/>
+                        <TextareaAutosize id='AnswerText' placeholder='Legg til svar'/>
+                    </div>
+                    <div className='AnswerBoxButtons'>
+                        <button className='AnswerBoxBtn' onClick={toggleAnswer}>AVBRYT</button>
+                        <button className='AnswerBoxBtn'>SVAR</button>
+                    </div>
                 </div>
-                <div>
-                    <button>AVBRYT</button>
-                    <button>SVAR</button>
-                </div>
-            </div>
+            }
             { replies && 
                 <div className="SubComments">
                     {subComments.map(comment => <SubComment comment={comment} />)}
@@ -78,7 +90,7 @@ const SubComment: FC<CommentProps> = ({ comment }) => {
         <img className="ProfileImage" src="https://placekitten.com/100/100" alt="User avatar" />
         <div className="CommentData">
             <span className="CommentName">Name</span><time>12. des 14:27</time>
-            <p>{comment.content}</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris mattis gravida est id dapibus. Quisque at massa lacinia, ultrices metus et, efficitur orci. Nam lacinia porta congue. Pellentesque purus massa, tempus a semper sit amet, blandit vitae massa. Curabitur sed velit elit. In sem nisi, convallis id maximus sed, laoreet ut turpis. Maecenas mattis lorem id lacus vulputate rhoncus. Proin ornare finibus commodo. Nam maximus quis massa at molestie. Aenean rutrum est sit amet pretium dapibus. Vivamus eget posuere mi. Quisque quis turpis vulputate nisl condimentum ornare sed vel magna. Maecenas ultricies pretium lacus. Pellentesque sodales dignissim felis. Vestibulum ipsum nibh, molestie eu rhoncus eu, vestibulum non odio.</p>
         </div>
     </div>
 }

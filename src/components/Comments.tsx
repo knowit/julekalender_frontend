@@ -19,7 +19,7 @@ interface CommentProps {
 
 const CommentView: FC<CommentProps> = ({ comment }) => {
     const [replies, setReplies] = useState(false) // Hide/Show replies
-    const [answer, setAnswer] = useState(false) // Hide/Show answer
+    const [reply, setReply] = useState(true) // Hide/Show reply
     const [displayReplies, setDisplayReplies] = useState(true) // Hide/Show the show replies button when the reply section is open
 
     // Placeholder data
@@ -33,10 +33,10 @@ const CommentView: FC<CommentProps> = ({ comment }) => {
         setReplies(!replies)
     }
 
-    const toggleAnswer = () => {
-        setAnswer(!answer)
-        setDisplayReplies(answer ? true : false)
-        setReplies(answer && replies ? true : false)
+    const toggleReply = () => {
+        setReply(!reply)
+        setDisplayReplies(reply ? true : false)
+        setReplies(reply && replies ? true : false)
     }
 
     const subComments: Comment[] = [{ content: "Foo bar baz", likes: 3 }, { content: "Foo bar baz", likes: 3 }, { content: "Foo bar baz", likes: 3 }]
@@ -55,7 +55,7 @@ const CommentView: FC<CommentProps> = ({ comment }) => {
                     <Favorite className={data.liked ? 'favoriteSvgLiked' : 'favoriteSvg'}/>
                     <p>{data.likes}</p>
                 </div>
-                <button className='CommentFooterItem btnAnswer' onClick={toggleAnswer}>SVAR</button>
+                <button className='CommentFooterItem btnReply' onClick={toggleReply}>SVAR</button>
                 {   displayReplies &&
                         <button className='CommentFooterItem btnReplies' onClick={toggleReplies}>
                             <p>vis {data.repliesNumber} svar </p>
@@ -63,15 +63,17 @@ const CommentView: FC<CommentProps> = ({ comment }) => {
                         </button>
                 }
             </div>
-            { answer &&
-                <div className='AnswerBox'>
-                    <div className='AnswerBoxInput'>
+            { reply &&
+                <div className='ReplyBox'>
+                    <div className='ReplyBoxInput'>
                         <img className="ProfileImage" src="https://placekitten.com/100/100" alt="User avatar"/>
-                        <TextareaAutosize id='AnswerText' placeholder='Legg til svar'/>
+                        <div>
+                            <TextareaAutosize id='ReplyText' placeholder='Legg til svar'/>
+                        </div>
                     </div>
-                    <div className='AnswerBoxButtons'>
-                        <button className='AnswerBoxBtn' onClick={toggleAnswer}>AVBRYT</button>
-                        <button className='AnswerBoxBtn'>SVAR</button>
+                    <div className='ReplyBoxButtons'>
+                        <button className='ReplyBoxBtn' onClick={toggleReply}>AVBRYT</button>
+                        <button className='ReplyBoxBtn'>SVAR</button>
                     </div>
                 </div>
             }

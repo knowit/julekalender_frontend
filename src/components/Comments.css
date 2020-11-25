@@ -32,7 +32,7 @@
     border-radius: 50%;
     margin-right: 1rem;
     height: 6rem;
-    padding: 1rem;
+    padding: 1rem 1rem 1rem 1rem;
 }
 
 .CommentView {
@@ -67,13 +67,14 @@
     background-color: whitesmoke;
     color: black;
     display: flex;
-    padding: 0.5rem;
+    padding: .5rem .5rem .5rem 10rem;
     border-bottom: 1px solid black;
-    width: 90%;
 }
 
 .SubComment .ProfileImage {
     height: 4rem;
+    padding: 0;
+    margin-top: 1rem;
 }
 
 .CommentFooter {
@@ -106,45 +107,49 @@
     cursor: pointer;
 }
 
-.btnAnswer {
+.btnReply {
     border: none;
     background-color: whitesmoke;
     outline: none;
 }
 
-.AnswerBox {
+.ReplyBox {
     color: black;
     background-color: whitesmoke;
     padding: 1rem 1rem 1rem 10rem;
 }
 
-.AnswerBox .ProfileImage {
+.ReplyBox .ProfileImage {
     height: 4rem;
     padding: 0;
 }
 
-.AnswerBoxInput {
+.ReplyBoxInput {
     width: 100%;
 }
 
-#AnswerText {
+#ReplyText {
     background-color: whitesmoke;
     border: none;
     outline: none;
     resize: none;
     border-bottom: 1px solid #122620;
+    width: 100%;
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+    box-sizing: border-box;         /* Opera/IE 8+ */
 }
 
-#AnswerText::placeholder {
+#ReplyText::placeholder {
     font-style: italic;
 }
 
-.AnswerBoxButtons {
+.ReplyBoxButtons {
     background-color: whitesmoke;
     text-align: right;
 }
 
-.AnswerBoxBtn {
+.ReplyBoxBtn {
     width: 5rem;
     margin: 1rem 2rem 1rem 0;
     outline: none;
@@ -152,7 +157,7 @@
     background-color: whitesmoke;
 }
 
-.AnswerBoxBtn:hover {
+.ReplyBoxBtn:hover {
     cursor: pointer;
 }
 
@@ -168,7 +173,7 @@
     float: left;
 }
 
-.btnReplies:hover, .btnAnswer:hover {
+.btnReplies:hover, .btnReply:hover {
     cursor: pointer;
 }
 

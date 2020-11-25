@@ -26,7 +26,6 @@ const CommentView: FC<CommentProps> = ({ comment }) => {
         likes: 12,
         repliesNumber: 2
     }
-    const liked: boolean = true
 
     const toggleReplies = () => {
         setReplies(!replies)
@@ -48,11 +47,21 @@ const CommentView: FC<CommentProps> = ({ comment }) => {
                     <Favorite className={data.liked ? 'favoriteSvgLiked' : 'favoriteSvg'}/>
                     <p>{data.likes}</p>
                 </div>
-                <h4 className='CommentFooterItem'>SVAR</h4>
+                <button className='CommentFooterItem btnAnswer'>SVAR</button>
                 <button className='CommentFooterItem btnReplies' onClick={toggleReplies}>
                     <p>vis {data.repliesNumber} svar </p>
                     <Chevron className={replies ? 'Chevron Rotate' : 'Chevron'}/>
                 </button>
+            </div>
+            <div className='AnswerBox'>
+                <div>
+                    <img className="ProfileImage" src="https://placekitten.com/100/100" alt="User avatar"/>
+                    <TextareaAutosize  placeholder='Legg til svar'/>
+                </div>
+                <div>
+                    <button>AVBRYT</button>
+                    <button>SVAR</button>
+                </div>
             </div>
             { replies && 
                 <div className="SubComments">

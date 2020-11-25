@@ -79,14 +79,10 @@
 .CommentFooter {
     color: black;
     background-color: whitesmoke;
-    padding: 1rem;
+    padding: 1rem 1rem 1rem 10rem;
     display: flex;
     flex-wrap: wrap;
     justify-content: left;
-}
-
-.CommentFooter h4 {
-    margin-top: 5px;
 }
 
 .CommentFooterItem {
@@ -110,6 +106,21 @@
     cursor: pointer;
 }
 
+.btnAnswer {
+    border: none;
+    background-color: whitesmoke;
+    outline: none;
+}
+
+.AnswerBox {
+    color: black;
+    background-color: whitesmoke;
+}
+
+.AnswerBox .ProfileImage {
+    height: 4rem;
+}
+
 .btnReplies {
     white-space: nowrap;
     background-color: whitesmoke;
@@ -122,7 +133,7 @@
     float: left;
 }
 
-.btnReplies:hover {
+.btnReplies:hover, .btnAnswer:hover {
     cursor: pointer;
 }
 

@@ -7,10 +7,12 @@ import { ReactComponent as Chevron } from './svg/expand_more.svg';
 
 const Comments = () => {
     const dummyData: Comment[] = [{ content: "Foo bar baz", likes: 3 }, { content: "Foo bar baz", likes: 3 }, { content: "Foo bar baz", likes: 3 }]
-    return <section className="CommentSection">
-        {dummyData.map(comment => <CommentView comment={comment} />)}
-        <CommentForm />
-    </section>
+    return (
+        <section className="CommentSection">
+            {dummyData.map(comment => <CommentView comment={comment} />)}
+            <CommentForm />
+        </section>
+    )
 }
 
 interface CommentProps {
@@ -18,8 +20,8 @@ interface CommentProps {
 }
 
 const CommentView: FC<CommentProps> = ({ comment }) => {
-    const [replies, setReplies] = useState(false) // Hide/Show replies
-    const [reply, setReply] = useState(true) // Hide/Show reply
+    const [replies, setReplies] = useState(true) // Hide/Show replies
+    const [reply, setReply] = useState(false) // Hide/Show reply
     const [displayReplies, setDisplayReplies] = useState(true) // Hide/Show the show replies button when the reply section is open
 
     // Placeholder data
@@ -67,9 +69,7 @@ const CommentView: FC<CommentProps> = ({ comment }) => {
                 <div className='ReplyBox'>
                     <div className='ReplyBoxInput'>
                         <img className="ProfileImage" src="https://placekitten.com/100/100" alt="User avatar"/>
-                        <div>
-                            <TextareaAutosize id='ReplyText' placeholder='Legg til svar'/>
-                        </div>
+                        <TextareaAutosize id='ReplyText' placeholder='Legg til svar'/>
                     </div>
                     <div className='ReplyBoxButtons'>
                         <button className='ReplyBoxBtn' onClick={toggleReply}>AVBRYT</button>
@@ -88,20 +88,35 @@ const CommentView: FC<CommentProps> = ({ comment }) => {
 
 
 const SubComment: FC<CommentProps> = ({ comment }) => {
-    return <div className="SubComment">
-        <img className="ProfileImage" src="https://placekitten.com/100/100" alt="User avatar" />
-        <div className="CommentData">
-            <span className="CommentName">Name</span><time>12. des 14:27</time>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris mattis gravida est id dapibus. Quisque at massa lacinia, ultrices metus et, efficitur orci. Nam lacinia porta congue. Pellentesque purus massa, tempus a semper sit amet, blandit vitae massa. Curabitur sed velit elit. In sem nisi, convallis id maximus sed, laoreet ut turpis. Maecenas mattis lorem id lacus vulputate rhoncus. Proin ornare finibus commodo. Nam maximus quis massa at molestie. Aenean rutrum est sit amet pretium dapibus. Vivamus eget posuere mi. Quisque quis turpis vulputate nisl condimentum ornare sed vel magna. Maecenas ultricies pretium lacus. Pellentesque sodales dignissim felis. Vestibulum ipsum nibh, molestie eu rhoncus eu, vestibulum non odio.</p>
+
+    // Placeholder data
+    const data = {
+        liked: false,
+        likes: 2
+    }
+
+    return (
+        <div className="SubComment">
+            <img className="ProfileImage" src="https://placekitten.com/100/100" alt="User avatar" />
+            <div className="CommentData">
+                <span className="CommentName">Name</span><time>12. des 14:27</time>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris mattis gravida est id dapibus. Quisque at massa lacinia, ultrices metus et, efficitur orci. Nam lacinia porta congue. Pellentesque purus massa, tempus a semper sit amet, blandit vitae massa. Curabitur sed velit elit. In sem nisi, convallis id maximus sed, laoreet ut turpis. Maecenas mattis lorem id lacus vulputate rhoncus. Proin ornare finibus commodo. Nam maximus quis massa at molestie. Aenean rutrum est sit amet pretium dapibus. Vivamus eget posuere mi. Quisque quis turpis vulputate nisl condimentum ornare sed vel magna. Maecenas ultricies pretium lacus. Pellentesque sodales dignissim felis. Vestibulum ipsum nibh, molestie eu rhoncus eu, vestibulum non odio.</p>
+                <div className='LikeWrapper'>
+                    <Favorite className={data.liked ? 'favoriteSvgLiked' : 'favoriteSvg'}/>
+                    <p>{data.likes}</p>
+                </div>
+            </div>
         </div>
-    </div>
+    )
 }
 
 const CommentForm = () => {
-    return <form className="CommentForm">
-        <TextareaAutosize name="comment" id="comment" placeholder="Legg igjen en kommentar, gjerne i Markdown :)" />
-        <button className="SubmitButton" onClick={(e) => { e.preventDefault(); alert("click") }} value="Lagre">Skriv kommentar!</button>
-    </form>
+    return (
+        <form className="CommentForm">
+            <TextareaAutosize name="comment" id="comment" placeholder="Legg igjen en kommentar, gjerne i Markdown :)" />
+            <button className="SubmitButton" onClick={(e) => { e.preventDefault(); alert("click") }} value="Lagre">Skriv kommentar!</button>
+        </form>
+    )
 }
 
 

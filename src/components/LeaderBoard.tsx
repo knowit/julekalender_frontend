@@ -46,7 +46,7 @@ const LeaderBoard: FC<LeaderBoardProps> = ({ closeHandler, open }) => {
             </thead>
             <tbody>
                 {Object.keys(lb).reverse()
-                    .map((k) => <tr key="k"><td>{k}</td><td>{lb[k as DoorKey]?.map(name => <p>{name}</p>)}</td></tr>)}
+                    .map((k) => <tr key={k}><td>{k}</td><td><ul>{lb[k as DoorKey]?.map(name => <li key={name}>{name}</li>)}</ul></td></tr>)}
             </tbody>
         </table>
     </aside>;

@@ -20,7 +20,7 @@ interface CommentProps {
 }
 
 const CommentView: FC<CommentProps> = ({ comment }) => {
-    const [replies, setReplies] = useState(true) // Hide/Show replies
+    const [replies, setReplies] = useState(false) // Hide/Show replies
     const [reply, setReply] = useState(false) // Hide/Show reply
     const [displayReplies, setDisplayReplies] = useState(true) // Hide/Show the show replies button when the reply section is open
 
@@ -49,7 +49,7 @@ const CommentView: FC<CommentProps> = ({ comment }) => {
                 <img className="ProfileImage" src="https://placekitten.com/100/100" alt="User avatar" />
                 <div className="CommentData">
                     <span className="CommentName">Name</span><time>12. des 14:27</time>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris mattis gravida est id dapibus. Quisque at massa lacinia, ultrices metus et, efficitur orci. Nam lacinia porta congue. Pellentesque purus massa, tempus a semper sit amet, blandit vitae massa. Curabitur sed velit elit. In sem nisi, convallis id maximus sed, laoreet ut turpis. Maecenas mattis lorem id lacus vulputate rhoncus. Proin ornare finibus commodo. Nam maximus quis massa at molestie. Aenean rutrum est sit amet pretium dapibus. Vivamus eget posuere mi. Quisque quis turpis vulputate nisl condimentum ornare sed vel magna. Maecenas ultricies pretium lacus. Pellentesque sodales dignissim felis. Vestibulum ipsum nibh, molestie eu rhoncus eu, vestibulum non odio.</p>
+                    <p>{comment.content}</p>
                 </div>
             </div>
             <div className='CommentFooter'>
@@ -100,7 +100,7 @@ const SubComment: FC<CommentProps> = ({ comment }) => {
             <img className="ProfileImage" src="https://placekitten.com/100/100" alt="User avatar" />
             <div className="CommentData">
                 <span className="CommentName">Name</span><time>12. des 14:27</time>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris mattis gravida est id dapibus. Quisque at massa lacinia, ultrices metus et, efficitur orci. Nam lacinia porta congue. Pellentesque purus massa, tempus a semper sit amet, blandit vitae massa. Curabitur sed velit elit. In sem nisi, convallis id maximus sed, laoreet ut turpis. Maecenas mattis lorem id lacus vulputate rhoncus. Proin ornare finibus commodo. Nam maximus quis massa at molestie. Aenean rutrum est sit amet pretium dapibus. Vivamus eget posuere mi. Quisque quis turpis vulputate nisl condimentum ornare sed vel magna. Maecenas ultricies pretium lacus. Pellentesque sodales dignissim felis. Vestibulum ipsum nibh, molestie eu rhoncus eu, vestibulum non odio.</p>
+                <p>{comment.content}</p>
                 <div className='LikeWrapper'>
                     <Favorite className={data.liked ? 'favoriteSvgLiked' : 'favoriteSvg'}/>
                     <p>{data.likes}</p>

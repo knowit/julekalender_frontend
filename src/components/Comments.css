@@ -32,7 +32,7 @@
     border-radius: 50%;
     margin-right: 1rem;
     height: 6rem;
-    padding: 1rem;
+    padding: 1rem 1rem 1rem 1rem;
 }
 
 .CommentView {
@@ -59,7 +59,7 @@
 .SubComments{
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
+    align-items: flex-start;
     background-color: whitesmoke;
 }
 
@@ -67,12 +67,144 @@
     background-color: whitesmoke;
     color: black;
     display: flex;
-    padding: 0.5rem;
-    border-bottom: 1px solid black;
-    width:90%;
+    width: 100%;
+    margin: 1rem 0 1rem 0;
 }
 
 .SubComment .ProfileImage {
     height: 4rem;
+    padding: 0;
+    margin: 1rem 0 0 10rem;
 }
 
+.CommentFooter {
+    color: black;
+    background-color: whitesmoke;
+    padding: 1rem 1rem 1rem 10rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: left;
+}
+
+.CommentFooterItem {
+    flex: 1 1 50px;
+    flex: 0 1 50px;
+    margin: 0 2rem 0 0;
+}
+
+.favoriteSvg {
+    fill: #AE4A4A;
+    opacity: 50%;
+    cursor: pointer;
+}
+
+.favoriteSvg:hover {
+    opacity: unset;
+}
+
+.favoriteSvgLiked {
+    fill: #AE4A4A;
+    cursor: pointer;
+}
+
+.btnReply {
+    border: none;
+    background-color: whitesmoke;
+    outline: none;
+    font-weight: bold;
+}
+
+.ReplyBox {
+    color: black;
+    background-color: whitesmoke;
+    padding: 1rem 1rem 1rem 10rem;
+}
+
+.ReplyBox .ProfileImage {
+    height: 4rem;
+    padding: 0;
+}
+
+.ReplyBoxInput {
+    display: flex;
+    flex-direction: row;
+}
+
+#ReplyText {
+    background-color: whitesmoke;
+    border: none;
+    outline: none;
+    resize: none;
+    border-bottom: 1px solid #122620;
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+    box-sizing: border-box;         /* Opera/IE 8+ */
+    width: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+}
+
+#ReplyText::placeholder {
+    font-style: italic;
+    transform: translateY(300%);
+}
+
+#ReplyText:focus {
+    border: none;
+    outline: auto;
+}
+
+#ReplyText:focus::placeholder {
+    opacity: 0;
+}
+
+.ReplyBoxButtons {
+    background-color: whitesmoke;
+    text-align: right;
+}
+
+.ReplyBoxBtn {
+    width: 5rem;
+    margin: 1rem 2rem 1rem 0;
+    outline: none;
+    border: none;
+    background-color: whitesmoke;
+    font-size: 16px;
+}
+
+.ReplyBoxBtn:hover {
+    cursor: pointer;
+}
+
+.btnReplies {
+    white-space: nowrap;
+    background-color: whitesmoke;
+    border: none;
+    outline: none;
+}
+
+.btnReplies p {
+    margin: 5px 0 0 0;
+    float: left;
+}
+
+.btnReplies:hover, .btnReply:hover {
+    cursor: pointer;
+}
+
+.Chevron {
+    transition: all .5s;
+}
+
+.Rotate {
+    transform: rotate(-180deg);
+}
+
+.LikeWrapper {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.LikeWrapper p {
+    margin: 5px 0 0 5px;
+}

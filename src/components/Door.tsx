@@ -51,7 +51,7 @@ const Door = () => {
 
     return <>
         <main className="DoorWrapper">
-            <Link className="BackButton" to="/">&larr; Tilbake til lukene</Link>
+            <Link className="BackButton" tabIndex={4} to="/">&larr; Tilbake til lukene</Link>
 
             <Light nr={parseInt(doorNumber)} />
             <div className="BorderWrapper">

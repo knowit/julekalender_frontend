@@ -31,6 +31,7 @@
 .Leaderboard ul {
     text-align: left;
     list-style-type: none;
+    padding-left: 1rem;
 }
 
 .Leaderboard table{

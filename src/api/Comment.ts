@@ -1,4 +1,4 @@
-import Challenge from "./Challange";
+import Challenge from "./Challenge";
 
 interface Comment{
     pseudoref?: string, 

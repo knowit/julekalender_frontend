@@ -43,7 +43,7 @@ const Door = () => {
                 setToken(IdToken)
             } catch (e) {
                 console.log(e.message)
-            }
+                }
             }
       
         getTokenData()
@@ -51,7 +51,9 @@ const Door = () => {
 
     useEffect(() => {
         const payload = {
-            answer: 'pinsir',
+            solution: {
+                answer: 'charmander'
+            }
         }
     
         const axiosConfig = {
@@ -83,7 +85,7 @@ const Door = () => {
     }
 
     if (fubar !== undefined) {
-    return <><h1>Ooops...</h1><pre>{fubar.message}</pre></>
+        return <><h1>Ooops...</h1><pre>{fubar.message}</pre></>
     }
 
     return <>

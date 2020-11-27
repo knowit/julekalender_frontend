@@ -21,7 +21,6 @@ const Doors = () => {
 				await getAccessTokenSilently({
 					audience: 'https://knowit-konkurranser.eu.auth0.com/api/v2/',
 					scope: 'read:current_user update:current_user_metadata'
-
 				});
 				const claims = await getIdTokenClaims();
 				Axios.get<SolvedStatus>(`${apiUrl}/challenges/solved`, { headers: { ...requestHeaders, Authorization: `Bearer ${claims.__raw}` } })

@@ -32,7 +32,7 @@ const CommentView: FC<CommentProps> = ({ comment }) => {
     }
 
     const toggleReplies = () => {
-        setReplies(!replies)
+        setReplies(replies)
     }
 
     const toggleReply = () => {

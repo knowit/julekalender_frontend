@@ -9,8 +9,8 @@ const Comments = () => {
     const dummyData: Comment[] = [{ content: "Foo bar baz", likes: 3 }, { content: "Foo bar baz", likes: 3 }, { content: "Foo bar baz", likes: 3 }]
     return (
         <section className="CommentSection">
-            {dummyData.map(comment => <CommentView comment={comment} />)}
             <CommentForm />
+            {dummyData.map(comment => <CommentView comment={comment} />)}
         </section>
     )
 }
@@ -54,22 +54,22 @@ const CommentView: FC<CommentProps> = ({ comment }) => {
             </div>
             <div className='CommentFooter'>
                 <div className='CommentFooterItem LikeWrapper'>
-                    <Favorite className={data.liked ? 'favoriteSvgLiked' : 'favoriteSvg'}/>
+                    <Favorite className={data.liked ? 'favoriteSvgLiked' : 'favoriteSvg'} />
                     <p>{data.likes}</p>
                 </div>
                 <button className='CommentFooterItem btnReply' onClick={toggleReply}>SVAR</button>
-                {   displayReplies &&
-                        <button className='CommentFooterItem btnReplies' onClick={toggleReplies}>
-                            <p>vis {data.repliesNumber} svar </p>
-                            <Chevron className={replies ? 'Chevron Rotate' : 'Chevron'}/>
-                        </button>
+                {displayReplies &&
+                    <button className='CommentFooterItem btnReplies' onClick={toggleReplies}>
+                        <p>vis {data.repliesNumber} svar </p>
+                        <Chevron className={replies ? 'Chevron Rotate' : 'Chevron'} />
+                    </button>
                 }
             </div>
             { reply &&
                 <div className='ReplyBox'>
                     <div className='ReplyBoxInput'>
-                        <img className="ProfileImage" src="https://placekitten.com/100/100" alt="User avatar"/>
-                        <TextareaAutosize id='ReplyText' placeholder='Legg til svar'/>
+                        <img className="ProfileImage" src="https://placekitten.com/100/100" alt="User avatar" />
+                        <TextareaAutosize id='ReplyText' placeholder='Legg til svar' />
                     </div>
                     <div className='ReplyBoxButtons'>
                         <button className='ReplyBoxBtn' onClick={toggleReply}>AVBRYT</button>
@@ -77,14 +77,14 @@ const CommentView: FC<CommentProps> = ({ comment }) => {
                     </div>
                 </div>
             }
-            { replies && 
+            { replies &&
                 <div className="SubComments">
                     {subComments.map(comment => <SubComment comment={comment} />)}
                 </div>
             }
         </div>
     )
-}  
+}
 
 
 const SubComment: FC<CommentProps> = ({ comment }) => {
@@ -102,7 +102,7 @@ const SubComment: FC<CommentProps> = ({ comment }) => {
                 <span className="CommentName">Name</span><time>12. des 14:27</time>
                 <p>{comment.content}</p>
                 <div className='LikeWrapper'>
-                    <Favorite className={data.liked ? 'favoriteSvgLiked' : 'favoriteSvg'}/>
+                    <Favorite className={data.liked ? 'favoriteSvgLiked' : 'favoriteSvg'} />
                     <p>{data.likes}</p>
                 </div>
             </div>
@@ -114,7 +114,9 @@ const CommentForm = () => {
     return (
         <form className="CommentForm">
             <TextareaAutosize name="comment" id="comment" placeholder="Legg igjen en kommentar, gjerne i Markdown :)" />
-            <button className="SubmitButton" onClick={(e) => { e.preventDefault(); alert("click") }} value="Lagre">Skriv kommentar!</button>
+            <div>
+                <button className="SubmitButton" onClick={(e) => { e.preventDefault(); alert("click") }} value="Lagre">KOMMENTER</button>
+            </div>
         </form>
     )
 }

@@ -1,8 +1,15 @@
-interface Comment{
-    pseudoref?: string, 
-    selfref?: string,
-    content: string,
-    likes: number,
+interface Comment {
+  uuid: string;
+  content: string;
+  user_id: number; // Will be nickname and picture
+  created_at: Date;
+  edited_at: Date | null;
+  likes: number;
+  liked_by_me: boolean;
 }
 
-export default Comment;
+interface ParentComment extends Comment {
+  children?: Comment[];
+}
+
+export default ParentComment;

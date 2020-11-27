@@ -16,7 +16,7 @@ const Door = () => {
     const { isAuthenticated } = useAuth0();
 
     const [isLoading, setIsLoading] = useState<boolean>(false);
-    const [challange, setChallange] = useState<Challenge>({} as Challenge);
+    const [challenge, setChallenge] = useState<Challenge>({} as Challenge);
     const [fubar, setError] = useState<Error>();
 
     useEffect(() => {
@@ -25,7 +25,7 @@ const Door = () => {
                 if (response.status === 202) {
                     alert("Hei, ingen juksing!")
                 }
-                setChallange(response.data);
+                setChallenge(response.data);
                 setIsLoading(false)
             })
             .catch((e: AxiosError) => setError(e))
@@ -42,7 +42,7 @@ const Door = () => {
         return <Redirect to="/" />
     }
 
-    if (challange === undefined) {
+    if (challenge === undefined) {
         return null
     }
 
@@ -59,7 +59,7 @@ const Door = () => {
                 <Border className="Border" />
             </div>
             <div className="Door">
-                <div dangerouslySetInnerHTML={{ __html: challange.content }} />
+                <div dangerouslySetInnerHTML={{ __html: challenge.content }} />
 
                 <div className="input">
                     {isAuthenticated ? <form>

@@ -1,8 +1,9 @@
 import Axios from 'axios';
 import React, { FC, useEffect, useState } from 'react';
+import _ from 'lodash';
 import './LeaderBoard.css';
 import { ReactComponent as Flourish } from './svg/pointsdecor.svg';
-import Leaderboard, { DoorKey } from '../api/Leaderboard';
+import Leaderboard from '../api/Leaderboard';
 
 type LeaderBoardProps = {
     closeHandler: () => void,
@@ -11,23 +12,17 @@ type LeaderBoardProps = {
 
 const LeaderBoard: FC<LeaderBoardProps> = ({ closeHandler, open }) => {
 
-    const [isLoading, setIsLoading] = useState<boolean>(true);
-    const [lb, setLB] = useState<Leaderboard>();
+    const [leaderboard, setLeaderboard] = useState<Leaderboard>();
 
     useEffect(() => {
         Axios.get<Leaderboard>(`http://***REMOVED***/leaderboard`, { headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" } })
-            .then(response => {
-                setLB(response.data);
-                setIsLoading(false)
+            .then((response) => {
+                setLeaderboard(response.data);
             })
     }, [])
 
-    if (lb === undefined) {
-        return null
-    }
-
-    if (isLoading) {
-        return null
+    if (_.isEmpty(leaderboard)) {
+      return null;
     }
 
     return <aside className={`Leaderboard ${open ? 'open' : ''}`}>
@@ -45,8 +40,16 @@ const LeaderBoard: FC<LeaderBoardProps> = ({ closeHandler, open }) => {
                 </tr>
             </thead>
             <tbody>
-                {Object.keys(lb).reverse()
-                    .map((k) => <tr key={k}><td>{k}</td><td><ul>{lb[k as DoorKey]?.map(name => <li key={name}>{name}</li>)}</ul></td></tr>)}
+                {leaderboard?.map(([solved, users]) => (
+                  <tr key={solved}>
+                    <td>{solved}</td>
+                    <td>
+                      <ul>
+                        {users.map((user) => <li key={user}>{user}</li>)}
+                      </ul>
+                    </td>
+                  </tr>)
+                )}
             </tbody>
         </table>
     </aside>;

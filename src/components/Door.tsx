@@ -7,6 +7,7 @@ import Axios, { AxiosError } from 'axios';
 import Challenge from '../api/Challenge';
 import { useAuth0 } from '@auth0/auth0-react';
 import Comments from './Comments';
+import { apiUrl, requestOptions } from '../api/ApiConfig';
 
 
 
@@ -19,7 +20,7 @@ const Door = () => {
     const [fubar, setError] = useState<Error>();
 
     useEffect(() => {
-        Axios.get<Challenge>(`http://***REMOVED***/challenges/${doorNumber}`, { headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" } })
+        Axios.get<Challenge>(`${apiUrl}/challenges/${doorNumber}`, requestOptions)
             .then(response => {
                 if (response.status === 202) {
                     alert("Hei, ingen juksing!")

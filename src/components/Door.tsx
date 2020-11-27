@@ -12,8 +12,8 @@ import Comments from './Comments';
 
 const Door = () => {
     let { doorNumber } = useParams<Record<string, string>>();
-    const { isAuthenticated } = useAuth0();
-
+    const { isAuthenticated, getAccessTokenSilently, getIdTokenClaims } = useAuth0();
+    const [token, setToken] = useState<string>('');
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [challange, setChallange] = useState<Challenge>({} as Challenge);
     const [fubar, setError] = useState<Error>();
@@ -29,6 +29,43 @@ const Door = () => {
             })
             .catch((e: AxiosError) => setError(e))
     }, [doorNumber])
+
+    useEffect(() => {
+        const getTokenData = async () => {
+            try {
+                // For some reason getAccessTokenSilently must be run, or else getIdTokenClaims will return nothing.
+                const accessToken = await getAccessTokenSilently({
+                    user_audience: '6TmycgoSWgFT8EU6COixHKne9JmLx5F4',
+                    scope: "read:current_user",
+                })
+                const claims = await getIdTokenClaims()
+                const IdToken = claims.__raw
+                setToken(IdToken)
+            } catch (e) {
+                console.log(e.message)
+            }
+            }
+      
+        getTokenData()
+      }, [])
+
+    useEffect(() => {
+        const payload = {
+            answer: 'pinsir',
+        }
+    
+        const axiosConfig = {
+            headers: {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*',
+                'Authorization': `${token}`
+            }
+        }
+
+        Axios.post('http://10.205.4.110:3000/challenges/1/solutions', payload, axiosConfig)
+        .then(response => console.log(response))
+        .catch(error => console.log(error))
+    }, [token])
 
     if (isLoading) {
         return null

@@ -4,7 +4,7 @@ import _ from 'lodash';
 import './LeaderBoard.css';
 import { ReactComponent as Flourish } from './svg/pointsdecor.svg';
 import Leaderboard from '../api/Leaderboard';
-import { apiUrl, requestOptions } from '../api/ApiConfig';
+import { apiUrl, requestHeaders } from '../api/ApiConfig';
 
 type LeaderBoardProps = {
     closeHandler: () => void,
@@ -16,7 +16,7 @@ const LeaderBoard: FC<LeaderBoardProps> = ({ closeHandler, open }) => {
     const [leaderboard, setLeaderboard] = useState<Leaderboard>();
 
     useEffect(() => {
-        Axios.get<Leaderboard>(`${apiUrl}/leaderboard`, requestOptions)
+        Axios.get<Leaderboard>(`${apiUrl}/leaderboard`, {headers:  requestHeaders})
             .then((response) => {
                 setLeaderboard(response.data);
             })

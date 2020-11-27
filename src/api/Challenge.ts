@@ -1,4 +1,4 @@
-interface Challenge {
+export interface Challenge {
     door: number,
     content: string,
     author: string,
@@ -6,4 +6,6 @@ interface Challenge {
     answer: string,
 }
 
-export default Challenge
+export interface SolvedStatus {
+    [key: string]: boolean;
+}

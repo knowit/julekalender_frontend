@@ -1,5 +1,3 @@
-import Challenge from "./Challenge";
-
 interface Comment{
     pseudoref?: string, 
     selfref?: string,

@@ -11,8 +11,8 @@ ReactDOM.render(
     domain="knowit-konkurranser.eu.auth0.com"
     clientId="6TmycgoSWgFT8EU6COixHKne9JmLx5F4"
     redirectUri={window.location.origin} //Denne må kanskje endrast?
-    //audience="https://YOUR_DOMAIN/api/v2/" TODO HOST på APIET
-    scope="read:current_user update:current_user_metadata" //TODO: Lag scopes i backend? Sjekk opp
+    audience="https://knowit-konkurranser.eu.auth0.com/api/v2/"
+    scope="read:current_user update:current_user_metadata"
   >
     <App />
   </Auth0Provider>

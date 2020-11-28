@@ -9,3 +9,5 @@ export interface Challenge {
 export interface SolvedStatus {
     [key: string]: boolean;
 }
+
+export default Challenge;

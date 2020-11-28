@@ -1,79 +1,58 @@
 import React, { useEffect, useState } from 'react';
-import './Door.css';
 import { Link, Redirect, useParams } from "react-router-dom";
+import { AxiosError } from 'axios';
+import _ from 'lodash';
+
+import './Door.css';
 import Light from './Light';
 import { ReactComponent as Border } from './svg/mistletoeborder.svg';
-import Axios, { AxiosError } from 'axios';
 import { Challenge } from '../api/Challenge';
-import { useAuth0 } from '@auth0/auth0-react';
 import CommentsSection from './Comments/CommentsSection';
-import { apiUrl, requestHeaders } from '../api/ApiConfig';
-
+import { useRequests } from '../api/requests';
 
 
 const Door = () => {
     let { doorNumber } = useParams<Record<string, string>>();
-    const { isAuthenticated, getAccessTokenSilently, getIdTokenClaims } = useAuth0();
-    const [token, setToken] = useState<string>('');
+    const { isAuthenticated, fetchChallenge, fetchSolvedStatus, createSolution } = useRequests();
+    const [answer, setAnswer] = useState<string>('');
+    const [doorSolvedStatus, setDoorSolvedStatus] = useState(false);
+    const [attempt, setAttempt] = useState(false);
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [challenge, setChallenge] = useState<Challenge>({} as Challenge);
     const [fubar, setError] = useState<Error>();
 
     useEffect(() => {
-        Axios.get<Challenge>(`${apiUrl}/challenges/${doorNumber}`, {headers : requestHeaders})
-            .then(response => {
-                if (response.status === 202) {
-                    alert("Hei, ingen juksing!")
-                }
-                setChallenge(response.data);
-                setIsLoading(false)
-            })
-            .catch((e: AxiosError) => setError(e))
-    }, [doorNumber])
+      fetchChallenge(doorNumber)
+        .then((response) => {
+            setChallenge(response.data);
+            setIsLoading(false)
+        })
+        .catch((e: AxiosError) => setError(e))
+    }, [fetchChallenge, doorNumber])
 
     useEffect(() => {
-        const getTokenData = async () => {
-            try {
-                // For some reason getAccessTokenSilently must be run, or else getIdTokenClaims will return nothing.
-                const accessToken = await getAccessTokenSilently({
-                    user_audience: '6TmycgoSWgFT8EU6COixHKne9JmLx5F4',
-                    scope: "read:current_user",
-                })
-                const claims = await getIdTokenClaims()
-                const IdToken = claims.__raw
-                setToken(IdToken)
-            } catch (e) {
-                console.log(e.message)
-                }
-            }
-      
-        getTokenData()
-      }, [])
+      if (!isAuthenticated) return;
 
-    useEffect(() => {
-        const payload = {
-            solution: {
-                answer: 'charmander'
-            }
-        }
+      fetchSolvedStatus()
+        .then((response) => setDoorSolvedStatus(response.data[`${doorNumber}`]))
+        .catch((e) => setError(e))
+    }, [isAuthenticated, fetchSolvedStatus, setDoorSolvedStatus, doorNumber])
     
-        const axiosConfig = {
-            headers: {
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*',
-                'Authorization': `${token}`
-            }
-        }
+    const sendAnswer = () => {
+      if (_.isNil(doorNumber)) return;
 
-        Axios.post(`${apiUrl}/challenges/1/solutions`, payload, axiosConfig)
-        .then(response => console.log(response))
-        .catch(error => console.log(error))
-    }, [token])
+      // TODO: Handle rate limiting
+      createSolution(doorNumber, answer)
+        .then((response) => {
+            setDoorSolvedStatus(response.data.solved)
+            setAttempt(!response.data.solved)
+        })
+        .catch((error: AxiosError) => setError(error))
+    }
 
     if (isLoading) {
         return null
     }
-
 
     // If opened door is in the future, redirect to root.
     // this is sort of hacky, and can probably be done better.
@@ -89,24 +68,32 @@ const Door = () => {
         return <><h1>Ooops...</h1><pre>{fubar.message}</pre></>
     }
 
+    // TODO: Lightbulb overlays title
     return <>
         <main className="DoorWrapper">
             <Link className="BackButton" tabIndex={4} to="/">&larr; Tilbake til lukene</Link>
-
-            <Light nr={parseInt(doorNumber)} />
+            <Light nr={parseInt(doorNumber)} solved={doorSolvedStatus}/>
             <div className="BorderWrapper">
                 <Border className="Border" />
             </div>
             <div className="Door">
                 <div dangerouslySetInnerHTML={{ __html: challenge.content }} />
-
-                <div className="input">
-                    {isAuthenticated ? <form>
-                        <input placeholder="Ditt svar:" />
-                        <input type="submit" value="Send inn svar" />
-                    </form> : <p>Logg inn for å delta!</p>}
-                </div>
-
+                {!doorSolvedStatus &&
+                    <div className="input">
+                        {
+                            isAuthenticated ?
+                                <div>
+                                    {!doorSolvedStatus && attempt &&
+                                        <p className='WrongAnswer'>Feil svar!</p>
+                                    }
+                                    <input placeholder='Ditt svar:' value={answer} onChange={e => setAnswer(e.target.value)}/>
+                                    <button onClick={sendAnswer}>Send inn svar</button>
+                                </div>
+                            :   
+                                <p>Logg inn for å delta!</p>
+                        }
+                    </div>
+                }
             </div>
             {isAuthenticated && <CommentsSection doorNumber={parseInt(doorNumber)}/>}
         </main>

@@ -12,6 +12,8 @@ interface CommentProps {
 
 const TopComment: FC<CommentProps> = ({ comment }) => {
 
+    const [showReplyInput, setShowReplyInput] = useState<boolean>(false);
+
     return (
         <div className="Comment">
             <div className="CommentView">
@@ -26,7 +28,7 @@ const TopComment: FC<CommentProps> = ({ comment }) => {
                     <Favorite className={true ? 'favoriteSvgLiked' : 'favoriteSvg'} />
                     <p>{comment.likes}</p>
                 </div>
-                <button className='CommentFooterItem btnReply' onClick={() => alert("fooo")}>SVAR</button>
+                <button className='CommentFooterItem btnReply' onClick={() => setShowReplyInput(true)}>SKRIV SVAR</button>
 
                 <button className='CommentFooterItem btnReplies' onClick={() => alert("asdasd")}>
                     <p>Vis {comment.children?.length} svar</p>
@@ -35,7 +37,7 @@ const TopComment: FC<CommentProps> = ({ comment }) => {
 
             </div>
 
-            {false ? <div className='ReplyBox'>
+            {showReplyInput ? <div className='ReplyBox'>
                 <div className='ReplyBoxInput'>
                     <img className="ProfileImage" src="https://placekitten.com/100/100" alt="User avatar" />
                     <TextareaAutosize id='ReplyText' placeholder='Legg til svar' />

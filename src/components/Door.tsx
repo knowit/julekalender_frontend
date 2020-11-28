@@ -6,7 +6,7 @@ import { ReactComponent as Border } from './svg/mistletoeborder.svg';
 import Axios, { AxiosError } from 'axios';
 import { Challenge } from '../api/Challenge';
 import { useAuth0 } from '@auth0/auth0-react';
-import Comments from './Comments/CommentsSection';
+import CommentsSection from './Comments/CommentsSection';
 import { apiUrl, requestHeaders } from '../api/ApiConfig';
 
 
@@ -108,7 +108,7 @@ const Door = () => {
                 </div>
 
             </div>
-            {isAuthenticated && <Comments />}
+            {isAuthenticated && <CommentsSection />}
         </main>
     </>
 }

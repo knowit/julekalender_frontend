@@ -94,11 +94,8 @@
 }
 
 .CommentFooter {
-    padding-left: 6rem;
     color: black;
     display: flex;
-    flex-wrap: wrap;
-    justify-content: left;
 }
 
 .CommentFooterItem {
@@ -132,6 +129,8 @@
 .ReplyBox {
     color: black;
     background-color: whitesmoke;
+    width: 88%;
+    padding: 1rem;
 }
 
 .ReplyBox .ProfileImage {

@@ -6,13 +6,16 @@ import SubComment from './SubComment';
 import ParentComment from '../../api/Comment';
 
 
+
 interface CommentProps {
     comment: ParentComment;
 }
 
 const TopComment: FC<CommentProps> = ({ comment }) => {
 
-    const [showReplyInput, setShowReplyInput] = useState<boolean>(false);
+    const [showReplyInput, toggleShowReplyInput] = useState<boolean>(false);
+    const [showSubComments, toggleSubComments] = useState<boolean>(true)
+    const [replyContent, setReplyContent] = useState<string>()
 
     return (
         <div className="Comment">
@@ -28,11 +31,11 @@ const TopComment: FC<CommentProps> = ({ comment }) => {
                     <Favorite className={true ? 'favoriteSvgLiked' : 'favoriteSvg'} />
                     <p>{comment.likes}</p>
                 </div>
-                <button className='CommentFooterItem btnReply' onClick={() => setShowReplyInput(true)}>SKRIV SVAR</button>
+                <button className='CommentFooterItem btnReply' onClick={() => toggleShowReplyInput(!showReplyInput)}>SKRIV SVAR</button>
 
-                <button className='CommentFooterItem btnReplies' onClick={() => alert("asdasd")}>
-                    <p>Vis {comment.children?.length} svar</p>
-                    <Chevron className={true ? 'Chevron Rotate' : 'Chevron'} />
+                <button className='CommentFooterItem btnReplies' onClick={() => toggleSubComments(!showSubComments)}>
+                    <span>Vis {comment.children?.length} svar</span>
+                    <Chevron className={showSubComments ? 'Chevron Rotate' : 'Chevron'} />
                 </button>
 
             </div>
@@ -40,18 +43,18 @@ const TopComment: FC<CommentProps> = ({ comment }) => {
             {showReplyInput ? <div className='ReplyBox'>
                 <div className='ReplyBoxInput'>
                     <img className="ProfileImage" src="https://placekitten.com/100/100" alt="User avatar" />
-                    <TextareaAutosize id='ReplyText' placeholder='Legg til svar' />
+                    <TextareaAutosize value={replyContent} onChange={event => setReplyContent(event.currentTarget.value) } id='ReplyText' placeholder='Legg til svar' />
                 </div>
                 <div className='ReplyBoxButtons'>
-                    <button className='ReplyBoxBtn' onClick={() => alert("woolp")}>AVBRYT</button>
+                    <button className='ReplyBoxBtn' onClick={() => setReplyContent("")}>AVBRYT</button>
                     <button className='ReplyBoxBtn'>SVAR</button>
                 </div>
             </div> : null}
 
-
+            {showSubComments ? 
             <div className="SubComments">
                 {comment.children?.map(comment => <SubComment comment={comment} />)}
-            </div>
+            </div>  : null}
 
         </div>
     )

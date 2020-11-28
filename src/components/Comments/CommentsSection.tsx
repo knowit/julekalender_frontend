@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 import './Comments.css';
 import ParentComment from '../../api/Comment';
 import TextareaAutosize from 'react-autosize-textarea/lib';

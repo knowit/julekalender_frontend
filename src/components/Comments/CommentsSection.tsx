@@ -2,12 +2,10 @@ import React, { FC, useState } from 'react';
 import './Comments.css';
 import ParentComment, { Comment } from '../../api/Comment';
 import TextareaAutosize from 'react-autosize-textarea/lib';
-import { ReactComponent as Favorite } from './../svg/favorite.svg';
-import { ReactComponent as Chevron } from './../svg/expand_more.svg';
 import TopComment from './TopComment';
 
 const CommentsSection = () => {
-    const dummyData: ParentComment[] = [{ content: "Foo bar baz", likes: 3, uuid: "loldas", user_id: 1231341, created_at: new Date(), edited_at: null, liked_by_me: false, children: [{ content: "Godt poeng!", likes: 4, uuid: "sadasds", user_id: 1241, created_at: new Date(), edited_at: null, liked_by_me: false }]   }]
+    const dummyData: ParentComment[] = [{ content: "Foo bar baz", likes: 3, uuid: "loldas", user_id: 1231341, created_at: new Date(), edited_at: null, liked_by_me: false, children: [{ content: "Godt poeng!", likes: 4, uuid: "sadasds", user_id: 1241, created_at: new Date(), edited_at: null, liked_by_me: false }, { content: "Godt poeng!", likes: 4, uuid: "sadasds", user_id: 1241, created_at: new Date(), edited_at: null, liked_by_me: false }]   }]
     return (
         <section className="CommentSection">
             <CommentForm />

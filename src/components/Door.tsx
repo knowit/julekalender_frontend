@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { Link, Redirect, useParams } from "react-router-dom";
-import { AxiosError } from 'axios';
 import _ from 'lodash';
 
 import './Door.css';
@@ -27,7 +26,7 @@ const Door = () => {
             setChallenge(response.data);
             setIsLoading(false)
         })
-        .catch((e: AxiosError) => setError(e))
+        .catch((e) => setError(e))
     }, [fetchChallenge, doorNumber])
 
     useEffect(() => {
@@ -47,7 +46,7 @@ const Door = () => {
             setDoorSolvedStatus(response.data.solved)
             setAttempt(!response.data.solved)
         })
-        .catch((error: AxiosError) => setError(error))
+        .catch((error) => setError(error))
     }
 
     if (isLoading) {

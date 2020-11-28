@@ -4,14 +4,15 @@ import { ReactComponent as Chevron } from './../svg/expand_more.svg';
 import { ReactComponent as Favorite } from './../svg/favorite.svg';
 import SubComment from './SubComment';
 import ParentComment from '../../api/Comment';
-
+import Like from '../../api/Like';
 
 
 interface CommentProps {
     comment: ParentComment;
+    likes: Like[];
 }
 
-const TopComment: FC<CommentProps> = ({ comment }) => {
+const TopComment: FC<CommentProps> = ({ comment, likes }) => {
     const [showReplyInput, toggleShowReplyInput] = useState<boolean>(false);
     const [showSubComments, toggleSubComments] = useState<boolean>(true)
     const [replyContent, setReplyContent] = useState<string>()
@@ -19,10 +20,10 @@ const TopComment: FC<CommentProps> = ({ comment }) => {
     return (
         <div className="Comment">
             <div className="CommentView">
-                <img className="ProfileImage" src="https://placekitten.com/100/100" alt="User avatar" />
+                <img className="ProfileImage" src={comment.author.picture} alt="User avatar" />
                 <div className="CommentData">
-                    <span className="CommentName">Name</span><time>12. des 14:27</time>
-                    <p>{comment.content}</p>
+                    <span className="CommentName">{comment.author.nickname}</span><time>{comment.created_at}</time>
+                    <div dangerouslySetInnerHTML={{ __html: comment.content }} />
                 </div>
             </div>
             <div className='CommentFooter'>
@@ -50,7 +51,7 @@ const TopComment: FC<CommentProps> = ({ comment }) => {
 
             {showSubComments ?
                 <div className="SubComments">
-                    {comment.children?.map(comment => <SubComment comment={comment} />)}
+                    {comment.children?.map(comment => <SubComment key={comment.uuid} comment={comment} likes={likes} />)}
                 </div> : null}
 
         </div>

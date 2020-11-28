@@ -1,6 +1,7 @@
 .CommentSection {
     width: 80%;
-    margin: 4rem auto;    
+    margin: 4rem auto;
+    color: black;
 }
 
 .Comment {
@@ -94,14 +95,8 @@
 }
 
 .CommentFooter {
-    color: black;
     display: flex;
-}
-
-.CommentFooterItem {
-    flex: 1 1 50px;
-    flex: 0 1 50px;
-    margin: 0 2rem 0 0;
+    align-items: center;
 }
 
 .favoriteSvg {
@@ -143,7 +138,7 @@
     flex-direction: row;
 }
 
-#ReplyText {
+.ReplyText {
     background-color: whitesmoke;
     border: none;
     outline: none;
@@ -160,18 +155,15 @@
     font-size: 16px;
 }
 
-#ReplyText::placeholder {
+.ReplyText::placeholder {
     font-style: italic;
     transform: translateY(300%);
 }
 
-#ReplyText:focus {
+.ReplyText:focus {
     border: none;
+    border-bottom: 1px solid black;
     outline: auto;
-}
-
-#ReplyText:focus::placeholder {
-    opacity: 0;
 }
 
 .ReplyBoxBtn {
@@ -187,8 +179,6 @@
 }
 
 .btnReplies {
-    white-space: nowrap;
-    background-color: whitesmoke;
     border: none;
     outline: none;
 }
@@ -203,20 +193,13 @@
 }
 
 .Chevron {
+    margin-left: 0.5rem;
+    width: 1rem;
     transition: all .5s;
 }
 
 .Rotate {
     transform: rotate(-180deg);
-}
-
-.LikeWrapper {
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.LikeWrapper p {
-    margin: 5px 0 0 5px;
 }
 
 @media only screen and (max-width: 768px) {

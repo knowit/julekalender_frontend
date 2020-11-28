@@ -1,10 +1,15 @@
 .CommentSection {
     width: 80%;
-    margin: 4rem auto;
+    margin: 4rem auto;    
 }
 
 .Comment {
     margin-bottom: 1rem;
+    padding: 1rem;
+    background-color: whitesmoke;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
 }
 
 .CommentForm {
@@ -46,7 +51,6 @@
     border-radius: 50%;
     margin-right: 1rem;
     height: 6rem;
-    padding: 1rem 1rem 1rem 1rem;
 }
 
 .CommentView {
@@ -58,7 +62,6 @@
 
 .CommentData {
     width: 100%;
-    padding: 1rem;
 }
 
 .CommentData time {
@@ -70,30 +73,29 @@
 }
 
 .SubComments {
+    width: 88%;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    background-color: whitesmoke;
+    align-content: flex-end;    
 }
 
+
 .SubComment {
-    background-color: whitesmoke;
+    background-color: rgb(223, 223, 223);
     color: black;
     display: flex;
-    width: 100%;
-    margin: 1rem 0 1rem 0;
+    margin: 0.5rem 0 0.5rem 0;
+    padding: 0.5rem;
 }
 
 .SubComment .ProfileImage {
     height: 4rem;
     padding: 0;
-    margin: 1rem 0 0 10rem;
 }
 
 .CommentFooter {
+    padding-left: 6rem;
     color: black;
-    background-color: whitesmoke;
-    padding: 1rem 1rem 1rem 10rem;
     display: flex;
     flex-wrap: wrap;
     justify-content: left;
@@ -130,7 +132,6 @@
 .ReplyBox {
     color: black;
     background-color: whitesmoke;
-    padding: 1rem 1rem 1rem 10rem;
 }
 
 .ReplyBox .ProfileImage {
@@ -235,7 +236,7 @@
     }
 
     .SubComment .ProfileImage{
-        height: 2rem;
+        height: 3rem;
     }
 
     

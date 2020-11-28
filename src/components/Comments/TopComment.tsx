@@ -12,7 +12,6 @@ interface CommentProps {
 }
 
 const TopComment: FC<CommentProps> = ({ comment }) => {
-
     const [showReplyInput, toggleShowReplyInput] = useState<boolean>(false);
     const [showSubComments, toggleSubComments] = useState<boolean>(true)
     const [replyContent, setReplyContent] = useState<string>()
@@ -27,15 +26,13 @@ const TopComment: FC<CommentProps> = ({ comment }) => {
                 </div>
             </div>
             <div className='CommentFooter'>
-                <div className='CommentFooterItem LikeWrapper'>
-                    <Favorite className={true ? 'favoriteSvgLiked' : 'favoriteSvg'} />
-                    <p>{comment.likes}</p>
-                </div>
-                <button className='CommentFooterItem btnReply' onClick={() => toggleShowReplyInput(!showReplyInput)}>SKRIV SVAR</button>
+                <Favorite className={true ? 'favoriteSvgLiked' : 'favoriteSvg'} />
+                <span>{comment.likes}</span>
+                <button className='CommentFooterItem btnReply' onClick={() => toggleShowReplyInput(!showReplyInput)}>KOMMENTER INNLEGG</button>
 
                 <button className='CommentFooterItem btnReplies' onClick={() => toggleSubComments(!showSubComments)}>
-                    <span>Vis {comment.children?.length} svar</span>
-                    <Chevron className={showSubComments ? 'Chevron Rotate' : 'Chevron'} />
+                    <span>{`${showSubComments ? "Skjul" : "Vis"} ${comment.children?.length} svar`}</span>
+                    <Chevron className={`Chevron ${showSubComments ? 'Rotate' : ''}`} />
                 </button>
 
             </div>
@@ -43,18 +40,18 @@ const TopComment: FC<CommentProps> = ({ comment }) => {
             {showReplyInput ? <div className='ReplyBox'>
                 <div className='ReplyBoxInput'>
                     <img className="ProfileImage" src="https://placekitten.com/100/100" alt="User avatar" />
-                    <TextareaAutosize value={replyContent} onChange={event => setReplyContent(event.currentTarget.value) } id='ReplyText' placeholder='Legg til svar' />
+                    <TextareaAutosize value={replyContent} onChange={event => setReplyContent(event.currentTarget.value)} className='ReplyText' placeholder='Legg til svar' />
                 </div>
                 <div className='ReplyBoxButtons'>
-                    <button className='ReplyBoxBtn' onClick={() => setReplyContent("")}>AVBRYT</button>
+                    <button className='ReplyBoxBtn' onClick={() => {setReplyContent(""); toggleShowReplyInput(false) }}>AVBRYT</button>
                     <button className='ReplyBoxBtn'>SVAR</button>
                 </div>
             </div> : null}
 
-            {showSubComments ? 
-            <div className="SubComments">
-                {comment.children?.map(comment => <SubComment comment={comment} />)}
-            </div>  : null}
+            {showSubComments ?
+                <div className="SubComments">
+                    {comment.children?.map(comment => <SubComment comment={comment} />)}
+                </div> : null}
 
         </div>
     )

@@ -1,4 +1,6 @@
-interface Comment {
+import Comments from "../components/Comments";
+
+export interface Comment {
   uuid: string;
   content: string;
   user_id: number; // Will be nickname and picture
@@ -13,3 +15,4 @@ interface ParentComment extends Comment {
 }
 
 export default ParentComment;
+

@@ -1,12 +1,12 @@
 import React, { FC, useState } from 'react';
 import './Comments.css';
-import Comment from '../api/Comment';
+import ParentComment, { Comment } from '../api/Comment';
 import TextareaAutosize from 'react-autosize-textarea/lib';
 import { ReactComponent as Favorite } from './svg/favorite.svg';
 import { ReactComponent as Chevron } from './svg/expand_more.svg';
 
 const Comments = () => {
-    const dummyData: Comment[] = [{ content: "Foo bar baz", likes: 3 }, { content: "Foo bar baz", likes: 3 }, { content: "Foo bar baz", likes: 3 }]
+    const dummyData: ParentComment[] = [{ content: "Foo bar baz", likes: 3, uuid: "loldas", user_id: 1231341, created_at: new Date(), edited_at: null, liked_by_me: false, children: [{ content: "Godt poeng!", likes: 4, uuid: "sadasds", user_id: 1241, created_at: new Date(), edited_at: null, liked_by_me: false }]   }]
     return (
         <section className="CommentSection">
             <CommentForm />
@@ -16,7 +16,7 @@ const Comments = () => {
 }
 
 interface CommentProps {
-    comment: Comment;
+    comment: ParentComment;
 }
 
 const CommentView: FC<CommentProps> = ({ comment }) => {
@@ -40,8 +40,6 @@ const CommentView: FC<CommentProps> = ({ comment }) => {
         setDisplayReplies(reply ? true : false)
         setReplies(reply && replies ? true : false)
     }
-
-    const subComments: Comment[] = [{ content: "Foo bar baz", likes: 3 }, { content: "Foo bar baz", likes: 3 }, { content: "Foo bar baz", likes: 3 }]
 
     return (
         <div className="Comment">
@@ -79,15 +77,18 @@ const CommentView: FC<CommentProps> = ({ comment }) => {
             }
             { replies &&
                 <div className="SubComments">
-                    {subComments.map(comment => <SubComment comment={comment} />)}
+                    {comment.children?.map(comment => <SubComment comment={comment} />)}
                 </div>
             }
         </div>
     )
 }
 
+interface SubCommentProps {
+    comment: Comment,
+}
 
-const SubComment: FC<CommentProps> = ({ comment }) => {
+const SubComment: FC<SubCommentProps> = ({ comment }) => {
 
     // Placeholder data
     const data = {

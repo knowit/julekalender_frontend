@@ -1,3 +1,16 @@
+.LightBulbOff>path, .LightBulbOff+text  {
+    fill :rgba(224, 185, 88, 0.5);
+}
+
+.LightBulbOn>path, .LightBulbOn>g>path {
+    fill: rgba(224, 185, 88, 1);
+
+}
+
+.LightBulbGreen>path, .LightBulbGreen>g>path {
+    fill: rgba(108, 171, 133, 1);
+}
+
 .DoorWrapper {
     max-width: 80rem;
     margin-left: auto;

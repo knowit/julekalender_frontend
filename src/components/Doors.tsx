@@ -1,38 +1,21 @@
 import './Doors.css'
 import React, { useEffect, useState } from "react";
 import { Link } from 'react-router-dom';
-import Axios, { AxiosError } from 'axios';
 import { SolvedStatus } from '../api/Challenge';
-import { apiUrl, requestHeaders } from '../api/ApiConfig';
-import { useAuth0 } from '@auth0/auth0-react';
+import { useRequests } from '../api/requests';
 
 const Doors = () => {
-
+  const { isAuthenticated, fetchSolvedStatus } = useRequests();
 	const [fubar, setError] = useState<Error>();
 	const [solvedStatus, setIsSolvedStatus] = useState<SolvedStatus>();
 
-	const { isAuthenticated, getAccessTokenSilently, getIdTokenClaims } = useAuth0();
-
-
-
 	useEffect(() => {
-		if (isAuthenticated) {
-			const getUserSolvedStatus = async () => {
-				await getAccessTokenSilently({
-					audience: 'https://knowit-konkurranser.eu.auth0.com/api/v2/',
-					scope: 'read:current_user update:current_user_metadata'
-				});
-				const claims = await getIdTokenClaims();
-				Axios.get<SolvedStatus>(`${apiUrl}/challenges/solved`, { headers: { ...requestHeaders, Authorization: `Bearer ${claims.__raw}` } })
-					.then(response => {
-						setIsSolvedStatus(response.data);
-					})
-					.catch((e: AxiosError) => setError(e))
-			}
-			getUserSolvedStatus();
-		}
-	}, [isAuthenticated, getAccessTokenSilently, getIdTokenClaims])
+    if (!isAuthenticated) return;
 
+    fetchSolvedStatus()
+      .then((response) => setIsSolvedStatus(response.data))
+      .catch((e) => setError(e))
+	}, [isAuthenticated, fetchSolvedStatus])
 
 	const getColor = () => {
 		return '#DFB859';

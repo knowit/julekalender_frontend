@@ -108,7 +108,7 @@ const Door = () => {
                 </div>
 
             </div>
-            {isAuthenticated && <CommentsSection />}
+            {isAuthenticated && <CommentsSection doorNumber={parseInt(doorNumber)}/>}
         </main>
     </>
 }

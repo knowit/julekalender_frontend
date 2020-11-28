@@ -1,10 +1,9 @@
-import Axios from 'axios';
 import React, { FC, useEffect, useState } from 'react';
-import _ from 'lodash';
+
 import './LeaderBoard.css';
 import { ReactComponent as Flourish } from './svg/pointsdecor.svg';
 import Leaderboard from '../api/Leaderboard';
-import { apiUrl, requestHeaders } from '../api/ApiConfig';
+import { useRequests } from '../api/requests';
 
 type LeaderBoardProps = {
     closeHandler: () => void,
@@ -12,17 +11,17 @@ type LeaderBoardProps = {
 };
 
 const LeaderBoard: FC<LeaderBoardProps> = ({ closeHandler, open }) => {
-
+    const { fetchLeaderboard } = useRequests();
     const [leaderboard, setLeaderboard] = useState<Leaderboard>();
 
     useEffect(() => {
-        Axios.get<Leaderboard>(`${apiUrl}/leaderboard`, {headers:  requestHeaders})
-            .then((response) => {
-                setLeaderboard(response.data);
-            })
-    }, [])
+      fetchLeaderboard()
+        .then((response) => {
+            setLeaderboard(response.data);
+        })
+    }, [fetchLeaderboard])
 
-    if (_.isEmpty(leaderboard)) {
+    if (leaderboard === undefined) {
       return null;
     }
 
@@ -41,7 +40,7 @@ const LeaderBoard: FC<LeaderBoardProps> = ({ closeHandler, open }) => {
                 </tr>
             </thead>
             <tbody>
-                {leaderboard?.map(([solved, users]) => (
+                {leaderboard.map(([solved, users]) => (
                   <tr key={solved}>
                     <td>{solved}</td>
                     <td>

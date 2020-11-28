@@ -1,7 +1,10 @@
 export interface Comment {
   uuid: string;
   content: string;
-  user_id: number; // Will be nickname and picture
+  author: {
+    nickname: string;
+    picture: string;
+  };
   created_at: Date;
   edited_at: Date | null;
   likes: number;

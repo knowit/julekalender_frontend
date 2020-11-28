@@ -1,5 +1,3 @@
-import Comments from "../components/Comments";
-
 export interface Comment {
   uuid: string;
   content: string;

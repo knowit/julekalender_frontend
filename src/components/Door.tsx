@@ -6,7 +6,7 @@ import { ReactComponent as Border } from './svg/mistletoeborder.svg';
 import Axios, { AxiosError } from 'axios';
 import { Challenge } from '../api/Challenge';
 import { useAuth0 } from '@auth0/auth0-react';
-import Comments from './Comments';
+import Comments from './Comments/CommentsSection';
 import { apiUrl, requestHeaders } from '../api/ApiConfig';
 
 
@@ -65,7 +65,7 @@ const Door = () => {
             }
         }
 
-        Axios.post('http://***REMOVED***/challenges/1/solutions', payload, axiosConfig)
+        Axios.post(`${apiUrl}/challenges/1/solutions`, payload, axiosConfig)
         .then(response => console.log(response))
         .catch(error => console.log(error))
     }, [token])

@@ -1,13 +1,14 @@
-import { useState, useCallback, useMemo } from 'react'
-import Axios from "axios"
-import { useAuth0 } from '@auth0/auth0-react'
-import Like from './Like'
-import Challenge, { SolvedStatus } from './Challenge'
-import { CreateSolutionPayload, CreateSolutionResponse } from './Solution'
-import { useEffect } from "react"
+import { useEffect, useCallback, useState } from 'react';
+import Axios from "axios";
+import { useAuth0 } from '@auth0/auth0-react';
 
-// const apiUrl = 'https://***REMOVED***';
-const apiUrl = 'http://***REMOVED***';
+import Comment from './Comment';
+import Like from './Like';
+import Challenge, { SolvedStatus } from './Challenge';
+import { CreateSolutionPayload, CreateSolutionResponse } from './Solution';
+import Leaderboard from './Leaderboard';
+
+const apiUrl = 'https://***REMOVED***';
 const requestHeaders = { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" };
 const getHeaders = (token: Token) => (
   token ? { ...requestHeaders, "Authorization": token } : requestHeaders
@@ -16,7 +17,7 @@ const getHeaders = (token: Token) => (
 type Token = string | undefined;
 
 // TODO: Type endpoint with template string type?
-const baseFetch = <T>(endpoint: string, token: Token) => {
+const baseFetch = <T>(endpoint: string, token: Token = undefined) => {
   return Axios.get<T>(`${apiUrl}${endpoint}`, { headers: getHeaders(token) })
 };
 
@@ -40,6 +41,14 @@ const fetchSolvedStatus = (token: Token) => () => (
 
 const createSolution = (token: Token) => (challenge_door: number | string, answer: string) => (
   baseCreate<CreateSolutionResponse>(`/challenges/${challenge_door}/solutions`, { "solution": { "answer": answer } }, token)
+);
+
+const fetchComments = (token: Token) => (doorNumber: number | string) => (
+  baseFetch<Comment[]>(`/challenges/${doorNumber}/posts`, token)
+);
+
+const fetchLeaderboard = () => (
+  baseFetch<Leaderboard>('/leaderboard')
 );
 
 // await getAccessTokenSilently({
@@ -70,5 +79,7 @@ export const useRequests = () => {
     fetchChallenge: useCallback(fetchChallenge(token), [token]),
     fetchSolvedStatus: useCallback(fetchSolvedStatus(token), [token]),
     createSolution: useCallback(createSolution(token), [token]),
+    fetchComments: useCallback(fetchComments(token), [token]),
+    fetchLeaderboard,
   };
 }

@@ -1,20 +1,19 @@
 import React, { useEffect, useState } from 'react';
-import './Door.css';
 import { Link, Redirect, useParams } from "react-router-dom";
+import { AxiosError } from 'axios';
+import _ from 'lodash';
+
+import './Door.css';
 import Light from './Light';
 import { ReactComponent as Border } from './svg/mistletoeborder.svg';
-import Axios, { AxiosError } from 'axios';
-import { Challenge, SolvedStatus } from '../api/Challenge';
-import { useAuth0 } from '@auth0/auth0-react';
+import { Challenge } from '../api/Challenge';
 import CommentsSection from './Comments/CommentsSection';
-import { apiUrl, requestHeaders } from '../api/ApiConfig';
-
+import { useRequests } from '../api/requests';
 
 
 const Door = () => {
     let { doorNumber } = useParams<Record<string, string>>();
-    const { isAuthenticated, getAccessTokenSilently, getIdTokenClaims } = useAuth0();
-    const [token, setToken] = useState<string>('');
+    const { isAuthenticated, fetchChallenge, fetchSolvedStatus, createSolution } = useRequests();
     const [answer, setAnswer] = useState<string>('');
     const [doorSolvedStatus, setDoorSolvedStatus] = useState(false);
     const [attempt, setAttempt] = useState(false);
@@ -23,82 +22,37 @@ const Door = () => {
     const [fubar, setError] = useState<Error>();
 
     useEffect(() => {
-        Axios.get<Challenge>(`${apiUrl}/challenges/${doorNumber}`, {headers : requestHeaders})
-            .then(response => {
-                if (response.status === 202) {
-                    alert("Hei, ingen juksing!")
-                }
-                setChallenge(response.data);
-                setIsLoading(false)
-            })
-            .catch((e: AxiosError) => setError(e))
-    }, [doorNumber])
+      fetchChallenge(doorNumber)
+        .then((response) => {
+            setChallenge(response.data);
+            setIsLoading(false)
+        })
+        .catch((e: AxiosError) => setError(e))
+    }, [fetchChallenge, doorNumber])
 
     useEffect(() => {
-        const getTokenData = async () => {
-            try {
-                // For some reason getAccessTokenSilently must be run, or else getIdTokenClaims will return nothing.
-                await getAccessTokenSilently({
-                    user_audience: '6TmycgoSWgFT8EU6COixHKne9JmLx5F4',
-                    scope: 'read:current_user',
-                })
-                const claims = await getIdTokenClaims()
-                const IdToken = claims.__raw
-                setToken(IdToken)
-            } catch (e) {
-                    setError(e.message)
-                }
-            }
-        getTokenData()
-      }, [getAccessTokenSilently, getIdTokenClaims])
+      if (!isAuthenticated) return;
 
-      useEffect(() => {
-		if (isAuthenticated) {
-			const getUserSolvedStatus = async () => {
-				await getAccessTokenSilently({
-					audience: 'https://knowit-konkurranser.eu.auth0.com/api/v2/',
-					scope: 'read:current_user update:current_user_metadata'
-				});
-				const claims = await getIdTokenClaims()
-				Axios.get<SolvedStatus>(`${apiUrl}/challenges/solved`, { headers: { ...requestHeaders, Authorization: `Bearer ${claims.__raw}` } })
-					.then(response => {
-                        setDoorSolvedStatus(response.data[`${doorNumber}`])
-					})
-					.catch((e: AxiosError) => setError(e))
-			}
-			getUserSolvedStatus()
-		}
-    }, [isAuthenticated, getAccessTokenSilently, getIdTokenClaims, setDoorSolvedStatus])
+      fetchSolvedStatus()
+        .then((response) => setDoorSolvedStatus(response.data[`${doorNumber}`]))
+        .catch((e) => setError(e))
+    }, [isAuthenticated, fetchSolvedStatus, setDoorSolvedStatus, doorNumber])
     
     const sendAnswer = () => {
-        const payload = {
-            solution: {
-                answer: answer
-            }
-        }
-    
-        const axiosConfig = {
-            headers: {
-                'Content-Type': requestHeaders["Content-Type"],
-                'Access-Control-Allow-Origin': requestHeaders["Access-Control-Allow-Origin"],
-                'Authorization': `${token}`
-            }
-        }
+      if (_.isNil(doorNumber)) return;
 
-        // TODO: Handle rate limiting
-        Axios.post(`${apiUrl}/challenges/${doorNumber}/solutions`, payload, axiosConfig)
-            .then(response => {
-                console.log(response)
-                setDoorSolvedStatus(response.data.solved)
-                setAttempt(!response.data.solved)
-            })
-            .catch((error: AxiosError) => setError(error))
+      // TODO: Handle rate limiting
+      createSolution(doorNumber, answer)
+        .then((response) => {
+            setDoorSolvedStatus(response.data.solved)
+            setAttempt(!response.data.solved)
+        })
+        .catch((error: AxiosError) => setError(error))
     }
 
     if (isLoading) {
         return null
     }
-
 
     // If opened door is in the future, redirect to root.
     // this is sort of hacky, and can probably be done better.

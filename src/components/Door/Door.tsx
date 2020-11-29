@@ -87,7 +87,7 @@ const Door = () => {
                 onSubmit={submitAnswer}
               />
           </div>
-          {isAuthenticated && <CommentsSection isDoorSolved={isDoorSolved} doorNumber={parseInt(doorNumber)}/>}
+          {isAuthenticated && isDoorSolved && <CommentsSection doorNumber={parseInt(doorNumber)}/>}
       </main>
   )
 }

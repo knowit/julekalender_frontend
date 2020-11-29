@@ -1,11 +1,11 @@
 .LightBulbDim>path {
-  fill :rgba(224, 185, 88, 0.5);
+  fill: rgba(224, 185, 88, 0.5);
 }
 
-.LightBulbDim+text{
+.LightBulbDim+text {
   fill: none;
-  stroke:#000000;stroke-width:2px;
-
+  stroke: #000000;
+  stroke-width: 2px;
 }
 
 .LightBulbOn>path, .LightBulbOn>g>path {
@@ -16,9 +16,8 @@
   fill: rgba(108, 171, 133, 1);
 }
 
-
 #doors #lyspærer {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 #lyspærer text {

@@ -36,16 +36,15 @@ const Door = () => {
       .then((response) => setIsDoorSolved(response.data[doorNumber]))
       .catch((e) => setError(e))
   }, [isAuthenticated, fetchSolvedStatus, setIsDoorSolved, doorNumber])
-  
+
   const submitAnswer = (answer: string) => {
     if (_.isNil(doorNumber)) return;
-
-    setAttemptCount((count) => count + 1)
 
     // TODO: Handle rate limiting
     createSolution(doorNumber, answer)
       .then((response) => {
         setIsDoorSolved(response.data.solved)
+        setAttemptCount((count) => count + 1)
       })
       .catch((error) => setError(error))
   }
@@ -57,38 +56,38 @@ const Door = () => {
   // If opened door is in the future, redirect to root.
   // this is sort of hacky, and can probably be done better.
   if (new Date().getDate() < parseInt(doorNumber)) {
-      return <Redirect to="/" />
+    return <Redirect to="/" />
   }
 
   if (challenge === undefined) {
-      return null
+    return null
   }
 
   if (fubar !== undefined) {
-      return <><h1>Ooops...</h1><pre>{fubar.message}</pre></>
+    return <><h1>Ooops...</h1><pre>{fubar.message}</pre></>
   }
 
   return (
-      <main className="DoorWrapper">
-          <Link className="BackButton" tabIndex={4} to="/">&larr; Tilbake til lukene</Link>
-          <Light nr={parseInt(doorNumber)} solved={isDoorSolved}/>
-          <div className="BorderWrapper">
-              <Border className="Border" />
-          </div>
-          <div className="Door">
-              <div className="Heading">
-                  <h1>{challenge.title}</h1>
-                  <p><em>Av {challenge.author}</em></p>
-              </div>
-              <div className="Content" dangerouslySetInnerHTML={{ __html: challenge.content }} />
-              <Input
-                isDoorSolved={isDoorSolved}
-                isFirstSubmit={attemptCount === 0}
-                onSubmit={submitAnswer}
-              />
-          </div>
-          {isAuthenticated && isDoorSolved && <CommentsSection doorNumber={parseInt(doorNumber)}/>}
-      </main>
+    <main className="DoorWrapper">
+      <Link className="BackButton" tabIndex={4} to="/">&larr; Tilbake til lukene</Link>
+      <Light nr={parseInt(doorNumber)} solved={isDoorSolved} />
+      <div className="BorderWrapper">
+        <Border className="Border" />
+      </div>
+      <div className="Door">
+        <div className="Heading">
+          <h1>{challenge.title}</h1>
+          <p><em>Av {challenge.author}</em></p>
+        </div>
+        <div className="Content" dangerouslySetInnerHTML={{ __html: challenge.content }} />
+        <Input
+          isDoorSolved={isDoorSolved}
+          isFirstSubmit={attemptCount === 0}
+          onSubmit={submitAnswer}
+        />
+      </div>
+      {isAuthenticated && isDoorSolved && <CommentsSection doorNumber={parseInt(doorNumber)} />}
+    </main>
   )
 }
 

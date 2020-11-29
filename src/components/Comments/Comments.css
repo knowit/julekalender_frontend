@@ -103,21 +103,6 @@
     align-items: center;
 }
 
-.favoriteSvg {
-    fill: #AE4A4A;
-    opacity: 50%;
-    cursor: pointer;
-}
-
-.favoriteSvg:hover {
-    opacity: unset;
-}
-
-.favoriteSvgLiked {
-    fill: #AE4A4A;
-    cursor: pointer;
-}
-
 .btnReply {
     border: none;
     background-color: whitesmoke;

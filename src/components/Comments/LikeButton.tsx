@@ -1,7 +1,7 @@
 import React, { FC, useState } from 'react';
 import { ReactComponent as Favorite } from '../svg/favorite.svg';
 import Like from '../../api/Like';
-import Comment from '../../api/Comment';
+import { Comment } from '../../api/Comment';
 import { useRequests } from '../../api/requests';
 
 
@@ -27,7 +27,7 @@ const LikeButton: FC<LikeProps> = ({ comment, myLikes }) => {
 
     return <>
         <button onClick={() => likePost()}>
-            <Favorite className={isCommentLiked ? 'favoriteSvgLiked' : 'favoriteSvg'} />
+            <Favorite className={`cursor-pointer fill-current ${isCommentLiked ? 'text-red-600' : 'text-red-300'}`} />
         </button>
         <span>{likes}</span>
     </>

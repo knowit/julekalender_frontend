@@ -1,28 +1,28 @@
 {
   "files": {
-    "main.css": "/static/css/main.911f17db.chunk.css",
-    "main.js": "/static/js/main.72be8e26.chunk.js",
-    "main.js.map": "/static/js/main.72be8e26.chunk.js.map",
+    "main.css": "/static/css/main.82a1cea5.chunk.css",
+    "main.js": "/static/js/main.c1982e7a.chunk.js",
+    "main.js.map": "/static/js/main.c1982e7a.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.3d352632.js",
     "runtime-main.js.map": "/static/js/runtime-main.3d352632.js.map",
-    "static/js/2.54e8807d.chunk.js": "/static/js/2.54e8807d.chunk.js",
-    "static/js/2.54e8807d.chunk.js.map": "/static/js/2.54e8807d.chunk.js.map",
+    "static/js/2.80ec7390.chunk.js": "/static/js/2.80ec7390.chunk.js",
+    "static/js/2.80ec7390.chunk.js.map": "/static/js/2.80ec7390.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.13816f0dbb39fd327de35185c02257a2.js": "/precache-manifest.13816f0dbb39fd327de35185c02257a2.js",
+    "precache-manifest.ced747fba986b62ac71650e94a3e31a1.js": "/precache-manifest.ced747fba986b62ac71650e94a3e31a1.js",
     "service-worker.js": "/service-worker.js",
-    "static/css/main.911f17db.chunk.css.map": "/static/css/main.911f17db.chunk.css.map",
-    "static/js/2.54e8807d.chunk.js.LICENSE.txt": "/static/js/2.54e8807d.chunk.js.LICENSE.txt",
+    "static/css/main.82a1cea5.chunk.css.map": "/static/css/main.82a1cea5.chunk.css.map",
+    "static/js/2.80ec7390.chunk.js.LICENSE.txt": "/static/js/2.80ec7390.chunk.js.LICENSE.txt",
     "static/media/stars.css": "/static/media/midground.770daafa.svg",
     "static/media/expand_more.ca822a5e.svg": "/static/media/expand_more.ca822a5e.svg",
     "static/media/favorite.d9b06de9.svg": "/static/media/favorite.d9b06de9.svg",
-    "static/media/knowitlogo.717cba50.svg": "/static/media/knowitlogo.717cba50.svg",
+    "static/media/knowitlogo.863a3dad.svg": "/static/media/knowitlogo.863a3dad.svg",
     "static/media/mistletoeborder.2505f3b4.svg": "/static/media/mistletoeborder.2505f3b4.svg",
     "static/media/pointsdecor.4348a70a.svg": "/static/media/pointsdecor.4348a70a.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.3d352632.js",
-    "static/js/2.54e8807d.chunk.js",
-    "static/css/main.911f17db.chunk.css",
-    "static/js/main.72be8e26.chunk.js"
+    "static/js/2.80ec7390.chunk.js",
+    "static/css/main.82a1cea5.chunk.css",
+    "static/js/main.c1982e7a.chunk.js"
   ]
 }

@@ -4,6 +4,10 @@
     color: black;
 }
 
+.CommentSection img {
+    max-width: 100%;
+}
+
 .Comment {
     margin-bottom: 1rem;
     padding: 1rem;

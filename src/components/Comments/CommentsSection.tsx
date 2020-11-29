@@ -8,17 +8,16 @@ import TopComment from './TopComment';
 import Like from '../../api/Like';
 
 interface CommentsSectionProps {
-  isDoorSolved: boolean;
   doorNumber: number;
 };
 
-const CommentsSection: FC<CommentsSectionProps> = ({ isDoorSolved, doorNumber }) => {
+const CommentsSection: FC<CommentsSectionProps> = ({ doorNumber }) => {
     const { isAuthenticated, fetchComments, fetchLikes } = useRequests();
     const [comments, setComments] = useState<Comment[]>();
     const [likes, setLikes] = useState<Like[]>();
 
     useEffect(() => {
-      if (!isAuthenticated || !isDoorSolved) return;
+      if (!isAuthenticated) return;
 
       fetchComments(doorNumber)
         .then((response) => setComments(response.data))
@@ -26,7 +25,7 @@ const CommentsSection: FC<CommentsSectionProps> = ({ isDoorSolved, doorNumber })
       fetchLikes()
         .then((response) => setLikes(response.data))
         .catch((e) => { /* ... something ... */ })
-    }, [isAuthenticated, isDoorSolved, fetchComments, doorNumber, fetchLikes]);
+    }, [isAuthenticated, fetchComments, doorNumber, fetchLikes]);
 
     if (comments === undefined || likes === undefined) return null;
 

@@ -32,7 +32,7 @@ const CommentsSection: FC<CommentsSectionProps> = ({ doorNumber }) => {
     return (
         <section className="CommentSection">
             <CommentForm />
-            {comments.map((comment) => <TopComment key={comment.uuid} comment={comment} likes={likes} />)}
+            {comments.map((comment) => <TopComment key={comment.uuid} comment={comment} myLikes={likes} />)}
         </section>
     )
 }

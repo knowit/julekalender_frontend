@@ -15,12 +15,3 @@
 .LightBulbGreen>path, .LightBulbGreen>g>path {
   fill: rgba(108, 171, 133, 1);
 }
-
-#doors #lyspærer {
-  cursor: pointer;
-}
-
-#lyspærer text {
-  font-family: Arial, Helvetica, sans-serif;
-  font-weight: 600;
-}

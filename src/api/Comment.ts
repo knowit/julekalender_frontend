@@ -8,11 +8,15 @@ export interface Comment {
   created_at: string;
   edited_at: string | null;
   likes: number;
-  liked_by_me: boolean;
 }
 
 interface ParentComment extends Comment {
   children: Comment[];
+}
+
+export interface CreateCommentPayload {
+  content: string;
+  parent_uuid?: string;
 }
 
 export default ParentComment;

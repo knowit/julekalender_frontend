@@ -31,18 +31,30 @@ const CommentsSection: FC<CommentsSectionProps> = ({ doorNumber }) => {
 
     return (
         <section className="CommentSection">
-            <CommentForm />
+            <CommentForm doorNumber={doorNumber}/>
             {comments.map((comment) => <TopComment key={comment.uuid} comment={comment} myLikes={likes} />)}
         </section>
     )
 }
 
-const CommentForm = () => {
+interface CommentFormProps {
+    doorNumber: number
+}
+
+const CommentForm:FC<CommentFormProps> = ({doorNumber}) => {
+    const [comment, setComment] = useState<string>('')
+    const { createComment } = useRequests();
+    const postComment = () => {
+        createComment(doorNumber, comment);
+        setComment('');  
+    }
+
+
     return (
         <form className="CommentForm">
-            <TextareaAutosize name="comment" id="comment" placeholder="Legg igjen en kommentar, gjerne i Markdown :)" />
+            <TextareaAutosize name="comment" value={comment} onChange={e => setComment(e.currentTarget.value)} id="comment" placeholder="Legg igjen en kommentar, gjerne i Markdown :)" />
             <div>
-                <button className="SubmitButton" onClick={(e) => { e.preventDefault(); alert("click") }} value="Lagre">KOMMENTER</button>
+                <button className="SubmitButton" onClick={(e) => {e.preventDefault(); postComment()}} value="Lagre">KOMMENTER</button>
             </div>
         </form>
     )

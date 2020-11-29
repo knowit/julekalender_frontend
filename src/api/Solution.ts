@@ -4,6 +4,10 @@ export interface CreateSolutionPayload {
   };
 }
 
+export interface CreateLikePayload {
+
+}
+
 export interface CreateSolutionResponse {
   "solved": boolean;
 }

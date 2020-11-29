@@ -1,22 +1,26 @@
-import React from "react";
+import React, { FC } from "react";
+
+const CheckmarkWrapper: FC<{ color: string, children: React.ReactElement[] }> = ({ color, children }) => (
+  <div className={`Checkmark block w-28 my-8 mx-auto ${color}`}>
+    {children}
+  </div>
+);
 
 export const Checkmark = () => {
     return (
-        <div className="Checkmark">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130.2 130.2">
+      <CheckmarkWrapper color="text-green-600">
+            <svg className="stroke-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130.2 130.2">
                 <circle
                     cx="65.1"
                     cy="65.1"
                     r="62.1"
                     fill="none"
-                    stroke="#6CAB85"
                     strokeMiterlimit="10"
                     strokeWidth="6"
                     className="path circle"
                 ></circle>
                 <path
                     fill="none"
-                    stroke="#6CAB85"
                     strokeLinecap="round"
                     strokeMiterlimit="10"
                     strokeWidth="6"
@@ -24,28 +28,26 @@ export const Checkmark = () => {
                     className="path check"
                 ></path>
             </svg>
-            <p>Bra jobba!</p>
-        </div>
+            <p className="text-lg text-center mt-8">Bra jobba!</p>
+      </CheckmarkWrapper>
     );
 }
 
 export const WrongMark = () => {
     return (
-        <div className="Checkmark Xmark">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130.2 130.2">
+      <CheckmarkWrapper color="text-red-700">
+            <svg className="stroke-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130.2 130.2">
                 <circle
                     cx="65.1"
                     cy="65.1"
                     r="62.1"
                     fill="none"
-                    stroke="#D06079"
                     strokeMiterlimit="10"
                     strokeWidth="6"
                     className="path circle"
                 ></circle>
                 <path
                     fill="none"
-                    stroke="#D06079"
                     strokeLinecap="round"
                     strokeMiterlimit="10"
                     strokeWidth="6"
@@ -54,7 +56,6 @@ export const WrongMark = () => {
                 ></path>
                 <path
                     fill="none"
-                    stroke="#D06079"
                     strokeLinecap="round"
                     strokeMiterlimit="10"
                     strokeWidth="6"
@@ -62,7 +63,8 @@ export const WrongMark = () => {
                     className="path line"
                 ></path>
             </svg>
-        </div>
+            <p className="text-lg text-center mt-8">Feil svar!</p>
+      </CheckmarkWrapper>
     );
 }
 

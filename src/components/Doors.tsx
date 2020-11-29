@@ -24,7 +24,7 @@ const Doors = () => {
 		if(new Date().getDate() >= doorNumber) {
 			return 'LightBulbOn'
 		}
-		return "LightBulbDim"
+		return 'LightBulbDim'
 	}
 
 	const getLinkLocation = (doorNumber: number) => {

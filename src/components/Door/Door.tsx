@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { Link, Redirect, useParams } from "react-router-dom";
+import { Redirect, useParams } from 'react-router-dom';
 import _ from 'lodash';
 
 import './Door.css';
 import Light from '../Light';
-import { ReactComponent as Border } from '../svg/mistletoeborder.svg';
 import { Challenge } from '../../api/Challenge';
 import CommentsSection from '../Comments/CommentsSection';
 import { useRequests } from '../../api/requests';
@@ -70,24 +69,24 @@ const Door = () => {
   }
 
   return (
-      <main className="DoorWrapper">
-          <BackToDoorsButton />
-          <Light nr={parseInt(doorNumber)} solved={isDoorSolved} />
-          <DoorBorder />
-          <div className="Door">
-              <div className="Heading">
-                  <h1>{challenge.title}</h1>
-                  <p><em>Av {challenge.author}</em></p>
-              </div>
-              <div className="Content" dangerouslySetInnerHTML={{ __html: challenge.content }} />
-              <Input
-                isDoorSolved={isDoorSolved}
-                isFirstSubmit={attemptCount === 0}
-                onSubmit={submitAnswer}
-              />
-          </div>
-          {isAuthenticated && isDoorSolved && <CommentsSection doorNumber={parseInt(doorNumber)} />}
-      </main>
+    <main className="DoorWrapper">
+      <BackToDoorsButton />
+      <Light nr={parseInt(doorNumber)} solved={isDoorSolved} />
+      <DoorBorder />
+      <div className="Door">
+        <div className="Heading">
+          <h1>{challenge.title}</h1>
+          <p><em>Av {challenge.author}</em></p>
+        </div>
+        <div className="Content" dangerouslySetInnerHTML={{ __html: challenge.content }} />
+        <Input
+          isDoorSolved={isDoorSolved}
+          isFirstSubmit={attemptCount === 0}
+          onSubmit={submitAnswer}
+        />
+      </div>
+      {isAuthenticated && isDoorSolved && <CommentsSection doorNumber={parseInt(doorNumber)} />}
+    </main>
   )
 }
 

@@ -9,6 +9,8 @@ import { Challenge } from '../../api/Challenge';
 import CommentsSection from '../Comments/CommentsSection';
 import { useRequests } from '../../api/requests';
 import Input from './Input';
+import DoorBorder from './DoorBorder';
+import BackToDoorsButton from '../BackToDoorsButton';
 
 
 const Door = () => {
@@ -68,26 +70,24 @@ const Door = () => {
   }
 
   return (
-    <main className="DoorWrapper">
-      <Link className="BackButton" tabIndex={4} to="/">&larr; Tilbake til lukene</Link>
-      <Light nr={parseInt(doorNumber)} solved={isDoorSolved} />
-      <div className="BorderWrapper">
-        <Border className="Border" />
-      </div>
-      <div className="Door">
-        <div className="Heading">
-          <h1>{challenge.title}</h1>
-          <p><em>Av {challenge.author}</em></p>
-        </div>
-        <div className="Content" dangerouslySetInnerHTML={{ __html: challenge.content }} />
-        <Input
-          isDoorSolved={isDoorSolved}
-          isFirstSubmit={attemptCount === 0}
-          onSubmit={submitAnswer}
-        />
-      </div>
-      {isAuthenticated && isDoorSolved && <CommentsSection doorNumber={parseInt(doorNumber)} />}
-    </main>
+      <main className="DoorWrapper">
+          <BackToDoorsButton />
+          <Light nr={parseInt(doorNumber)} solved={isDoorSolved} />
+          <DoorBorder />
+          <div className="Door">
+              <div className="Heading">
+                  <h1>{challenge.title}</h1>
+                  <p><em>Av {challenge.author}</em></p>
+              </div>
+              <div className="Content" dangerouslySetInnerHTML={{ __html: challenge.content }} />
+              <Input
+                isDoorSolved={isDoorSolved}
+                isFirstSubmit={attemptCount === 0}
+                onSubmit={submitAnswer}
+              />
+          </div>
+          {isAuthenticated && isDoorSolved && <CommentsSection doorNumber={parseInt(doorNumber)} />}
+      </main>
   )
 }
 

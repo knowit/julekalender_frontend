@@ -26,13 +26,17 @@ function App() {
     <>
       {/*TODO: Kanskje pause bakgrunn når dør åpen?*/}
       <StarBackground paused={false} />
-      <div className="FlexContainer">
+      <div className="FlexContainer text-gray-200">
         <div>
           <header>
-            <nav>
-              <a id="knowitlogo" href="https://www.knowit.no/" target="_blank" rel="noopener noreferrer" tabIndex={1}><Logo /></a>
-              <button onClick={() => toggleLeaderBoard(!leaderBoardOpen)} tabIndex={2}>LEDERTAVLE</button>
-              <LoginButton />
+            <nav className="p-4">
+              <a className="inline-block float-left" href="https://www.knowit.no/" target="_blank" rel="noopener noreferrer" tabIndex={1}>
+                <Logo className="h-7 md:h-10 fill-current" />
+              </a>
+              <div className="float-right space-x-4 h-10 text-md mt-0.5 md:mt-1 md:text-xl">
+                <button className="hover:underline uppercase" onClick={() => toggleLeaderBoard(!leaderBoardOpen)} tabIndex={2}>Ledertavle</button>
+                <LoginButton />
+              </div>
             </nav>
           </header>
           <Switch>

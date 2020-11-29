@@ -1,14 +1,11 @@
 /* eslint-disable jsx-a11y/accessible-emoji */
 import React from 'react';
-import './Footer.css';
-
-import { FaFacebook, FaTwitter, FaMedium, FaGithub } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import { FaFacebook, FaTwitter, FaMedium, FaGithub } from 'react-icons/fa';
 
-// TODO: Mobile responsiveness
 const Footer = () => (
-  <footer>
-    <h2>Om kodekalenderen</h2>
+  <footer className="md:mt-8 lg:mt-16 space-y-4 max-w-2xl text-center p-8 md:p-2 m-auto">
+    <h2 className="text-xl">Om kodekalenderen</h2>
     <p>
       Kodekalenderen er høytidskalenderen for deg som er glad i
       programmering. Bak hver luke skjuler det seg en oppgave du små svare
@@ -27,14 +24,18 @@ const Footer = () => (
       🎄 <em>Lykke til og god jul!</em> 🎄
     </p>
 
-    <Link id='gdprLink' to='/gdpr' title='gdpr'>Les om vår håndtering av personopplysninger</Link>
+    <p>
+      <Link className="underline" id='gdprLink' to='/gdpr' title='gdpr'>Les om vår håndtering av personopplysninger</Link>
+    </p>
 
-    <h2>Jobbe i Knowit?</h2>
+    <h2 className="text-xl pt-4">Jobbe i Knowit?</h2>
     <p>
       Dersom du ønsker å vite mer om Knowit må du gjerne ta kontakt med
-      en av våre alver på <a href="mailto:julenissen@knowit.no">julenissen@knowit.no</a> for en uformell prat.
+      en av våre alver på <a className="underline"
+      href="mailto:julenissen@knowit.no">julenissen@knowit.no</a> for en
+      uformell prat.
     </p>
-    <div id="social">
+    <div className="m-auto flex justify-between align-center w-32">
       <a href="https://www.facebook.com/weareknowit" target="_blank" rel="noopener noreferrer"><FaFacebook aria-label="Facebook"/></a>
       <a href="https://twitter.com/knowitnorge" target="_blank" rel="noopener noreferrer"><FaTwitter aria-label="Facebook"/></a>
       <a href="https://github.com/knowit/" target="_blank" rel="noopener noreferrer"><FaGithub aria-label="Facebook"/></a>

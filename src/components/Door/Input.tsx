@@ -1,5 +1,6 @@
 import React, { FC, useState } from 'react'; 
 import { useRequests } from '../../api/requests';
+import Checkmark from './Checkmark';
 
 type InputProps = {
   isDoorSolved: boolean;
@@ -11,13 +12,14 @@ const Input: FC<InputProps> = ({ isDoorSolved, isFirstSubmit, onSubmit }) => {
   const { isAuthenticated } = useRequests();
   const [answer, setAnswer] = useState('');
 
-  if (isDoorSolved) return null;
+  if (isDoorSolved) return <Checkmark/>;
 
   return (
     <div className="Input">
       {isAuthenticated
         ? (<>
-            {!isFirstSubmit && <p className='WrongAnswer'>Feil svar!</p> }
+            {<p className='WrongAnswer'>Feil svar!</p> }
+            {!isFirstSubmit }
             <div className="InputFieldContainer">
               <input placeholder='Ditt svar:' value={answer} onChange={(e) => setAnswer(e.target.value)} />
             </div>

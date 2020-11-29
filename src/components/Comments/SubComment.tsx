@@ -18,7 +18,7 @@ const SubComment: FC<SubCommentProps> = ({ comment, likes }) => {
             <img className="ProfileImage" src={comment.author.picture} alt="User avatar" />
             <div className="CommentData">
                 <span className="CommentName">{comment.author.nickname}</span><time>{getTimeStamp(comment.created_at)}</time>
-                <div dangerouslySetInnerHTML={{ __html: comment.content }} />
+                <div className="prose" dangerouslySetInnerHTML={{ __html: comment.content }} />
                 <div className='LikeWrapper'>
                     <Favorite className={isCommentLiked ? 'favoriteSvgLiked' : 'favoriteSvg'} />
                     <p>{comment.likes}</p>

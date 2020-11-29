@@ -29,7 +29,7 @@ const TopComment: FC<CommentProps> = ({ comment, likes }) => {
                 <img className="ProfileImage" src={comment.author.picture} alt="User avatar" />
                 <div className="CommentData">
                     <span className="CommentName">{comment.author.nickname}</span><time>{timestamp}</time>
-                    <div dangerouslySetInnerHTML={{ __html: comment.content }} />
+                    <div className="prose" dangerouslySetInnerHTML={{ __html: comment.content }} />
                 </div>
             </div>
             <div className='CommentFooter'>

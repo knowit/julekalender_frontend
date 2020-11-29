@@ -124,10 +124,16 @@
 }
 
 .Checkmark {
-  width: 100px;
+  width: 7rem;
   display: block;
-  margin: 40px auto 0;
+  margin: 2rem auto;
 }
+
+.Xmark {
+  width: 5rem;
+  margin: 1rem auto 0 auto;
+}
+
 .Checkmark .path {
   stroke-dasharray: 1000;
   stroke-dashoffset: 0;

@@ -1,6 +1,6 @@
 import React, { FC, useState } from 'react'; 
 import { useRequests } from '../../api/requests';
-import Checkmark from './Checkmark';
+import Checkmark, { WrongMark } from './Checkmark';
 
 type InputProps = {
   isDoorSolved: boolean;
@@ -14,22 +14,23 @@ const Input: FC<InputProps> = ({ isDoorSolved, isFirstSubmit, onSubmit }) => {
 
   if (isDoorSolved) return <Checkmark/>;
 
-  return (
+  return (<>
     <div className="Input">
       {isAuthenticated
-        ? (<>
-            {<p className='WrongAnswer'>Feil svar!</p> }
-            {!isFirstSubmit }
+        ? <div>
             <div className="InputFieldContainer">
               <input placeholder='Ditt svar:' value={answer} onChange={(e) => setAnswer(e.target.value)} />
             </div>
             <div className="SubmitButtonContainer">
-              <button onClick={() => onSubmit(answer)}>Send inn svar</button>
+              <button disabled={!answer} onClick={() => onSubmit(answer)}>Send inn svar</button>
             </div>
-          </>)
+            {!isFirstSubmit && <WrongMark/>}
+          </div>
         : <p className="NotLoggedIn">Logg inn for å delta!</p>
       }
     </div>
+    
+    </>
 
   );
 }

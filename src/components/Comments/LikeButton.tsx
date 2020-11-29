@@ -27,7 +27,7 @@ const LikeButton: FC<LikeProps> = ({ comment, myLikes }) => {
 
     return <>
         <button onClick={() => likePost()}>
-            <Favorite className={`cursor-pointer fill-current ${isCommentLiked ? 'text-red-600' : 'text-red-300'}`} />
+            <Favorite className={`${isCommentLiked ? 'text-red-500' : 'text-red-300'} hover:text-red-500 cursor-pointer fill-current`} />
         </button>
         <span>{likes}</span>
     </>

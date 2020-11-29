@@ -59,10 +59,19 @@ export const useRequests = () => {
   const { isAuthenticated, getAccessTokenSilently, getIdTokenClaims } = useAuth0();
   const [token, setToken] = useState<string>();
 
+  // Get existing token in state
+  useEffect(() => {
+    const getExistingToken = async () => {
+      const claims = await getIdTokenClaims();
+      if (claims) setToken(claims.__raw);
+    }
+    getExistingToken();
+  }, [])
 
   useEffect(() => {
     const getToken = async () => {
       if (!isAuthenticated) return;
+      if (token && token.length > 0) return; // Token already exists
 
       await getAccessTokenSilently({ user_audience: '6TmycgoSWgFT8EU6COixHKne9JmLx5F4' });
       // getIdTokenClaims uses access token from surrounding context.

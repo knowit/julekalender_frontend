@@ -12,7 +12,7 @@ import {
   Route,
   Redirect,
 } from "react-router-dom";
-import Door from './components/Door';
+import Door from './components/Door/Door';
 
 
 function App() {

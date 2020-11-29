@@ -6,16 +6,6 @@
     position: relative;
 }
 
-.BorderWrapper {
-    overflow-x: hidden;
-    overflow-y: hidden;
-    margin-bottom: -5rem;
-}
-
-.Border {
-    width: 80rem;
-}
-
 .Light {
     width: 7rem;
     float: right;
@@ -27,13 +17,6 @@
 .LightNumber {
     font-family: Arial, Helvetica, sans-serif;
     font-weight: 600;
-}
-
-.BackButton {
-    color: darkgray;
-    font-size: 1.2rem;
-    text-decoration: none;
-    margin-left: .5rem;
 }
 
 .Door {

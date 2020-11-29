@@ -6,19 +6,6 @@
     position: relative;
 }
 
-.Light {
-    width: 7rem;
-    float: right;
-    position: absolute;
-    right: 2rem;
-    top: 3rem;
-}
-
-.LightNumber {
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: 600;
-}
-
 .Door {
     background-color: whitesmoke;
     color: black;

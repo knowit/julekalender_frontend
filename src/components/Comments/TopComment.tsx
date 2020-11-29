@@ -1,27 +1,44 @@
 import React, { FC, useState } from 'react';
 import TextareaAutosize from 'react-autosize-textarea/lib';
-import { ReactComponent as Chevron } from './../svg/expand_more.svg';
-import { ReactComponent as Favorite } from './../svg/favorite.svg';
+import { ReactComponent as Chevron } from '../svg/expand_more.svg';
+import { ReactComponent as Favorite } from '../svg/favorite.svg';
 import SubComment from './SubComment';
 import ParentComment from '../../api/Comment';
 import Like from '../../api/Like';
 import { useAuth0 } from '@auth0/auth0-react';
 import { getTimeStamp } from '../../utils';
+import { useRequests } from '../../api/requests';
 
 
 interface CommentProps {
     comment: ParentComment;
-    likes: Like[];
+    myLikes: Like[];
 }
-const TopComment: FC<CommentProps> = ({ comment, likes }) => {
-    const [showReplyInput, toggleShowReplyInput] = useState<boolean>(false);
+const TopComment: FC<CommentProps> = ({ comment, myLikes }) => {
+    const [showReplyInput, toggleShowReplyInput] = useState<boolean>(false)
     const [showSubComments, toggleSubComments] = useState<boolean>(true)
     const [replyContent, setReplyContent] = useState<string>()
+    const { createLike } = useRequests()
     const { user } = useAuth0();
     const { picture: userAvatar } = user;
     const timestamp = getTimeStamp(comment.created_at)
+    var [likes, setLikes] = useState<number>(comment.likes)
+    var [isCommentLiked, setIsCommentLiked] = useState<boolean>(myLikes.some((like) => like.post_uuid === comment.uuid))
+    const [fubar, setError] = useState<Error>();
 
-    console.log(comment)
+
+    const likePost = () => {
+        createLike(comment.uuid)
+            .then(_ => {
+                setLikes(likes + 1);
+                setIsCommentLiked(true);
+            })
+            .catch(e => setError(e))
+    }
+
+    if (fubar !== undefined) {
+        return <><h1>Ooops...</h1><pre>{fubar.message}</pre></>
+    }
 
     return (
         <div className="Comment">
@@ -33,14 +50,16 @@ const TopComment: FC<CommentProps> = ({ comment, likes }) => {
                 </div>
             </div>
             <div className='CommentFooter'>
-                <Favorite className={true ? 'favoriteSvgLiked' : 'favoriteSvg'} />
-                <span>{comment.likes}</span>
+                <button onClick={() => likePost()}>
+                    <Favorite className={isCommentLiked ? 'favoriteSvgLiked' : 'favoriteSvg'} />
+                </button>
+                <span>{likes}</span>
                 <button className='CommentFooterItem btnReply' onClick={() => toggleShowReplyInput(!showReplyInput)}>KOMMENTER INNLEGG</button>
 
                 {comment.children?.length ? <button className='CommentFooterItem btnReplies' onClick={() => toggleSubComments(!showSubComments)}>
                     <span>{`${showSubComments ? "Skjul" : "Vis"} ${comment.children?.length} svar`}</span>
                     <Chevron className={`Chevron ${showSubComments ? 'Rotate' : ''}`} />
-                </button> : null }
+                </button> : null}
 
             </div>
 
@@ -57,7 +76,7 @@ const TopComment: FC<CommentProps> = ({ comment, likes }) => {
 
             {showSubComments ?
                 <div className="SubComments">
-                    {comment.children?.map(comment => <SubComment key={comment.uuid} comment={comment} likes={likes} />)}
+                    {comment.children?.map(comment => <SubComment key={comment.uuid} comment={comment} likes={myLikes} />)}
                 </div> : null}
 
         </div>

@@ -66,7 +66,7 @@ export const useRequests = () => {
       if (claims) setToken(claims.__raw);
     }
     getExistingToken();
-  }, [])
+  }, [getIdTokenClaims, token])
 
   useEffect(() => {
     const getToken = async () => {
@@ -80,7 +80,7 @@ export const useRequests = () => {
     };
 
     getToken();
-  }, [isAuthenticated, getAccessTokenSilently, getIdTokenClaims]);
+  }, [isAuthenticated, getAccessTokenSilently, getIdTokenClaims, token]);
 
   return {
     isAuthenticated: isAuthenticated && token,

@@ -34,8 +34,6 @@ const Doors = () => {
 		return '/'
 	}
 
-	console.log(solvedStatus)
-
 	if (fubar !== undefined) {
 		return <><h1>Ooops...</h1><pre>{fubar.message}</pre></>
 	}

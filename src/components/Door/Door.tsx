@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { Link, Redirect, useParams } from "react-router-dom";
+import { Redirect, useParams } from "react-router-dom";
 import _ from 'lodash';
 
 import './Door.css';
 import Light from '../Light';
-import { ReactComponent as Border } from '../svg/mistletoeborder.svg';
 import { Challenge } from '../../api/Challenge';
 import CommentsSection from '../Comments/CommentsSection';
 import { useRequests } from '../../api/requests';
@@ -75,9 +74,9 @@ const Door = () => {
           <Light nr={parseInt(doorNumber)} solved={isDoorSolved} />
           <DoorBorder />
           <div className="Door">
-              <div className="Heading">
-                  <h1>{challenge.title}</h1>
-                  <p><em>Av {challenge.author}</em></p>
+              <div className="mt-4 ml-6">
+                  <h1 className="text-4xl">{challenge.title}</h1>
+                  <p className="mt-1"><em>Av {challenge.author}</em></p>
               </div>
               <div className="Content" dangerouslySetInnerHTML={{ __html: challenge.content }} />
               <Input

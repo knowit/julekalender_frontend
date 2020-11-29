@@ -3,9 +3,7 @@
 }
 
 .LightBulbDim+text {
-  fill: none;
-  stroke: #000000;
-  stroke-width: 2px;
+  fill: rgba(0, 0, 0, 0.3);
 }
 
 .LightBulbOn>path, .LightBulbOn>g>path {

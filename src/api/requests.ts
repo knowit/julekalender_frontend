@@ -2,7 +2,7 @@ import { useEffect, useCallback, useState } from 'react';
 import Axios from 'axios';
 import { useAuth0 } from '@auth0/auth0-react';
 
-import Comment from './Comment';
+import Comment, { CreateCommentPayload } from './Comment';
 import Like from './Like';
 import Challenge, { SolvedStatus } from './Challenge';
 import { CreateLikePayload, CreateSolutionPayload, CreateSolutionResponse } from './Solution';
@@ -21,7 +21,7 @@ const baseFetch = <T>(endpoint: string, token: Token = undefined) => {
   return Axios.get<T>(`${apiUrl}${endpoint}`, { headers: getHeaders(token) })
 };
 
-type CreatePayload = CreateSolutionPayload | CreateLikePayload;
+type CreatePayload = CreateSolutionPayload | CreateLikePayload | CreateCommentPayload;
 
 const baseCreate = <T>(endpoint: string, payload: CreatePayload, token: Token) => {
   return Axios.post<T>(`${apiUrl}${endpoint}`, payload, { headers: getHeaders(token) })
@@ -46,6 +46,10 @@ const createSolution = (token: Token) => (challenge_door: number | string, answe
 const createLike = (token: Token) => (postId: number | string) => (
   baseCreate<never>(`/posts/${postId}/likes`, {}, token)
 );
+
+const createComment = (token: Token) => (doorNumber: number, comment:string, parentId?: number | string,) => (
+  baseCreate<Comment>(`/challenges/${doorNumber}/posts`, {parent_uuid: parentId, content: comment} , token)
+)
 
 const fetchComments = (token: Token) => (doorNumber: number | string) => (
   baseFetch<Comment[]>(`/challenges/${doorNumber}/posts`, token)
@@ -93,6 +97,7 @@ export const useRequests = () => {
     fetchSolvedStatus: useCallback(fetchSolvedStatus(token), [token]),
     createSolution: useCallback(createSolution(token), [token]),
     createLike: useCallback(createLike(token), [token]),
+    createComment: useCallback(createComment(token), [token]),
     fetchComments: useCallback(fetchComments(token), [token]),
     fetchLeaderboard,
   };

@@ -5,14 +5,14 @@ export interface Comment {
     nickname: string;
     picture: string;
   };
-  created_at: Date;
-  edited_at: Date | null;
+  created_at: string;
+  edited_at: string | null;
   likes: number;
   liked_by_me: boolean;
 }
 
 interface ParentComment extends Comment {
-  children?: Comment[];
+  children: Comment[];
 }
 
 export default ParentComment;

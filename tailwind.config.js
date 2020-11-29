@@ -14,6 +14,9 @@ module.exports = {
       width: {
         'kodekalender': '80rem',
       },
+      fontSize: {
+        'lightbulb': ['4.125rem', { lineHeight: '1' }],
+      },
     },
   },
   variants: {

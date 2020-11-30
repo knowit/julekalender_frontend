@@ -46,7 +46,7 @@ const LeaderBoard: FC<LeaderBoardProps> = ({ hidden, setIsLeaderboardHiding, clo
 
   return (
     <aside className="absolute top-0 right-0 pt-14 w-full sm:w-102 sm:pr-6 overflow-hidden pointer-events-none">
-      <div className={`${containerTransition} bg-green-800 p-4 rounded-md sm:rounded-xl w-full h-full pointer-events-auto`} ref={clickableLeaderboardRef} >
+      <div className={`${containerTransition} bg-leaderboard-green p-4 rounded-md sm:rounded-xl w-full h-full pointer-events-auto`} ref={clickableLeaderboardRef} >
         <div className="h-full overflow-hidden">
           <Close className='fill-current absolute top-0 right-0 m-2 cursor-pointer' onClick={closeBoard}/>
           <div className="h-24 pt-2">
@@ -58,7 +58,7 @@ const LeaderBoard: FC<LeaderBoardProps> = ({ hidden, setIsLeaderboardHiding, clo
           <div className="h-96 xl:h-192 overflow-y-auto">
             {leaderboard.map(([solved, users]) => (
               <div key={solved}>
-                <h3 className="sticky top-0 py-0.5 bg-green-700 rounded-md text-lg text-center" key={solved}>{solved} luker løst</h3>
+                <h3 className="sticky top-0 py-0.5 bg-lightbulb-green rounded-md text-lg text-center" key={solved}>{solved} luker løst</h3>
                 <div className="pt-2 pb-4 space-y-1">
                   {users.map((user) => (
                     <p className="text-center" key={user}>{user}</p>

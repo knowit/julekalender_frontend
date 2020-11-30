@@ -23,7 +23,7 @@ function App() {
     <>
       <StarBackground paused={false} />
       <div className="FlexContainer text-gray-200">
-        <div>
+        <div className="pb-16">
           <header>
             <nav className="p-4">
               <a className="inline-block float-left" href="https://www.knowit.no/" target="_blank" rel="noopener noreferrer" tabIndex={1}>

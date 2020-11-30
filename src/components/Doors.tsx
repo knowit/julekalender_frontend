@@ -30,7 +30,7 @@ const Doors = () => {
     	}
 
 		return 'text-lightbulb-yellow fill-current';
-  	}
+  };
 
 	const getTextClass = (doorNumber: number) => {
 		if (solvedStatus !== undefined && solvedStatus[doorNumber]) {
@@ -42,14 +42,13 @@ const Doors = () => {
     	}
 
 		return 'text-gray-800';
-  	}
+  };
 
-	const getLinkLocation = (doorNumber: number) => {
-		// Change to >= to enable proper functionality. Is set to <= for ease of development. 
-		if (new Date() <= getDoorDate(doorNumber)) {
-			return `/luke/${doorNumber}`
+	const getLinkDateDependentProps = (doorNumber: number) => {
+		if (new Date() >= getDoorDate(doorNumber)) {
+			return { to: `/luke/${doorNumber}` }
 		}
-		return '/'
+		return { to: '/', className: 'cursor-not-allowed' }
 	}
 
 	if (fubar !== undefined) {
@@ -265,7 +264,7 @@ const Doors = () => {
 					</g>
 				</g>
 				<g className="cursor-pointer font-semibold text-lightbulb">
-					<Link to={getLinkLocation(24)} tabIndex={27} title="Luke 24">
+					<Link {...getLinkDateDependentProps(24)} tabIndex={27} title="Luke 24">
 						<g id="luke24">
 							<path fill="#D8D4CB" d="M2096.8,412.02c-7.76,1.73-14.62-10.43-23.44-17.11c-0.52-0.4-1.96-1.48-2.29-3.23
 			c-0.35-1.87,0.86-3.52,1.3-4.14c2.74-3.84,5.04-7.98,7.81-11.81c6.05-8.38,6.39-13.38,10.65-13.98c0.9-0.13,1.63,0.04,3.09,0.38
@@ -298,7 +297,7 @@ const Doors = () => {
 							<text className={getTextClass(24)} fontFamily="'Arial'" transform="matrix(1 0 0 1 2106.324 447.2211)">24</text>
 						</g>
 					</Link>
-					<Link to={getLinkLocation(23)} tabIndex={26} title="Luke 23">
+					<Link {...getLinkDateDependentProps(23)} tabIndex={26} title="Luke 23">
 						<g id="luke23">
 							<path fill="#D8D4CB" d="M2021.32,539.39c-7.31-3.14-5.74-17.02-8.98-27.59c-0.19-0.63-0.72-2.35,0.03-3.96
 			c0.81-1.72,2.76-2.35,3.48-2.6c4.47-1.51,8.76-3.52,13.24-5c9.81-3.25,13.01-7.1,16.82-5.09c0.8,0.42,1.3,0.99,2.28,2.11
@@ -331,7 +330,7 @@ const Doors = () => {
 							<text className={getTextClass(23)} fontFamily="'Arial'" transform="matrix(1 0 0 1 2018.3242 597.2208)">23</text>
 						</g>
 					</Link>
-					<Link to={getLinkLocation(22)} tabIndex={25} title="Luke 22">
+					<Link {...getLinkDateDependentProps(22)} tabIndex={25} title="Luke 22">
 						<g id="luke22">
 							<path fill="#D8D4CB" d="M1938.3,504.53c2.54,7.54-8.84,15.64-14.56,25.1c-0.34,0.56-1.27,2.11-2.97,2.62
 			c-1.82,0.54-3.59-0.48-4.26-0.86c-4.11-2.32-8.47-4.18-12.56-6.53c-8.96-5.14-13.97-4.95-15.02-9.13
@@ -367,7 +366,7 @@ const Doors = () => {
 							<text className={getTextClass(22)} fontFamily="'Arial'" transform="matrix(1 0 0 1 1906.3242 483.2208)">22</text>
 						</g>
 					</Link>
-					<Link to={getLinkLocation(21)} tabIndex={24} title="Luke 21">
+					<Link {...getLinkDateDependentProps(21)} tabIndex={24} title="Luke 21">
 						<g id="luke21_1_">
 							<path fill="#D8D4CB" d="M1814.02,261.18c1.61-7.79,15.52-9.04,25.23-14.33c0.58-0.31,2.16-1.18,3.88-0.76
 			c1.85,0.45,2.86,2.23,3.24,2.89c2.38,4.07,5.2,7.88,7.55,11.97c5.15,8.96,9.57,11.32,8.36,15.46c-0.25,0.87-0.71,1.47-1.61,2.66
@@ -400,7 +399,7 @@ const Doors = () => {
 							<text className={getTextClass(21)} fontFamily="'Arial'" transform="matrix(1 0 0 1 1748.324 321.2209)">21</text>
 						</g>
 					</Link>
-					<Link to={getLinkLocation(20)} tabIndex={23} title="Luke 20">
+					<Link {...getLinkDateDependentProps(20)} tabIndex={23} title="Luke 20">
 						<g id="luke20_1_">
 							<path fill="#D8D4CB" d="M1810.89,477.44c7.46-2.75,15.88,8.4,25.5,13.84c0.57,0.32,2.14,1.21,2.7,2.89
 			c0.6,1.81-0.38,3.6-0.74,4.28c-2.2,4.17-3.94,8.58-6.17,12.74c-4.89,9.11-4.56,14.11-8.7,15.27c-0.87,0.24-1.62,0.18-3.11,0.04
@@ -433,7 +432,7 @@ const Doors = () => {
 							<text className={getTextClass(20)} fontFamily="'Arial'" transform="matrix(1 0 0 1 1730.324 495.2209)">20</text>
 						</g>
 					</Link>
-					<Link to={getLinkLocation(19)} tabIndex={22} title="Luke 19">
+					<Link {...getLinkDateDependentProps(19)} tabIndex={22} title="Luke 19">
 						<g id="luke19">
 							<path fill="#D8D4CB" d="M1807.73,691.31c-7.18-3.41-5.11-17.22-7.95-27.91c-0.17-0.63-0.64-2.38,0.18-3.95
 			c0.87-1.69,2.84-2.25,3.57-2.47c4.52-1.35,8.89-3.19,13.42-4.5c9.92-2.88,13.27-6.61,17-4.46c0.79,0.45,1.26,1.03,2.2,2.19
@@ -465,7 +464,7 @@ const Doors = () => {
 							<text className={getTextClass(19)} fontFamily="'Arial'" transform="matrix(1 0 0 1 1799.3242 757.0544)">19</text>
 						</g>
 					</Link>
-					<Link to={getLinkLocation(18)} tabIndex={21} title="Luke 18">
+					<Link {...getLinkDateDependentProps(18)} tabIndex={21} title="Luke 18">
 						<g id="luke18">
 							<path fill="#D8D4CB" d="M1724.42,724.06c7.75,1.8,8.67,15.74,13.73,25.57c0.3,0.58,1.13,2.19,0.67,3.9
 			c-0.49,1.84-2.3,2.8-2.96,3.17c-4.13,2.28-8,5.01-12.15,7.27c-9.08,4.93-11.55,9.29-15.65,7.99c-0.86-0.27-1.45-0.74-2.62-1.67
@@ -498,7 +497,7 @@ const Doors = () => {
 							<text className={getTextClass(18)} fontFamily="'Arial'" transform="matrix(1 0 0 1 1649.324 716.2208)">18</text>
 						</g>
 					</Link>
-					<Link to={getLinkLocation(17)} tabIndex={20} title="Luke 17">
+					<Link {...getLinkDateDependentProps(17)} tabIndex={20} title="Luke 17">
 						<g id="luke17">
 							<path fill="#D8D4CB" d="M1604.69,896.62c-5.9-5.34,0.07-17.96,0.43-29.02c0.02-0.66,0.08-2.46,1.31-3.73
 			c1.32-1.37,3.37-1.33,4.13-1.33c4.72,0.01,9.43-0.49,14.15-0.44c10.33,0.1,14.61-2.51,17.56,0.63c0.62,0.66,0.91,1.35,1.48,2.74
@@ -533,7 +532,7 @@ const Doors = () => {
 							<text className={getTextClass(17)} fontFamily="'Arial'" transform="matrix(1 0 0 1 1585.324 970.2208)">17</text>
 						</g>
 					</Link>
-					<Link to={getLinkLocation(16)} tabIndex={19} title="Luke 16">
+					<Link {...getLinkDateDependentProps(16)} tabIndex={19} title="Luke 16">
 						<g id="luke16">
 							<path fill="#D8D4CB" d="M1421.21,715.87c-3.72-7.03,6.2-16.86,10.32-27.12c0.24-0.61,0.91-2.29,2.51-3.06
 			c1.71-0.83,3.62-0.1,4.34,0.16c4.43,1.63,9.03,2.76,13.45,4.41c9.68,3.63,14.59,2.63,16.29,6.59c0.36,0.83,0.39,1.58,0.45,3.08
@@ -566,7 +565,7 @@ const Doors = () => {
 							<text className={getTextClass(16)} fontFamily="'Arial'" transform="matrix(1 0 0 1 1379.3242 795.2213)">16</text>
 						</g>
 					</Link>
-					<Link to={getLinkLocation(15)} tabIndex={18} title="Luke 15">
+					<Link {...getLinkDateDependentProps(15)} tabIndex={18} title="Luke 15">
 						<g id="luke15">
 							<path fill="#D8D4CB" d="M1456.05,530.93c2.92,7.4-8.02,16.07-13.24,25.82c-0.31,0.58-1.16,2.17-2.83,2.77
 			c-1.79,0.64-3.61-0.3-4.3-0.64c-4.22-2.1-8.67-3.74-12.88-5.87c-9.22-4.67-14.21-4.22-15.47-8.34c-0.27-0.87-0.21-1.61-0.11-3.11
@@ -600,7 +599,7 @@ const Doors = () => {
 							<text className={getTextClass(15)} fontFamily="'Arial'" transform="matrix(1 0 0 1 1422.3241 504.2209)">15</text>
 						</g>
 					</Link>
-					<Link to={getLinkLocation(14)} tabIndex={17} title="Luke 14">
+					<Link {...getLinkDateDependentProps(14)} tabIndex={17} title="Luke 14">
 						<g id="luke14">
 							<path fill="#D8D4CB" d="M1356.15,413.08c7.83-1.41,14.19,11.02,22.72,18.05c0.51,0.42,1.9,1.56,2.16,3.32
 			c0.27,1.88-1,3.48-1.47,4.09c-2.89,3.73-5.37,7.77-8.28,11.48c-6.39,8.12-6.93,13.1-11.22,13.53c-0.9,0.09-1.62-0.11-3.07-0.5
@@ -634,7 +633,7 @@ const Doors = () => {
 							<text className={getTextClass(14)} fontFamily="'Arial'" transform="matrix(1 0 0 1 1268.145 420.2206)">14</text>
 						</g>
 					</Link>
-					<Link to={getLinkLocation(13)} tabIndex={16} title="Luke 13">
+					<Link {...getLinkDateDependentProps(13)} tabIndex={16} title="Luke 13">
 						<g id="luke13">
 							<path fill="#D8D4CB" d="M1355.56,862.56c0.01-0.01,0.03-0.01,0.04-0.02c9.02-5.04,11.44-9.43,15.56-8.17
 			c0.87,0.26,1.46,0.72,2.64,1.64c3.78,2.94,4.25,5.64,7.98,12.53c2.83,5.22,1.35,3.7,4.86,11.89c1.66,3.87,1.91,4.24,1.77,5.12
@@ -667,7 +666,7 @@ const Doors = () => {
 							<text className={getTextClass(13)} fontFamily="'Arial'" transform="matrix(1 0 0 1 1356.145 964.2206)">13</text>
 						</g>
 					</Link>
-					<Link to={getLinkLocation(12)} tabIndex={15} title="Luke 12">
+					<Link {...getLinkDateDependentProps(12)} tabIndex={15} title="Luke 12">
 						<g id="luke12">
 							<path fill="#D8D4CB" d="M1279.39,1119.89c-6.86-4.02-3.61-17.6-5.52-28.49c-0.11-0.65-0.43-2.42,0.52-3.92
 			c1.02-1.61,3.02-2,3.77-2.15c4.62-0.95,9.13-2.41,13.76-3.33c10.14-2.01,13.79-5.45,17.32-2.98c0.74,0.52,1.16,1.14,2.01,2.38
@@ -698,7 +697,7 @@ const Doors = () => {
 							<text className={getTextClass(12)} fontFamily="'Arial'" transform="matrix(1 0 0 1 1266.4227 1186.9429)">12</text>
 						</g>
 					</Link>
-					<Link to={getLinkLocation(11)} tabIndex={14} title="Luke 11">
+					<Link {...getLinkDateDependentProps(11)} tabIndex={14} title="Luke 11">
 						<g id="luke11">
 							<path fill="#D8D4CB" d="M1170.18,988.07c-3.72-7.03,6.2-16.86,10.32-27.12c0.24-0.61,0.91-2.29,2.51-3.06
 			c1.71-0.83,3.62-0.1,4.34,0.16c4.43,1.63,9.03,2.76,13.45,4.41c9.68,3.63,14.59,2.63,16.29,6.59c0.36,0.83,0.39,1.58,0.45,3.08
@@ -731,7 +730,7 @@ const Doors = () => {
 							<text className={getTextClass(11)} fontFamily="'Arial'" transform="matrix(1 0 0 1 1133.324 1065.2212)">11</text>
 						</g>
 					</Link>
-					<Link to={getLinkLocation(10)} tabIndex={13} title="Luke 10">
+					<Link {...getLinkDateDependentProps(10)} tabIndex={13} title="Luke 10">
 						<g id="luke10">
 							<path fill="#D8D4CB" d="M1188.42,741.86c-7.95,0.13-12.21-13.18-19.49-21.5c-0.43-0.49-1.62-1.85-1.59-3.62
 			c0.03-1.9,1.55-3.28,2.11-3.79c3.46-3.21,6.55-6.8,10.03-9.98c7.62-6.98,8.96-11.81,13.26-11.53c0.91,0.06,1.59,0.37,2.95,0.99
@@ -763,7 +762,7 @@ const Doors = () => {
 							<text className={getTextClass(10)} fontFamily="'Arial'" transform="matrix(1 0 0 1 1191.677 786.2212)">10</text>
 						</g>
 					</Link>
-					<Link to={getLinkLocation(9)} tabIndex={12} title="Luke 9">
+					<Link {...getLinkDateDependentProps(9)} tabIndex={12} title="Luke 9">
 						<g id="luke9">
 							<path fill="#D8D4CB" d="M1084.25,389.2c-0.86-7.91,11.99-13.38,19.59-21.41c0.45-0.48,1.69-1.79,3.46-1.92
 			c1.9-0.14,3.41,1.24,3.97,1.75c3.52,3.14,7.38,5.89,10.87,9.06c7.66,6.94,12.59,7.83,12.71,12.13c0.03,0.91-0.22,1.61-0.71,3.03
@@ -797,7 +796,7 @@ const Doors = () => {
 							<text className={getTextClass(9)} fontFamily="'Arial'" transform="matrix(1 0 0 1 1042.677 462.2212)">9</text>
 						</g>
 					</Link>
-					<Link to={getLinkLocation(8)} tabIndex={11} title="Luke 8">
+					<Link {...getLinkDateDependentProps(8)} tabIndex={11} title="Luke 8">
 						<g id="luke8">
 							<path fill="#D8D4CB" d="M1061.52,805.52c-6.93-3.9-3.91-17.53-6.01-28.39c-0.12-0.64-0.47-2.42,0.45-3.93
 			c0.99-1.63,2.99-2.05,3.73-2.22c4.6-1.03,9.09-2.57,13.7-3.57c10.1-2.19,13.69-5.68,17.26-3.28c0.75,0.51,1.18,1.12,2.05,2.34
@@ -830,7 +829,7 @@ const Doors = () => {
 							<text className={getTextClass(8)} fontFamily="'Arial'" transform="matrix(1 0 0 1 1072.677 878.2212)">8</text>
 						</g>
 					</Link>
-					<Link to={getLinkLocation(7)} tabIndex={10} title="Luke 7">
+					<Link {...getLinkDateDependentProps(7)} tabIndex={10} title="Luke 7">
 						<g id="luke7">
 							<path fill="#D8D4CB" d="M907.57,658.76c-4.19-6.76,5.03-17.25,8.43-27.77c0.2-0.62,0.75-2.34,2.29-3.23
 			c1.65-0.95,3.61-0.35,4.34-0.14c4.53,1.32,9.2,2.13,13.72,3.48c9.9,2.95,14.73,1.62,16.71,5.45c0.42,0.81,0.5,1.55,0.66,3.04
@@ -866,7 +865,7 @@ const Doors = () => {
 							<text className={getTextClass(7)} fontFamily="'Arial'" transform="matrix(1 0 0 1 890.6771 744.2212)">7</text>
 						</g>
 					</Link>
-					<Link to={getLinkLocation(6)} tabIndex={9} title="Luke 6">
+					<Link {...getLinkDateDependentProps(6)} tabIndex={9} title="Luke 6">
 						<g id="luke6">
 							<path fill="#D8D4CB" d="M873.59,444.08c7.91,0.83,10.54,14.55,16.77,23.68c0.37,0.54,1.39,2.03,1.14,3.79
 			c-0.26,1.88-1.93,3.07-2.55,3.51c-3.82,2.77-7.32,5.96-11.16,8.71c-8.4,6.01-10.31,10.65-14.55,9.86
@@ -899,7 +898,7 @@ const Doors = () => {
 							<text className={getTextClass(6)} fontFamily="'Arial'" transform="matrix(1 0 0 1 812.6771 435.2213)">6</text>
 						</g>
 					</Link>
-					<Link to={getLinkLocation(5)} tabIndex={8} title="Luke 5">
+					<Link {...getLinkDateDependentProps(5)} tabIndex={8} title="Luke 5">
 						<g id="luke5">
 							<path fill="#D8D4CB" d="M832.6,830.74c-7.75-1.78-8.7-15.72-13.78-25.54c-0.3-0.58-1.13-2.19-0.68-3.9
 			c0.49-1.84,2.29-2.81,2.96-3.18c4.13-2.29,7.99-5.03,12.13-7.29c9.07-4.95,11.53-9.32,15.64-8.02c0.87,0.27,1.45,0.74,2.62,1.67
@@ -932,7 +931,7 @@ const Doors = () => {
 							<text className={getTextClass(5)} fontFamily="'Arial'" transform="matrix(1 0 0 1 854.6771 896.2213)">5</text>
 						</g>
 					</Link>
-					<Link to={getLinkLocation(4)} tabIndex={7} title="Luke 4">
+					<Link {...getLinkDateDependentProps(4)} tabIndex={7} title="Luke 4">
 						<g id="luke4">
 							<path fill="#D8D4CB" d="M723.42,897.12c7.01,3.75,4.28,17.45,6.6,28.26c0.14,0.64,0.52,2.41-0.37,3.94
 			c-0.95,1.65-2.95,2.11-3.69,2.29c-4.58,1.13-9.03,2.76-13.62,3.85c-10.05,2.4-13.57,5.97-17.19,3.64
@@ -966,7 +965,7 @@ const Doors = () => {
 							<text className={getTextClass(4)} fontFamily="'Arial'" transform="matrix(1 0 0 1 673.6772 867.221)">4</text>
 						</g>
 					</Link>
-					<Link to={getLinkLocation(3)} tabIndex={6} title="Luke 3">
+					<Link {...getLinkDateDependentProps(3)} tabIndex={6} title="Luke 3">
 						<g id="luke3_1_">
 							<path fill="#D8D4CB" d="M548.31,837.09c-3.72-7.03,6.2-16.86,10.32-27.12c0.24-0.61,0.91-2.29,2.51-3.06
 			c1.71-0.83,3.62-0.1,4.34,0.16c4.43,1.63,9.03,2.76,13.45,4.41c9.68,3.63,14.59,2.63,16.29,6.59c0.36,0.83,0.39,1.58,0.45,3.08
@@ -999,7 +998,7 @@ const Doors = () => {
 							<text className={getTextClass(3)} fontFamily="'Arial'" transform="matrix(1 0 0 1 526.6772 913.221)">3</text>
 						</g>
 					</Link>
-					<Link to={getLinkLocation(2)} tabIndex={5} title="Luke 2">
+					<Link {...getLinkDateDependentProps(2)} tabIndex={5} title="Luke 2">
 						<g id="luke2">
 							<path fill="#D8D4CB" d="M605.97,649.49c1.61,7.79-10.66,14.46-17.47,23.17c-0.4,0.52-1.51,1.94-3.26,2.24
 			c-1.87,0.32-3.51-0.91-4.12-1.36c-3.8-2.8-7.9-5.17-11.68-7.99c-8.28-6.18-13.27-6.6-13.81-10.87c-0.11-0.9,0.07-1.63,0.42-3.08
@@ -1031,7 +1030,7 @@ const Doors = () => {
 							<text className={getTextClass(2)} fontFamily="'Arial'" transform="matrix(1 0 0 1 601.6772 623.221)">2</text>
 						</g>
 					</Link>
-					<Link to={getLinkLocation(1)} tabIndex={4} title="Luke 1">
+					<Link {...getLinkDateDependentProps(1)} tabIndex={4} title="Luke 1">
 						<g id="luke1">
 							<path fill="#D8D4CB" d="M473.79,401.97c-3.72-7.03,6.2-16.86,10.32-27.12c0.24-0.61,0.91-2.29,2.51-3.06
 			c1.71-0.83,3.62-0.1,4.34,0.16c4.43,1.63,9.03,2.76,13.45,4.41c9.68,3.63,14.59,2.63,16.29,6.59c0.36,0.83,0.39,1.58,0.45,3.08

@@ -19,15 +19,22 @@
 
 #background {
   background:url(svg/background.svg) repeat;
+  z-index: -300;
+  height: 100%;
+	
 	animation-duration: 200s;
 }
 
 #midground {
 	background: url(svg/midground.svg) repeat;
+	z-index: -200;
+	
 	animation-duration: 150s;
 }
 
 #foreground {
 	background: url(svg/foreground.svg) repeat;
+	z-index: -100;
+	
 	animation-duration: 100s;
 }

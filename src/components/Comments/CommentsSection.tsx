@@ -54,9 +54,9 @@ const CommentForm: FC<CommentFormProps> = ({ doorNumber, appendComment }) => {
             .then(response => {
                 appendComment(response.data)
                 setComment('')
-               
+
             })
-            .catch(e => {});
+            .catch(e => { });
     }
 
 

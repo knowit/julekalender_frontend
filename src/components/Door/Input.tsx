@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react'; 
+import React, { FC, useState } from 'react';
 import { useRequests } from '../../api/requests';
 import Checkmark, { WrongMark } from './Checkmark';
 
@@ -15,6 +15,11 @@ const Input: FC<InputProps> = ({ isDoorSolved, isFirstSubmit, isWaitingForSoluti
   const [submittedAnswer, setSubmittedAnswer] = useState('');
 
   const isWrongAnswer = !isDoorSolved && !isFirstSubmit && !isWaitingForSolutionResponse && submittedAnswer !== '' && answer === submittedAnswer;
+  
+  const submitAnswer = () => {
+    onSubmit(answer)
+    setSubmittedAnswer(answer)
+  }
 
   return (
     <>
@@ -23,10 +28,14 @@ const Input: FC<InputProps> = ({ isDoorSolved, isFirstSubmit, isWaitingForSoluti
           ? <Checkmark />
           : isAuthenticated
             ? <>
-                <input className={`h-8 w-full p-0 bg-transparent border-0 border-current border-b ${isWrongAnswer && 'text-red-700'}`} placeholder='Ditt svar:' value={answer} onChange={(e) => setAnswer(e.target.value)} />
-                <button className="block mx-auto mt-2" disabled={!answer} onClick={() => { onSubmit(answer); setSubmittedAnswer(answer) }}>Send inn svar</button>
-                {isWrongAnswer && <WrongMark/>}
-              </>
+              <input className={`h-8 w-full p-0 bg-transparent border-0 border-current border-b ${isWrongAnswer && 'text-red-700'}`}
+                placeholder='Ditt svar:' value={answer}
+                onChange={(e) => setAnswer(e.target.value)}
+                onKeyPress={e => { if (e.key === "Enter") { submitAnswer() }}}
+                />
+              <button className="block mx-auto mt-2" disabled={!answer} onClick={() => submitAnswer()}>Send inn svar</button>
+              {isWrongAnswer && <WrongMark />}
+            </>
             : <p>Logg inn for å delta!</p>
         }
       </div>

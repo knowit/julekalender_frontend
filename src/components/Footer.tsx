@@ -2,7 +2,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { FaFacebook, FaTwitter, FaMedium, FaGithub } from 'react-icons/fa';
-import { apiUrl } from '../api/ApiConfig';
 
 const Footer = () => (
   <footer className="md:mt-8 lg:mt-16 space-y-4 max-w-2xl text-center p-8 md:p-2 m-auto">

@@ -8,7 +8,7 @@ const LoginButton = () => {
     ? [() => logout({ returnTo: window.location.origin }), 'Logg ut']
     : [() => loginWithRedirect(), 'Logg inn']
 
-  return <button className="hover:underline uppercase" tabIndex={3} onClick={onClick}>{content}</button>
+  return <button className="hover:underline" tabIndex={3} onClick={onClick}>{content}</button>
 };
 
 export default LoginButton

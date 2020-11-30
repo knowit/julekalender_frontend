@@ -38,7 +38,7 @@ const TopComment: FC<CommentProps> = ({ comment, myLikes, doorNumber }) => {
     }
 
     return (
-        <div className='flex bg-white mb-4'>
+        <div className='flex bg-white mb-4 rounded-md'>
             <div className='w-1/6 pt-4 pl-4 pb-4'>
                 <img className='rounded-full h-16 w-16 flex items-center justify-center' src={comment.author.picture} alt="User avatar" />
             </div>

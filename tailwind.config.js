@@ -23,6 +23,19 @@ module.exports = {
       fontSize: {
         'lightbulb': ['4.125rem', { lineHeight: '1' }],
       },
+      typography: {
+        DEFAULT: {
+          css: {
+            pre: {
+              code: {
+                '&::after': {
+                  content: 'none !important',
+                },
+              },
+            },
+          },
+        },
+      },
     },
   },
   variants: {

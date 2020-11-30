@@ -18,7 +18,7 @@ const Gdpr = () => {
     ],
     [
       'Personopplysninger som lagres',
-      'Vi lagrer følgende personopplysninger om våre kunder: Epost, brukernavn og eventuelt profilbilde hentet fra Gravatar.'
+      'Vi lagrer følgende personopplysninger om våre brukere: e-post, brukernavn og eventuelt profilbilde hentet fra Gravatar. Brukernavn og profilbilde vil være synlig i løsningen.'
     ],
     [
       'Formål med behandlingen',
@@ -26,7 +26,7 @@ const Gdpr = () => {
     ],
     [
       'Grunnlaget for behandlingen',
-      'Innhentede data er nødvendig for å delta i konkurransen, diskusjonsfelt og for å kontakte vinner, samt vise statistikk over løste oppgaver.'
+      'Innhentede data er nødvendig for å delta i konkurranse og diskusjonsfelt, samt for å kontakte vinner og vise statistikk over løste oppgaver.'
     ],
     [
       'Innhenting av personopplysninger',
@@ -38,7 +38,7 @@ const Gdpr = () => {
     ],
     [
       'Sletting av personopplysninger',
-      'Opplysninger vi har mottatt i forbindelse med deltagelse slettes etter at vinner er trukket og kontaktet.'
+      'Personopplysninger vi har mottatt i forbindelse med deltagelse slettes etter at vinner er trukket og kontaktet.'
     ],
     [
       'Rettigheter for den registrerte',
@@ -46,7 +46,7 @@ const Gdpr = () => {
     ],
     [
       'Personvernombud',
-      'Vi har et personvernombud, [navn på personvernombud], som påser at personopplysningslovens regler om behandling av personopplysninger blir fulgt.'
+      'Vi har et personvernombud, Kristin Meyer Kristiansen, som påser at personopplysningslovens regler om behandling av personopplysninger blir fulgt.'
     ],
     [
       'Informasjonssikkerhet',
@@ -66,6 +66,7 @@ const Gdpr = () => {
           <ul className="mt-2 ml-4 mb-8">
               <li>Vi bruker cookies for innlogging.</li>
               <li>Registrert e-postadresse kan brukes til å kontakte deg om du vinner.</li>
+              <li>Registrert brukernavn og profilbilde hentet fra Gravatar er synlige i diskusjonsfeltet og ledertavlen.</li>
               <li>Vi sletter alle persondata etter at vinner er trukket og kontaktet.</li>
           </ul>
 

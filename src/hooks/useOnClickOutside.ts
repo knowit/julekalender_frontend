@@ -29,6 +29,7 @@ const useOnClickOutside = <T>(ref: RefObject<HTMLElement>, handler: (e: MouseEve
      * optimize you can wrap handler in useCallback before passing it into this
      * hook.
      */
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [ref, handler, ...(dependencies || [])]
   );
 }

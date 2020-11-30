@@ -8,8 +8,10 @@ import Challenge, { SolvedStatus } from './Challenge';
 import { CreateLikePayload, CreateSolutionPayload, CreateSolutionResponse } from './Solution';
 import Leaderboard from './Leaderboard';
 
-const apiUrl = 'https://julekalender-backend-dev.knowit.no';
-const requestHeaders = { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" };
+export const apiUrl = window.location.hostname === 'julekalender.knowit.no'
+    ? 'https://julekalender-backend.knowit.no'
+    : 'https://julekalender-backend-dev.knowit.no';
+const requestHeaders = { "Content-Type": "application/json" };
 const getHeaders = (token: Token) => (
   token ? { ...requestHeaders, "Authorization": token } : requestHeaders
 )

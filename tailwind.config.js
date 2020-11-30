@@ -11,6 +11,12 @@ module.exports = {
       maxWidth: {
         'kodekalender': '80rem',
       },
+      spacing: {
+        // Helps with absolute size where needed
+        '102': '25.5rem',
+        '104': '26rem',
+        '128': '32rem',
+      },
       width: {
         'kodekalender': '80rem',
       },

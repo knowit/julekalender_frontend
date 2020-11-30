@@ -1,58 +1,68 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useCallback, useEffect, useRef, useState } from 'react';
 
-import './LeaderBoard.css';
+import { useRequests } from '../api/requests';
+import useOnClickOutside from '../hooks/useOnClickOutside';
 import { ReactComponent as Flourish } from './svg/pointsdecor.svg';
 import Leaderboard from '../api/Leaderboard';
-import { useRequests } from '../api/requests';
 
 type LeaderBoardProps = {
-    closeHandler: () => void,
-    open: boolean
+  hidden: boolean;
+  setIsLeaderboardHiding: (value: boolean) => void;
+  closeHandler: () => void;
 };
 
-const LeaderBoard: FC<LeaderBoardProps> = ({ closeHandler, open }) => {
-    const { fetchLeaderboard } = useRequests();
-    const [leaderboard, setLeaderboard] = useState<Leaderboard>();
+const LeaderBoard: FC<LeaderBoardProps> = ({ hidden, setIsLeaderboardHiding, closeHandler }) => {
+  const { fetchLeaderboard } = useRequests();
+  const [leaderboard, setLeaderboard] = useState<Leaderboard>();
+  const clickableLeaderboardRef = useRef(null);
 
-    useEffect(() => {
-      fetchLeaderboard()
-        .then((response) => {
-            setLeaderboard(response.data);
-        })
-    }, [fetchLeaderboard])
+  useEffect(() => {
+    fetchLeaderboard()
+      .then((response) => {
+        setLeaderboard(response.data);
+      })
+  }, [fetchLeaderboard])
 
-    if (leaderboard === undefined) {
-      return null;
-    }
+  useOnClickOutside(clickableLeaderboardRef, useCallback(() => {
+    if (hidden || !leaderboard) return;
 
-    return <aside className={`Leaderboard ${open ? 'open' : ''}`}>
-        <button title="Lukk ledertavle" id="CloseLeaderboard" onClick={() => closeHandler()}>
-            {/*X-icon svg for close button*/}
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18"><path fill="#fff" d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z" /></svg>
-        </button>
-        <h2>SNILLE BARN</h2>
-        <Flourish className="flourish" />
-        <table>
-            <thead>
-                <tr>
-                    <th>LUKER LØST</th>
-                    <th>BRUKERNAVN</th>
-                </tr>
-            </thead>
-            <tbody>
-                {leaderboard.map(([solved, users]) => (
-                  <tr key={solved}>
-                    <td>{solved}</td>
-                    <td>
-                      <ul>
-                        {users.map((user) => <li key={user}>{user}</li>)}
-                      </ul>
-                    </td>
-                  </tr>)
-                )}
-            </tbody>
-        </table>
-    </aside>;
+    setIsLeaderboardHiding(true);
+    setTimeout(() => setIsLeaderboardHiding(false), 200);
+    closeHandler();
+  }, [hidden, leaderboard, setIsLeaderboardHiding, closeHandler]));
+
+  if (leaderboard === undefined) {
+    return null;
+  }
+
+  const containerTransition = `transition duration-100 sm:duration-200 transform ${hidden ? 'ease-in translate-x-full sm:translate-x-102' : 'ease-out translate-x-0'}`;
+
+  return (
+    <aside className="absolute top-0 right-0 pt-14 w-full sm:w-102 sm:pr-6 overflow-hidden pointer-events-none">
+      <div className={`${containerTransition} bg-green-800 p-4 rounded-md sm:rounded-xl w-full h-full pointer-events-auto`} ref={clickableLeaderboardRef} >
+        <div className="h-full overflow-hidden">
+          <div className="h-24">
+            <div className="text-center p-a">
+              <h2 className="text-2xl m-auto">Snille barn</h2>
+            </div>
+            <Flourish className="-mt-8 h-20 w-full transform rotate-2" />
+          </div>
+          <div className="h-96 xl:h-192 overflow-y-auto">
+            {leaderboard.map(([solved, users]) => (
+              <div key={solved}>
+                <h3 className="sticky top-0 py-0.5 bg-green-700 rounded-md text-lg text-center" key={solved}>{solved} luker løst i tide</h3>
+                <div className="pt-2 pb-4 space-y-1">
+                  {users.map((user) => (
+                    <p className="text-center" key={user}>{user}</p>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </aside>
+  );
 }
 
 export default LeaderBoard;

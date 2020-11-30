@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import './App.css';
 import Doors from './components/Doors'
 import Footer from './components/Footer';
@@ -16,15 +16,11 @@ import Door from './components/Door/Door';
 
 
 function App() {
-  const [leaderBoardOpen, toggleLeaderBoard] = useState(false);
-
-  function closeLeaderBoard() {
-    toggleLeaderBoard(false);
-  }
+  const [leaderboardHidden, setLeaderboardHidden] = useState(true);
+  const [isLeaderboardHiding, setIsLeaderboardHiding] = useState(false);
 
   return (
     <>
-      {/*TODO: Kanskje pause bakgrunn når dør åpen?*/}
       <StarBackground paused={false} />
       <div className="FlexContainer text-gray-200">
         <div>
@@ -34,7 +30,7 @@ function App() {
                 <Logo className="h-7 md:h-10 fill-current" />
               </a>
               <div className="float-right space-x-4 h-10 text-md mt-0.5 md:mt-1 md:text-xl">
-                <button className="hover:underline uppercase" onClick={() => toggleLeaderBoard(!leaderBoardOpen)} tabIndex={2}>Ledertavle</button>
+                <button className="hover:underline uppercase" onClick={() => !isLeaderboardHiding && setLeaderboardHidden(false)} tabIndex={2}>Ledertavle</button>
                 <LoginButton />
               </div>
             </nav>
@@ -57,7 +53,11 @@ function App() {
             </Route>
           </Switch>
         </div>
-        <LeaderBoard open={leaderBoardOpen} closeHandler={closeLeaderBoard} />
+        <LeaderBoard
+          hidden={leaderboardHidden}
+          setIsLeaderboardHiding={setIsLeaderboardHiding}
+          closeHandler={useCallback(() => setLeaderboardHidden(true), [])}
+        />
       </div>
     </>
   );

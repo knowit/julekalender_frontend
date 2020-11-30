@@ -15,7 +15,7 @@ const Footer = () => (
     </p>
     <p>
       En ny luke åpnes hver dag klokken 06:00 helt fram til jul. Dersom
-      du svarer riktig innen 24 timer får du et lodd i trekningen av en
+      du løser den får du et lodd i trekningen av en
       valgfri telefon eller nettbrett. Løs så mange luker som mulig for å
       øke vinnersjansene dine!
     </p>

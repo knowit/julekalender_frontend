@@ -78,11 +78,11 @@ const Door = () => {
           <Light nr={parseInt(doorNumber)} solved={isDoorSolved} />
           <DoorBorder />
           <div className="py-8 px-8 md:px-12 mx-4 md:mx-8 bg-gray-100 rounded-md">
-              <div className="mt-4">
-                  <h1 className="text-4xl">{challenge.title}</h1>
+              <div className="mt-6 text-center pb-4 md:pb-6 border-b-2">
+                  <h1 className="text-4xl font-semibold">{challenge.title}</h1>
                   <p className="mt-1"><em>Av {challenge.author}</em></p>
               </div>
-              <div className="mt-6 prose" dangerouslySetInnerHTML={{ __html: challenge.content }} />
+              <div className="my-4 md:my-6 lg:my-12 mx-auto prose prose-sm md:prose max-w-none" dangerouslySetInnerHTML={{ __html: challenge.content }} />
           </div>
           <Input
             isDoorSolved={isDoorSolved}

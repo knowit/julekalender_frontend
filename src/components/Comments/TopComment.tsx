@@ -39,13 +39,13 @@ const TopComment: FC<CommentProps> = ({ comment, myLikes, doorNumber }) => {
 
     return (
         <div className='flex bg-white mb-4'>
-            <div className='w-1/5 pt-4 pl-4 pb-4'>
-                <img className='rounded-full h-20 w-20 flex items-center justify-center' src={comment.author.picture} alt="User avatar" />
+            <div className='w-1/6 pt-4 pl-4 pb-4'>
+                <img className='rounded-full h-16 w-16 flex items-center justify-center' src={comment.author.picture} alt="User avatar" />
             </div>
-            <div className='w-4/5 pt-4 pr-4 pb-4'>
+            <div className='w-5/6 pt-4 pr-4 pb-4'>
                 <span className='font-semibold'>{comment.author.nickname}</span><time className='float-right'>{timestamp}</time>
-                <div className='prose prose-sm md:prose max-w-none' dangerouslySetInnerHTML={{ __html: comment.content }} />
-                <div className='grid grid-cols-2 justify-items-stretch'>
+                <div className='prose prose-sm md:prose max-w-none mt-2' dangerouslySetInnerHTML={{ __html: comment.content }} />
+                <div className='grid grid-cols-2 justify-items-stretch mt-4'>
                     <div className='justify-self-start'>
                         <LikeButton comment={comment} myLikes={myLikes}/>
                         <button className='bg-white font-bold' onClick={() => toggleShowReplyInput(!showReplyInput)}>KOMMENTER INNLEGG</button>
@@ -61,7 +61,7 @@ const TopComment: FC<CommentProps> = ({ comment, myLikes, doorNumber }) => {
                         }
                     </div>
                 </div>
-                {showReplyInput ? <div className='pt-4'>
+                {showReplyInput ? <div className='pt-6'>
                 <div className='flex flex-row'>
                     <img className='rounded-full h-16 w-16 flex items-center justify-center mr-2' src={userAvatar} alt="User avatar" />
                     <TextareaAutosize 
@@ -80,7 +80,7 @@ const TopComment: FC<CommentProps> = ({ comment, myLikes, doorNumber }) => {
                 </div> : null}
 
                 {showSubComments ?
-                    <div className='flex flex-col content-end'>
+                    <div className='flex flex-col content-end mt-2'>
                         {comment.children?.map(subcomment => <SubComment key={subcomment.uuid} comment={subcomment} myLikes={myLikes} />)}
                     </div> : null}
                 </div>

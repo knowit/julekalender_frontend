@@ -1,6 +1,7 @@
 import { RefObject, useEffect } from 'react';
 
 // From: https://usehooks.com/useOnClickOutside/
+// eslint-disable-next-line react-hooks/exhaustive-deps
 const useOnClickOutside = <T>(ref: RefObject<HTMLElement>, handler: (e: MouseEvent | TouchEvent) => void, dependencies: any[] | undefined = undefined) => {
   useEffect(
     () => {

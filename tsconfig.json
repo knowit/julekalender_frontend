@@ -18,7 +18,6 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react",
-    "react-hooks/exhaustive-deps": false
   },
   "include": [
     "src"

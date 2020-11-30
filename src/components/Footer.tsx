@@ -41,7 +41,6 @@ const Footer = () => (
       <a href="https://github.com/knowit/" target="_blank" rel="noopener noreferrer"><FaGithub aria-label="Facebook"/></a>
       <a href="https://knowitlabs.no/" target="_blank" rel="noopener noreferrer"><FaMedium aria-label="Facebook"/></a>
     </div>
-<span>Backend URL: {apiUrl}</span>
   </footer>
 );
 

@@ -8,6 +8,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 import { getTimeStamp } from '../../utils';
 import LikeButton from './LikeButton';
 import { useRequests } from '../../api/requests';
+import { Comment } from '../../api/Comment';
 
 
 interface CommentProps {
@@ -19,22 +20,23 @@ const TopComment: FC<CommentProps> = ({ comment, myLikes, doorNumber }) => {
     const [showReplyInput, toggleShowReplyInput] = useState<boolean>(false)
     const [showSubComments, toggleSubComments] = useState<boolean>(true)
     const [replyContent, setReplyContent] = useState<string>('')
+    const [subComments, setSubComments] = useState<Comment[]>(comment.children)
     const { user } = useAuth0();
     const { picture: userAvatar } = user;
     const timestamp = getTimeStamp(comment.created_at)
     const { createComment } = useRequests()
 
+    const appendSubComment = (comment: Comment) => {
+        setSubComments([...(subComments || []), comment])
+
+    }
+
     const postSubComment = () => {
-        console.log('subcomment...')
-        console.log('doornumber: ' + doorNumber)
-        console.log('subcomment: ' + replyContent)
-        console.log('comment: ' + comment.content)
-        console.log('uuid: ' + comment.uuid)
-        /*createComment(doorNumber, replyContent, comment.uuid)
-            .then(response => {
-                console.log(response)
-            })
-            .catch(e => {})*/
+        createComment(doorNumber, replyContent, comment.uuid)
+        .then(response => {
+            appendSubComment(response.data)
+            setReplyContent('')
+        })
     }
 
     return (
@@ -70,7 +72,7 @@ const TopComment: FC<CommentProps> = ({ comment, myLikes, doorNumber }) => {
 
             {showSubComments ?
                 <div className="SubComments">
-                    {comment.children?.map(subcomment => <SubComment key={subcomment.uuid} comment={subcomment} myLikes={myLikes} />)}
+                    {subComments?.map(subcomment => <SubComment key={subcomment.uuid} comment={subcomment} myLikes={myLikes} />)}
                 </div> : null}
 
         </div>

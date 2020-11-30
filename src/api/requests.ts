@@ -48,7 +48,7 @@ const createLike = (token: Token) => (postId: number | string) => (
 );
 
 const createComment = (token: Token) => (doorNumber: number, comment:string, parentId?: number | string,) => (
-  baseCreate<Comment>(`/challenges/${doorNumber}/posts`, {parent_uuid: parentId, content: comment} , token)
+  baseCreate<Comment>(`/challenges/${doorNumber}/posts`, {post: {parent_uuid: parentId, content: comment}} , token)
 )
 
 const fetchComments = (token: Token) => (doorNumber: number | string) => (

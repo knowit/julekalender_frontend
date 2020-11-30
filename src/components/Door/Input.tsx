@@ -18,7 +18,7 @@ const Input: FC<InputProps> = ({ isDoorSolved, isFirstSubmit, isWaitingForSoluti
 
   return (
     <>
-      <div className="w-56 py-3 px-6 rounded-md mt-4 mx-auto bg-gray-100">
+      <div className="w-56 py-3 px-6 mx-auto">
         {isDoorSolved
           ? <Checkmark />
           : isAuthenticated

@@ -83,13 +83,13 @@ const Door = () => {
                   <p className="mt-1"><em>Av {challenge.author}</em></p>
               </div>
               <div className="mt-6 prose" dangerouslySetInnerHTML={{ __html: challenge.content }} />
-          </div>
-          <Input
+              <Input
             isDoorSolved={isDoorSolved}
             isFirstSubmit={attemptCount === 0}
             isWaitingForSolutionResponse={isWaitingForSolutionResponse}
             onSubmit={submitAnswer}
           />
+          </div>
           {isAuthenticated && isDoorSolved && <CommentsSection doorNumber={parseInt(doorNumber)} />}
       </main>
   )

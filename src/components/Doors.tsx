@@ -13,39 +13,40 @@ const Doors = () => {
 	const [solvedStatus, setIsSolvedStatus] = useState<SolvedStatus>();
 
 	useEffect(() => {
-    if (!isAuthenticated) return;
+		if (!isAuthenticated) return;
 
-    fetchSolvedStatus()
-      .then((response) => setIsSolvedStatus(response.data))
-      .catch((e) => setError(e))
-  }, [isAuthenticated, fetchSolvedStatus])
+		fetchSolvedStatus()
+			.then((response) => setIsSolvedStatus(response.data))
+			.catch((e) => setError(e))
+  	}, [isAuthenticated, fetchSolvedStatus])
 
 	const getBulbClass = (doorNumber: number) => {
 		if (solvedStatus !== undefined && solvedStatus[doorNumber]) {
 			return 'text-lightbulb-green fill-current';
-    }
+    	}
 
 		if (new Date() < getDoorDate(doorNumber)) {
 			return 'text-lightbulb-dim fill-current';
-    }
+    	}
 
 		return 'text-lightbulb-yellow fill-current';
-  }
+  	}
 
 	const getTextClass = (doorNumber: number) => {
 		if (solvedStatus !== undefined && solvedStatus[doorNumber]) {
 			return 'text-gray-800';
-    }
+    	}
 
 		if (new Date() < getDoorDate(doorNumber)) {
 			return 'text-gray-800 opacity-25';
-    }
+    	}
 
 		return 'text-gray-800';
-  }
+  	}
 
 	const getLinkLocation = (doorNumber: number) => {
-		if (new Date().getDate() >= doorNumber) {
+		// Change to >= to enable proper functionality. Is set to <= for ease of development. 
+		if (new Date() <= getDoorDate(doorNumber)) {
 			return `/luke/${doorNumber}`
 		}
 		return '/'

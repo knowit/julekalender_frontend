@@ -7,19 +7,35 @@ import Like from '../../api/Like';
 import { useAuth0 } from '@auth0/auth0-react';
 import { getTimeStamp } from '../../utils';
 import LikeButton from './LikeButton';
+import { useRequests } from '../../api/requests';
 
 
 interface CommentProps {
-    comment: ParentComment;
-    myLikes: Like[];
+    comment: ParentComment
+    myLikes: Like[]
+    doorNumber: number
 }
-const TopComment: FC<CommentProps> = ({ comment, myLikes }) => {
+const TopComment: FC<CommentProps> = ({ comment, myLikes, doorNumber }) => {
     const [showReplyInput, toggleShowReplyInput] = useState<boolean>(false)
     const [showSubComments, toggleSubComments] = useState<boolean>(true)
-    const [replyContent, setReplyContent] = useState<string>()
+    const [replyContent, setReplyContent] = useState<string>('')
     const { user } = useAuth0();
     const { picture: userAvatar } = user;
     const timestamp = getTimeStamp(comment.created_at)
+    const { createComment } = useRequests()
+
+    const postSubComment = () => {
+        console.log('subcomment...')
+        console.log('doornumber: ' + doorNumber)
+        console.log('subcomment: ' + replyContent)
+        console.log('comment: ' + comment.content)
+        console.log('uuid: ' + comment.uuid)
+        /*createComment(doorNumber, replyContent, comment.uuid)
+            .then(response => {
+                console.log(response)
+            })
+            .catch(e => {})*/
+    }
 
     return (
         <div className="Comment">
@@ -30,11 +46,10 @@ const TopComment: FC<CommentProps> = ({ comment, myLikes }) => {
                     <div className="prose" dangerouslySetInnerHTML={{ __html: comment.content }} />
                 </div>
             </div>
+
             <div className='CommentFooter'>
                 <LikeButton comment={comment} myLikes={myLikes}/>
-                
                 <button className='CommentFooterItem btnReply' onClick={() => toggleShowReplyInput(!showReplyInput)}>KOMMENTER INNLEGG</button>
-
                 {comment.children?.length ? <button className='CommentFooterItem btnReplies' onClick={() => toggleSubComments(!showSubComments)}>
                     <span>{`${showSubComments ? "Skjul" : "Vis"} ${comment.children?.length} svar`}</span>
                     <Chevron className={`Chevron ${showSubComments ? 'Rotate' : ''}`} />
@@ -49,7 +64,7 @@ const TopComment: FC<CommentProps> = ({ comment, myLikes }) => {
                 </div>
                 <div className='ReplyBoxButtons'>
                     <button className='ReplyBoxBtn' onClick={() => { setReplyContent(""); toggleShowReplyInput(false) }}>AVBRYT</button>
-                    <button className='ReplyBoxBtn'>SVAR</button>
+                    <button className='ReplyBoxBtn' onClick={(e) => { e.preventDefault(); postSubComment() }}>SVAR</button>
                 </div>
             </div> : null}
 
@@ -62,4 +77,4 @@ const TopComment: FC<CommentProps> = ({ comment, myLikes }) => {
     )
 }
 
-export default TopComment;
+export default TopComment

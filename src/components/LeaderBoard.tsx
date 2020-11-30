@@ -3,6 +3,7 @@ import React, { FC, useCallback, useEffect, useRef, useState } from 'react';
 import { useRequests } from '../api/requests';
 import useOnClickOutside from '../hooks/useOnClickOutside';
 import { ReactComponent as Flourish } from './svg/pointsdecor.svg';
+import { ReactComponent as Close } from './svg/close.svg';
 import Leaderboard from '../api/Leaderboard';
 
 type LeaderBoardProps = {
@@ -35,13 +36,20 @@ const LeaderBoard: FC<LeaderBoardProps> = ({ hidden, setIsLeaderboardHiding, clo
     return null;
   }
 
+  const closeBoard = () => {
+    setIsLeaderboardHiding(true);
+    setTimeout(() => setIsLeaderboardHiding(false), 200);
+    closeHandler();
+  }
+
   const containerTransition = `transition duration-100 sm:duration-200 transform ${hidden ? 'ease-in translate-x-full sm:translate-x-102' : 'ease-out translate-x-0'}`;
 
   return (
     <aside className="absolute top-0 right-0 pt-14 w-full sm:w-102 sm:pr-6 overflow-hidden pointer-events-none">
       <div className={`${containerTransition} bg-green-800 p-4 rounded-md sm:rounded-xl w-full h-full pointer-events-auto`} ref={clickableLeaderboardRef} >
         <div className="h-full overflow-hidden">
-          <div className="h-24">
+        <Close className='fill-current text-white absolute top-0 right-0 m-2 cursor-pointer' onClick={closeBoard}/>
+          <div className="h-24 pt-2">
             <div className="text-center p-a">
               <h2 className="text-2xl m-auto">Snille barn</h2>
             </div>

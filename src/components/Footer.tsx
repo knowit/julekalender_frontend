@@ -2,6 +2,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { FaFacebook, FaTwitter, FaMedium, FaGithub } from 'react-icons/fa';
+import { apiUrl } from '../api/ApiConfig';
 
 const Footer = () => (
   <footer className="md:mt-8 lg:mt-16 space-y-4 max-w-2xl text-center p-8 md:p-2 m-auto">
@@ -40,6 +41,7 @@ const Footer = () => (
       <a href="https://github.com/knowit/" target="_blank" rel="noopener noreferrer"><FaGithub aria-label="Facebook"/></a>
       <a href="https://knowitlabs.no/" target="_blank" rel="noopener noreferrer"><FaMedium aria-label="Facebook"/></a>
     </div>
+<span>Backend URL: {apiUrl}</span>
   </footer>
 );
 

@@ -8,7 +8,7 @@ const Footer = () => (
     <h2 className="text-xl">Om kodekalenderen</h2>
     <p>
       Kodekalenderen er høytidskalenderen for deg som er glad i
-      programmering. Bak hver luke skjuler det seg en oppgave du små svare
+      programmering. Bak hver luke skjuler det seg en oppgave du må svare
       på i form av en enkel tekststreng eller et tall. Lukene varierer i
       vanskelighetsgrad og utforming, men felles for alle er at de er
       best egnet for å løses med kode.

@@ -65,13 +65,13 @@ function App() {
           closeHandler={useCallback(() => setLeaderboardHidden(true), [])}
         />
       </div>
-      <div title="Varm laptop? 🔥" className="m-1 left-0 bottom-0 absolute">
+      <div title="Varm laptop? 🔥" className="m-1">
         <input type="checkbox"
           id='animationToggle'
           className='mr-1 w-3'
           defaultChecked={backgroundPaused}
           onChange={() => toggleBackground()} />
-        <label className="text-gray-400 shadow text-xs" htmlFor='animationToggle'>Stopp bakgrunn</label>
+        <label className="text-gray-400 shadow text-xs" htmlFor='animationToggle'>Stopp bakgrunnsanimasjon</label>
       </div>
     </>
   );

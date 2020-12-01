@@ -66,7 +66,7 @@ const fetchLeaderboard = () => (
 //   scope: 'read:current_user update:current_user_metadata'
 // });
 export const useRequests = () => {
-  const { isAuthenticated, getAccessTokenSilently, getIdTokenClaims } = useAuth0();
+  const { isAuthenticated, isLoading, getAccessTokenSilently, getIdTokenClaims } = useAuth0();
   const [token, setToken] = useState<string>();
 
   // Get existing token in state
@@ -83,17 +83,17 @@ export const useRequests = () => {
       if (!isAuthenticated) return;
       if (token && token.length > 0) return; // Token already exists
 
-      await getAccessTokenSilently({ user_audience: '6TmycgoSWgFT8EU6COixHKne9JmLx5F4' });
+      await getAccessTokenSilently();
       // getIdTokenClaims uses access token from surrounding context.
       const claims = await getIdTokenClaims();
-      setToken(claims.__raw); // TODO: This is probably not ideal. Consider fixing.
+      setToken(claims.__raw);
     };
 
     getToken();
   }, [isAuthenticated, getAccessTokenSilently, getIdTokenClaims, token]);
 
   return {
-    isAuthenticated: isAuthenticated && token,
+    isAuthenticated: isAuthenticated && isLoading && token,
     fetchLikes: useCallback(fetchLikes(token), [token]),
     fetchChallenge: useCallback(fetchChallenge(token), [token]),
     fetchSolvedStatus: useCallback(fetchSolvedStatus(token), [token]),

@@ -5,7 +5,7 @@ import { useRequests } from '../api/requests';
 import { SolvedStatus } from '../api/Challenge';
   
 
-const getDoorDate = (doorNumber: number) => new Date(Date.parse(`2020-12-${doorNumber} 06:00`))
+const getDoorDate = (doorNumber: number) => new Date(Date.parse(`2020-12-${doorNumber} 04:00`))
 
 const Doors = () => {
   const { isAuthenticated, fetchSolvedStatus } = useRequests();
@@ -45,10 +45,11 @@ const Doors = () => {
   };
 
 	const getLinkDateDependentProps = (doorNumber: number) => {
-		if (new Date() >= getDoorDate(doorNumber)) {
-			return { to: `/luke/${doorNumber}` }
-		}
-		return { to: '/', className: 'cursor-not-allowed' }
+		if (new Date() < getDoorDate(doorNumber)) {
+      return { to: '/', className: 'cursor-not-allowed' };
+    }
+
+    return { to: `/luke/${doorNumber}` };
 	}
 
 	if (fubar !== undefined) {

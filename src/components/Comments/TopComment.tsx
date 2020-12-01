@@ -33,59 +33,57 @@ const TopComment: FC<CommentProps> = ({ comment, myLikes, doorNumber }) => {
 
     const postSubComment = () => {
         createComment(doorNumber, replyContent, comment.uuid)
-        .then(response => {
-            appendSubComment(response.data)
-            setReplyContent('')
-        })
+            .then(response => {
+                appendSubComment(response.data)
+                setReplyContent('')
+            })
     }
 
     return (
-        <div className='flex bg-white mb-4'>
-            <div className='w-1/6 pt-4 pl-4 pb-4'>
-                <img className='rounded-full h-16 w-16 flex items-center justify-center' src={comment.author.picture} alt="User avatar" />
+        <div className='flex rounded-md bg-white p-2 sm:p-4 mb-4'>
+            <div className='w-1/12'>
+                <img className='rounded-full w-full flex items-center justify-center' src={comment.author.picture} alt="User avatar" />
             </div>
-            <div className='w-5/6 pt-4 pr-4 pb-4'>
-                <span className='font-semibold'>{comment.author.nickname}</span><time className='float-right'>{timestamp}</time>
+            <div className='w-5/6 pr-4 pl-4'>
+                <span className='font-semibold text-xl'>{comment.author.nickname}</span><time className='float-right'>{timestamp}</time>
                 <div className='prose prose-sm md:prose max-w-none mt-2' dangerouslySetInnerHTML={{ __html: comment.content }} />
                 <div className='grid grid-cols-2 justify-items-stretch mt-4'>
                     <div className='justify-self-start'>
-                        <LikeButton comment={comment} myLikes={myLikes}/>
+                        <LikeButton comment={comment} myLikes={myLikes} />
                         <button className='bg-white font-bold' onClick={() => toggleShowReplyInput(!showReplyInput)}>KOMMENTER INNLEGG</button>
                     </div>
                     <div className='justify-self-end'>
-                        { comment.children?.length ? 
-                            <button className='flex' onClick={() => toggleSubComments(!showSubComments)}>
-                            <span className='w-4/5'>{`${showSubComments ? "Skjul" : "Vis"} ${comment.children?.length} svar`}</span>
-                            <div className='w-1/5 mt-3'>
-                                <Chevron className={`w-4 transition-all duration-500 ${showSubComments ? 'transform -rotate-180' : ''}`} />
-                            </div>
-                            </button>: null
+                        {comment.children?.length ?
+                            <button className='' onClick={() => toggleSubComments(!showSubComments)}>
+                                <span className='w-4/5'>{`${showSubComments ? "Skjul" : "Vis"} ${comment.children?.length} svar`}</span>
+                                <Chevron className={`ml-1 inline w-4 transition-all duration-500 ${showSubComments ? 'transform -rotate-180' : ''}`} />
+                            </button> : null
                         }
                     </div>
                 </div>
                 {showReplyInput ? <div className='pt-6'>
-                <div className='flex flex-row'>
-                    <img className='rounded-full h-16 w-16 flex items-center justify-center mr-2' src={userAvatar} alt="User avatar" />
-                    <TextareaAutosize 
-                        value={replyContent} 
-                        onChange={event => setReplyContent(event.currentTarget.value)} 
-                        className='w-full text-base border-b-2 border-black outline-none' 
-                        placeholder='Legg til svar' 
-                    />
-                </div>
-                <div className='grid justify-items-stretch'>
-                    <div className='justify-self-end'>
-                        <button className='m-2' onClick={() => { setReplyContent(""); toggleShowReplyInput(false) }}>AVBRYT</button>
-                        <button className='m-2' onClick={(e) => { e.preventDefault(); postSubComment() }}>SVAR</button>
+                    <div className='flex flex-row'>
+                        <img className='rounded-full h-16 w-16 flex items-center justify-center mr-2' src={userAvatar} alt="User avatar" />
+                        <TextareaAutosize
+                            value={replyContent}
+                            onChange={event => setReplyContent(event.currentTarget.value)}
+                            className='w-full text-base border-b-2 border-black outline-none'
+                            placeholder='Legg til svar'
+                        />
                     </div>
-                </div>
+                    <div className='grid justify-items-stretch'>
+                        <div className='justify-self-end'>
+                            <button className='m-2' onClick={() => { setReplyContent(""); toggleShowReplyInput(false) }}>AVBRYT</button>
+                            <button className='m-2' onClick={(e) => { e.preventDefault(); postSubComment() }}>SVAR</button>
+                        </div>
+                    </div>
                 </div> : null}
 
                 {showSubComments ?
                     <div className='flex flex-col content-end mt-2'>
                         {subComments?.map(subcomment => <SubComment key={subcomment.uuid} comment={subcomment} myLikes={myLikes} />)}
                     </div> : null}
-                </div>
+            </div>
         </div>
     )
 }

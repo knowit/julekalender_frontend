@@ -11,9 +11,8 @@ ReactDOM.render(
   <Auth0Provider
     domain="knowit-konkurranser.eu.auth0.com"
     clientId="6TmycgoSWgFT8EU6COixHKne9JmLx5F4"
-    redirectUri={window.location.origin} //Denne må kanskje endrast?
+    redirectUri={window.location.origin} // TODO: Redirect back to luke
     audience="https://knowit-konkurranser.eu.auth0.com/api/v2/"
-    scope="read:current_user update:current_user_metadata"
   >
     <App />
   </Auth0Provider>

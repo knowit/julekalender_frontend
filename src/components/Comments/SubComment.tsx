@@ -12,12 +12,16 @@ interface SubCommentProps {
 
 const SubComment: FC<SubCommentProps> = ({ comment, myLikes }) => {
     return (
-        <div className="SubComment">
-            <img className="ProfileImage" src={comment.author.picture} alt="User avatar" />
-            <div className="CommentData">
-                <span className="CommentName">{comment.author.nickname}</span><time>{getTimeStamp(comment.created_at)}</time>
-                <div className="prose" dangerouslySetInnerHTML={{ __html: comment.content }} />
-                <LikeButton comment={comment} myLikes={myLikes} />
+        <div className='flex p-2 mb-4 bg-gray-200'>
+            <div className='w-1/12'>
+                <img className='rounded-full w-full flex items-center justify-center' src={comment.author.picture} alt="User avatar" />
+            </div>
+            <div className='w-11/12 ml-2'>
+                <span className='font-semibold'>{comment.author.nickname}</span><time className='float-right'>{getTimeStamp(comment.created_at)}</time>
+                <div className='prose prose-sm md:prose max-w-none mt-2' dangerouslySetInnerHTML={{ __html: comment.content }} />
+                <div className='mb-2'>
+                    <LikeButton comment={comment} myLikes={myLikes} />
+                </div>
             </div>
         </div>
     )

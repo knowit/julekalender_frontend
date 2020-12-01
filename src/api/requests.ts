@@ -93,7 +93,7 @@ export const useRequests = () => {
   }, [isAuthenticated, getAccessTokenSilently, getIdTokenClaims, token]);
 
   return {
-    isAuthenticated: isAuthenticated && isLoading && token,
+    isAuthenticated: isAuthenticated && !isLoading && token,
     fetchLikes: useCallback(fetchLikes(token), [token]),
     fetchChallenge: useCallback(fetchChallenge(token), [token]),
     fetchSolvedStatus: useCallback(fetchSolvedStatus(token), [token]),

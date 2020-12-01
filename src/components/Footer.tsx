@@ -27,6 +27,12 @@ const Footer = () => (
       <Link className="underline" id='gdprLink' to='/gdpr' title='gdpr'>Les om vår håndtering av personopplysninger</Link>
     </p>
 
+    <h2 className="text-xl pt-4">Kontakt oss</h2>
+    <p>
+      Funnet en feil? Ris eller ros? Send oss en mail!{' '}
+      <a className="underline" href="mailto:julekalender@knowit.no">julekalender@knowit.no</a>
+    </p>
+
     <h2 className="text-xl pt-4">Jobbe i Knowit?</h2>
     <p>
       Dersom du ønsker å vite mer om Knowit må du gjerne ta kontakt med
@@ -34,8 +40,6 @@ const Footer = () => (
       href="mailto:julenissen@knowit.no">julenissen@knowit.no</a> for en
       uformell prat.
     </p>
-    <h2 className="text-xl pt-4">Kontakt oss</h2>
-    <p>Funnet en feil? Ris eller ros? Send oss en mail! <a href="mailto:julekalender@knowit.no">julekalender@knowit.no</a></p>
     <div className="m-auto flex justify-between align-center w-32">
       <a href="https://www.facebook.com/weareknowit" target="_blank" rel="noopener noreferrer"><FaFacebook aria-label="Facebook"/></a>
       <a href="https://twitter.com/knowitnorge" target="_blank" rel="noopener noreferrer"><FaTwitter aria-label="Facebook"/></a>

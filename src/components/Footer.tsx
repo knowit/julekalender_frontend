@@ -14,7 +14,7 @@ const Footer = () => (
       best egnet for å løses med kode.
     </p>
     <p>
-      En ny luke åpnes hver dag klokken 06:00 helt fram til jul. For hver luke du løser får du et lodd i trekningen av en
+      En ny luke åpnes hver dag klokken 04:00 helt fram til jul. For hver luke du løser får du et lodd i trekningen av en
       valgfri telefon eller nettbrett. Løs så mange luker som mulig for å
       øke vinnersjansene dine!
     </p>

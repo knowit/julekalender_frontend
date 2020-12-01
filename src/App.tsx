@@ -65,7 +65,7 @@ function App() {
           closeHandler={useCallback(() => setLeaderboardHidden(true), [])}
         />
       </div>
-      <div title="Varm laptop? 🔥" className="m-1">
+      <div title="Varm laptop? 🔥" className="m-1 cursor-pointer">
         <input type="checkbox"
           id='animationToggle'
           className='mr-1 w-3'

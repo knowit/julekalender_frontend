@@ -34,7 +34,11 @@ const Footer = () => (
       <a className="underline" href="mailto:julekalender@knowit.no">julekalender@knowit.no</a>
     </p>
 
-    <h2 className="text-xl pt-4">Jobbe i Knowit?</h2>
+    <h2 className="text-xl pt-4">
+      <a className="underline" href="https://www.knowit.no/karriere/systemutvikler-som-tror-pa-julenissen/" target="_blank" rel="noopener noreferrer">
+        Jobbe i Knowit?
+      </a>
+    </h2>
     <p>
       Dersom du ønsker å vite mer om Knowit må du gjerne ta kontakt med
       en av våre alver på <a className="underline"

@@ -23,6 +23,8 @@ const TopComment: FC<CommentProps> = ({ comment, myLikes, doorNumber }) => {
     const [replyContent, setReplyContent] = useState<string>('')
     const [subComments, setSubComments] = useState<Comment[]>(comment.children)
     const commentContentRef = useHighlightJs<HTMLDivElement>();
+    // this is kind of a lame hack to avoid double submits if the user presses the button fast.
+    const [disableButton, setDisableButton] = useState<boolean>(false)
 
     const timestamp = getTimeStamp(comment.created_at)
 
@@ -31,11 +33,15 @@ const TopComment: FC<CommentProps> = ({ comment, myLikes, doorNumber }) => {
     }
 
     const postSubComment = () => {
+        setDisableButton(true);
         createComment(doorNumber, replyContent, comment.uuid)
             .then(response => {
                 appendSubComment(response.data)
                 setReplyContent('')
+                toggleShowReplyInput(false)
+                setDisableButton(false)
             })
+            .catch(e => {})
     }
 
     return (
@@ -73,7 +79,7 @@ const TopComment: FC<CommentProps> = ({ comment, myLikes, doorNumber }) => {
                     <div className='grid justify-items-stretch'>
                         <div className='justify-self-end'>
                             <button className='m-2' onClick={() => { setReplyContent(""); toggleShowReplyInput(false) }}>AVBRYT</button>
-                            <button className='m-2' onClick={(e) => { e.preventDefault(); postSubComment() }}>SVAR</button>
+                            <button className='m-2' disabled={!replyContent || disableButton} onClick={(e) => { e.preventDefault(); postSubComment() }}>SVAR</button>
                         </div>
                     </div>
                 </div> : null}

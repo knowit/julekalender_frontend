@@ -62,7 +62,7 @@ const TopComment: FC<CommentProps> = ({ comment, myLikes, doorNumber }) => {
                 </div>
                 {showReplyInput ? <div className='pt-6'>
                     <div className='flex flex-row'>
-                        <img className='rounded-full h-16 w-16 flex items-center justify-center mr-2' src={userAvatar} alt="User avatar" />
+                        <img className='rounded-full h-16 w-16 flex items-center justify-center mr-2' loading="lazy" src={userAvatar} alt="User avatar" />
                         <TextareaAutosize
                             value={replyContent}
                             onChange={event => setReplyContent(event.currentTarget.value)}

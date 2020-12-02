@@ -36,7 +36,7 @@ const CommentsSection: FC<CommentsSectionProps> = ({ doorNumber }) => {
     return (
         <section className="CommentSection">
             <CommentForm doorNumber={doorNumber} appendComment={appendComment} />
-            {comments.filter(m => m.children).map((comment) => <TopComment key={comment.uuid} doorNumber={doorNumber} comment={comment} myLikes={likes} />)}
+            {comments.filter(m => m.children).filter(m => m.content).map((comment) => <TopComment key={comment.uuid} doorNumber={doorNumber} comment={comment} myLikes={likes} />)}
         </section>
     )
 }

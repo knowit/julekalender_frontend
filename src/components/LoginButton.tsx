@@ -1,8 +1,10 @@
 import React from 'react'
-import { useAuth0 } from "@auth0/auth0-react";
+
+import { useRequestsAndAuth } from '../api/requests';
+
 
 const LoginButton = () => {
-  const { loginWithRedirect, logout, isAuthenticated} = useAuth0();  
+  const { loginWithRedirect, logout, isAuthenticated } = useRequestsAndAuth();  
 
   const [onClick, content] = isAuthenticated
     ? [() => logout({ returnTo: window.location.origin }), 'Logg ut']

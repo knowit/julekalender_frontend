@@ -16,6 +16,7 @@
     "@types/react-router-dom": "^5.1.6",
     "autoprefixer": "^10.0.4",
     "axios": "^0.21.0",
+    "highlight.js": "^10.4.0",
     "lodash": "^4.17.20",
     "postcss-cli": "^8.3.0",
     "react": "^16.13.1",

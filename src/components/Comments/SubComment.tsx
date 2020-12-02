@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import { Comment } from '../../api/Comment';
 import Like from '../../api/Like';
+import useHighlightJs from '../../hooks/useHighlightJs';
 import { getTimeStamp } from '../../utils';
 import LikeButton from './LikeButton';
 
@@ -11,6 +12,7 @@ interface SubCommentProps {
 }
 
 const SubComment: FC<SubCommentProps> = ({ comment, myLikes }) => {
+    const commentContentRef = useHighlightJs<HTMLDivElement>();
     return (
         <div className='flex p-2 mb-4 bg-gray-200'>
             <div className='w-1/12'>
@@ -18,7 +20,7 @@ const SubComment: FC<SubCommentProps> = ({ comment, myLikes }) => {
             </div>
             <div className='w-11/12 ml-2'>
                 <span className='font-semibold'>{comment.author.nickname}</span><time className='float-right'>{getTimeStamp(comment.created_at)}</time>
-                <div className='prose prose-sm md:prose max-w-none mt-2' dangerouslySetInnerHTML={{ __html: comment.content }} />
+                <div className='prose prose-sm md:prose max-w-none mt-2' ref={commentContentRef} dangerouslySetInnerHTML={{ __html: comment.content }} />
                 <div className='mb-2'>
                     <LikeButton comment={comment} myLikes={myLikes} />
                 </div>

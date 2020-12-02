@@ -1,6 +1,6 @@
 import React, { FC, useCallback, useEffect, useRef, useState } from 'react';
 
-import { useRequests } from '../api/requests';
+import { useRequestsAndAuth } from '../api/requests';
 import useOnClickOutside from '../hooks/useOnClickOutside';
 import { ReactComponent as Flourish } from './svg/pointsdecor.svg';
 import { ReactComponent as Close } from './svg/close.svg';
@@ -13,7 +13,7 @@ type LeaderBoardProps = {
 };
 
 const LeaderBoard: FC<LeaderBoardProps> = ({ hidden, setIsLeaderboardHiding, closeHandler }) => {
-  const { fetchLeaderboard } = useRequests();
+  const { fetchLeaderboard } = useRequestsAndAuth();
   const [leaderboard, setLeaderboard] = useState<Leaderboard>();
   const clickableLeaderboardRef = useRef(null);
 

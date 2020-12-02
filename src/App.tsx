@@ -18,10 +18,16 @@ import Door from './components/Door/Door';
 function App() {
   const [leaderboardHidden, setLeaderboardHidden] = useState(true);
   const [isLeaderboardHiding, setIsLeaderboardHiding] = useState(false);
+  const [backgroundPaused, setBackgroundPaused] = useState<boolean>(localStorage.getItem("bgPaused") === "true");
+
+  const toggleBackground = () => {
+    localStorage.setItem('bgPaused', String(!backgroundPaused));
+    setBackgroundPaused(!backgroundPaused)
+  }
 
   return (
     <>
-      <StarBackground paused={false} />
+      <StarBackground paused={backgroundPaused} />
       <div className="FlexContainer text-gray-200">
         <div className="pb-16">
           <header>
@@ -49,7 +55,7 @@ function App() {
             </Route>
             {/* 404? - Route to main view*/}
             <Route>
-              <Redirect to="/"/>
+              <Redirect to="/" />
             </Route>
           </Switch>
         </div>
@@ -58,6 +64,14 @@ function App() {
           setIsLeaderboardHiding={setIsLeaderboardHiding}
           closeHandler={useCallback(() => setLeaderboardHidden(true), [])}
         />
+      </div>
+      <div title="Varm laptop? 🔥" className="m-1 cursor-pointer">
+        <input type="checkbox"
+          id='animationToggle'
+          className='mr-1 w-3'
+          defaultChecked={backgroundPaused}
+          onChange={() => toggleBackground()} />
+        <label className="text-gray-400 shadow text-xs" htmlFor='animationToggle'>Stopp bakgrunnsanimasjon</label>
       </div>
     </>
   );

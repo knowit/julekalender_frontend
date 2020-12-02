@@ -61,12 +61,20 @@ const fetchLeaderboard = () => (
   baseFetch<Leaderboard>('/leaderboard')
 );
 
-// await getAccessTokenSilently({
-//   audience: 'https://knowit-konkurranser.eu.auth0.com/api/v2/',
-//   scope: 'read:current_user update:current_user_metadata'
-// });
-export const useRequests = () => {
-  const { isAuthenticated, isLoading, getAccessTokenSilently, getIdTokenClaims } = useAuth0();
+// The single source of truth for authentication and API behavior. All usage of
+// Auth0 should go through here, to ensure that the same `isAuthenticated` (the
+// one which ensures a valid token is active to prevent double-rendering when it
+// is initialized) is used throughout the app.
+export const useRequestsAndAuth = () => {
+  const {
+    loginWithRedirect,
+    logout,
+    isAuthenticated,
+    isLoading,
+    getAccessTokenSilently,
+    getIdTokenClaims,
+    user
+  } = useAuth0();
   const [token, setToken] = useState<string>();
 
   // Get existing token in state
@@ -93,7 +101,10 @@ export const useRequests = () => {
   }, [isAuthenticated, getAccessTokenSilently, getIdTokenClaims, token]);
 
   return {
+    loginWithRedirect,
+    logout,
     isAuthenticated: isAuthenticated && !isLoading && token,
+    user,
     fetchLikes: useCallback(fetchLikes(token), [token]),
     fetchChallenge: useCallback(fetchChallenge(token), [token]),
     fetchSolvedStatus: useCallback(fetchSolvedStatus(token), [token]),

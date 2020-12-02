@@ -32,7 +32,7 @@ module.exports = {
           css: {
             pre: {
               code: {
-                '&::after': {
+                '&::before, &::after': {
                   content: 'none !important',
                 },
               },

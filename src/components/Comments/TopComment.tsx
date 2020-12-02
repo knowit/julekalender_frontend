@@ -4,11 +4,11 @@ import { ReactComponent as Chevron } from '../svg/expand_more.svg';
 import SubComment from './SubComment';
 import ParentComment from '../../api/Comment';
 import Like from '../../api/Like';
-import { useAuth0 } from '@auth0/auth0-react';
 import { getTimeStamp } from '../../utils';
 import LikeButton from './LikeButton';
-import { useRequests } from '../../api/requests';
+import { useRequestsAndAuth } from '../../api/requests';
 import { Comment } from '../../api/Comment';
+import useHighlightJs from '../../hooks/useHighlightJs';
 
 
 interface CommentProps {
@@ -17,18 +17,17 @@ interface CommentProps {
     doorNumber: number
 }
 const TopComment: FC<CommentProps> = ({ comment, myLikes, doorNumber }) => {
+    const { createComment, user: { picture: userAvatar } } = useRequestsAndAuth()
     const [showReplyInput, toggleShowReplyInput] = useState<boolean>(false)
     const [showSubComments, toggleSubComments] = useState<boolean>(true)
     const [replyContent, setReplyContent] = useState<string>('')
     const [subComments, setSubComments] = useState<Comment[]>(comment.children)
-    const { user } = useAuth0();
-    const { picture: userAvatar } = user;
+    const commentContentRef = useHighlightJs<HTMLDivElement>();
+
     const timestamp = getTimeStamp(comment.created_at)
-    const { createComment } = useRequests()
 
     const appendSubComment = (comment: Comment) => {
         setSubComments([...(subComments || []), comment])
-
     }
 
     const postSubComment = () => {
@@ -46,7 +45,7 @@ const TopComment: FC<CommentProps> = ({ comment, myLikes, doorNumber }) => {
             </div>
             <div className='w-5/6 pr-4 pl-4'>
                 <span className='font-semibold text-xl'>{comment.author.nickname}</span><time className='float-right'>{timestamp}</time>
-                <div className='prose prose-sm md:prose max-w-none mt-2' dangerouslySetInnerHTML={{ __html: comment.content }} />
+                <div className='prose prose-sm md:prose max-w-none mt-2' ref={commentContentRef} dangerouslySetInnerHTML={{ __html: comment.content }} />
                 <div className='grid grid-cols-2 justify-items-stretch mt-4'>
                     <div className='justify-self-start'>
                         <LikeButton comment={comment} myLikes={myLikes} />

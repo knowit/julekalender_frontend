@@ -80,7 +80,7 @@ const TopComment: FC<CommentProps> = ({ comment, myLikes, doorNumber }) => {
 
                 {showSubComments ?
                     <div className='flex flex-col content-end mt-2'>
-                        {subComments?.map(subcomment => <SubComment key={subcomment.uuid} comment={subcomment} myLikes={myLikes} />)}
+                        {subComments?.filter(comment => comment.content).map(subcomment => <SubComment key={subcomment.uuid} comment={subcomment} myLikes={myLikes} />)}
                     </div> : null}
             </div>
         </div>

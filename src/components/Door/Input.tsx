@@ -1,5 +1,5 @@
 import React, { FC, useState } from 'react';
-import { useRequests } from '../../api/requests';
+import { useRequestsAndAuth } from '../../api/requests';
 import Checkmark, { WrongMark } from './Checkmark';
 
 type InputProps = {
@@ -10,7 +10,7 @@ type InputProps = {
 };
 
 const Input: FC<InputProps> = ({ isDoorSolved, isFirstSubmit, isWaitingForSolutionResponse, onSubmit }) => {
-  const { isAuthenticated } = useRequests();
+  const { isAuthenticated } = useRequestsAndAuth();
   const [answer, setAnswer] = useState('');
   const [submittedAnswer, setSubmittedAnswer] = useState('');
 

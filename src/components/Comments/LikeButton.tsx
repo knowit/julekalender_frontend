@@ -2,7 +2,7 @@ import React, { FC, useState } from 'react';
 import { ReactComponent as Favorite } from '../svg/heart.svg';
 import Like from '../../api/Like';
 import { Comment } from '../../api/Comment';
-import { useRequests } from '../../api/requests';
+import { useRequestsAndAuth } from '../../api/requests';
 
 
 interface LikeProps {
@@ -13,7 +13,7 @@ interface LikeProps {
 const LikeButton: FC<LikeProps> = ({ comment, myLikes }) => {
     var [isCommentLiked, setIsCommentLiked] = useState<boolean>(myLikes.some((like) => like.post_uuid === comment.uuid))
     var [likes, setLikes] = useState<number>(comment.likes)
-    const { createLike } = useRequests()
+    const { createLike } = useRequestsAndAuth()
     const likePost = () => {
         if (!isCommentLiked) {
             createLike(comment.uuid)

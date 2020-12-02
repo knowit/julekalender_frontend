@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { Link } from 'react-router-dom';
 
-import { useRequests } from '../api/requests';
+import { useRequestsAndAuth } from '../api/requests';
 import { SolvedStatus } from '../api/Challenge';
   
 
 const getDoorDate = (doorNumber: number) => new Date(Date.parse(`2020-12-${doorNumber} 04:00`))
 
 const Doors = () => {
-  const { isAuthenticated, fetchSolvedStatus } = useRequests();
+  const { isAuthenticated, fetchSolvedStatus } = useRequestsAndAuth();
 	const [fubar, setError] = useState<Error>();
 	const [solvedStatus, setIsSolvedStatus] = useState<SolvedStatus>();
 

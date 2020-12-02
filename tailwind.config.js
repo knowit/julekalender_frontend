@@ -1,5 +1,8 @@
 module.exports = {
-  purge: [],
+  purge: [
+    './src/**/*.tsx',
+    './src/**/*.svg',
+  ],
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
@@ -29,7 +32,7 @@ module.exports = {
           css: {
             pre: {
               code: {
-                '&::after': {
+                '&::before, &::after': {
                   content: 'none !important',
                 },
               },

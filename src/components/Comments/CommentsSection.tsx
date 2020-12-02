@@ -1,7 +1,7 @@
 import React, { FC, useEffect, useState } from 'react';
 import TextareaAutosize from 'react-autosize-textarea/lib';
 
-import { useRequests } from '../../api/requests';
+import { useRequestsAndAuth } from '../../api/requests';
 import './Comments.css';
 import Comment from '../../api/Comment';
 import TopComment from './TopComment';
@@ -12,7 +12,7 @@ interface CommentsSectionProps {
 };
 
 const CommentsSection: FC<CommentsSectionProps> = ({ doorNumber }) => {
-    const { isAuthenticated, fetchComments, fetchLikes } = useRequests();
+    const { isAuthenticated, fetchComments, fetchLikes } = useRequestsAndAuth();
     const [comments, setComments] = useState<Comment[]>();
     const [likes, setLikes] = useState<Like[]>();
 
@@ -48,7 +48,7 @@ interface CommentFormProps {
 
 const CommentForm: FC<CommentFormProps> = ({ doorNumber, appendComment }) => {
     const [comment, setComment] = useState<string>('')
-    const { createComment } = useRequests();
+    const { createComment } = useRequestsAndAuth();
     const postComment = () => {
         createComment(doorNumber, comment)
             .then(response => {
@@ -62,7 +62,17 @@ const CommentForm: FC<CommentFormProps> = ({ doorNumber, appendComment }) => {
 
     return (
         <form className="CommentForm">
-            <TextareaAutosize name="comment" value={comment} onChange={e => setComment(e.currentTarget.value)} id="comment" placeholder="Legg igjen en kommentar, gjerne i Markdown :)" />
+            <TextareaAutosize
+              name="comment"
+              value={comment}
+              onChange={e => setComment(e.currentTarget.value)}
+              id="comment"
+              placeholder={
+                "Legg igjen en kommentar! Vi har støtte for markdown med " +
+                "syntax highlighting. Alle blokk-elementer (kode, lister, " +
+                "tabeller, etc.) krever en hel linje whitespace rundt seg."
+              }
+            />
             <div>
                 <button className="SubmitButton" onClick={(e) => { e.preventDefault(); postComment() }} value="Lagre">KOMMENTER</button>
             </div>

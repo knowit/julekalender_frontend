@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import { Auth0Provider } from "@auth0/auth0-react";
+import 'highlight.js/styles/gruvbox-dark.css';
 
 import './styles/index.css';
 import App from './App';

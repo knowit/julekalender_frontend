@@ -16,7 +16,7 @@ const SubComment: FC<SubCommentProps> = ({ comment, myLikes }) => {
     return (
         <div className='flex p-2 mb-4 bg-gray-200'>
             <div className='w-1/12'>
-                <img className='rounded-full w-full flex items-center justify-center' src={comment.author.picture} alt="User avatar" />
+                <img className='rounded-full w-full flex items-center justify-center' loading="lazy" src={comment.author.picture} alt="User avatar" />
             </div>
             <div className='w-11/12 ml-2'>
                 <span className='font-semibold'>{comment.author.nickname}</span><time className='float-right'>{getTimeStamp(comment.created_at)}</time>

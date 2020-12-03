@@ -1,8 +1,11 @@
 module.exports = {
-  purge: [
-    './src/**/*.tsx',
-    './src/**/*.svg',
-  ],
+  purge: {
+    enabled: process.env.NODE_ENV === 'production',
+    content: [
+      './src/**/*.tsx',
+      './src/**/*.svg',
+    ],
+  },
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {

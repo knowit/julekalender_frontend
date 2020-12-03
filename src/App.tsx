@@ -1,18 +1,15 @@
 import React, { useCallback, useState } from 'react';
+import { Switch, Route, Redirect } from "react-router-dom";
+
 import './App.css';
-import Doors from './components/Doors'
+import Admin from './pages/Admin';
+import Gdpr from './pages/Gdpr';
+import Door from './pages/Door';
+import Header from './components/Header';
 import Footer from './components/Footer';
 import StarBackground from './effects/stars'
 import LeaderBoard from './components/LeaderBoard';
-import Admin from './components/Admin';
-import Gdpr from './components/Gdpr';
-import {
-  Switch,
-  Route,
-  Redirect,
-} from "react-router-dom";
-import Door from './components/Door/Door';
-import Header from './components/Header';
+import Doors from './components/Doors'
 import AnimationToggle from './components/AnimationToggle';
 
 

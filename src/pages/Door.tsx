@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { Redirect, useParams } from "react-router-dom";
 
 import './Door.css';
-import Light from '../Light';
-import CommentsSection from '../Comments/CommentsSection';
-import useRequestsAndAuth from '../../hooks/useRequestsAndAuth';
-import DoorBorder from './DoorBorder';
-import BackToDoorsButton from '../BackToDoorsButton';
-import Challenge from './Challenge';
+import Light from '../components/Light';
+import CommentsSection from '../components/Comments/CommentsSection';
+import useRequestsAndAuth from '../hooks/useRequestsAndAuth';
+import DoorBorder from '../components/Door/DoorBorder';
+import BackToDoorsButton from '../components/BackToDoorsButton';
+import Challenge from '../components/Door/Challenge';
 
 
 const Door = () => {

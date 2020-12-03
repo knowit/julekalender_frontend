@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react'
 
-import BackToDoorsButton from './BackToDoorsButton';
-import DoorBorder from './Door/DoorBorder';
+import BackToDoorsButton from '../components/BackToDoorsButton';
+import DoorBorder from '../components/Door/DoorBorder';
 
 const GdprSection = ({ no, header, content }: { no?: number | undefined, header: string, content: string | ReactElement }) => (
   <>

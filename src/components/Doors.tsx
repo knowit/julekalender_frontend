@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from 'react-router-dom';
 
-import { useRequestsAndAuth } from '../api/requests';
+import useRequestsAndAuth from '../hooks/useRequestsAndAuth';
 import { SolvedStatus } from '../api/Challenge';
   
 

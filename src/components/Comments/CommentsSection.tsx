@@ -1,7 +1,7 @@
 import React, { FC, useEffect, useState } from 'react';
 import TextareaAutosize from 'react-autosize-textarea/lib';
 
-import { useRequestsAndAuth } from '../../api/requests';
+import useRequestsAndAuth from '../../hooks/useRequestsAndAuth';
 import './Comments.css';
 import Comment from '../../api/Comment';
 import TopComment from './TopComment';

@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { useRequestsAndAuth } from '../api/requests';
+import useRequestsAndAuth from '../hooks/useRequestsAndAuth';
 
 
 const LoginButton = () => {

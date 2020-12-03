@@ -4,7 +4,7 @@ import { Redirect, useParams } from "react-router-dom";
 import './Door.css';
 import Light from '../Light';
 import CommentsSection from '../Comments/CommentsSection';
-import { useRequestsAndAuth } from '../../api/requests';
+import useRequestsAndAuth from '../../hooks/useRequestsAndAuth';
 import DoorBorder from './DoorBorder';
 import BackToDoorsButton from '../BackToDoorsButton';
 import Challenge from './Challenge';

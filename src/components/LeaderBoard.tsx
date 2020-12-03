@@ -1,6 +1,6 @@
 import React, { FC, useCallback, useEffect, useRef, useState } from 'react';
 
-import { useRequestsAndAuth } from '../api/requests';
+import useRequestsAndAuth from '../hooks/useRequestsAndAuth';
 import useOnClickOutside from '../hooks/useOnClickOutside';
 import { ReactComponent as Flourish } from './svg/pointsdecor.svg';
 import { ReactComponent as Close } from './svg/close.svg';

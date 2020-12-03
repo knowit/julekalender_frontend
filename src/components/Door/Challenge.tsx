@@ -2,7 +2,7 @@ import React, { FC, useEffect, useState } from 'react';
 import _ from 'lodash';
 
 import useHighlightJs from '../../hooks/useHighlightJs';
-import { useRequestsAndAuth } from '../../api/requests';
+import useRequestsAndAuth from '../../hooks/useRequestsAndAuth';
 import Input from './Input';
 import { Challenge as ChallengeType } from '../../api/Challenge';
 

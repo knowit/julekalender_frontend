@@ -6,7 +6,7 @@ import ParentComment from '../../api/Comment';
 import Like from '../../api/Like';
 import { getTimeStamp } from '../../utils';
 import LikeButton from './LikeButton';
-import { useRequestsAndAuth } from '../../api/requests';
+import useRequestsAndAuth from '../../hooks/useRequestsAndAuth';
 import { Comment } from '../../api/Comment';
 import useHighlightJs from '../../hooks/useHighlightJs';
 

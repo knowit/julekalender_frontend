@@ -7,3 +7,7 @@ export const getTimeStamp = (dateString: string) => {
 
     return `${day}.${month} kl ${hrs}:${mins}`
 };
+
+export const beforeDoorDate2020 = (door: number | string) => (
+  new Date() < new Date(Date.parse(`2020-12-${door}T04:00`))
+);

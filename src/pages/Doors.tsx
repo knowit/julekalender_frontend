@@ -4,13 +4,8 @@ import { Link } from 'react-router-dom';
 import useRequestsAndAuth from '../hooks/useRequestsAndAuth';
 import { SolvedStatus } from '../api/Challenge';
 import Footer from "../components/Footer";
+import { beforeDoorDate2020 } from "../utils";
   
-
-const getDoorDate = (doorNumber: number) => new Date(Date.parse(`2020-12-${doorNumber} 04:00`))
-const switchOnActiveDate = (doorNumber: number, v1: any, v2: any) => (
-  new Date() < getDoorDate(doorNumber) ? v1 : v2
-);
-    
 
 const Lights = () => {
   const { isAuthenticated, fetchSolvedStatus } = useRequestsAndAuth();
@@ -28,27 +23,17 @@ const Lights = () => {
   const getBulbClass = (doorNumber: number) => (
     (solvedStatus !== undefined && solvedStatus[doorNumber])
       ? 'text-lightbulb-green  fill-current'
-      : switchOnActiveDate(
-          doorNumber,
-          'text-lightbulb-dim    fill-current',
-          'text-lightbulb-yellow fill-current'
-        )
+      : beforeDoorDate2020(doorNumber)
+        ? 'text-lightbulb-dim    fill-current'
+        : 'text-lightbulb-yellow fill-current'
   );
 
   const getTextClass = (doorNumber: number) => (
-    switchOnActiveDate(
-      doorNumber,
-      'text-gray-800 opacity-25',
-      'text-gray-800'
-    )
+    beforeDoorDate2020(doorNumber) ? 'text-gray-800 opacity-25' : 'text-gray-800'
   );
 
   const getLinkDateDependentProps = (doorNumber: number) => (
-    switchOnActiveDate(
-      doorNumber,
-      { to: '/', className: 'cursor-not-allowed' },
-      { to: `/luke/${doorNumber}` }
-    )
+    beforeDoorDate2020(doorNumber) ? { to: '/', className: 'cursor-not-allowed' } : { to: `/luke/${doorNumber}` }
   );
 
   return (

@@ -7,6 +7,7 @@ import useRequestsAndAuth from '../hooks/useRequestsAndAuth';
 import DoorBorder from '../components/Door/DoorBorder';
 import BackToDoorsButton from '../components/BackToDoorsButton';
 import Challenge from '../components/Door/Challenge';
+import { beforeDoorDate2020 } from '../utils';
 
 
 const Door = () => {
@@ -23,14 +24,14 @@ const Door = () => {
       .catch((e) => setError(e))
   }, [isAuthenticated, fetchSolvedStatus, setIsDoorSolved, doorNumber])
 
-  // If opened door is in the future, redirect to root.
-  // this is sort of hacky, and can probably be done better.
-  if (new Date().getDate() < parseInt(doorNumber)) {
+  // Force redirect back to root if door is in the future. Just a small failsafe
+  // in case nerds try to navigate to closed doors through the address bar :)
+  if (!beforeDoorDate2020(doorNumber)) {
     return <Redirect to="/" />
   }
 
   if (fubar !== undefined) {
-    return <><h1>Ooops...</h1><pre>{fubar.message}</pre></>
+    return (<><h1>Ooops...</h1><span>{fubar.message}</span></>);
   }
 
   return (

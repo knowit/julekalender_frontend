@@ -7,9 +7,14 @@ import { CreateLikePayload, CreateSolutionPayload, CreateSolutionResponse } from
 import Leaderboard from './Leaderboard';
 import { AdminStatus } from './admin';
 
-const apiUrl = window.location.hostname === 'julekalender.knowit.no'
-    ? 'https://julekalender-backend.knowit.no'
-    : 'https://***REMOVED***';
+console.log(process.env.REACT_APP_BACKEND_HOST);
+const apiUrl = 
+  (process.env.REACT_APP_BACKEND_HOST !== undefined)
+    ? process.env.REACT_APP_BACKEND_HOST
+    : (window.location.hostname === 'julekalender.knowit.no'
+      ? 'https://julekalender-backend.knowit.no'
+      : 'https://***REMOVED***');
+console.log(apiUrl);
 const requestHeaders = { "Content-Type": "application/json" };
 const getHeaders = (token: Token) => (
   token ? { ...requestHeaders, "Authorization": token } : requestHeaders

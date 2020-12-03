@@ -1,6 +1,9 @@
-import React, { FC } from "react";
+import React, { FC, ReactElement } from "react";
 
-const CheckmarkWrapper: FC<{ color: string, children: React.ReactElement[] }> = ({ color, children }) => (
+import './Checkmark.css';
+
+
+const CheckmarkWrapper: FC<{ color: string, children: ReactElement[] }> = ({ color, children }) => (
   <div className={`Checkmark block w-28 my-8 mx-auto ${color}`}>
     {children}
   </div>

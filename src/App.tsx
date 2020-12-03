@@ -9,7 +9,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import StarBackground from './effects/stars'
 import LeaderBoard from './components/LeaderBoard';
-import Doors from './components/Doors'
+import Doors from './pages/Doors'
 import AnimationToggle from './components/AnimationToggle';
 
 
@@ -27,7 +27,6 @@ function App() {
           <Switch>
             <Route exact path="/">
               <Doors />
-              <Footer />
             </Route>
             {/* Match door 1-24 only*/}
             <Route path="/luke/:doorNumber(0?[1-9]|1[0-9]|2[0-4])">

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Redirect, useParams } from "react-router-dom";
 
-import './Door.css';
 import Light from '../components/Light';
 import CommentsSection from '../components/Comments/CommentsSection';
 import useRequestsAndAuth from '../hooks/useRequestsAndAuth';

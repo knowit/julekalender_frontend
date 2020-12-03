@@ -24,6 +24,7 @@ const Challenge: FC<ChallengeProps> = ({ doorNumber, isDoorSolved, setIsDoorSolv
   useEffect(() => {
     fetchChallenge(doorNumber)
       .then((response) => {
+        setError(undefined);
         setChallenge(response.data);
       })
       .catch((e) => setError(e))

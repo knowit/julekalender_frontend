@@ -9,13 +9,17 @@ import { Context as RequestsContext } from "../RequestsContext";
 // is initialized) is used throughout the app.
 const useRequestsAndAuth = () => {
   const { loginWithRedirect, logout, user } = useAuth0();
-  const { isAdmin, isFullyAuthenticated, ...requests } = useContext(RequestsContext);
+  const { isAdmin, setIsAdmin, isFullyAuthenticated, ...requests } = useContext(RequestsContext);
+
+  const isLocalhost = window.location.hostname === 'localhost';
 
   return {
     loginWithRedirect,
     logout,
     isAuthenticated: isFullyAuthenticated,
     isAdmin,
+    setIsAdmin,
+    isLocalhost,
     user,
     ...requests,
   };

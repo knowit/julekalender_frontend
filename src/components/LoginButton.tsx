@@ -1,6 +1,7 @@
 import React from 'react'
 
 import useRequestsAndAuth from '../hooks/useRequestsAndAuth';
+import Button from './Button';
 
 
 const LoginButton = () => {
@@ -10,7 +11,7 @@ const LoginButton = () => {
     ? [() => logout({ returnTo: window.location.origin }), 'Logg ut']
     : [() => loginWithRedirect(), 'Logg inn']
 
-  return <button className="hover:underline" tabIndex={3} onClick={onClick}>{content}</button>
+  return <Button tabIndex={3} onClick={onClick}>{content}</Button>
 };
 
 export default LoginButton

@@ -1,4 +1,4 @@
-import React, { FC, ReactChild, useEffect, useMemo, useState } from 'react';
+import React, { Dispatch, FC, ReactChild, SetStateAction, useEffect, useMemo, useState } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import { createComment, createLike, createSolution, fetchChallenge, fetchComments, fetchLikes, fetchSolvedStatus, fetchLeaderboard, fetchAdminStatus } from './api/requests';
 import { Token } from './api/requests';
@@ -19,11 +19,13 @@ const createRequests = (token: Token) => ({
 
 interface IRequestsContext extends ReturnType<typeof createRequests> {
   isAdmin: boolean;
+  setIsAdmin: Dispatch<SetStateAction<boolean>>;
   isFullyAuthenticated: boolean;
 };
 
 export const Context = React.createContext<IRequestsContext>({
   isAdmin: false,
+  setIsAdmin: (_state) => true,
   isFullyAuthenticated: false,
   ...createRequests(undefined),
 });
@@ -73,7 +75,7 @@ const RequestsContext: FC<RequestsContextProps> = ({ children }) => {
 
 
   return (
-    <Context.Provider value={{ isAdmin, isFullyAuthenticated, ...requests }}>
+    <Context.Provider value={{ isAdmin, setIsAdmin, isFullyAuthenticated, ...requests }}>
       {children}
     </Context.Provider>
   );

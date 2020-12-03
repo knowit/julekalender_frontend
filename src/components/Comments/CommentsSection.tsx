@@ -12,13 +12,12 @@ interface CommentsSectionProps {
 };
 
 const CommentsSection: FC<CommentsSectionProps> = ({ doorNumber }) => {
-    const { isAuthenticated, fetchComments, fetchLikes } = useRequestsAndAuth();
-    const [comments, setComments] = useState<Comment[]>();
-    const [likes, setLikes] = useState<Like[]>();
-
+    const { isAuthenticated, isAdmin, fetchComments, fetchLikes } = useRequestsAndAuth();
+    const [comments, setComments] = useState<Comment[]>([]);
+    const [likes, setLikes] = useState<Like[]>([]);
 
     useEffect(() => {
-        if (!isAuthenticated) return;
+        if (!isAuthenticated && !isAdmin) return;
 
         fetchComments(doorNumber)
             .then((response) => setComments(response.data))
@@ -26,18 +25,21 @@ const CommentsSection: FC<CommentsSectionProps> = ({ doorNumber }) => {
         fetchLikes()
             .then((response) => setLikes(response.data))
             .catch((e) => { /* ... something ... */ })
-    }, [isAuthenticated, fetchComments, doorNumber, fetchLikes]);
+    }, [isAdmin, isAuthenticated, fetchComments, doorNumber, fetchLikes]);
 
     const appendComment = (comment: Comment) => {
-        setComments([...(comments || []), comment])
+        setComments([...comments, comment])
     }
 
-    if (comments === undefined || likes === undefined) return null;
+    if (comments.length === 0) return null;
 
     return (
         <section className="CommentSection">
             <CommentForm doorNumber={doorNumber} appendComment={appendComment} />
-            {comments.filter(m => m.children).filter(m => m.content).map((comment) => <TopComment key={comment.uuid} doorNumber={doorNumber} comment={comment} myLikes={likes} />)}
+            {
+              comments.filter(m => m.children && m.content)
+                      .map((comment) => <TopComment key={comment.uuid} doorNumber={doorNumber} comment={comment} myLikes={likes} />)
+            }
         </section>
     )
 }

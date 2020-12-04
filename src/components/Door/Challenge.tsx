@@ -2,7 +2,7 @@ import React, { FC, useEffect, useState } from 'react';
 import _ from 'lodash';
 
 import useHighlightJs from '../../hooks/useHighlightJs';
-import { useRequestsAndAuth } from '../../api/requests';
+import useRequestsAndAuth from '../../hooks/useRequestsAndAuth';
 import Input from './Input';
 import { Challenge as ChallengeType } from '../../api/Challenge';
 
@@ -24,6 +24,7 @@ const Challenge: FC<ChallengeProps> = ({ doorNumber, isDoorSolved, setIsDoorSolv
   useEffect(() => {
     fetchChallenge(doorNumber)
       .then((response) => {
+        setError(undefined);
         setChallenge(response.data);
       })
       .catch((e) => setError(e))
@@ -57,7 +58,7 @@ const Challenge: FC<ChallengeProps> = ({ doorNumber, isDoorSolved, setIsDoorSolv
         <p className="mt-1"><em>Av {challenge.author}</em></p>
       </div>
       <div
-        className="my-4 md:my-6 lg:my-12 mx-auto prose prose-sm md:prose max-w-none"
+        className="my-4 md:my-6 lg:my-12 mx-auto prose prose-sm md:prose max-w-none md:max-w-none break-words"
         ref={challengeContentRef}
         dangerouslySetInnerHTML={{ __html: challenge.content }}
       />

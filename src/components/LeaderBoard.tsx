@@ -1,6 +1,6 @@
 import React, { FC, useCallback, useEffect, useRef, useState } from 'react';
 
-import { useRequestsAndAuth } from '../api/requests';
+import useRequestsAndAuth from '../hooks/useRequestsAndAuth';
 import useOnClickOutside from '../hooks/useOnClickOutside';
 import { ReactComponent as Flourish } from './svg/pointsdecor.svg';
 import { ReactComponent as Close } from './svg/close.svg';
@@ -58,7 +58,9 @@ const LeaderBoard: FC<LeaderBoardProps> = ({ hidden, setIsLeaderboardHiding, clo
           <div className="h-96 xl:h-192 overflow-y-auto">
             {leaderboard.map(([solved, users]) => (
               <div key={solved}>
-                <h3 className="sticky top-0 py-0.5 bg-lightbulb-green rounded-md text-lg text-center" key={solved}>{solved} luker løst</h3>
+                <h3 className="sticky top-0 py-1 bg-lightbulb-green rounded-md text-md tracking-wide text-center" key={solved} >
+                  <span className="font-semibold">{solved} luke{solved >= 1 && 'r'}</span> &mdash; <span className="text-gray-200 text-opacity-80">{users.length} snil{users.length > 1 ? 'le' : 't'} barn</span>
+                </h3>
                 <div className="pt-2 pb-4 space-y-1">
                   {users.map((user) => (
                     <p className="text-center" key={user}>{user}</p>

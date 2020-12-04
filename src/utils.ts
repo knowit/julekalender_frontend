@@ -1,3 +1,5 @@
+import _ from "lodash";
+
 export const getTimeStamp = (dateString: string) => {
     const date = new Date(dateString);
     const day = String(date.getDate()).padStart(2, '0')
@@ -7,3 +9,7 @@ export const getTimeStamp = (dateString: string) => {
 
     return `${day}.${month} kl ${hrs}:${mins}`
 };
+
+export const beforeDoorDate2020 = (door: number | string) => (
+  new Date() < new Date(Date.parse(`2020-12-${_.padStart(door.toString(), 2, '0')}T04:00`))
+);

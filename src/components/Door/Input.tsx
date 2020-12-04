@@ -1,5 +1,5 @@
 import React, { FC, useState } from 'react';
-import { useRequestsAndAuth } from '../../api/requests';
+import useRequestsAndAuth from '../../hooks/useRequestsAndAuth';
 import Checkmark, { WrongMark } from './Checkmark';
 
 type InputProps = {

@@ -1,7 +1,7 @@
 import { RefObject, useEffect } from 'react';
 
 // From: https://usehooks.com/useOnClickOutside/
-const useOnClickOutside = <T>(ref: RefObject<HTMLElement>, handler: (e: MouseEvent | TouchEvent) => void, dependencies: any[] | undefined = undefined) => {
+const useOnClickOutside = <T>(ref: RefObject<HTMLElement>, handler: (e: MouseEvent | TouchEvent) => void, dependencies: any[] = []) => {
   useEffect(
     () => {
       const listener = (event: MouseEvent | TouchEvent) => {
@@ -30,7 +30,7 @@ const useOnClickOutside = <T>(ref: RefObject<HTMLElement>, handler: (e: MouseEve
      * hook.
      */
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [ref, handler, ...(dependencies || [])]
+    [ref, handler, ...dependencies]
   );
 }
 

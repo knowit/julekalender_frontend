@@ -25,7 +25,7 @@ const Footer = () => (
     </p>
 
     <p>
-      <Link className="underline" id='gdprLink' to='/gdpr' title='gdpr'>Les om vår håndtering av personopplysninger</Link>
+      <Link className="underline" to='/gdpr' title='gdpr'>Les om vår håndtering av personopplysninger</Link>
     </p>
 
     <h2 className="text-xl pt-4">Kontakt oss</h2>

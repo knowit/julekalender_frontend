@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { Redirect, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
-import './Door.css';
-import Light from '../Light';
-import CommentsSection from '../Comments/CommentsSection';
-import { useRequestsAndAuth } from '../../api/requests';
-import DoorBorder from './DoorBorder';
-import BackToDoorsButton from '../BackToDoorsButton';
-import Challenge from './Challenge';
+import Light from '../components/Light';
+import CommentsSection from '../components/Comments/CommentsSection';
+import useRequestsAndAuth from '../hooks/useRequestsAndAuth';
+import DoorBorder from '../components/Door/DoorBorder';
+import BackToDoorsButton from '../components/BackToDoorsButton';
+import Challenge from '../components/Door/Challenge';
 
 
 const Door = () => {
@@ -24,14 +23,8 @@ const Door = () => {
       .catch((e) => setError(e))
   }, [isAuthenticated, fetchSolvedStatus, setIsDoorSolved, doorNumber])
 
-  // If opened door is in the future, redirect to root.
-  // this is sort of hacky, and can probably be done better.
-  if (new Date().getDate() < parseInt(doorNumber)) {
-    return <Redirect to="/" />
-  }
-
   if (fubar !== undefined) {
-    return <><h1>Ooops...</h1><pre>{fubar.message}</pre></>
+    return (<><h1>Ooops...</h1><span>{fubar.message}</span></>);
   }
 
   return (

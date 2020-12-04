@@ -1,14 +1,15 @@
-import React, { FC, useState } from 'react';
-import TextareaAutosize from 'react-autosize-textarea/lib';
+import React, { FC, useCallback, useState } from 'react';
+
 import { ReactComponent as Chevron } from '../svg/expand_more.svg';
 import SubComment from './SubComment';
 import ParentComment from '../../api/Comment';
 import Like from '../../api/Like';
 import { getTimeStamp } from '../../utils';
 import LikeButton from './LikeButton';
-import { useRequestsAndAuth } from '../../api/requests';
+import useRequestsAndAuth from '../../hooks/useRequestsAndAuth';
 import { Comment } from '../../api/Comment';
 import useHighlightJs from '../../hooks/useHighlightJs';
+import SubCommentForm from './SubCommentForm';
 
 
 interface CommentProps {
@@ -17,73 +18,58 @@ interface CommentProps {
     doorNumber: number
 }
 const TopComment: FC<CommentProps> = ({ comment, myLikes, doorNumber }) => {
-    const { createComment, user: { picture: userAvatar } } = useRequestsAndAuth()
-    const [showReplyInput, toggleShowReplyInput] = useState<boolean>(false)
-    const [showSubComments, toggleSubComments] = useState<boolean>(true)
-    const [replyContent, setReplyContent] = useState<string>('')
+    const { createChildComment, user } = useRequestsAndAuth()
+    const [showSubCommentForm, setShowSubcommentForm] = useState<boolean>(false)
+    const [showSubComments, setShowSubComments] = useState<boolean>(true)
     const [subComments, setSubComments] = useState<Comment[]>(comment.children)
     const commentContentRef = useHighlightJs<HTMLDivElement>();
-    // this is kind of a lame hack to avoid double submits if the user presses the button fast.
-    const [disableButton, setDisableButton] = useState<boolean>(false)
 
-    const timestamp = getTimeStamp(comment.created_at)
+    const timestamp = getTimeStamp(comment.created_at);
 
-    const appendSubComment = (comment: Comment) => {
-        setSubComments([...(subComments || []), comment])
-    }
+    const appendSubComment = useCallback((comment) => {
+        setSubComments((subComments) => [...subComments, comment])
+    }, [setSubComments]);
 
-    const postSubComment = () => {
-        setDisableButton(true);
-        createComment(doorNumber, replyContent, comment.uuid)
-            .then(response => {
-                appendSubComment(response.data)
-                setReplyContent('')
-                toggleShowReplyInput(false)
-                setDisableButton(false)
-            })
-            .catch(e => {})
-    }
+    const postSubComment = useCallback((content) => {
+      console.log(content);
+      return createChildComment(doorNumber, content, comment.uuid)
+        .then(response => {
+          appendSubComment(response.data)
+        })
+        .catch((e) => { })
+    }, [doorNumber, comment, appendSubComment, createChildComment]);
+
+    const setShowSubcommentFormVisible = useCallback(() => setShowSubcommentForm(true), [setShowSubcommentForm]);
+    const toggleShowSubComments = useCallback(() => setShowSubComments((state) => !state), [setShowSubComments]);
 
     return (
-        <div className='flex rounded-md bg-white p-2 sm:p-4 mb-4'>
+        <div className='flex rounded-md bg-gray-100 p-2 sm:p-4 mb-4'>
             <div className='w-1/12'>
                 <img className='rounded-full w-full flex items-center justify-center' src={comment.author.picture} alt="User avatar" />
             </div>
             <div className='w-5/6 pr-4 pl-4'>
                 <span className='font-semibold text-xl'>{comment.author.nickname}</span><time className='float-right'>{timestamp}</time>
-                <div className='prose prose-sm md:prose max-w-none mt-2' ref={commentContentRef} dangerouslySetInnerHTML={{ __html: comment.content }} />
+                <div className='prose prose-sm md:prose max-w-none mt-2 break-words' ref={commentContentRef} dangerouslySetInnerHTML={{ __html: comment.content }} />
                 <div className='grid grid-cols-2 justify-items-stretch mt-4'>
                     <div className='justify-self-start'>
                         <LikeButton comment={comment} myLikes={myLikes} />
-                        <button className='bg-white font-bold' onClick={() => toggleShowReplyInput(!showReplyInput)}>KOMMENTER INNLEGG</button>
+                        <button className='bg-gray-100 font-bold' onClick={setShowSubcommentFormVisible}>KOMMENTER INNLEGG</button>
                     </div>
                     <div className='justify-self-end'>
-                        {comment.children?.length ?
-                            <button className='' onClick={() => toggleSubComments(!showSubComments)}>
-                                <span className='w-4/5'>{`${showSubComments ? "Skjul" : "Vis"} ${comment.children?.length} svar`}</span>
+                        {subComments.length > 0 &&
+                            <button className='' onClick={toggleShowSubComments}>
+                                <span className='w-4/5'>{`${showSubComments ? "Skjul" : "Vis"} ${subComments.length} svar`}</span>
                                 <Chevron className={`ml-1 inline w-4 transition-all duration-500 ${showSubComments ? 'transform -rotate-180' : ''}`} />
-                            </button> : null
+                            </button>
                         }
                     </div>
                 </div>
-                {showReplyInput ? <div className='pt-6'>
-                    <div className='flex flex-row'>
-                        <img className='rounded-full h-16 w-16 flex items-center justify-center mr-2' loading="lazy" src={userAvatar} alt="User avatar" />
-                        <TextareaAutosize
-                            value={replyContent}
-                            onChange={event => setReplyContent(event.currentTarget.value)}
-                            className='w-full text-base border-b-2 border-black outline-none'
-                            placeholder='Legg til svar'
-                        />
-                    </div>
-                    <div className='grid justify-items-stretch'>
-                        <div className='justify-self-end'>
-                            <button className='m-2' onClick={() => { setReplyContent(""); toggleShowReplyInput(false) }}>AVBRYT</button>
-                            <button className='m-2' disabled={!replyContent || disableButton} onClick={(e) => { e.preventDefault(); postSubComment() }}>SVAR</button>
-                        </div>
-                    </div>
-                </div> : null}
-
+                <SubCommentForm
+                  showSubCommentForm={showSubCommentForm}
+                  setShowSubCommentForm={setShowSubcommentForm}
+                  postSubComment={postSubComment}
+                  user={user}
+                />
                 {showSubComments ?
                     <div className='flex flex-col content-end mt-2'>
                         {subComments?.filter(comment => comment.content).map(subcomment => <SubComment key={subcomment.uuid} comment={subcomment} myLikes={myLikes} />)}

@@ -1,7 +1,6 @@
 .CommentSection {
     width: 80%;
     margin: 4rem auto;
-    color: black;
 }
 
 .CommentSection img {
@@ -10,17 +9,6 @@
 
 .Comment {
     margin-bottom: 1rem;
-    padding: 1rem;
-    background-color: whitesmoke;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-}
-
-.CommentForm {
-    border-radius: 10px;
-    background-color: whitesmoke;
-    margin: 2rem 0;
     padding: 1rem;
     display: flex;
     flex-direction: column;

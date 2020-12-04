@@ -1,4 +1,4 @@
-import { useLayoutEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import hljs from 'highlight.js';
 
 
@@ -8,7 +8,7 @@ import hljs from 'highlight.js';
 const useHighlightJs = <T extends HTMLElement>() => {
   const hlRef = useRef<T>(null);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (!hlRef.current) return;
 
     hlRef.current.querySelectorAll('pre').forEach((block) => {

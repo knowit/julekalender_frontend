@@ -58,7 +58,7 @@ const Challenge: FC<ChallengeProps> = ({ doorNumber, isDoorSolved, setIsDoorSolv
         <p className="mt-1"><em>Av {challenge.author}</em></p>
       </div>
       <div
-        className="my-4 md:my-6 lg:my-12 mx-auto prose prose-sm md:prose max-w-none"
+        className="my-4 md:my-6 lg:my-12 mx-auto prose prose-sm md:prose max-w-none md:max-w-none break-words"
         ref={challengeContentRef}
         dangerouslySetInnerHTML={{ __html: challenge.content }}
       />

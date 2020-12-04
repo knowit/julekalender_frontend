@@ -20,7 +20,7 @@ const SubComment: FC<SubCommentProps> = ({ comment, myLikes }) => {
             </div>
             <div className='w-11/12 ml-2'>
                 <span className='font-semibold'>{comment.author.nickname}</span><time className='float-right'>{getTimeStamp(comment.created_at)}</time>
-                <div className='prose prose-sm md:prose max-w-none mt-2 break-words' ref={commentContentRef} dangerouslySetInnerHTML={{ __html: comment.content }} />
+                <div className='prose prose-sm md:prose max-w-none md:max-w-none mt-2 break-words' ref={commentContentRef} dangerouslySetInnerHTML={{ __html: comment.content }} />
                 <div className='mb-2'>
                     <LikeButton comment={comment} myLikes={myLikes} />
                 </div>

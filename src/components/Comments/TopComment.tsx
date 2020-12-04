@@ -49,7 +49,7 @@ const TopComment: FC<CommentProps> = ({ comment, myLikes, doorNumber }) => {
             </div>
             <div className='w-5/6 pr-4 pl-4'>
                 <span className='font-semibold text-xl'>{comment.author.nickname}</span><time className='float-right'>{timestamp}</time>
-                <div className='prose prose-sm md:prose max-w-none mt-2 break-words' ref={commentContentRef} dangerouslySetInnerHTML={{ __html: comment.content }} />
+                <div className='prose prose-sm md:prose max-w-none md:max-w-none mt-2 break-words' ref={commentContentRef} dangerouslySetInnerHTML={{ __html: comment.content }} />
                 <div className='grid grid-cols-2 justify-items-stretch mt-4'>
                     <div className='justify-self-start'>
                         <LikeButton comment={comment} myLikes={myLikes} />

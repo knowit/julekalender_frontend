@@ -59,7 +59,7 @@ const LeaderBoard: FC<LeaderBoardProps> = ({ hidden, setIsLeaderboardHiding, clo
             {leaderboard.map(([solved, users]) => (
               <div key={solved}>
                 <h3 className="sticky top-0 py-1 bg-lightbulb-green rounded-md text-md tracking-wide text-center" key={solved} >
-                  <span className="font-semibold">{solved} luke{solved >= 1 && 'r'}</span> &mdash; <span className="text-gray-200 text-opacity-80">{users.length} snil{users.length > 1 ? 'le' : 't'} barn</span>
+                  <span className="font-semibold">{solved} luke{solved > 1 && 'r'}</span> &mdash; <span className="text-gray-200 text-opacity-80">{users.length} snil{users.length > 1 ? 'le' : 't'} barn</span>
                 </h3>
                 <div className="pt-2 pb-4 space-y-1">
                   {users.map((user) => (

@@ -1,11 +1,13 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useCallback, useEffect, useRef, useState } from 'react';
 import TextareaAutosize from 'react-autosize-textarea/lib';
 
 import useRequestsAndAuth from '../../hooks/useRequestsAndAuth';
 import './Comments.css';
-import Comment from '../../api/Comment';
+import { ParentComment } from '../../api/Comment';
 import TopComment from './TopComment';
 import Like from '../../api/Like';
+import Button from '../Button';
+import useBoolean from '../../hooks/useBoolean';
 
 interface CommentsSectionProps {
     doorNumber: number;
@@ -13,8 +15,11 @@ interface CommentsSectionProps {
 
 const CommentsSection: FC<CommentsSectionProps> = ({ doorNumber }) => {
     const { isAuthenticated, isAdmin, fetchComments, fetchLikes } = useRequestsAndAuth();
-    const [comments, setComments] = useState<Comment[]>([]);
+    const [comments, setComments] = useState<ParentComment[]>([]);
     const [likes, setLikes] = useState<Like[]>([]);
+    const [isCommentFormVisible, setIsCommentFormVisible] = useState(true);
+    const hideCommentForm = useCallback(() => setIsCommentFormVisible(false), []);
+    const showCommentForm = useCallback(() => setIsCommentFormVisible(true), []);
 
     useEffect(() => {
         if (!isAuthenticated && !isAdmin) return;
@@ -27,15 +32,21 @@ const CommentsSection: FC<CommentsSectionProps> = ({ doorNumber }) => {
             .catch((e) => { /* ... something ... */ })
     }, [isAdmin, isAuthenticated, fetchComments, doorNumber, fetchLikes]);
 
-    const appendComment = (comment: Comment) => {
+    const appendComment = (comment: ParentComment) => {
         setComments([...comments, comment])
-    }
+    };
 
     if (comments.length === 0) return null;
 
     return (
         <section className="CommentSection">
-            <CommentForm doorNumber={doorNumber} appendComment={appendComment} />
+            {isCommentFormVisible
+              ? <CommentForm doorNumber={doorNumber} appendComment={appendComment} hideCommentForm={hideCommentForm} />
+              : (<div className="bg-gray-100 rounded-md mx-auto mb-16 px-8 py-4 w-96 space-y-4 flex flex-col justify-center">
+                  <div className="text-center">Du finner kommentaren din nederst!</div>
+                  <Button onClick={showCommentForm}>Legg igjen ny kommentar?</Button>
+                </div>)
+            }
             {
               comments.filter(m => m.children && m.content)
                       .map((comment) => <TopComment key={comment.uuid} doorNumber={doorNumber} comment={comment} myLikes={likes} />)
@@ -45,36 +56,36 @@ const CommentsSection: FC<CommentsSectionProps> = ({ doorNumber }) => {
 }
 
 interface CommentFormProps {
-    doorNumber: number,
-    appendComment: (comment: Comment) => void
-}
+    doorNumber: number;
+    appendComment: (comment: ParentComment) => void;
+    hideCommentForm: () => void;
+};
 
-const CommentForm: FC<CommentFormProps> = ({ doorNumber, appendComment }) => {
-    const [comment, setComment] = useState<string>('')
-    // this is kind of a lame hack to avoid double submits if the user presses the button fast.
-    const [disableButton, setDisableButton] = useState<boolean>(false)
+const CommentForm: FC<CommentFormProps> = ({ doorNumber, appendComment, hideCommentForm }) => {
+    const { isAuthenticated, isAdmin, createComment } = useRequestsAndAuth();
+    const textareaRef = useRef<HTMLTextAreaElement>(null);
+    const [submitting, setSubmitting, setNotSubmitting] = useBoolean(false);
 
-    const { createComment } = useRequestsAndAuth();
-    const postComment = () => {
-        setDisableButton(true)
-        createComment(doorNumber, comment)
-            .then(response => {
-                appendComment(response.data)
-                setComment('')
-                setDisableButton(false)
-            })
-            .catch(e => { });
+    const postComment = useCallback(() => {
+      if (!textareaRef.current) return;
 
-    }
+      setSubmitting();
+      createComment(doorNumber, textareaRef.current.value)
+        .then((response) => {
+          appendComment(response.data);
+          setNotSubmitting();
+          hideCommentForm();
+        })
+        .catch((e) => setNotSubmitting())
+    }, [doorNumber, appendComment, createComment, hideCommentForm, setSubmitting, setNotSubmitting]);
 
+    // Prevent admins from accidentially submitting comments without being logged in.
+    if (isAdmin && !isAuthenticated) return null;
 
     return (
-        <form className="CommentForm">
+        <div className="CommentForm bg-gray-100 rounded-md my-8 px-4 pt-4 pb-2 flex flex-col items-end">
             <TextareaAutosize
-                name="comment"
-                value={comment}
-                onChange={e => setComment(e.currentTarget.value)}
-                id="comment"
+                ref={textareaRef}
                 placeholder={
                     "Legg igjen en kommentar! Vi har støtte for markdown med " +
                     "syntax highlighting. Alle blokk-elementer (kode, lister, " +
@@ -82,9 +93,9 @@ const CommentForm: FC<CommentFormProps> = ({ doorNumber, appendComment }) => {
                 }
             />
             <div>
-                <button className="SubmitButton" disabled={!comment || disableButton} onClick={(e) => { e.preventDefault(); postComment() }} value="Lagre">KOMMENTER</button>
+                <button className="SubmitButton" disabled={submitting} onClick={postComment} value="Lagre">KOMMENTER</button>
             </div>
-        </form>
+        </div>
     )
 }
 

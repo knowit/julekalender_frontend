@@ -10,7 +10,7 @@ export interface Comment {
   likes: number;
 }
 
-interface ParentComment extends Comment {
+export interface ParentComment extends Comment {
   children: Comment[];
 }
 

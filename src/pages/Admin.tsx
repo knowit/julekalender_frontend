@@ -20,7 +20,7 @@ const Admin: FC<AdminProps> = () => {
   if (!isAdmin) return <Redirect to="/" />;
 
   return (
-    <main className="max-w-kodekalender max-auto mt-10">
+    <main className="max-w-kodekalender mx-auto mt-10">
       <BackToDoorsButton />
       <div className="py-12 px-8 md:px12 mx4 md:mx-8 text-gray-700 rounded-md">
         <div className="py-8 px-8 md:px-12 mx-4 md:mx-8 bg-gray-100 rounded-md">

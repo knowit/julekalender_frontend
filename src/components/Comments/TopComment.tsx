@@ -6,7 +6,6 @@ import ParentComment from '../../api/Comment';
 import Like from '../../api/Like';
 import { getTimeStamp } from '../../utils';
 import LikeButton from './LikeButton';
-import useRequestsAndAuth from '../../hooks/useRequestsAndAuth';
 import { Comment } from '../../api/Comment';
 import useHighlightJs from '../../hooks/useHighlightJs';
 import SubCommentForm from './SubCommentForm';
@@ -17,8 +16,8 @@ interface CommentProps {
     myLikes: Like[]
     doorNumber: number
 }
+
 const TopComment: FC<CommentProps> = ({ comment, myLikes, doorNumber }) => {
-    const { createChildComment, user } = useRequestsAndAuth()
     const [showSubCommentForm, setShowSubcommentForm] = useState<boolean>(false)
     const [showSubComments, setShowSubComments] = useState<boolean>(true)
     const [subComments, setSubComments] = useState<Comment[]>(comment.children)
@@ -29,15 +28,6 @@ const TopComment: FC<CommentProps> = ({ comment, myLikes, doorNumber }) => {
     const appendSubComment = useCallback((comment) => {
         setSubComments((subComments) => [...subComments, comment])
     }, [setSubComments]);
-
-    const postSubComment = useCallback((content) => {
-      console.log(content);
-      return createChildComment(doorNumber, content, comment.uuid)
-        .then(response => {
-          appendSubComment(response.data)
-        })
-        .catch((e) => { })
-    }, [doorNumber, comment, appendSubComment, createChildComment]);
 
     const setShowSubcommentFormVisible = useCallback(() => setShowSubcommentForm(true), [setShowSubcommentForm]);
     const toggleShowSubComments = useCallback(() => setShowSubComments((state) => !state), [setShowSubComments]);
@@ -67,8 +57,9 @@ const TopComment: FC<CommentProps> = ({ comment, myLikes, doorNumber }) => {
                 <SubCommentForm
                   showSubCommentForm={showSubCommentForm}
                   setShowSubCommentForm={setShowSubcommentForm}
-                  postSubComment={postSubComment}
-                  user={user}
+                  appendSubComment={appendSubComment}
+                  doorNumber={doorNumber}
+                  parentId={comment.uuid}
                 />
                 {showSubComments ?
                     <div className='flex flex-col content-end mt-2'>

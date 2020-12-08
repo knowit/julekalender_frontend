@@ -36,6 +36,10 @@ const Lights = () => {
     beforeDoorDate2020(doorNumber) ? { to: '/', className: 'cursor-not-allowed' } : { to: `/luke/${doorNumber}` }
   );
 
+  if (fubar !== undefined) {
+    return (<><h1>Ooops...</h1><span>{fubar.message}</span></>);
+  }
+
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

@@ -36,8 +36,6 @@ const CommentsSection: FC<CommentsSectionProps> = ({ doorNumber }) => {
         setComments([...comments, comment])
     };
 
-    if (comments.length === 0) return null;
-
     return (
         <section className="CommentSection">
             {isCommentFormVisible

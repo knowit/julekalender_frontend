@@ -4,21 +4,31 @@ import { User } from '@auth0/auth0-react/dist/auth-state';
 
 import useRequestsAndAuth from '../../hooks/useRequestsAndAuth';
 import useBoolean from '../../hooks/useBoolean';
+import { Comment } from '../../api/Comment';
 
 
 interface SubCommentFormProps {
   showSubCommentForm: boolean;
   setShowSubCommentForm: (state: boolean) => void;
-  postSubComment: (content: string) => Promise<void>;
-  user: User | undefined;
+  appendSubComment: (comment: Comment) => void;
+  doorNumber: number;
+  parentId: string;
 };
 
-const SubCommentForm: FC<SubCommentFormProps> = ({ showSubCommentForm, setShowSubCommentForm, postSubComment, user }) => {
-  const { isAuthenticated, isAdmin } = useRequestsAndAuth();
+const SubCommentForm: FC<SubCommentFormProps> = ({ showSubCommentForm, setShowSubCommentForm, appendSubComment, doorNumber, parentId }) => {
+  const { isAuthenticated, isAdmin, createChildComment, user } = useRequestsAndAuth();
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const [submitting, setSubmitting, setNotSubmitting] = useBoolean(false);
 
   const hideForm = useCallback(() => setShowSubCommentForm(false), [setShowSubCommentForm]);
+
+  const postSubComment = useCallback((content) => {
+    return createChildComment(doorNumber, content, parentId)
+      .then((response) => {
+        appendSubComment(response.data)
+      })
+      .catch((e) => { })
+  }, [doorNumber, parentId, appendSubComment, createChildComment]);
 
   // This may submit weird data if submitting while debounced content is pending
   const postComment = useCallback(() => {

@@ -11,7 +11,7 @@ const useHighlightJs = <T extends HTMLElement>() => {
   useEffect(() => {
     if (!hlRef.current) return;
 
-    hlRef.current.querySelectorAll('pre').forEach((block) => {
+    hlRef.current.querySelectorAll<HTMLElement>('pre > code').forEach((block) => {
       hljs.highlightBlock(block);
     });
   });

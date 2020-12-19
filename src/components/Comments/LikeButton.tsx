@@ -25,12 +25,14 @@ const LikeButton: FC<LikeProps> = ({ comment, myLikes }) => {
         }
     }
 
-    return <>
-        <button onClick={() => likePost()}>
-            <Favorite className={`${isCommentLiked ? 'text-red-500' : 'text-red-300'} hover:text-red-500 cursor-pointer fill-current w-3 mr-0.5`} />
-        </button>
-        <span className='mr-2'>{likes}</span>
-    </>
-}
+    return (
+        <div className="inline-block">
+            <button onClick={() => likePost()}>
+                <Favorite className={`${isCommentLiked ? 'text-red-500' : 'text-red-300'} hover:text-red-500 cursor-pointer fill-current w-3 mr-0.5`} />
+            </button>
+            <span className='mr-2'>{likes}</span>
+        </div>
+    );
+};
 
 export default LikeButton

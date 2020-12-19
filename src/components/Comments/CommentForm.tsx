@@ -1,4 +1,4 @@
-import React, { Dispatch, FC, SetStateAction, useCallback, useEffect, useRef } from 'react';
+import React, { Dispatch, FC, SetStateAction, useCallback, useRef } from 'react';
 import TextareaAutosize from 'react-autosize-textarea/lib';
 
 import useRequestsAndAuth from '../../hooks/useRequestsAndAuth';

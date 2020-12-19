@@ -25,6 +25,10 @@ const baseFetch = <T>(endpoint: string, token: Token = undefined) => (
   Axios.get<T>(`${apiUrl}${endpoint}`, { headers: getHeaders(token) })
 );
 
+const baseDelete = <T>(endpoint: string, token: Token = undefined) => (
+  Axios.delete<T>(`${apiUrl}${endpoint}`, { headers: getHeaders(token) })
+);
+
 type CreatePayload = CreateSolutionPayload | CreateLikePayload | CreateCommentPayload;
 
 const baseCreate = <T>(endpoint: string, payload: CreatePayload, token: Token) => {
@@ -61,6 +65,14 @@ export const createChildComment = (token: Token) => (doorNumber: number, comment
 
 export const fetchComments = (token: Token) => (doorNumber: number | string) => (
   baseFetch<ParentComment[]>(`/challenges/${doorNumber}/posts`, token)
+);
+
+export const fetchSingleComment = (token: Token) => (doorNumber: number | string, commentId: string) => (
+  baseFetch<ParentComment>(`/challenges/${doorNumber}/posts/${commentId}`, token)
+);
+
+export const deleteComment = (token: Token) => (commentId: string) => (
+  baseDelete<never>(`/posts/${commentId}`, token)
 );
 
 export const fetchLeaderboard = () => (

@@ -1,7 +1,20 @@
 import React, { Dispatch, FC, ReactChild, SetStateAction, useEffect, useMemo, useState } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
-import { createComment, createChildComment, createLike, createSolution, fetchChallenge, fetchComments, fetchLikes, fetchSolvedStatus, fetchLeaderboard, fetchAdminStatus } from './api/requests';
-import { Token } from './api/requests';
+import {
+  Token,
+  createComment,
+  createChildComment,
+  createLike,
+  createSolution,
+  fetchChallenge,
+  fetchComments,
+  fetchSingleComment,
+  fetchLikes,
+  fetchSolvedStatus,
+  fetchLeaderboard,
+  fetchAdminStatus,
+  deleteComment
+} from './api/requests';
 
 // While these can take an undefined token, what's returned from the API with an
 // undefined token might be complete garbage.
@@ -14,6 +27,8 @@ const createRequests = (token: Token) => ({
   createComment: createComment(token),
   createChildComment: createChildComment(token),
   fetchComments: fetchComments(token),
+  fetchSingleComment: fetchSingleComment(token),
+  deleteComment: deleteComment(token),
   fetchAdminStatus: fetchAdminStatus(token),
   fetchLeaderboard,
 });

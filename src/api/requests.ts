@@ -6,6 +6,7 @@ import Challenge, { SolvedStatus } from './Challenge';
 import { CreateLikePayload, CreateSolutionPayload, CreateSolutionResponse } from './Solution';
 import Leaderboard from './Leaderboard';
 import { AdminStatus } from './admin';
+import { Whoami } from './User';
 
 const apiUrl = 
   (process.env.REACT_APP_BACKEND_HOST !== undefined)
@@ -81,5 +82,9 @@ export const fetchLeaderboard = () => (
 
 export const fetchAdminStatus = (token: Token) => () => (
   baseFetch<AdminStatus>('/users/admin', token)
+);
+
+export const fetchWhoami = (token: Token) => () => (
+  baseFetch<Whoami>('/users/whoami', token)
 );
 

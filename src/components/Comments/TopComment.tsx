@@ -10,6 +10,7 @@ import Button from '../Button';
 import ToggleSubCommentsButton from './ToggleSubCommentsButton';
 import DeletedComment from './DeletedComment';
 import SubCommentsSection from './SubCommentsSection';
+import useOwnComment from '../../hooks/useOwnComment';
 
 
 interface CommentProps {
@@ -26,7 +27,7 @@ const TopComment: FC<CommentProps> = ({ comment, myLikes, doorNumber, refreshCom
   const [showSubComments, setShowSubComments] = useState<boolean>(true)
   const commentContentRef = useHighlightJs<HTMLDivElement>();
 
-  const isOwnPost = comment.author.is_self;
+  const isOwnPost = useOwnComment(comment);
   const timestamp = getTimeStamp(comment.created_at);
 
   const setShowSubcommentFormVisible = useCallback(() => setShowSubcommentForm(true), [setShowSubcommentForm]);

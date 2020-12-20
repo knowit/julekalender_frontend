@@ -3,6 +3,7 @@ import React, { FC, useCallback } from 'react';
 import { Comment } from '../../api/Comment';
 import Like from '../../api/Like';
 import useHighlightJs from '../../hooks/useHighlightJs';
+import useOwnComment from '../../hooks/useOwnComment';
 import { getTimeStamp } from '../../utils';
 import Button from '../Button';
 import DeletedSubComment from './DeletedSubComment';
@@ -17,7 +18,7 @@ interface SubCommentProps {
 
 const SubComment: FC<SubCommentProps> = ({ comment, myLikes, deleteComment }) => {
     const commentContentRef = useHighlightJs<HTMLDivElement>();
-    const isOwnPost = comment.author.is_self;
+    const isOwnPost = useOwnComment(comment);
     const timestamp = getTimeStamp(comment.created_at);
 
     const deleteSubCommentOnClick = useCallback(() => deleteComment(

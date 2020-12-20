@@ -2,9 +2,8 @@ export interface Comment {
   uuid: string;
   parent_uuid: string | null;
   content: string; // '' if deleted
-  markdown_content: string; // '' if comment is not your own
   author: {
-    is_self: boolean; // Author is logged in user
+    uuid: string;
     nickname: string;
     picture: string;
   };

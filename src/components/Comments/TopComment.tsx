@@ -16,7 +16,7 @@ import useOwnComment from '../../hooks/useOwnComment';
 interface CommentProps {
   comment: ParentComment;
   myLikes: Like[];
-  doorNumber: number;
+  doorNumber: string;
   refreshComment: (comment: ParentComment) => void;
   deleteComment: (comment: ParentComment | Comment, confirm: string) => void;
 };

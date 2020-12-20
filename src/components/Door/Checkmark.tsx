@@ -9,7 +9,7 @@ const CheckmarkWrapper: FC<{ color: string, children: ReactElement[] }> = ({ col
   </div>
 );
 
-export const Checkmark = () => {
+export const Checkmark = ({ doorNumber }: { doorNumber: string }) => {
     return (
       <CheckmarkWrapper color="text-green-600">
             <svg className="stroke-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130.2 130.2">
@@ -31,7 +31,7 @@ export const Checkmark = () => {
                     className="path check"
                 ></path>
             </svg>
-            <p className="text-lg text-center mt-8">Bra jobba!</p>
+            <p className="text-lg text-center mt-8">Bra jobba!{doorNumber === '24' && <><br/>Og god jul! 🥳</>}</p>
       </CheckmarkWrapper>
     );
 }

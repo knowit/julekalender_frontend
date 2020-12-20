@@ -6,7 +6,7 @@ import { ParentComment } from '../../api/Comment';
 import useBoolean from '../../hooks/useBoolean';
 
 type CommentFormProps = {
-  doorNumber: number;
+  doorNumber: string;
   setComments: Dispatch<SetStateAction<ParentComment[]>>;
   hideCommentForm: () => void;
 };

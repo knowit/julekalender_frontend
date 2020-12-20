@@ -12,7 +12,7 @@ import SubCommentsSection from './SubCommentsSection';
 interface CommentProps {
   comment: ParentComment;
   myLikes: Like[];
-  doorNumber: number;
+  doorNumber: string;
   deleteComment: (comment: Comment, confirm: string) => void;
   refreshParentComment: () => void;
 };

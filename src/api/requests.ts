@@ -56,11 +56,11 @@ export const createLike = (token: Token) => (postId: number | string) => (
   baseCreate<never>(`/posts/${postId}/likes`, {}, token)
 );
 
-export const createComment = (token: Token) => (doorNumber: number, comment:string) => {
+export const createComment = (token: Token) => (doorNumber: string | number, comment:string) => {
   return baseCreate<ParentComment>(`/challenges/${doorNumber}/posts`, { post: { content: comment }} , token)
 };
 
-export const createChildComment = (token: Token) => (doorNumber: number, comment:string, parentId: string,) => {
+export const createChildComment = (token: Token) => (doorNumber: string | number, comment:string, parentId: string,) => {
   return baseCreate<Comment>(`/challenges/${doorNumber}/posts`, { post: { content: comment, parent_uuid: parentId } } , token)
 };
 

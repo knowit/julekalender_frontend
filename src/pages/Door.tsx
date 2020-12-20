@@ -39,7 +39,7 @@ const Door = () => {
                 setIsDoorSolved={setIsDoorSolved}
               />
           </div>
-          {isAuthenticated && isDoorSolved && <CommentsSection doorNumber={parseInt(doorNumber)} />}
+          {isAuthenticated && isDoorSolved && <CommentsSection doorNumber={doorNumber} />}
       </main>
   )
 }

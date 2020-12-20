@@ -9,7 +9,7 @@ import Button from '../Button';
 import CommentForm from './CommentForm';
 
 interface CommentsSectionProps {
-    doorNumber: number;
+    doorNumber: string;
 };
 
 const CommentsSection: FC<CommentsSectionProps> = ({ doorNumber }) => {

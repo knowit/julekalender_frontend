@@ -8,7 +8,7 @@ import { Challenge as ChallengeType } from '../../api/Challenge';
 
 
 interface ChallengeProps {
-    doorNumber: string | number;
+    doorNumber: string;
     isDoorSolved: boolean;
     setIsDoorSolved: (value: boolean) => void;
 };
@@ -63,6 +63,7 @@ const Challenge: FC<ChallengeProps> = ({ doorNumber, isDoorSolved, setIsDoorSolv
         dangerouslySetInnerHTML={{ __html: challenge.content }}
       />
       <Input
+        doorNumber={doorNumber}
         isDoorSolved={isDoorSolved}
         isFirstSubmit={attemptCount === 0}
         isWaitingForSolutionResponse={isWaitingForSolutionResponse}

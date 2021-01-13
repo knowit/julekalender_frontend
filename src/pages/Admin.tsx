@@ -12,7 +12,7 @@ interface AdminProps {
 
 const Admin: FC<AdminProps> = () => {
   const { isAdmin } = useRequestsAndAuth();
-  const [doorNumber, setDoorNumber] = useState<number>(1);
+  const [doorNumber, setDoorNumber] = useState('1');
   const doorOptions = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24].map(
     (door) => <option value={door}>{door}</option>
   );
@@ -24,7 +24,7 @@ const Admin: FC<AdminProps> = () => {
       <BackToDoorsButton />
       <div className="py-12 px-8 md:px12 mx4 md:mx-8 text-gray-700 rounded-md">
         <div className="py-8 px-8 md:px-12 mx-4 md:mx-8 bg-gray-100 rounded-md">
-          <select onChange={((e) => setDoorNumber(parseInt(e.target.value)))}>
+          <select onChange={((e) => setDoorNumber(e.target.value))}>
             {doorOptions}
           </select>
           <Challenge

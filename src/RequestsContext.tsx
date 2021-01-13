@@ -1,7 +1,22 @@
 import React, { Dispatch, FC, ReactChild, SetStateAction, useEffect, useMemo, useState } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
-import { createComment, createChildComment, createLike, createSolution, fetchChallenge, fetchComments, fetchLikes, fetchSolvedStatus, fetchLeaderboard, fetchAdminStatus } from './api/requests';
-import { Token } from './api/requests';
+import {
+  Token,
+  createComment,
+  createChildComment,
+  createLike,
+  createSolution,
+  fetchChallenge,
+  fetchComments,
+  fetchSingleComment,
+  fetchLikes,
+  fetchSolvedStatus,
+  fetchLeaderboard,
+  fetchAdminStatus,
+  fetchWhoami,
+  deleteComment
+} from './api/requests';
+import { CurrentUser } from './api/User';
 
 // While these can take an undefined token, what's returned from the API with an
 // undefined token might be complete garbage.
@@ -14,19 +29,24 @@ const createRequests = (token: Token) => ({
   createComment: createComment(token),
   createChildComment: createChildComment(token),
   fetchComments: fetchComments(token),
+  fetchSingleComment: fetchSingleComment(token),
+  deleteComment: deleteComment(token),
   fetchAdminStatus: fetchAdminStatus(token),
+  fetchWhoami: fetchWhoami(token),
   fetchLeaderboard,
 });
 
 interface IRequestsContext extends ReturnType<typeof createRequests> {
   isAdmin: boolean;
   setIsAdmin: Dispatch<SetStateAction<boolean>>;
+  currentUser: CurrentUser;
   isFullyAuthenticated: boolean;
 };
 
 export const Context = React.createContext<IRequestsContext>({
   isAdmin: false,
   setIsAdmin: (_state) => true,
+  currentUser: { uuid: '' },
   isFullyAuthenticated: false,
   ...createRequests(undefined),
 });
@@ -42,6 +62,7 @@ const RequestsContext: FC<RequestsContextProps> = ({ children }) => {
     getIdTokenClaims,
   } = useAuth0();
   const [isAdmin, setIsAdmin] = useState<boolean>(false);
+  const [currentUser, setCurrentUser] = useState<CurrentUser>({ uuid: '' });
   const [token, setToken] = useState<string>();
 
   const isFullyAuthenticated = useMemo(
@@ -72,11 +93,16 @@ const RequestsContext: FC<RequestsContextProps> = ({ children }) => {
         setIsAdmin(response.data.admin);
       })
       .catch(() => setIsAdmin(false));
-  }, [isFullyAuthenticated, requests, setIsAdmin]);
+    requests.fetchWhoami()
+      .then((response) => {
+        setCurrentUser(response.data.user);
+      })
+      .catch(() => { });
+  }, [isFullyAuthenticated, requests, setIsAdmin, setCurrentUser]);
 
 
   return (
-    <Context.Provider value={{ isAdmin, setIsAdmin, isFullyAuthenticated, ...requests }}>
+    <Context.Provider value={{ isAdmin, setIsAdmin, currentUser, isFullyAuthenticated, ...requests }}>
       {children}
     </Context.Provider>
   );

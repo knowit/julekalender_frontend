@@ -11,7 +11,6 @@ import LeaderBoard from './components/LeaderBoard';
 import Doors from './pages/Doors'
 import AnimationToggle from './components/AnimationToggle';
 import useRequestsAndAuth from './hooks/useRequestsAndAuth';
-import DoorsMobile from './pages/Doors_mobile';
 
 
 function App() {

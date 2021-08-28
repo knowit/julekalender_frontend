@@ -9,7 +9,7 @@ interface SubCommentFormProps {
   showSubCommentForm: boolean;
   setShowSubCommentForm: (state: boolean) => void;
   refreshParentComment: () => void;
-  doorNumber: number;
+  doorNumber: string;
   parentId: string;
 };
 

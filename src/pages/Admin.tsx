@@ -1,5 +1,7 @@
 import { FC, useState } from 'react';
 import { Redirect } from 'react-router-dom';
+import { noop } from 'lodash'
+
 import BackToDoorsButton from '../components/BackToDoorsButton';
 import CommentsSection from '../components/Comments/CommentsSection';
 import Challenge from '../components/Door/Challenge';
@@ -30,7 +32,7 @@ const Admin: FC<AdminProps> = () => {
           <Challenge
             doorNumber={doorNumber}
             isDoorSolved={true}
-            setIsDoorSolved={() => {}}
+            setIsDoorSolved={noop}
           />
         </div>
         <CommentsSection doorNumber={doorNumber} />

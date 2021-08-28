@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import LoginButton from './LoginButton';
 import { ReactComponent as Logo } from '../img/knowitlogo.svg';
 import useRequestsAndAuth from '../hooks/useRequestsAndAuth';

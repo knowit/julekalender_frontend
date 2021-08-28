@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import { FC, useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import BackToDoorsButton from '../components/BackToDoorsButton';
 import CommentsSection from '../components/Comments/CommentsSection';

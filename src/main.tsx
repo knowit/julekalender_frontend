@@ -1,10 +1,8 @@
-import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import { Auth0Provider } from "@auth0/auth0-react";
 import 'highlight.js/styles/gruvbox-dark.css';
 
-import './styles/index.css';
 import App from './App';
 import RequestsContext from './RequestsContext';
 
@@ -23,7 +21,8 @@ const Index = () => (
   </BrowserRouter>
 );
 
-ReactDOM.render(
-  <Index />,
-  document.getElementById('root')
-);
+const container = document.getElementById('root')
+if (container) {
+  const root = ReactDOM.createRoot(container)
+  root.render(<Index />)
+}

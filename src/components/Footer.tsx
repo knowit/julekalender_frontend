@@ -1,5 +1,4 @@
 /* eslint-disable jsx-a11y/accessible-emoji */
-import React from 'react';
 import { Link } from 'react-router-dom';
 import { FaFacebook, FaTwitter, FaMedium, FaGithub } from 'react-icons/fa';
 

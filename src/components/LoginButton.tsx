@@ -1,11 +1,9 @@
-import React from 'react'
-
 import useRequestsAndAuth from '../hooks/useRequestsAndAuth';
 import Button from './Button';
 
 
 const LoginButton = () => {
-  const { loginWithRedirect, logout, isAuthenticated } = useRequestsAndAuth();  
+  const { loginWithRedirect, logout, isAuthenticated } = useRequestsAndAuth();
 
   const [onClick, content] = isAuthenticated
     ? [() => logout({ returnTo: window.location.origin }), 'Logg ut']

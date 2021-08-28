@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import { FC, useState } from 'react';
 import useRequestsAndAuth from '../../hooks/useRequestsAndAuth';
 import Checkmark, { WrongMark } from './Checkmark';
 
@@ -16,7 +16,7 @@ const Input: FC<InputProps> = ({ doorNumber, isDoorSolved, isFirstSubmit, isWait
   const [submittedAnswer, setSubmittedAnswer] = useState('');
 
   const isWrongAnswer = !isDoorSolved && !isFirstSubmit && !isWaitingForSolutionResponse && submittedAnswer !== '' && answer === submittedAnswer;
-  
+
   const submitAnswer = () => {
     onSubmit(answer)
     setSubmittedAnswer(answer)

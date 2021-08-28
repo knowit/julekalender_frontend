@@ -1,11 +1,8 @@
 module.exports = {
-  purge: {
-    enabled: process.env.NODE_ENV === 'production',
-    content: [
-      './src/**/*.tsx',
-      './src/**/*.svg',
-    ],
-  },
+  mode: "jit",
+  purge: [
+    './src/**/*.{ts,tsx,svg}',
+  ],
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
@@ -16,13 +13,8 @@ module.exports = {
         'leaderboard-green': 'rgba(37, 86, 80, 1)'
       },
       maxWidth: {
+        // TODO: Should be a wrappercomponent of some sort instead.
         'kodekalender': '80rem',
-      },
-      spacing: {
-        // Helps with absolute size where needed
-        '102': '25.5rem',
-        '104': '26rem',
-        '128': '32rem',
       },
       width: {
         'kodekalender': '80rem',
@@ -50,5 +42,8 @@ module.exports = {
   },
   plugins: [
     require('@tailwindcss/typography'),
+    require('@tailwindcss/line-clamp'),
+    require('tailwindcss-children'),
+    require('@whiterussianstudio/tailwind-easing'),
   ],
 }

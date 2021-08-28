@@ -1,4 +1,4 @@
-import React, { FC, useCallback, useState } from 'react';
+import { FC, useCallback, useState } from 'react';
 
 import ParentComment from '../../api/Comment';
 import Like from '../../api/Like';

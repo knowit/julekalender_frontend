@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 
 import { ReactComponent as Chevron } from '../svg/expand_more.svg';
 

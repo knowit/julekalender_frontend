@@ -8,12 +8,7 @@ import Leaderboard from './Leaderboard';
 import { AdminStatus } from './admin';
 import { Whoami } from './User';
 
-const apiUrl = 
-  (process.env.REACT_APP_BACKEND_HOST !== undefined)
-    ? process.env.REACT_APP_BACKEND_HOST
-    : (window.location.hostname === 'julekalender.knowit.no'
-      ? 'https://julekalender-backend.knowit.no'
-      : 'https://***REMOVED***');
+const apiUrl = import.meta.env.VITE_BACKEND_HOST ?? 'https://julekalender-backend.knowit.no'
 const requestHeaders = { "Content-Type": "application/json" };
 const getHeaders = (token: Token) => (
   token ? { ...requestHeaders, "Authorization": token } : requestHeaders

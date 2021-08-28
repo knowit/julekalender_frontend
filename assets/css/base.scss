@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html, body {
+    height: 100vh;
+    overflow: auto;
+  }
+
+  body {
+      background-color: rgba(18, 38, 32, 1);
+  }
+}

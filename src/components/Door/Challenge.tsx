@@ -1,5 +1,5 @@
-import React, { FC, useEffect, useState } from 'react';
-import _ from 'lodash';
+import { FC, useEffect, useState } from 'react';
+import { isNil } from 'lodash';
 
 import useHighlightJs from '../../hooks/useHighlightJs';
 import useRequestsAndAuth from '../../hooks/useRequestsAndAuth';
@@ -31,7 +31,7 @@ const Challenge: FC<ChallengeProps> = ({ doorNumber, isDoorSolved, setIsDoorSolv
   }, [fetchChallenge, doorNumber])
 
   const submitAnswer = (answer: string) => {
-    if (_.isNil(doorNumber)) return;
+    if (isNil(doorNumber)) return;
 
     setIsWaitingForSolutionResponse(true);
 

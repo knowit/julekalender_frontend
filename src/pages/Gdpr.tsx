@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react'
+import { ReactElement } from 'react'
 
 import BackToDoorsButton from '../components/BackToDoorsButton';
 import DoorBorder from '../components/Door/DoorBorder';
@@ -53,7 +53,7 @@ const Gdpr = () => {
       'Vi sikrer dine personopplysninger ved både fysisk og virtuell adgangs- og tilgangskontroll, samt ved kryptering av sensitive deler av avgitte opplysninger.'
     ],
   ];
-  
+
   return (
     <main className='max-w-kodekalender mx-auto mt-10'>
       <BackToDoorsButton />

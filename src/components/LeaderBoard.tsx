@@ -1,4 +1,4 @@
-import React, { FC, useCallback, useEffect, useRef, useState } from 'react';
+import { FC, useCallback, useEffect, useRef, useState } from 'react';
 
 import useRequestsAndAuth from '../hooks/useRequestsAndAuth';
 import useOnClickOutside from '../hooks/useOnClickOutside';
@@ -42,10 +42,10 @@ const LeaderBoard: FC<LeaderBoardProps> = ({ hidden, setIsLeaderboardHiding, clo
     closeHandler();
   }
 
-  const containerTransition = `transition duration-100 sm:duration-200 transform ${hidden ? 'ease-in translate-x-full sm:translate-x-102' : 'ease-out translate-x-0'}`;
+  const containerTransition = `transition duration-100 sm:duration-200 transform ${hidden ? 'ease-in translate-x-full sm:translate-x-[25.5rem]' : 'ease-out translate-x-0'}`;
 
   return (
-    <aside className="absolute top-0 right-0 pt-14 w-full sm:w-102 sm:pr-6 overflow-hidden pointer-events-none">
+    <aside className="absolute top-0 right-0 pt-14 w-full sm:w-[25.5rem] sm:pr-6 overflow-hidden pointer-events-none">
       <div className={`${containerTransition} bg-leaderboard-green p-4 rounded-md sm:rounded-xl w-full h-full pointer-events-auto`} ref={clickableLeaderboardRef} >
         <div className="h-full overflow-hidden">
           <Close className='fill-current absolute top-0 right-0 m-2 cursor-pointer' onClick={closeBoard}/>

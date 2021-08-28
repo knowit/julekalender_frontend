@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { Comment } from '../../api/Comment';
 import { getTimeStamp } from '../../utils';
 

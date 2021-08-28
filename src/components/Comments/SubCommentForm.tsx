@@ -1,4 +1,4 @@
-import React, { FC, useCallback, useEffect, useRef } from 'react';
+import { FC, useCallback, useEffect, useRef } from 'react';
 import TextareaAutosize from 'react-autosize-textarea/lib';
 
 import useRequestsAndAuth from '../../hooks/useRequestsAndAuth';

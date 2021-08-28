@@ -5,11 +5,8 @@
 /.pnp
 .pnp.js
 
-# testing
-/coverage
-
 # production
-/build
+/dist
 
 # misc
 .DS_Store
@@ -23,6 +20,3 @@ yarn-debug.log*
 yarn-error.log*
 
 .vscode
-
-# Generated CSS
-src/styles/index.css

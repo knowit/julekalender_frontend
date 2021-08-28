@@ -1,7 +1,6 @@
-import React, { useCallback, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { Switch, Route, Redirect } from "react-router-dom";
 
-import './App.css';
 import Admin from './pages/Admin';
 import Gdpr from './pages/Gdpr';
 import Door from './pages/Door';
@@ -25,7 +24,7 @@ function App() {
   return (
     <>
       <StarBackground paused={backgroundPaused} />
-      <div className="FlexContainer text-gray-200">
+      <div className="text-gray-200">
         <div className="pb-16">
           <Header isLeaderboardHiding={isLeaderboardHiding} setLeaderboardHidden={setLeaderboardHidden} />
           <Switch>

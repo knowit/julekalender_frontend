@@ -1,4 +1,3 @@
-import React from 'react';
 import { ReactComponent as Border } from '../svg/mistletoeborder.svg'
 
 const DoorBorder = () => (

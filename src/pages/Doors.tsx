@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from 'react-router-dom';
 
 import useRequestsAndAuth from '../hooks/useRequestsAndAuth';
 import { SolvedStatus } from '../api/Challenge';
 import Footer from "../components/Footer";
 import { beforeDoorDate2020 } from "../utils";
-  
+
 
 const Lights = () => {
   const { isAuthenticated, fetchSolvedStatus } = useRequestsAndAuth();

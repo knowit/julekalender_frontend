@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import { FC, useState } from 'react';
 import { ReactComponent as Favorite } from '../svg/heart.svg';
 import Like from '../../api/Like';
 import { Comment } from '../../api/Comment';

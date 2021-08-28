@@ -1,5 +1,5 @@
 import { FC, useCallback, useEffect, useState } from 'react';
-import _ from 'lodash';
+import { find, reject, sortBy } from 'lodash';
 
 import useRequestsAndAuth from '../../hooks/useRequestsAndAuth';
 import { Comment, ParentComment } from '../../api/Comment';
@@ -39,12 +39,12 @@ const CommentsSection: FC<CommentsSectionProps> = ({ doorNumber }) => {
       .then((response) => {
         if (response.status === 204) {
           // Comment has been fully deleted or is otherwise nonexistent. Remove it from list.
-          setComments((comments) => _.reject(comments, { uuid: comment.uuid }))
+          setComments((comments) => reject(comments, { uuid: comment.uuid }))
         } else {
           // Comment has been successfully refreshed. Replace it in the comments list.
           setComments((comments) => {
-            const filteredComments = _.reject(comments, { uuid: comment.uuid })
-            return _.sortBy([...filteredComments, response.data], 'created_at');
+            const filteredComments = reject(comments, { uuid: comment.uuid })
+            return sortBy([...filteredComments, response.data], 'created_at');
           });
         }
       })
@@ -57,7 +57,7 @@ const CommentsSection: FC<CommentsSectionProps> = ({ doorNumber }) => {
     deleteCommentRequest(comment.uuid)
       .then(() => {
         // Find top-level parent of given comment
-        const staleComment = comment.parent_uuid ? _.find(comments, { uuid: comment.parent_uuid }) : comment as ParentComment;
+        const staleComment = comment.parent_uuid ? find(comments, { uuid: comment.parent_uuid }) : comment as ParentComment;
         if (!staleComment) return;
 
         refreshComment(staleComment);

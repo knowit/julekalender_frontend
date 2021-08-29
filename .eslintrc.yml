@@ -125,6 +125,10 @@ rules:
     - warn
     - namedComponents: arrow-function
       unnamedComponents: arrow-function
+  react/display-name:
+    - off
+  react/prop-types:
+    - off
 
   # Lodash
   lodash/import-scope:

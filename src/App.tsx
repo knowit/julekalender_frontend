@@ -7,10 +7,11 @@ import Gdpr from "./pages/Gdpr"
 import Door from "./pages/Door"
 import Header from "./components/Header"
 import StarBackground from "./effects/StarBackground"
-import LeaderBoard from "./components/LeaderBoard"
+import LeaderBoardAside from "./components/LeaderBoardAside"
 import Doors from "./pages/Doors"
 import AnimationToggle from "./components/AnimationToggle"
 import useRequestsAndAuth from "./hooks/useRequestsAndAuth"
+import Leaderboard from "./pages/Leaderboard"
 
 
 const App = () => {
@@ -29,6 +30,7 @@ const App = () => {
         <Switch>
           <Route exact path="/" component={Doors} />
           <Route path={isAdmin ? "/luke/:doorNumber" : doorPaths} component={Door} />
+          <Route path="/leaderboard" component={Leaderboard} />
           <Route path="/gdpr" component={Gdpr} />
           <Route path="/admin" component={Admin} />
 
@@ -38,7 +40,7 @@ const App = () => {
           </Route>
         </Switch>
       </div>
-      <LeaderBoard
+      <LeaderBoardAside
         hidden={leaderboardHidden}
         closeHandler={() => setLeaderboardHidden(true)}
       />

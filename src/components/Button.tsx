@@ -7,7 +7,7 @@ type ButtonProps = {
 } & DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>
 
 const Button: FC<ButtonProps> = ({ underline = true, className, children, ...restProps }) => (
-  <button className={clsx(underline && "hover:underline", "uppercase tracking-wider", className)} {...restProps}>{children}</button>
+  <button className={clsx(underline && "hover:underline", "uppercase sm:tracking-wider text-sm sm:text-lg", className)} {...restProps}>{children}</button>
 )
 
 export default Button

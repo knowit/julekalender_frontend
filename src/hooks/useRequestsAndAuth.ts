@@ -1,6 +1,7 @@
-import { useAuth0 } from "@auth0/auth0-react";
-import { useContext } from "react";
-import { Context as RequestsContext } from "../RequestsContext";
+import { useAuth0 } from "@auth0/auth0-react"
+import { useContext } from "react"
+
+import { Context as RequestsContext } from "../RequestsContext"
 
 
 // The single source of truth for authentication and API behavior. All usage of
@@ -8,10 +9,10 @@ import { Context as RequestsContext } from "../RequestsContext";
 // one which ensures a valid token is active to prevent double-rendering when it
 // is initialized) is used throughout the app.
 const useRequestsAndAuth = () => {
-  const { loginWithRedirect, logout, user } = useAuth0();
-  const { isAdmin, setIsAdmin, currentUser, isFullyAuthenticated, ...requests } = useContext(RequestsContext);
+  const { loginWithRedirect, logout, user } = useAuth0()
+  const { isAdmin, setIsAdmin, currentUser, isFullyAuthenticated, ...requests } = useContext(RequestsContext)
 
-  const isLocalhost = window.location.hostname === 'localhost';
+  const isLocalhost = window.location.hostname === "localhost"
 
   return {
     loginWithRedirect,
@@ -22,8 +23,8 @@ const useRequestsAndAuth = () => {
     currentUser,
     isLocalhost,
     user,
-    ...requests,
-  };
+    ...requests
+  }
 }
 
-export default useRequestsAndAuth;
+export default useRequestsAndAuth

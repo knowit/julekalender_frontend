@@ -1,10 +1,11 @@
-import ReactDOM from 'react-dom';
-import { BrowserRouter } from 'react-router-dom';
-import { Auth0Provider } from "@auth0/auth0-react";
-import 'highlight.js/styles/gruvbox-dark.css';
+import { createRoot } from "react-dom"
+import { BrowserRouter } from "react-router-dom"
+import { Auth0Provider } from "@auth0/auth0-react"
+import "highlight.js/styles/gruvbox-dark.css"
 
-import App from './App';
-import RequestsContext from './RequestsContext';
+import App from "./App"
+import RequestsContext from "./RequestsContext"
+
 
 const Index = () => (
   <BrowserRouter>
@@ -19,10 +20,10 @@ const Index = () => (
       </RequestsContext>
     </Auth0Provider>
   </BrowserRouter>
-);
+)
 
-const container = document.getElementById('root')
+const container = document.getElementById("root")
 if (container) {
-  const root = ReactDOM.createRoot(container)
+  const root = createRoot(container)
   root.render(<Index />)
 }

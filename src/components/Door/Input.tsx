@@ -1,21 +1,25 @@
-import { FC, useState } from 'react';
-import useRequestsAndAuth from '../../hooks/useRequestsAndAuth';
-import Checkmark, { WrongMark } from './Checkmark';
+import { FC, useState } from "react"
+import clsx from "clsx"
+
+import useRequestsAndAuth from "../../hooks/useRequestsAndAuth"
+
+import Checkmark, { WrongMark } from "./Checkmark"
+
 
 type InputProps = {
-  doorNumber: string;
-  isDoorSolved: boolean;
-  isFirstSubmit: boolean;
-  isWaitingForSolutionResponse: boolean;
-  onSubmit(answer: string): void;
-};
+  doorNumber: string
+  isDoorSolved: boolean
+  isFirstSubmit: boolean
+  isWaitingForSolutionResponse: boolean
+  onSubmit(answer: string): void
+}
 
 const Input: FC<InputProps> = ({ doorNumber, isDoorSolved, isFirstSubmit, isWaitingForSolutionResponse, onSubmit }) => {
-  const { isAuthenticated } = useRequestsAndAuth();
-  const [answer, setAnswer] = useState('');
-  const [submittedAnswer, setSubmittedAnswer] = useState('');
+  const { isAuthenticated } = useRequestsAndAuth()
+  const [answer, setAnswer] = useState("")
+  const [submittedAnswer, setSubmittedAnswer] = useState("")
 
-  const isWrongAnswer = !isDoorSolved && !isFirstSubmit && !isWaitingForSolutionResponse && submittedAnswer !== '' && answer === submittedAnswer;
+  const isWrongAnswer = !isDoorSolved && !isFirstSubmit && !isWaitingForSolutionResponse && submittedAnswer !== "" && answer === submittedAnswer
 
   const submitAnswer = () => {
     onSubmit(answer)
@@ -29,11 +33,13 @@ const Input: FC<InputProps> = ({ doorNumber, isDoorSolved, isFirstSubmit, isWait
           ? <Checkmark doorNumber={doorNumber}/>
           : isAuthenticated
             ? <>
-              <input className={`h-8 w-full p-0 bg-transparent border-0 border-current border-b ${isWrongAnswer && 'text-red-700'}`}
-                placeholder='Ditt svar:' value={answer}
+              <input
+                className={clsx("h-8 w-full p-0 bg-transparent border-0 border-current border-b", isWrongAnswer && "text-red-700")}
+                placeholder="Ditt svar:"
+                value={answer}
                 onChange={(e) => setAnswer(e.target.value)}
-                onKeyPress={e => { if (e.key === "Enter") { submitAnswer() }}}
-                />
+                onKeyPress={(e) => { if (e.key === "Enter") { submitAnswer() }}}
+              />
               <button className="block mx-auto mt-2" disabled={!answer} onClick={() => submitAnswer()}>Send inn svar</button>
               {isWrongAnswer && <WrongMark />}
             </>
@@ -41,7 +47,7 @@ const Input: FC<InputProps> = ({ doorNumber, isDoorSolved, isFirstSubmit, isWait
         }
       </div>
     </>
-  );
+  )
 }
 
-export default Input;
+export default Input

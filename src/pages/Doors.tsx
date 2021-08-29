@@ -1,19 +1,21 @@
-import { useEffect, useState } from "react";
-import { Link } from 'react-router-dom';
+import { FC, useEffect, useState } from "react"
+import { Link } from "react-router-dom"
+import clsx from "clsx"
+import { get } from "lodash"
 
-import useRequestsAndAuth from '../hooks/useRequestsAndAuth';
-import { SolvedStatus } from '../api/Challenge';
-import Footer from "../components/Footer";
-import { beforeDoorDate2020 } from "../utils";
+import useRequestsAndAuth from "../hooks/useRequestsAndAuth"
+import { SolvedStatus } from "../api/Challenge"
+import Footer from "../components/Footer"
+import { beforeDoorDate2020 } from "../utils"
 
 
 const Lights = () => {
-  const { isAuthenticated, fetchSolvedStatus } = useRequestsAndAuth();
-  const [fubar, setError] = useState<Error>();
-  const [solvedStatus, setIsSolvedStatus] = useState<SolvedStatus>();
+  const { isAuthenticated, fetchSolvedStatus } = useRequestsAndAuth()
+  const [fubar, setError] = useState<Error>()
+  const [solvedStatus, setIsSolvedStatus] = useState<SolvedStatus>()
 
   useEffect(() => {
-    if (!isAuthenticated) return;
+    if (!isAuthenticated) return
 
     fetchSolvedStatus()
       .then((response) => setIsSolvedStatus(response.data))
@@ -21,23 +23,24 @@ const Lights = () => {
   }, [isAuthenticated, fetchSolvedStatus])
 
   const getBulbClass = (doorNumber: number) => (
-    (solvedStatus !== undefined && solvedStatus[doorNumber])
-      ? 'text-lightbulb-green  fill-current'
+    clsx("fill-current", get(solvedStatus, doorNumber)
+      ? "text-lightbulb-green"
       : beforeDoorDate2020(doorNumber)
-        ? 'text-lightbulb-dim    fill-current'
-        : 'text-lightbulb-yellow fill-current'
-  );
+        ? "text-lightbulb-dim"
+        : "text-lightbulb-yellow"
+    )
+  )
 
   const getTextClass = (doorNumber: number) => (
-    beforeDoorDate2020(doorNumber) ? 'text-gray-800 opacity-25' : 'text-gray-800'
-  );
+    beforeDoorDate2020(doorNumber) ? "text-gray-800 opacity-25" : "text-gray-800"
+  )
 
   const getLinkDateDependentProps = (doorNumber: number) => (
-    beforeDoorDate2020(doorNumber) ? { to: '/', className: 'cursor-not-allowed' } : { to: `/luke/${doorNumber}` }
-  );
+    beforeDoorDate2020(doorNumber) ? { to: "/", className: "cursor-not-allowed" } : { to: `/luke/${doorNumber}` }
+  )
 
   if (fubar !== undefined) {
-    return (<><h1>Ooops...</h1><span>{fubar.message}</span></>);
+    return (<><h1>Ooops...</h1><span>{fubar.message}</span></>)
   }
 
   return (
@@ -2161,18 +2164,16 @@ const Lights = () => {
         </g>
       </g>
     </svg>
-  );
-};
-
-const Doors = () => {
-  return (
-    <>
-      <main>
-        <Lights />
-      </main>
-      <Footer />
-    </>
-  );
+  )
 }
 
-export default Doors;
+const Doors: FC = () => (
+  <>
+    <main>
+      <Lights />
+    </main>
+    <Footer />
+  </>
+)
+
+export default Doors

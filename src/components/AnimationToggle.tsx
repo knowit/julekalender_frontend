@@ -1,26 +1,28 @@
-import { FC } from 'react';
+import { FC } from "react"
 
-interface AnimationToggleProps {
-  backgroundPaused: boolean;
-  setBackgroundPaused: (state: boolean) => void;
-};
+
+type AnimationToggleProps = {
+  backgroundPaused: boolean
+  setBackgroundPaused: (state: boolean) => void
+}
 
 const AnimationToggle: FC<AnimationToggleProps> = ({ backgroundPaused, setBackgroundPaused }) => {
   const toggleBackground = () => {
-    localStorage.setItem('bgPaused', String(!backgroundPaused));
+    localStorage.setItem("bgPaused", String(!backgroundPaused))
     setBackgroundPaused(!backgroundPaused)
   }
 
   return (
     <div title="Varm laptop? 🔥" className="m-1 w-max">
-      <input type="checkbox"
-        id='animationToggle'
-        className='mr-1 w-3 cursor-pointer'
+      <input
+        type="checkbox"
+        id="animationToggle"
+        className="mr-1 w-3 cursor-pointer"
         defaultChecked={backgroundPaused}
         onChange={toggleBackground} />
-      <label className="text-gray-400 shadow text-xs cursor-pointer" htmlFor='animationToggle'>Stopp bakgrunnsanimasjon</label>
+      <label className="text-gray-400 shadow text-xs cursor-pointer" htmlFor="animationToggle">Stopp bakgrunnsanimasjon</label>
     </div>
-  );
-};
+  )
+}
 
-export default AnimationToggle;
+export default AnimationToggle

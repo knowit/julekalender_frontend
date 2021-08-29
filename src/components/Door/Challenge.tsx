@@ -1,44 +1,45 @@
-import { FC, useEffect, useState } from 'react';
-import { isNil } from 'lodash';
+import { FC, useEffect, useState } from "react"
+import { isNil } from "lodash"
 
-import useHighlightJs from '../../hooks/useHighlightJs';
-import useRequestsAndAuth from '../../hooks/useRequestsAndAuth';
-import Input from './Input';
-import { Challenge as ChallengeType } from '../../api/Challenge';
+import useHighlightJs from "../../hooks/useHighlightJs"
+import useRequestsAndAuth from "../../hooks/useRequestsAndAuth"
+import { Challenge as ChallengeType } from "../../api/Challenge"
+
+import Input from "./Input"
 
 
-interface ChallengeProps {
-    doorNumber: string;
-    isDoorSolved: boolean;
-    setIsDoorSolved: (value: boolean) => void;
-};
+type ChallengeProps = {
+  doorNumber: string
+  isDoorSolved: boolean
+  setIsDoorSolved: (value: boolean) => void
+}
 
 const Challenge: FC<ChallengeProps> = ({ doorNumber, isDoorSolved, setIsDoorSolved }) => {
-  const { fetchChallenge, createSolution } = useRequestsAndAuth();
-  const [challenge, setChallenge] = useState<ChallengeType>();
-  const challengeContentRef = useHighlightJs<HTMLDivElement>();
-  const [attemptCount, setAttemptCount] = useState(0);
-  const [isWaitingForSolutionResponse, setIsWaitingForSolutionResponse] = useState(false);
-  const [fubar, setError] = useState<Error>();
+  const { fetchChallenge, createSolution } = useRequestsAndAuth()
+  const [challenge, setChallenge] = useState<ChallengeType>()
+  const challengeContentRef = useHighlightJs<HTMLDivElement>()
+  const [attemptCount, setAttemptCount] = useState(0)
+  const [isWaitingForSolutionResponse, setIsWaitingForSolutionResponse] = useState(false)
+  const [fubar, setError] = useState<Error>()
 
   useEffect(() => {
     fetchChallenge(doorNumber)
       .then((response) => {
-        setError(undefined);
-        setChallenge(response.data);
+        setError(undefined)
+        setChallenge(response.data)
       })
       .catch((e) => setError(e))
   }, [fetchChallenge, doorNumber])
 
   const submitAnswer = (answer: string) => {
-    if (isNil(doorNumber)) return;
+    if (isNil(doorNumber)) return
 
-    setIsWaitingForSolutionResponse(true);
+    setIsWaitingForSolutionResponse(true)
 
     // TODO: Handle rate limiting
     createSolution(doorNumber, answer)
       .then((response) => {
-        setIsWaitingForSolutionResponse(false);
+        setIsWaitingForSolutionResponse(false)
         setIsDoorSolved(response.data.solved)
         setAttemptCount((count) => count + 1)
       })
@@ -49,7 +50,7 @@ const Challenge: FC<ChallengeProps> = ({ doorNumber, isDoorSolved, setIsDoorSolv
     return <><h1>Ooops...</h1><pre>{fubar.message}</pre></>
   }
 
-  if (!challenge) return null;
+  if (!challenge) return null
 
   return (
     <>
@@ -70,7 +71,7 @@ const Challenge: FC<ChallengeProps> = ({ doorNumber, isDoorSolved, setIsDoorSolv
         onSubmit={submitAnswer}
       />
     </>
-  );
+  )
 }
 
-export default Challenge;
+export default Challenge

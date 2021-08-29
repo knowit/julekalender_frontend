@@ -1,22 +1,23 @@
-import { useEffect, useRef } from "react";
-import hljs from 'highlight.js';
+import { useEffect, useRef } from "react"
+import hljs from "highlight.js"
+import { forEach } from "lodash"
 
 
 // Sets syntax highlighting on all pre-blocks contained within the element given
 // by the returned ref. Must be given a HTMLElement-subtype matching that of the
 // elment you are attaching the ref to.
 const useHighlightJs = <T extends HTMLElement>() => {
-  const hlRef = useRef<T>(null);
+  const hlRef = useRef<T>(null)
 
   useEffect(() => {
-    if (!hlRef.current) return;
+    if (!hlRef.current) return
 
-    hlRef.current.querySelectorAll<HTMLElement>('pre > code').forEach((block) => {
-      hljs.highlightBlock(block);
-    });
-  });
+    forEach(hlRef.current.querySelectorAll<HTMLElement>("pre > code"), (block) => {
+      hljs.highlightBlock(block)
+    })
+  })
 
-  return hlRef;
-};
+  return hlRef
+}
 
-export default useHighlightJs;
+export default useHighlightJs

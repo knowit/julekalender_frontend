@@ -1,5 +1,4 @@
 import { defineConfig } from "vite"
-
 import reactRefresh from "@vitejs/plugin-react-refresh"
 import svgr from "@svgr/rollup"
 import builtins from "rollup-plugin-node-builtins"
@@ -7,7 +6,7 @@ import builtins from "rollup-plugin-node-builtins"
 
 const builtinsPlugin = {
   ...builtins({ crypto: true }),
-  name: 'rollup-plugin-node-builtins'
+  name: "rollup-plugin-node-builtins"
 }
 
 export default defineConfig({
@@ -18,7 +17,7 @@ export default defineConfig({
   plugins: [
     reactRefresh(),
     svgr({ memo: true }),
-    builtinsPlugin,
+    builtinsPlugin
   ],
   resolve: {
     alias: {
@@ -26,6 +25,6 @@ export default defineConfig({
     }
   },
   esbuild: {
-    jsxInject: `import React from 'react'`
-  },
+    jsxInject: "import React from \"react\""
+  }
 })

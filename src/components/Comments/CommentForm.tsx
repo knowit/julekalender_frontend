@@ -1,36 +1,37 @@
-import { Dispatch, FC, SetStateAction, useCallback, useRef } from 'react';
-import TextareaAutosize from 'react-autosize-textarea/lib';
+import { Dispatch, FC, SetStateAction, useCallback, useRef } from "react"
+import TextareaAutosize from "react-autosize-textarea/lib"
 
-import useRequestsAndAuth from '../../hooks/useRequestsAndAuth';
-import { ParentComment } from '../../api/Comment';
-import useBoolean from '../../hooks/useBoolean';
+import useRequestsAndAuth from "../../hooks/useRequestsAndAuth"
+import { ParentComment } from "../../api/Comment"
+import useBoolean from "../../hooks/useBoolean"
+
 
 type CommentFormProps = {
-  doorNumber: string;
-  setComments: Dispatch<SetStateAction<ParentComment[]>>;
-  hideCommentForm: () => void;
-};
+  doorNumber: string
+  setComments: Dispatch<SetStateAction<ParentComment[]>>
+  hideCommentForm: () => void
+}
 
 const CommentForm: FC<CommentFormProps> = ({ doorNumber, setComments, hideCommentForm }) => {
-  const { isAuthenticated, isAdmin, createComment } = useRequestsAndAuth();
-  const textareaRef = useRef<HTMLTextAreaElement>(null);
-  const [submitting, setSubmitting, setNotSubmitting] = useBoolean(false);
+  const { isAuthenticated, isAdmin, createComment } = useRequestsAndAuth()
+  const textareaRef = useRef<HTMLTextAreaElement>(null)
+  const [submitting, setSubmitting, setNotSubmitting] = useBoolean(false)
 
   const postComment = useCallback(() => {
-    if (!textareaRef.current) return;
+    if (!textareaRef.current) return
 
-    setSubmitting();
+    setSubmitting()
     createComment(doorNumber, textareaRef.current.value)
       .then((response) => {
-        setComments((comments) => [...comments, response.data]);
-        setNotSubmitting();
-        hideCommentForm();
+        setComments((comments) => [...comments, response.data])
+        setNotSubmitting()
+        hideCommentForm()
       })
-      .catch((e) => setNotSubmitting())
-  }, [setSubmitting, createComment, doorNumber, setComments, setNotSubmitting, hideCommentForm]);
+      .catch(() => setNotSubmitting())
+  }, [setSubmitting, createComment, doorNumber, setComments, setNotSubmitting, hideCommentForm])
 
   // Prevent admins from accidentially submitting comments without being logged in.
-  if (isAdmin && !isAuthenticated) return null;
+  if (isAdmin && !isAuthenticated) return null
 
   return (
     <div className="bg-gray-100 rounded-md my-8 px-4 pt-4 pb-2 flex flex-col items-end">
@@ -51,4 +52,4 @@ const CommentForm: FC<CommentFormProps> = ({ doorNumber, setComments, hideCommen
 }
 
 
-export default CommentForm;
+export default CommentForm

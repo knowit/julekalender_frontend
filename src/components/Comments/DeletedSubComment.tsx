@@ -1,20 +1,21 @@
-import { FC } from 'react';
-import { Comment } from '../../api/Comment';
-import { getTimeStamp } from '../../utils';
+import { FC } from "react"
+
+import { Comment } from "../../api/Comment"
+import { getTimeStamp } from "../../utils"
 
 
-interface DeletedSubCommentProps {
-  comment: Comment;
+type DeletedSubCommentProps = {
+  comment: Comment
 }
 
 const DeletedSubComment: FC<DeletedSubCommentProps> = ({ comment }) => {
-  const timestamp = getTimeStamp(comment.created_at);
+  const timestamp = getTimeStamp(comment.created_at)
 
   return (
-    <div className='flex p-2 mb-4 bg-gray-200 rounded-sm'>
-      <div className='w-11/12 mx-auto'>
+    <div className="flex p-2 mb-4 bg-gray-200 rounded-sm">
+      <div className="w-11/12 mx-auto">
         <header>
-          <time className='float-right'>{timestamp}</time>
+          <time className="float-right">{timestamp}</time>
         </header>
         <div className="my-2 text-gray-600 font-light text-center">
           <em>Slettet innlegg</em>
@@ -24,4 +25,4 @@ const DeletedSubComment: FC<DeletedSubCommentProps> = ({ comment }) => {
   )
 }
 
-export default DeletedSubComment;
+export default DeletedSubComment

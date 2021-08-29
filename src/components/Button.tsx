@@ -1,12 +1,13 @@
-import { ButtonHTMLAttributes, DetailedHTMLProps, FC } from 'react';
+import { ButtonHTMLAttributes, DetailedHTMLProps, FC } from "react"
+import clsx from "clsx"
 
 
-interface ButtonProps extends DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {
-  underline?: boolean;
-};
+type ButtonProps = {
+  underline?: boolean
+} & DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>
 
-const Button: FC<ButtonProps> = ({ underline = true, className, children, ...restProps}) => (
-  <button className={`${underline && 'hover:underline'} uppercase tracking-wider ${className}`} {...restProps}>{children}</button>
-);
+const Button: FC<ButtonProps> = ({ underline = true, className, children, ...restProps }) => (
+  <button className={clsx(underline && "hover:underline", "uppercase tracking-wider", className)} {...restProps}>{children}</button>
+)
 
-export default Button;
+export default Button

@@ -1,0 +1,133 @@
+root: true
+
+plugins:
+  - react
+  - react-hooks
+  - lodash
+  - import
+
+parser: "@typescript-eslint/parser"
+
+settings:
+  react:
+    version: detect
+
+ignorePatterns:
+  - /node_modules
+  - /dist
+  - "*.config.js"
+  - "*.config.cjs"
+  - "*.config.ts"
+
+extends:
+  - plugin:react/recommended
+  - plugin:react/jsx-runtime
+  - plugin:react-hooks/recommended
+  - plugin:lodash/recommended
+  - plugin:import/warnings
+  - plugin:@typescript-eslint/recommended
+  - eslint:recommended
+
+env:
+  browser: true
+  es2020: true
+  node: true
+
+parserOptions:
+  sourceType: module
+
+rules:
+  # General style
+  no-trailing-spaces:
+    - warn
+  quotes:
+    - warn
+    - double
+  jsx-quotes:
+    - warn
+    - prefer-double
+  prefer-arrow-callback:
+    - warn
+  object-curly-spacing:
+    - warn
+    - always
+  array-bracket-spacing:
+    - warn
+    - never
+  keyword-spacing:
+    - warn
+  func-call-spacing:
+    - warn
+  space-before-blocks:
+    - warn
+  arrow-spacing:
+    - warn
+  arrow-parens:
+    - warn
+  arrow-body-style:
+    - warn
+    - as-needed
+  import/order:
+    - warn
+    - newlines-between: always
+  import/newline-after-import:
+    - warn
+    - count: 2
+
+  # TypeScript
+  "@typescript-eslint/consistent-type-definitions":
+    - error
+    - type
+  "@typescript-eslint/explicit-module-boundary-types":
+    - off
+  semi:
+    - off
+  "@typescript-eslint/semi":
+    - warn
+    - never
+  indent:
+    - off
+  "@typescript-eslint/indent":
+    - warn
+    - 2
+  "@typescript-eslint/member-delimiter-style":
+    - warn
+    - multiline:
+        delimiter: none
+      singleline:
+        delimiter: comma
+  comma-spacing:
+    - off
+  "@typescript-eslint/comma-spacing":
+    - warn
+  comma-dangle:
+    - off
+  "@typescript-eslint/comma-dangle":
+    - warn
+    - never
+  no-unused-vars:
+    - off
+  "@typescript-eslint/no-unused-vars":
+    - warn
+    - argsIgnorePattern: "^_"
+
+  # React
+  react/function-component-definition:
+    - warn
+    - namedComponents: arrow-function
+      unnamedComponents: arrow-function
+
+  # Lodash
+  lodash/import-scope:
+    - warn
+    - member
+  lodash/prefer-noop:
+    - warn
+  lodash/prefer-includes:
+    - warn
+  lodash/prefer-constant:
+    - warn
+  lodash/prefer-lodash-typecheck:
+    - warn
+  lodash/prefer-some:
+    - warn

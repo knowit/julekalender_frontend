@@ -1,9 +1,12 @@
-import { ReactComponent as Border } from '../svg/mistletoeborder.svg'
+import { FC } from "react"
 
-const DoorBorder = () => (
-  <div className='-mb-20 overflow-hidden flex justify-center'>
-    <Border className='w-kodekalender flex-shrink-0' />
+import { ReactComponent as Border } from "../svg/mistletoeborder.svg"
+
+
+const DoorBorder: FC = () => (
+  <div className="-mb-20 overflow-hidden flex justify-center">
+    <Border className="w-kodekalender flex-shrink-0" />
   </div>
 )
 
-export default DoorBorder;
+export default DoorBorder

@@ -1,15 +1,9 @@
-import { padStart } from "lodash";
+import { format } from "date-fns"
+import { padStart } from "lodash"
 
-export const getTimeStamp = (dateString: string) => {
-    const date = new Date(dateString);
-    const day = String(date.getDate()).padStart(2, '0')
-    const month = String(date.getMonth()+1).padStart(2, '0')
-    const hrs = String(date.getHours()).padStart(2, '0')
-    const mins = String(date.getMinutes()).padStart(2, '0')
 
-    return `${day}.${month} kl ${hrs}:${mins}`
-};
+export const getTimeStamp = (dateString: string) => format(new Date(dateString), "dd.MM 'kl' HH:mm")
 
 export const beforeDoorDate2020 = (door: number | string) => (
-  new Date() < new Date(Date.parse(`2020-12-${padStart(door.toString(), 2, '0')}T04:00`))
-);
+  new Date() < new Date(Date.parse(`2020-12-${padStart(door.toString(), 2, "0")}T04:00`))
+)

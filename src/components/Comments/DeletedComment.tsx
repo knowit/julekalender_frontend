@@ -1,29 +1,29 @@
-import { FC, useCallback, useState } from 'react';
+import { FC, useCallback, useState } from "react"
 
-import ParentComment from '../../api/Comment';
-import Like from '../../api/Like';
-import { getTimeStamp } from '../../utils';
-import { Comment } from '../../api/Comment';
-import SubCommentForm from './SubCommentForm';
-import ToggleSubCommentsButton from './ToggleSubCommentsButton';
-import SubCommentsSection from './SubCommentsSection';
+import ParentComment, { Comment } from "../../api/Comment"
+import Like from "../../api/Like"
+import { getTimeStamp } from "../../utils"
+
+import SubCommentForm from "./SubCommentForm"
+import ToggleSubCommentsButton from "./ToggleSubCommentsButton"
+import SubCommentsSection from "./SubCommentsSection"
 
 
-interface CommentProps {
-  comment: ParentComment;
-  myLikes: Like[];
-  doorNumber: string;
-  deleteComment: (comment: Comment, confirm: string) => void;
-  refreshParentComment: () => void;
-};
+type CommentProps = {
+  comment: ParentComment
+  myLikes: Like[]
+  doorNumber: string
+  deleteComment: (comment: Comment, confirm: string) => void
+  refreshParentComment: () => void
+}
 
 const TopComment: FC<CommentProps> = ({ comment, myLikes, doorNumber, deleteComment, refreshParentComment }) => {
   const [showSubCommentForm, setShowSubcommentForm] = useState<boolean>(false)
   const [showSubComments, setShowSubComments] = useState<boolean>(true)
 
-  const timestamp = getTimeStamp(comment.created_at);
+  const timestamp = getTimeStamp(comment.created_at)
 
-  const toggleShowSubComments = useCallback(() => setShowSubComments((state) => !state), [setShowSubComments]);
+  const toggleShowSubComments = useCallback(() => setShowSubComments((state) => !state), [setShowSubComments])
 
   return (
     <article className="flex rounded-md bg-gray-100 p-2 sm:p-4 mb-4">

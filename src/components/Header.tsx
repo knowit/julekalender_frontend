@@ -9,11 +9,10 @@ import Button from "./Button"
 
 
 type HeaderProps = {
-  isLeaderboardHiding: boolean
   setLeaderboardHidden: (state: boolean) => void
 }
 
-const Header: FC<HeaderProps> = ({ isLeaderboardHiding, setLeaderboardHidden }) => {
+const Header: FC<HeaderProps> = ({ setLeaderboardHidden }) => {
   const { isAdmin, setIsAdmin, isLocalhost } = useRequestsAndAuth()
 
   return (
@@ -30,7 +29,7 @@ const Header: FC<HeaderProps> = ({ isLeaderboardHiding, setLeaderboardHidden }) 
             </Link>
           </>}
           { isLocalhost && <Button onClick={() => setIsAdmin(!isAdmin)}>Toggle admin</Button>}
-          <Button onClick={() => !isLeaderboardHiding && setLeaderboardHidden(false)} tabIndex={2}>Ledertavle</Button>
+          <Button onClick={() => setLeaderboardHidden(false)} tabIndex={2}>Ledertavle</Button>
           <LoginButton />
         </div>
       </nav>

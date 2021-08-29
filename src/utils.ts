@@ -1,5 +1,5 @@
 import { format } from "date-fns"
-import { padStart } from "lodash"
+import { find, isEmpty, memoize, padStart } from "lodash"
 
 
 export const getTimeStamp = (dateString: string) => format(new Date(dateString), "dd.MM 'kl' HH:mm")
@@ -7,3 +7,70 @@ export const getTimeStamp = (dateString: string) => format(new Date(dateString),
 export const beforeDoorDate2020 = (door: number | string) => (
   new Date() < new Date(Date.parse(`2020-12-${padStart(door.toString(), 2, "0")}T04:00`))
 )
+
+
+const TENS = [
+  [90, "nitti"],
+  [80, "åtti"],
+  [70, "sytti"],
+  [60, "seksti"],
+  [50, "femti"],
+  [40, "førti"],
+  [30, "tretti"],
+  [20, "tjue"]
+] as const
+const lowNumbers = memoize((neutral: boolean) => [
+  "null", neutral ? "ett" : "én", "to", "tre", "fire", "fem", "seks", "syv", "åtte", "ni",
+  "ti", "elleve", "tolv", "tretten", "fjorten", "femten", "seksten", "sytten", "atten", "nitten"
+])
+
+// Generates a nice-ish Norwegian number string from given number `n`.
+// Is it ugly? Yes. Is it strictly needed? Probably not. Can you do better? Submit a pull request :)
+export const numberString = (n: number, neutral = false): string => {
+  let str = ""
+  let and = false
+
+  if (n < 0) {
+    str = "minus"
+    n = -n
+  }
+
+  do {
+    // 1000 <= n < 1100, 1300 <= n
+    // Tusen og x, elleve hundre og x, ett tusen tre hundre og x, to tusen ...
+    if (n >= 1300 || (n >= 1000 && n < 1100)) {
+      const thousands = Math.floor(n / 1000)
+      const s = n > 1100 ? `${numberString(thousands, true)} tusen` : "tusen"
+      str += isEmpty(str) ? s : ` ${s}`
+      n -= thousands * 1000
+      and = true
+      continue
+    }
+
+    // 100 <= n < 1000, 1100 <= n < 1300
+    // Hundre og x, tolv hundre og x
+    if (n >= 100) {
+      const hundreds = Math.floor(n / 100)
+      const s = hundreds >= 2 ? `${numberString(hundreds, true)} hundre` : "hundre"
+      str += isEmpty(str) ? s : ` ${s}`
+      n -= hundreds * 100
+      and = true
+      continue
+    }
+
+    // 20 <= n < 100
+    const [limit, ten] = find(TENS, ([limit]) => n >= limit) ?? []
+    if (limit && ten) {
+      str += isEmpty(str) ||!and ? ten: ` og ${ten}`
+      n -= limit
+      and = false
+      continue
+    }
+
+    // n < 20
+    const low = lowNumbers(neutral)[n]
+    if (low) return str + (isEmpty(str) || !and ? low : `${str} og ${low}`)
+  } while (n > 0)
+
+  return str
+}

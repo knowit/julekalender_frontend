@@ -35,6 +35,8 @@ env:
 
 parserOptions:
   sourceType: module
+  project:
+    - tsconfig.json
 
 rules:
   # General style
@@ -67,6 +69,9 @@ rules:
   arrow-body-style:
     - warn
     - as-needed
+  no-constant-condition:
+    - warn
+    - checkLoops: false
   import/order:
     - warn
     - newlines-between: always
@@ -90,6 +95,7 @@ rules:
   "@typescript-eslint/indent":
     - warn
     - 2
+    - SwitchCase: 0
   "@typescript-eslint/member-delimiter-style":
     - warn
     - multiline:
@@ -110,6 +116,9 @@ rules:
   "@typescript-eslint/no-unused-vars":
     - warn
     - argsIgnorePattern: "^_"
+  "@typescript-eslint/no-unnecessary-condition":
+    - warn
+    - allowConstantLoopConditions: true
 
   # React
   react/function-component-definition:

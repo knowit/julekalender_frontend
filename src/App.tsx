@@ -16,7 +16,6 @@ import useRequestsAndAuth from "./hooks/useRequestsAndAuth"
 const App = () => {
   const { isAdmin } = useRequestsAndAuth()
   const [leaderboardHidden, setLeaderboardHidden] = useState(true)
-  const [isLeaderboardHiding, setIsLeaderboardHiding] = useState(false)
   const [backgroundPaused, setBackgroundPaused] = useState<boolean>(localStorage.getItem("bgPaused") === "true")
 
   // Match door 1-24 only
@@ -26,7 +25,7 @@ const App = () => {
     <StarBackground paused={backgroundPaused} />
     <div className="text-gray-200">
       <div className="pb-16">
-        <Header isLeaderboardHiding={isLeaderboardHiding} setLeaderboardHidden={setLeaderboardHidden} />
+        <Header setLeaderboardHidden={setLeaderboardHidden} />
         <Switch>
           <Route exact path="/" component={Doors} />
           <Route path={isAdmin ? "/luke/:doorNumber" : doorPaths} component={Door} />
@@ -41,7 +40,6 @@ const App = () => {
       </div>
       <LeaderBoard
         hidden={leaderboardHidden}
-        setIsLeaderboardHiding={setIsLeaderboardHiding}
         closeHandler={() => setLeaderboardHidden(true)}
       />
     </div>

@@ -26,5 +26,8 @@ export default defineConfig({
   },
   esbuild: {
     jsxInject: "import React from \"react\""
+  },
+  build: {
+    chunkSizeWarningLimit: 4096
   }
 })

@@ -19,8 +19,8 @@ const TENS = [
   [30, "tretti"],
   [20, "tjue"]
 ] as const
-const lowNumbers = memoize((neutral: boolean) => [
-  "null", neutral ? "ett" : "én", "to", "tre", "fire", "fem", "seks", "syv", "åtte", "ni",
+const lowNumbers = memoize((neutral: boolean, stringEmpty: boolean) => [
+  "null", neutral && stringEmpty ? "ett" : "en", "to", "tre", "fire", "fem", "seks", "syv", "åtte", "ni",
   "ti", "elleve", "tolv", "tretten", "fjorten", "femten", "seksten", "sytten", "atten", "nitten"
 ])
 
@@ -68,7 +68,7 @@ export const numberString = (n: number, neutral = false): string => {
     }
 
     // n < 20
-    const low = lowNumbers(neutral)[n]
+    const low = lowNumbers(neutral, isEmpty(str))[n]
     if (low) return str + (isEmpty(str) || !and ? low : `${str} og ${low}`)
   } while (n > 0)
 

@@ -10,10 +10,10 @@ module.exports = {
         "lightbulb-green": "rgb(108, 171, 133)",
         "lightbulb-dim": "rgba(224, 185, 88, 0.5)",
         "lightbulb-yellow": "rgb(224, 185, 88)",
-        "leaderboard-green": "rgba(37, 86, 80, 1)"
+        "leaderboard-green": "rgb(37, 86, 80)",
+        "background-green": "rgb(18, 38, 32)"
       },
       maxWidth: {
-        // TODO: Should be a wrappercomponent of some sort instead.
         "kodekalender": "80rem"
       },
       width: {

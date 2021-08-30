@@ -5,11 +5,12 @@ import clsx from "clsx"
 type LightParams = {
   nr: number
   solved: boolean
+  className?: string
 }
 
-const Light: FC<LightParams> = ({ nr, solved }) => (
+const Light: FC<LightParams> = ({ nr, solved, className }) => (
   <svg
-    className={"w-20 lg:w-28 float-right mr-8 mt-10 lg:mt-12 absolute right-0 top-0"}
+    className={className}
     xmlns="http://www.w3.org/2000/svg"
     x="0"
     y="0"

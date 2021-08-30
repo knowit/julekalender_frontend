@@ -24,9 +24,15 @@ const App = () => {
 
   return (<>
     <StarBackground paused={backgroundPaused} />
-    <div className="text-gray-200">
-      <div className="pb-16">
+    <LeaderBoardAside
+      hidden={leaderboardHidden}
+      closeHandler={() => setLeaderboardHidden(true)}
+    />
+
+    <div className="space-y-16">
+      <div className="space-y-10">
         <Header setLeaderboardHidden={setLeaderboardHidden} />
+
         <Switch>
           <Route exact path="/" component={Doors} />
           <Route path={isAdmin ? "/luke/:doorNumber" : doorPaths} component={Door} />
@@ -40,12 +46,9 @@ const App = () => {
           </Route>
         </Switch>
       </div>
-      <LeaderBoardAside
-        hidden={leaderboardHidden}
-        closeHandler={() => setLeaderboardHidden(true)}
-      />
+
+      <AnimationToggle backgroundPaused={backgroundPaused} setBackgroundPaused={setBackgroundPaused} />
     </div>
-    <AnimationToggle backgroundPaused={backgroundPaused} setBackgroundPaused={setBackgroundPaused} />
   </>)
 }
 

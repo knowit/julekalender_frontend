@@ -1,7 +1,6 @@
 import { map } from "lodash"
 
-import BackToDoorsButton from "../components/BackToDoorsButton"
-import DoorBorder from "../components/Door/DoorBorder"
+import Page from "./Page"
 
 
 const GdprSection = ({ no, header, content }: { no: number, header: string, content: string }) => (
@@ -56,9 +55,7 @@ const Gdpr = () => {
   ]
 
   return (
-    <main className="max-w-kodekalender mx-auto mt-10">
-      <BackToDoorsButton />
-      <DoorBorder />
+    <Page>
       <div className="py-12 px-8 md:px-12 mx-4 md:mx-8 bg-gray-100 text-gray-700 rounded-md">
         <h1 className="text-2xl">Personvernerklæring for Kodekalenderen 2020</h1>
         <h2 className="mt-4 font-medium">
@@ -78,7 +75,7 @@ const Gdpr = () => {
             sletting kan sendes til <a href="mailto:julekalender@knowit.no">julekalender@knowit.no</a>
         </div>
       </div>
-    </main>
+    </Page>
   )
 }
 

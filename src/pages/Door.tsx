@@ -4,9 +4,9 @@ import { useParams } from "react-router-dom"
 import Light from "../components/Light"
 import CommentsSection from "../components/Comments/CommentsSection"
 import useRequestsAndAuth from "../hooks/useRequestsAndAuth"
-import DoorBorder from "../components/Door/DoorBorder"
-import BackToDoorsButton from "../components/BackToDoorsButton"
 import Challenge from "../components/Door/Challenge"
+
+import Page from "./Page"
 
 
 const Door: FC = () => {
@@ -28,19 +28,19 @@ const Door: FC = () => {
   }
 
   return (
-    <main className="max-w-kodekalender mx-auto mt-10 relative text-gray-700">
-      <BackToDoorsButton />
-      <Light nr={parseInt(doorNumber)} solved={isDoorSolved} />
-      <DoorBorder />
-      <div className="py-8 px-8 md:px-12 mx-4 md:mx-8 bg-gray-100 rounded-md">
-        <Challenge
-          doorNumber={doorNumber}
-          isDoorSolved={isDoorSolved}
-          setIsDoorSolved={setIsDoorSolved}
-        />
-      </div>
+    <Page className="relative">
+      <Light
+        nr={parseInt(doorNumber)}
+        solved={isDoorSolved}
+        className="w-20 lg:w-28 float-right mr-8 mt-10 lg:mt-12 absolute right-0 top-0"
+      />
+      <Challenge
+        doorNumber={doorNumber}
+        isDoorSolved={isDoorSolved}
+        setIsDoorSolved={setIsDoorSolved}
+      />
       {isAuthenticated && isDoorSolved && <CommentsSection doorNumber={doorNumber} />}
-    </main>
+    </Page>
   )
 }
 

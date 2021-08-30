@@ -4,11 +4,10 @@
 
 @layer base {
   html, body {
-    height: 100vh;
-    overflow: auto;
+    @apply h-screen overflow-auto;
   }
 
   body {
-      background-color: rgba(18, 38, 32, 1);
+    @apply bg-background-green text-gray-200;
   }
 }

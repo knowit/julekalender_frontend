@@ -48,7 +48,7 @@ const TopComment: FC<CommentProps> = ({ comment, myLikes, doorNumber, refreshCom
   }
 
   return (
-    <article className="flex rounded-md bg-gray-100 p-2 sm:p-4 mb-4">
+    <article className="flex rounded-md bg-gray-100 text-gray-700 p-2 sm:p-4 mb-4">
       <div className="w-1/12">
         <img className="rounded-full w-full flex items-center justify-center" src={comment.author.picture} alt="User avatar" />
       </div>

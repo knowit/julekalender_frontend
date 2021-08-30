@@ -34,7 +34,7 @@ const CommentForm: FC<CommentFormProps> = ({ doorNumber, setComments, hideCommen
   if (isAdmin && !isAuthenticated) return null
 
   return (
-    <div className="bg-gray-100 rounded-md my-8 px-4 pt-4 pb-2 flex flex-col items-end">
+    <div className="bg-gray-100 text-gray-700 rounded-md my-8 px-4 pt-4 pb-2 flex flex-col items-end">
       <TextareaAutosize
         className="block w-full h-16 p-0 border-0 bg-transparent border-b-2 border-gray-700"
         ref={textareaRef}

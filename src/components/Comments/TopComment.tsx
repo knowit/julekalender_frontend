@@ -27,7 +27,7 @@ const TopComment: FC<CommentProps> = ({ comment, myLikes, doorNumber, refreshCom
   // const { deleteComment: deleteCommentRequest } = useRequestsAndAuth();
   const [showSubCommentForm, setShowSubcommentForm] = useState<boolean>(false)
   const [showSubComments, setShowSubComments] = useState<boolean>(true)
-  const commentContentRef = useHighlightJs<HTMLDivElement>()
+  const highlightRef = useHighlightJs<HTMLDivElement>()
 
   const isOwnPost = useOwnComment(comment)
   const timestamp = getTimeStamp(comment.created_at)
@@ -60,7 +60,7 @@ const TopComment: FC<CommentProps> = ({ comment, myLikes, doorNumber, refreshCom
         </header>
         <div
           className="prose prose-sm md:prose max-w-none md:max-w-none mt-2 break-words my-4 md:my-8"
-          ref={commentContentRef}
+          ref={highlightRef}
           dangerouslySetInnerHTML={{ __html: comment.content }}
         />
         <footer className="grid grid-cols-2 justify-items-stretch mt-4">

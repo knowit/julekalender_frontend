@@ -7,6 +7,18 @@
     @apply h-screen overflow-auto;
   }
 
+  code, pre > code {
+    @apply tracking-tight md:tracking-normal;
+  }
+
+  code {
+    @apply shadow-md rounded-sm py-0.5 px-1;
+
+    &:before, &:after {
+      content: none !important;
+    }
+  }
+
   body {
     @apply bg-background-green text-gray-200;
   }

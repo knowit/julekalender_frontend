@@ -2,7 +2,6 @@ import { FC, useCallback } from "react"
 
 import { Comment } from "../../api/Comment"
 import Like from "../../api/Like"
-import useHighlightJs from "../../hooks/useHighlightJs"
 import useOwnComment from "../../hooks/useOwnComment"
 import { getTimeStamp } from "../../utils"
 import Button from "../Button"
@@ -18,7 +17,6 @@ type SubCommentProps = {
 }
 
 const SubComment: FC<SubCommentProps> = ({ comment, myLikes, deleteComment }) => {
-  const commentContentRef = useHighlightJs<HTMLDivElement>()
   const isOwnPost = useOwnComment(comment)
   const timestamp = getTimeStamp(comment.created_at)
 
@@ -41,7 +39,7 @@ const SubComment: FC<SubCommentProps> = ({ comment, myLikes, deleteComment }) =>
           <time className="float-right">{timestamp}</time>
           {isOwnPost && <Button className="float-right font-semibold" underline={false} onClick={deleteSubCommentOnClick}>Slett innlegg</Button>}
         </header>
-        <div className="prose prose-sm md:prose max-w-none md:max-w-none mt-2 break-words" ref={commentContentRef} dangerouslySetInnerHTML={{ __html: comment.content }} />
+        <div className="prose prose-sm md:prose max-w-none md:max-w-none mt-2 break-words" dangerouslySetInnerHTML={{ __html: comment.content }} />
         <footer>
           <div className="mb-2">
             <LikeButton comment={comment} myLikes={myLikes} />

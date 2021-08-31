@@ -1,7 +1,6 @@
 import { FC, ReactNode, useEffect, useState } from "react"
 import { isNil } from "lodash"
 
-import useHighlightJs from "../../hooks/useHighlightJs"
 import useRequestsAndAuth from "../../hooks/useRequestsAndAuth"
 import { Challenge as ChallengeType } from "../../api/Challenge"
 
@@ -18,7 +17,6 @@ type ChallengeProps = {
 const Challenge: FC<ChallengeProps> = ({ doorNumber, isDoorSolved, setIsDoorSolved, preamble }) => {
   const { fetchChallenge, createSolution } = useRequestsAndAuth()
   const [challenge, setChallenge] = useState<ChallengeType>()
-  const challengeContentRef = useHighlightJs<HTMLDivElement>()
   const [attemptCount, setAttemptCount] = useState(0)
   const [isWaitingForSolutionResponse, setIsWaitingForSolutionResponse] = useState(false)
   const [fubar, setError] = useState<Error>()
@@ -63,7 +61,6 @@ const Challenge: FC<ChallengeProps> = ({ doorNumber, isDoorSolved, setIsDoorSolv
         </div>
         <div
           className="mx-auto prose prose-sm md:prose max-w-none md:max-w-none break-words"
-          ref={challengeContentRef}
           dangerouslySetInnerHTML={{ __html: challenge.content }}
         />
       </div>

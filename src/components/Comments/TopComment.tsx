@@ -3,7 +3,6 @@ import { FC, useCallback, useState } from "react"
 import ParentComment, { Comment } from "../../api/Comment"
 import Like from "../../api/Like"
 import { getTimeStamp } from "../../utils"
-import useHighlightJs from "../../hooks/useHighlightJs"
 import Button from "../Button"
 import useOwnComment from "../../hooks/useOwnComment"
 
@@ -27,7 +26,6 @@ const TopComment: FC<CommentProps> = ({ comment, myLikes, doorNumber, refreshCom
   // const { deleteComment: deleteCommentRequest } = useRequestsAndAuth();
   const [showSubCommentForm, setShowSubcommentForm] = useState<boolean>(false)
   const [showSubComments, setShowSubComments] = useState<boolean>(true)
-  const highlightRef = useHighlightJs<HTMLDivElement>()
 
   const isOwnPost = useOwnComment(comment)
   const timestamp = getTimeStamp(comment.created_at)
@@ -60,7 +58,6 @@ const TopComment: FC<CommentProps> = ({ comment, myLikes, doorNumber, refreshCom
         </header>
         <div
           className="prose prose-sm md:prose max-w-none md:max-w-none mt-2 break-words my-4 md:my-8"
-          ref={highlightRef}
           dangerouslySetInnerHTML={{ __html: comment.content }}
         />
         <footer className="grid grid-cols-2 justify-items-stretch mt-4">

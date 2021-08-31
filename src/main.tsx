@@ -1,10 +1,12 @@
 import { createRoot } from "react-dom"
 import { BrowserRouter } from "react-router-dom"
 import { Auth0Provider } from "@auth0/auth0-react"
-import "highlight.js/styles/gruvbox-dark.css"
 
 import App from "./App"
 import RequestsContext from "./RequestsContext"
+
+import "../assets/css/base.scss"
+import "../assets/css/syntax_highlight.css"
 
 
 const Index = () => (

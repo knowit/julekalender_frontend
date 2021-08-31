@@ -8,6 +8,10 @@ export const beforeDoorDate2020 = (door: number | string) => (
   new Date() < new Date(Date.parse(`2020-12-${padStart(door.toString(), 2, "0")}T04:00`))
 )
 
+// Easing helpers (https://easings.net)
+export const easeOutCubic = [.33, 1, .68, 1]
+export const easeInOutCubic = [.65, 0, .35, 1]
+
 
 const TENS = [
   [90, "nitti"],

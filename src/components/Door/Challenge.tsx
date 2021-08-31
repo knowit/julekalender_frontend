@@ -63,14 +63,16 @@ const Challenge: FC<ChallengeProps> = ({ doorNumber, isDoorSolved, setIsDoorSolv
           className="mx-auto prose prose-sm md:prose max-w-none md:max-w-none break-words"
           dangerouslySetInnerHTML={{ __html: challenge.content }}
         />
+        <div className="w-56 py-3 px-6 mx-auto">
+          <Input
+            doorNumber={doorNumber}
+            isDoorSolved={isDoorSolved}
+            isFirstSubmit={attemptCount === 0}
+            isWaitingForSolutionResponse={isWaitingForSolutionResponse}
+            onSubmit={submitAnswer}
+          />
+        </div>
       </div>
-      <Input
-        doorNumber={doorNumber}
-        isDoorSolved={isDoorSolved}
-        isFirstSubmit={attemptCount === 0}
-        isWaitingForSolutionResponse={isWaitingForSolutionResponse}
-        onSubmit={submitAnswer}
-      />
     </div>
   )
 }

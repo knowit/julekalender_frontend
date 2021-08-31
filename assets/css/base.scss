@@ -7,6 +7,11 @@
     @apply h-screen overflow-auto;
   }
 
+  body {
+    @apply bg-background-green text-gray-200;
+  }
+
+  // Cannot style dynamic inner HTML directly, so must do it here
   code {
     @apply tracking-tight md:tracking-normal;
 
@@ -18,9 +23,5 @@
     :not(pre) > & {
       @apply shadow-md rounded-sm py-0.5 px-1;
     }
-  }
-
-  body {
-    @apply bg-background-green text-gray-200;
   }
 }

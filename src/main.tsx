@@ -6,7 +6,7 @@ import App from "./App"
 import RequestsContext from "./RequestsContext"
 
 import "../assets/css/base.scss"
-import "../assets/css/syntax_highlight.css"
+import "../assets/css/syntax_highlight.scss"
 
 
 const Index = () => (

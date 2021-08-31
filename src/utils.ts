@@ -9,6 +9,7 @@ export const beforeDoorDate2020 = (door: number | string) => (
 )
 
 // Easing helpers (https://easings.net)
+export const easeInCubic = [.32, 0, .67, 0]
 export const easeOutCubic = [.33, 1, .68, 1]
 export const easeInOutCubic = [.65, 0, .35, 1]
 

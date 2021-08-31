@@ -1,7 +1,7 @@
 import { FC } from "react"
 import { motion } from "framer-motion"
 
-import { easeOutCubic } from "../../utils"
+import { easeInCubic, easeOutCubic } from "../../utils"
 
 import Wrapper, { CheckmarkWrapperProps } from "./Wrapper"
 
@@ -30,7 +30,7 @@ export const WrongMark: FC<CheckmarkWrapperProps> = (props) => (
         d="M34.4 37.9L95.8 92.3"
         initial={{ pathLength: 0 }}
         animate={{ pathLength: 1 }}
-        transition={{ duration: 0.2, delay: 0.4 }}
+        transition={{ duration: 0.2, delay: 0.4, ease: easeInCubic }}
       />
       <motion.path
         fill="none"
@@ -40,7 +40,7 @@ export const WrongMark: FC<CheckmarkWrapperProps> = (props) => (
         d="M95.8 38L34.4 92.2"
         initial={{ pathLength: 0 }}
         animate={{ pathLength: 1 }}
-        transition={{ duration: 0.2, delay: 0.2 }}
+        transition={{ duration: 0.2, delay: 0.2, ease: easeInCubic }}
       />
     </svg>
     <p className="text-lg text-center mt-8">Feil svar!</p>

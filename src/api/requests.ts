@@ -9,7 +9,7 @@ import AdminStatus from "./admin"
 import { Whoami } from "./User"
 
 
-const apiUrl = import.meta.env.VITE_BACKEND_HOST ?? "https://julekalender-backend.knowit.no"
+const apiUrl = import.meta.env.VITE_BACKEND_HOST
 const requestHeaders = { "Content-Type": "application/json" }
 const getHeaders = (token: Token) => (
   token ? { ...requestHeaders, "Authorization": token } : requestHeaders

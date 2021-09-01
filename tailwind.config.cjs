@@ -24,13 +24,17 @@ module.exports = {
       },
       keyframes: {
         stars: {
-          to: { transform: "translateY(-100%)" }
+          // The background images are exactly 1000px tall, must use exact
+          // transform to avoid tearing when the animation repeats. Setting 100%
+          // will transform based on the size of the containing element which is
+          // scaled to 200% screen height to always show the background image.
+          to: { transform: "translateY(-1000px)" }
         }
       },
       animation: {
-        "stars-background": "200s linear 0s infinite normal both running stars",
-        "stars-midground": "150s linear 0s infinite normal both running stars",
-        "stars-foreground": "100s linear 0s infinite normal both running stars"
+        "stars-background": "60s linear 0s infinite normal both running stars",
+        "stars-midground":  "40s linear 0s infinite normal both running stars",
+        "stars-foreground": "20s linear 0s infinite normal both running stars"
       },
       backgroundImage: (theme) => ({
         "stars-background": "url('/assets/svg/background.svg')",

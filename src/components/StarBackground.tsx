@@ -18,7 +18,7 @@ const StarBackground  = () => {
     "w-screen",
     "before:absolute",
     "before:inset-0",
-    "before:h-[200%]",
+    "before:h-[calc(100vh*2)]",
     { paused }
   )
 

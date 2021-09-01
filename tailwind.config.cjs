@@ -21,7 +21,22 @@ module.exports = {
       },
       fontSize: {
         "lightbulb": ["4.125rem", { lineHeight: "1" }]
-      }
+      },
+      keyframes: {
+        stars: {
+          to: { transform: "translateY(-100%)" }
+        }
+      },
+      animation: {
+        "stars-background": "200s linear 0s infinite normal both running stars",
+        "stars-midground": "150s linear 0s infinite normal both running stars",
+        "stars-foreground": "100s linear 0s infinite normal both running stars"
+      },
+      backgroundImage: (theme) => ({
+        "stars-background": "url('/assets/svg/background.svg')",
+        "stars-midground": "url('/assets/svg/midground.svg')",
+        "stars-foreground": "url('/assets/svg/foreground.svg')"
+      })
     }
   },
   variants: {

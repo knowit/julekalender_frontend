@@ -27,7 +27,7 @@ const StarBackground  = () => {
       className={clsx(
         animationClasses,
         "before:bg-stars-background",
-        "before:z-[-300]",
+        "z-[-300]",
         { "animate-stars-background": !paused }
       )}
     />
@@ -35,7 +35,7 @@ const StarBackground  = () => {
       className={clsx(
         animationClasses,
         "before:bg-stars-midground",
-        "before:z-[-300]",
+        "z-[-200]",
         { "animate-stars-midground": !paused }
       )}
     />
@@ -43,7 +43,7 @@ const StarBackground  = () => {
       className={clsx(
         animationClasses,
         "before:bg-stars-foreground",
-        "before:z-[-300]",
+        "z-[-100]",
         { "animate-stars-foreground": !paused }
       )}
     />

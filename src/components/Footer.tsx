@@ -32,6 +32,10 @@ const Footer: FC = () => (
     <p>
       Funnet en feil? Ris eller ros? Send oss en mail!{" "}
       <a className="underline" href="mailto:julekalender@knowit.no">julekalender@knowit.no</a>
+      <br />
+      Følg utviklingen og kom med innspill på vårt{" "}
+      <Link className="underline" to="https://github.com/knowit/julekalender_frontend" title="GitHub repo">GitHub repo</Link>
+      !
     </p>
 
     <h2 className="text-xl pt-4">

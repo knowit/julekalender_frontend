@@ -44,7 +44,6 @@ const PostWrapper: FC<PostWrapperProps> = ({
           />
         </div>
       )}
-      {/* TODO: This margin-right thing does not work correctly with flex on small screens */}
       <div className={clsx("mx-4 sm:mx-8 lg:mx-10 xl:mx-avatar", contentClassName)}>
         <div className="relative px-1 sm:px-2 md:px-4">
           <div className="font-semibold text-xl">

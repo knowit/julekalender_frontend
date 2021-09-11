@@ -2,7 +2,7 @@ import { FC, useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 
 import Light from "../components/Light"
-import CommentsSection from "../components/Comments/CommentsSection"
+import PostsSection from "../components/Posts/PostsSection"
 import useRequestsAndAuth from "../hooks/useRequestsAndAuth"
 import Challenge from "../components/Door/Challenge"
 
@@ -34,12 +34,14 @@ const Door: FC = () => {
         solved={isDoorSolved}
         className="w-20 lg:w-28 float-right mr-8 mt-10 lg:mt-12 absolute right-0 top-0"
       />
-      <Challenge
-        doorNumber={doorNumber}
-        isDoorSolved={isDoorSolved}
-        setIsDoorSolved={setIsDoorSolved}
-      />
-      {isAuthenticated && isDoorSolved && <CommentsSection doorNumber={doorNumber} />}
+      <div className="space-y-door-elements">
+        <Challenge
+          doorNumber={doorNumber}
+          isDoorSolved={isDoorSolved}
+          setIsDoorSolved={setIsDoorSolved}
+        />
+        {isAuthenticated && isDoorSolved && <PostsSection doorNumber={doorNumber} />}
+      </div>
     </Page>
   )
 }

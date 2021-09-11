@@ -4,19 +4,19 @@ import { constant, noop } from "lodash"
 
 import {
   Token,
-  createComment,
-  createChildComment,
+  createPost,
+  createChildPost,
   createLike,
   createSolution,
   fetchChallenge,
-  fetchComments,
-  fetchSingleComment,
+  fetchPosts,
+  fetchSinglePost,
   fetchLikes,
   fetchSolvedStatus,
   fetchLeaderboard,
   fetchAdminStatus,
   fetchWhoami,
-  deleteComment
+  deletePost
 } from "./api/requests"
 import { CurrentUser } from "./api/User"
 
@@ -29,11 +29,11 @@ const createRequests = (token: Token) => ({
   fetchSolvedStatus: fetchSolvedStatus(token),
   createSolution: createSolution(token),
   createLike: createLike(token),
-  createComment: createComment(token),
-  createChildComment: createChildComment(token),
-  fetchComments: fetchComments(token),
-  fetchSingleComment: fetchSingleComment(token),
-  deleteComment: deleteComment(token),
+  createPost: createPost(token),
+  createChildPost: createChildPost(token),
+  fetchPosts: fetchPosts(token),
+  fetchSinglePost: fetchSinglePost(token),
+  deletePost: deletePost(token),
   fetchAdminStatus: fetchAdminStatus(token),
   fetchWhoami: fetchWhoami(token),
   fetchLeaderboard

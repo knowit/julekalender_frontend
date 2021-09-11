@@ -1,12 +1,15 @@
 import { format } from "date-fns"
-import { find, isEmpty, memoize, padStart } from "lodash"
+import { find, isEmpty, memoize, padStart, replace, trim } from "lodash"
 
 
-export const getTimeStamp = (dateString: string) => format(new Date(dateString), "dd.MM 'kl' HH:mm")
+export const NBSP = "\u00a0"
+export const getTimeStamp = (dateString: string) => format(new Date(dateString), `dd.MM'${NBSP}kl${NBSP}'HH:mm`)
 
 export const beforeDoorDate2020 = (door: number | string) => (
   new Date() < new Date(Date.parse(`2020-12-${padStart(door.toString(), 2, "0")}T04:00`))
 )
+
+export const squish = (str: string) => replace(trim(str), /\s+/g, " ")
 
 // Easing helpers (https://easings.net)
 export const easeInCubic = [.32, 0, .67, 0]

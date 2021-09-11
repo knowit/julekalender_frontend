@@ -1,7 +1,7 @@
 import { constant } from "lodash"
 
 
-export type Comment = {
+export type Post = {
   uuid: string
   parent_uuid: string | null
   content: string // '' if deleted
@@ -16,16 +16,20 @@ export type Comment = {
   deleted: boolean
 }
 
-export const makeDeletedComment = constant({ content: "", markdown_content: "", edited_at: null, likes: 0, deleted: true })
+export type ParentPost = Post & {
+  children: Post[]
+}
 
-export type ParentComment = {
-  children: Comment[]
-} & Comment
-
-export type CreateCommentPayload = {
+export type CreatePostPayload = {
   content: string
   parent_uuid?: string
 }
 
-export default ParentComment
 
+export const makeDeletedPost = constant({
+  content: "",
+  markdown_content: "",
+  edited_at: null,
+  likes: 0,
+  deleted: true
+})

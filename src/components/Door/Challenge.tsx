@@ -52,7 +52,7 @@ const Challenge: FC<ChallengeProps> = ({ doorNumber, isDoorSolved, setIsDoorSolv
   if (!challenge) return null
 
   return (
-    <div className="pb-8 pt-14 px-8 md:px-12 mx-4 md:mx-8 bg-gray-100 text-gray-700 rounded-md">
+    <div className="pb-8 pt-14 px-8 md:px-12 mx-2 md:mx-8 bg-gray-100 text-gray-700 rounded-md">
       {preamble}
       <div className="space-y-4 md:space-y-6 lg:space-y-12">
         <div className="text-center pb-4 md:pb-6 border-b-2">

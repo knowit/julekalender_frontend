@@ -2,7 +2,7 @@ import { FC, useState } from "react"
 import { Redirect } from "react-router-dom"
 import { map, noop, range } from "lodash"
 
-import CommentsSection from "../components/Comments/CommentsSection"
+import PostsSection from "../components/Posts/PostsSection"
 import Challenge from "../components/Door/Challenge"
 import useRequestsAndAuth from "../hooks/useRequestsAndAuth"
 
@@ -28,7 +28,7 @@ const Admin: FC = () => {
           </select>
         </>}
       />
-      <CommentsSection doorNumber={doorNumber} />
+      <PostsSection doorNumber={doorNumber} />
     </Page>
   )
 }

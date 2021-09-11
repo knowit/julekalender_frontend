@@ -1,6 +1,6 @@
 import Axios from "axios"
 
-import { CreateCommentPayload, ParentComment, Comment } from "./Comment"
+import { CreatePostPayload, ParentPost, Post } from "./Post"
 import Like from "./Like"
 import Challenge, { SolvedStatus } from "./Challenge"
 import { CreateLikePayload, CreateSolutionPayload, CreateSolutionResponse } from "./Solution"
@@ -26,7 +26,7 @@ const baseDelete = <T>(endpoint: string, token: Token = undefined) => (
   Axios.delete<T>(`${apiUrl}${endpoint}`, { headers: getHeaders(token) })
 )
 
-type CreatePayload = CreateSolutionPayload | CreateLikePayload | CreateCommentPayload
+type CreatePayload = CreateSolutionPayload | CreateLikePayload | CreatePostPayload
 
 const baseCreate = <T>(endpoint: string, payload: CreatePayload, token: Token) => (
   Axios.post<T>(`${apiUrl}${endpoint}`, payload, { headers: getHeaders(token) })
@@ -52,24 +52,24 @@ export const createLike = (token: Token) => (postId: number | string) => (
   baseCreate<never>(`/posts/${postId}/likes`, {}, token)
 )
 
-export const createComment = (token: Token) => (doorNumber: string | number, comment:string) => (
-  baseCreate<ParentComment>(`/challenges/${doorNumber}/posts`, { post: { content: comment } }, token)
+export const createPost = (token: Token) => (doorNumber: string | number, post: string) => (
+  baseCreate<ParentPost>(`/challenges/${doorNumber}/posts`, { post: { content: post } }, token)
 )
 
-export const createChildComment = (token: Token) => (doorNumber: string | number, comment:string, parentId: string) => (
-  baseCreate<Comment>(`/challenges/${doorNumber}/posts`, { post: { content: comment, parent_uuid: parentId } }, token)
+export const createChildPost = (token: Token) => (doorNumber: string | number, post: string, parentId: string) => (
+  baseCreate<Post>(`/challenges/${doorNumber}/posts`, { post: { content: post, parent_uuid: parentId } }, token)
 )
 
-export const fetchComments = (token: Token) => (doorNumber: number | string) => (
-  baseFetch<ParentComment[]>(`/challenges/${doorNumber}/posts`, token)
+export const fetchPosts = (token: Token) => (doorNumber: number | string) => (
+  baseFetch<ParentPost[]>(`/challenges/${doorNumber}/posts`, token)
 )
 
-export const fetchSingleComment = (token: Token) => (doorNumber: number | string, commentId: string) => (
-  baseFetch<ParentComment>(`/challenges/${doorNumber}/posts/${commentId}`, token)
+export const fetchSinglePost = (token: Token) => (doorNumber: number | string, postId: string) => (
+  baseFetch<ParentPost>(`/challenges/${doorNumber}/posts/${postId}`, token)
 )
 
-export const deleteComment = (token: Token) => (commentId: string) => (
-  baseDelete<never>(`/posts/${commentId}`, token)
+export const deletePost = (token: Token) => (postId: string) => (
+  baseDelete<never>(`/posts/${postId}`, token)
 )
 
 export const fetchLeaderboard = () => (

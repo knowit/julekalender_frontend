@@ -17,7 +17,14 @@ module.exports = {
         "kodekalender": "80rem"
       },
       width: {
-        "kodekalender": "80rem"
+        "kodekalender": "80rem",
+        "avatar": "4.5rem"
+      },
+      margin: {
+        "avatar": "4.5rem",
+      },
+      space: {
+        "door-elements": "4rem"
       },
       fontSize: {
         "lightbulb": ["4.125rem", { lineHeight: "1" }]

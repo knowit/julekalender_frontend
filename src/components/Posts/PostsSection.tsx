@@ -60,7 +60,7 @@ const PostsSection: FC<PostsSectionProps> = ({ doorNumber }) => {
       {isFormVisible
         ? <PostForm doorNumber={doorNumber} setPosts={setPosts} hideForm={hideForm} />
         : (
-          <div className="bg-gray-100 text-gray-700 rounded-md mx-auto mb-16 px-8 py-4 w-96 space-y-4 flex flex-col justify-center">
+          <div className="bg-gray-100 text-gray-700 rounded-md mx-auto px-8 py-4 w-96 space-y-4 flex flex-col justify-center">
             <div className="text-center">Du finner kommentaren din nederst!</div>
             <Button onClick={showForm} content="Legg igjen ny kommentar?" />
           </div>

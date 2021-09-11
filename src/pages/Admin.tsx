@@ -16,7 +16,7 @@ const Admin: FC = () => {
   if (!isAdmin) return <Redirect to="/" />
 
   return (
-    <Page>
+    <Page className="space-y-door-elements">
       <Challenge
         doorNumber={doorNumber}
         isDoorSolved={true}

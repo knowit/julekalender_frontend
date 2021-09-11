@@ -52,6 +52,7 @@ const Lights = () => {
       overflow="visible"
       version="1.2"
       viewBox="0 0 2560 1241"
+      className="w-screen"
     >
       <g>
         <g>

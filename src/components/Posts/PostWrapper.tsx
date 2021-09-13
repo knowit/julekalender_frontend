@@ -34,7 +34,7 @@ const PostWrapper: FC<PostWrapperProps> = ({
   const isOwnPost = useIsOwnPost(post)
 
   return (
-    <article data-post-uuid={post.uuid} className={clsx("relative rounded-md bg-gray-100 text-gray-700 py-4 px-2 md:px-4", wrapperClassName)}>
+    <article id={post.uuid} className={clsx("relative rounded-md bg-gray-100 text-gray-700 py-4 px-2 md:px-4", wrapperClassName)}>
       {!post.deleted && (
         <div className="absolute w-4 sm:w-8 lg:w-10 xl:w-avatar">
           <img

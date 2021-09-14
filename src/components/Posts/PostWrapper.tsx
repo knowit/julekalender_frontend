@@ -1,5 +1,6 @@
 import { FC } from "react"
 import clsx, { ClassValue } from "clsx"
+import { useLocation } from "react-router"
 
 import { Post } from "../../api/Post"
 import useIsOwnPost from "../../hooks/useIsOwnPost"
@@ -33,8 +34,29 @@ const PostWrapper: FC<PostWrapperProps> = ({
   const timestamp = getTimeStamp(post.created_at)
   const isOwnPost = useIsOwnPost(post)
 
+  const { hash } = useLocation()
+  const isDeepLinkedPost = hash === `#${post.uuid}`
   return (
-    <article id={post.uuid} className={clsx("relative rounded-md bg-gray-100 text-gray-700 py-4 px-2 md:px-4", wrapperClassName)}>
+    <article
+      id={post.uuid}
+      ref={(element) => isDeepLinkedPost && element?.scrollIntoView({ behavior: "smooth" })}
+      className={clsx(`
+        relative
+        rounded-md
+        bg-gray-100
+        text-gray-700
+        py-4
+        px-2
+        md:px-4
+        `,
+        isDeepLinkedPost && `
+          ring-inset
+          ring-4
+          ring-lightbulb-yellow
+        `,
+        wrapperClassName
+      )}
+    >
       {!post.deleted && (
         <div className="absolute w-4 sm:w-8 lg:w-10 xl:w-avatar">
           <img

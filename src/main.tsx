@@ -16,6 +16,9 @@ const Index = () => (
       clientId="6TmycgoSWgFT8EU6COixHKne9JmLx5F4"
       redirectUri={window.location.origin} // TODO: Redirect back to luke
       audience="https://knowit-konkurranser.eu.auth0.com/api/v2/"
+
+      cacheLocation="localstorage"
+      useRefreshTokens
     >
       <RequestsContext>
         <App />

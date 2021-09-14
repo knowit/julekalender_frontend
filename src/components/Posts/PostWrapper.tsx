@@ -1,4 +1,4 @@
-import { FC } from "react"
+import { FC, useEffect, useRef } from "react"
 import clsx, { ClassValue } from "clsx"
 import { useLocation } from "react-router"
 
@@ -36,10 +36,20 @@ const PostWrapper: FC<PostWrapperProps> = ({
 
   const { hash } = useLocation()
   const isDeepLinkedPost = hash === `#${post.uuid}`
+  const scrollRef = useRef<HTMLElement>(null)
+
+  // Scroll to deep linked post on mount
+  useEffect(() => {
+    if (!isDeepLinkedPost) return
+
+    scrollRef.current?.scrollIntoView({ behavior: "smooth", block: "start" })
+  }, [])
+
+  // TODO: Replace classname overrides with isChild
   return (
     <article
       id={post.uuid}
-      ref={(element) => isDeepLinkedPost && element?.scrollIntoView({ behavior: "smooth" })}
+      ref={scrollRef}
       className={clsx(`
         relative
         rounded-md

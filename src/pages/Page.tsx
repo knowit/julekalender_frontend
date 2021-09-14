@@ -16,6 +16,7 @@ const Page: FC<PageProps> = ({ className, wrapperClassName, children }) => (
     "mx-auto",
     "pointer-events-none", // Allow click through to animation toggle
     "children:pointer-events-auto",
+    "pb-4",
     wrapperClassName
   )}>
     <BackToDoorsButton />

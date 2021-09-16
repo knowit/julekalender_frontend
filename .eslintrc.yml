@@ -122,6 +122,13 @@ rules:
     - warn
     - 2
     - SwitchCase: 0
+      offsetTernaryExpressions: true
+      MemberExpression: off
+      # Override wonky indent behavior with TypeScript types (unions)
+      ignoredNodes:
+        - TSTypeParameterInstantiation
+        - TSTypeAliasDeclaration *
+
   "@typescript-eslint/member-delimiter-style":
     - warn
     - multiline:

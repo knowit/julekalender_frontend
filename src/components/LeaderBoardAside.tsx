@@ -38,7 +38,7 @@ const LeaderBoardAside: FC<LeaderBoardAsideProps> = ({ hidden, closeHandler }) =
   if (hidden && !hiddenTransitioning) return null
 
   return (
-    <aside className="absolute top-0 right-0 pt-14 w-full sm:w-[25.5rem] sm:pr-6 overflow-hidden pointer-events-none">
+    <aside className="z-20 absolute top-0 right-0 pt-14 w-full sm:w-[25.5rem] sm:pr-6 overflow-hidden pointer-events-none">
       <Transition
         appear={true}
         show={!hiddenTransitioning}

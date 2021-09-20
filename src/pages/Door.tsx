@@ -28,7 +28,7 @@ const Door: FC = () => {
   }
 
   return (
-    <Page className="relative">
+    <Page className="relative z-0">
       <Light
         nr={parseInt(doorNumber)}
         solved={isDoorSolved}

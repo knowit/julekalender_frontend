@@ -90,7 +90,7 @@ const Post: FC<PostProps> = ({ post, myLikes, doorNumber, refreshPost }) => {
         parentId={post.uuid}
         className="my-4"
       />
-      {showChildPosts && (<div className="space-y-2">
+      {showChildPosts && (<div className="space-y-2 min-w-0">
         {map(post.children, (child) => (
           <ChildPost
             key={child.uuid}

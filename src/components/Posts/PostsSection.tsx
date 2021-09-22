@@ -1,5 +1,7 @@
 import { FC, useCallback, useEffect, useState } from "react"
 import { find, map, reject, sortBy } from "lodash"
+import { FaSortUp, FaSortDown, FaSort } from "react-icons/fa"
+import clsx from "clsx"
 
 import useRequestsAndAuth from "../../hooks/useRequestsAndAuth"
 import { Post as PostType, ParentPost } from "../../api/Post"
@@ -37,6 +39,29 @@ const PostsSection: FC<PostsSectionProps> = ({ doorNumber }) => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [!isAuthenticated && !isAdmin, fetchPosts, doorNumber, fetchLikes])
 
+  const getFilters = () => (
+    /***
+       *
+       */
+    <div className="flex align-middle text-gray-600 font-light text-center p-2 rounded-md sm:p-6 bg-gray-100">
+      <span className={clsx(
+        "hover:underline hover:cursor-pointer", "flex flex-row justify-center items-center",
+        "uppercase text-sm sm:text-lg sm:"
+      )}>
+        <FaSort />
+        Sorter etter dato
+
+      </span>
+      <span className={clsx(
+        "hover:underline hover:cursor-pointer", "flex flex-row justify-center items-center",
+        "uppercase mx-8 sm:tracking-wider text-sm sm:text-lg"
+      )}>
+        <FaSort />
+        Sorter etter likerklikk
+      </span>
+    </div>
+  )
+
   // Refresh an entire post chain from the backend. Use this when updating a
   // post to easily get the post tree into the correct state.
   // This is much easier than wrangling all of that state on the client.
@@ -67,6 +92,7 @@ const PostsSection: FC<PostsSectionProps> = ({ doorNumber }) => {
         )
       }
       <div className="space-y-4">
+        {getFilters()}
         {map(posts, (post) =>
           <Post
             key={post.uuid}

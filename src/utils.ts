@@ -69,7 +69,7 @@ export const numberString = (n: number, neutral = false): string => {
     // 20 <= n < 100
     const [limit, ten] = find(TENS, ([limit]) => n >= limit) ?? []
     if (limit && ten) {
-      str += isEmpty(str) ||!and ? ten: ` og ${ten}`
+      str += isEmpty(str) || !and ? ten : ` og ${ten}`
       n -= limit
       and = false
       continue

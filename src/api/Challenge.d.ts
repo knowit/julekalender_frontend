@@ -9,5 +9,3 @@ export type Challenge = {
 export type SolvedStatus = {
   [key: string]: boolean
 }
-
-export default Challenge

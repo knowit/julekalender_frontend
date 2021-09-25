@@ -3,12 +3,12 @@ import clsx from "clsx"
 
 
 type LightParams = {
-  nr: number
+  door: number
   solved: boolean
   className?: string
 }
 
-const Light: FC<LightParams> = ({ nr, solved, className }) => (
+const Light: FC<LightParams> = ({ door, solved, className }) => (
   <svg
     className={className}
     xmlns="http://www.w3.org/2000/svg"
@@ -41,7 +41,7 @@ const Light: FC<LightParams> = ({ nr, solved, className }) => (
       transform="translate(22.576 125.867)"
     >
       {/* Om tallet har ett siffer, prefix med nbsp for å sentrere det bedre i lyset*/}
-      {nr < 10 ? `\u00A0${nr}` : nr}
+      {door < 10 ? `\u00A0${door}` : door}
     </text>
   </svg>
 )

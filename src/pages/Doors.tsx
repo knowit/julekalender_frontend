@@ -1,46 +1,49 @@
-import { FC, useEffect, useState } from "react"
+import { FC } from "react"
 import { Link } from "react-router-dom"
 import clsx from "clsx"
 import { get } from "lodash"
 
-import useRequestsAndAuth from "../hooks/useRequestsAndAuth"
-import { SolvedStatus } from "../api/Challenge"
 import Footer from "../components/Footer"
 import { beforeDoorDate2020 } from "../utils"
+import { usePrefetchChallenge, usePrefetchLikes, usePrefetchPosts, useSolvedStatus } from "../api/requests"
 
 
 const Lights = () => {
-  const { isAuthenticated, fetchSolvedStatus } = useRequestsAndAuth()
-  const [fubar, setError] = useState<Error>()
-  const [solvedStatus, setIsSolvedStatus] = useState<SolvedStatus>()
+  const { data: solvedStatus, error } = useSolvedStatus()
 
-  useEffect(() => {
-    if (!isAuthenticated) return
+  const prefetchChallenge = usePrefetchChallenge()
+  const prefetchPosts = usePrefetchPosts()
+  const prefetchLikes = usePrefetchLikes()
 
-    fetchSolvedStatus()
-      .then((response) => setIsSolvedStatus(response.data))
-      .catch((e) => setError(e))
-  }, [isAuthenticated, fetchSolvedStatus])
+  const prefetch = (door: number) => {
+    prefetchChallenge(door)
+    prefetchLikes()
 
-  const getBulbClass = (doorNumber: number) => (
-    clsx("fill-current", get(solvedStatus, doorNumber)
+    if (solvedStatus[door])
+      prefetchPosts(door)
+  }
+
+  const getBulbClass = (door: number) => (
+    clsx("fill-current", get(solvedStatus, door)
       ? "text-lightbulb-green"
-      : beforeDoorDate2020(doorNumber)
+      : beforeDoorDate2020(door)
         ? "text-lightbulb-dim"
         : "text-lightbulb-yellow"
     )
   )
 
-  const getTextClass = (doorNumber: number) => (
-    beforeDoorDate2020(doorNumber) ? "text-gray-800 opacity-25" : "text-gray-800"
+  const getTextClass = (door: number) => (
+    beforeDoorDate2020(door) ? "text-gray-800 opacity-25" : "text-gray-800"
   )
 
-  const getLinkDateDependentProps = (doorNumber: number) => (
-    beforeDoorDate2020(doorNumber) ? { to: "/", className: "cursor-not-allowed" } : { to: `/luke/${doorNumber}` }
+  const getLinkDateDependentProps = (door: number) => (
+    beforeDoorDate2020(door)
+      ? { to: "/", className: "cursor-not-allowed" }
+      : { to: `/luke/${door}`, onMouseEnter: () => prefetch(door) }
   )
 
-  if (fubar !== undefined) {
-    return (<><h1>Ooops...</h1><span>{fubar.message}</span></>)
+  if (error) {
+    return (<><h1>Ooops...</h1><span>{error.message}</span></>)
   }
 
   return (

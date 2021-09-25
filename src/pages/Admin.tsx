@@ -1,34 +1,33 @@
 import { FC, useState } from "react"
 import { Redirect } from "react-router-dom"
-import { map, noop, range } from "lodash"
+import { map, range } from "lodash"
 
 import PostsSection from "../components/Posts/PostsSection"
 import Challenge from "../components/Door/Challenge"
-import useRequestsAndAuth from "../hooks/useRequestsAndAuth"
+import { useIsAdmin } from "../hooks/useIsAdmin"
 
 import Page from "./Page"
 
 
 const Admin: FC = () => {
-  const { isAdmin } = useRequestsAndAuth()
-  const [doorNumber, setDoorNumber] = useState("1")
+  const isAdmin = useIsAdmin()
+  const [door, setDoor] = useState(1)
 
   if (!isAdmin) return <Redirect to="/" />
 
   return (
     <Page className="space-y-door-elements">
       <Challenge
-        doorNumber={doorNumber}
-        isDoorSolved={true}
-        setIsDoorSolved={noop}
+        door={door}
+        withoutInput
         preamble={<>
           <span>Velg luke:&emsp;</span>
-          <select onChange={((e) => setDoorNumber(e.target.value))}>
+          <select onChange={((e) => setDoor(parseInt(e.target.value)))}>
             {map(range(1, 25), (door, i) => <option key={i} value={door}>{door}</option>)}
           </select>
         </>}
       />
-      <PostsSection doorNumber={doorNumber} />
+      <PostsSection door={door} />
     </Page>
   )
 }

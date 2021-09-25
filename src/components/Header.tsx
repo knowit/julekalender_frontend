@@ -1,9 +1,13 @@
-import { FC } from "react"
+import { FC, useCallback } from "react"
 import { Link } from "react-router-dom"
 import { FaLock } from "react-icons/fa"
+import { useQueryClient } from "react-query"
+import { merge } from "lodash"
 
 import { ReactComponent as Logo } from "../img/knowitlogo.svg"
-import useRequestsAndAuth from "../hooks/useRequestsAndAuth"
+import { Whoami } from "../api/User"
+import { useIsAdmin } from "../hooks/useIsAdmin"
+import { usePrefetchLeaderboard } from "../api/requests"
 
 import LoginButton from "./LoginButton"
 import Button from "./Button"
@@ -14,7 +18,18 @@ type HeaderProps = {
 }
 
 const Header: FC<HeaderProps> = ({ setLeaderboardHidden }) => {
-  const { isAdmin, setIsAdmin, isLocalhost } = useRequestsAndAuth()
+  const isAdmin = useIsAdmin()
+  const queryClient = useQueryClient()
+  const prefetchLeaderboard = usePrefetchLeaderboard()
+
+  const isLocalhost = window.location.hostname === "localhost"
+
+  const toggleAdmin = useCallback(() => {
+    queryClient.setQueryData(
+      ["whoami"],
+      (whoami: Whoami | undefined) => merge(whoami, { is_admin: !isAdmin })
+    )
+  }, [queryClient, isAdmin])
 
   return (
     <header>
@@ -31,13 +46,13 @@ const Header: FC<HeaderProps> = ({ setLeaderboardHidden }) => {
             </Link>
           </>}
 
-          {isLocalhost && <Button className="hidden sm:inline" onClick={() => setIsAdmin(!isAdmin)}>Toggle admin</Button>}
-          {isLocalhost && <Button className="sm:hidden" onClick={() => setIsAdmin(!isAdmin)}>Admin</Button>}
+          {isLocalhost && <Button className="hidden sm:inline" onClick={toggleAdmin}>Toggle admin</Button>}
+          {isLocalhost && <Button className="sm:hidden" onClick={toggleAdmin}>Admin</Button>}
 
           {/* Link to separate page on mobile */}
-          <Button className="hidden sm:inline" onClick={() => setLeaderboardHidden(false)} tabIndex={2}>Ledertavle</Button>
+          <Button className="hidden sm:inline" onMouseEnter={prefetchLeaderboard} onClick={() => setLeaderboardHidden(false)} tabIndex={2}>Ledertavle</Button>
           <Link className="sm:hidden" to="/leaderboard" tabIndex={2}>
-            <Button>Ledertavle</Button>
+            <Button onMouseEnter={prefetchLeaderboard}>Ledertavle</Button>
           </Link>
 
           <LoginButton />

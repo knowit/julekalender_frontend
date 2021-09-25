@@ -2,11 +2,10 @@ import { FC, useCallback } from "react"
 import { map } from "lodash"
 
 import { ParentPost } from "../../api/Post"
-import Like from "../../api/Like"
 import Button from "../Button"
 import useBooleanToggle from "../../hooks/useBooleanToggle"
-import useRequestsAndAuth from "../../hooks/useRequestsAndAuth"
 import { squish } from "../../utils"
+import { useDeletePost } from "../../api/requests"
 
 import LikeButton from "./LikeButton"
 import ChildPostForm from "./ChildPostForm"
@@ -23,25 +22,20 @@ const DELETE_CONFIRM = squish(`
 
 type PostProps = {
   post: ParentPost
-  myLikes: Like[]
-  doorNumber: string
-  refreshPost: (post: ParentPost) => void
+  door: number
 }
 
-const Post: FC<PostProps> = ({ post, myLikes, doorNumber, refreshPost }) => {
-  const { deletePost: deletePostRequest } = useRequestsAndAuth()
+const Post: FC<PostProps> = ({ post, door }) => {
+  const { mutate: doDeletePost } = useDeletePost()
+
   const [showForm, toggleShowForm] = useBooleanToggle(false)
   const [showChildPosts, toggleShowChildPosts] = useBooleanToggle(true)
 
-  const refreshSelf = useCallback(() => refreshPost(post), [post, refreshPost])
   const deletePost = useCallback(async () => {
     if (!window.confirm(DELETE_CONFIRM)) return
 
-    const { status } = await deletePostRequest(post.uuid)
-
-    if (status === 200)
-      refreshSelf()
-  }, [post, deletePostRequest, refreshSelf])
+    doDeletePost({ uuid: post.uuid })
+  }, [doDeletePost, post])
 
   return (
     <PostWrapper
@@ -57,7 +51,7 @@ const Post: FC<PostProps> = ({ post, myLikes, doorNumber, refreshPost }) => {
       <footer className="grid grid-cols-2">
         <div className="justify-self-start space-x-2 pl-2">
           {!post.deleted && (<>
-            <LikeButton post={post} myLikes={myLikes} />
+            <LikeButton post={post} />
             <Button
               className="font-semibold"
               underline={false}
@@ -85,13 +79,12 @@ const Post: FC<PostProps> = ({ post, myLikes, doorNumber, refreshPost }) => {
       <ChildPostForm
         showChildPostForm={showForm}
         toggleShowForm={toggleShowForm}
-        refreshParentPost={refreshSelf}
-        doorNumber={doorNumber}
-        parentId={post.uuid}
+        door={door}
+        parentUuid={post.uuid}
         className="my-4"
       />
       {
-        /* 
+        /*
         * Having min-w-0 (min-width: 0) prevents the content of the grid cells from growing outside of their cell:
         * https://stackoverflow.com/questions/43311943/prevent-content-from-expanding-grid-items
         */
@@ -101,8 +94,6 @@ const Post: FC<PostProps> = ({ post, myLikes, doorNumber, refreshPost }) => {
           <ChildPost
             key={child.uuid}
             post={child}
-            myLikes={myLikes}
-            refreshParent={refreshSelf}
           />
         ))}
       </div>)}

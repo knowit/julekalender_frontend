@@ -1,11 +1,11 @@
 import { Post, ParentPost } from "../api/Post"
-
-import useRequestsAndAuth from "./useRequestsAndAuth"
+import { useWhoami } from "../api/requests"
 
 
 const useIsOwnPost = (post: Post | ParentPost) => {
-  const { currentUser } = useRequestsAndAuth()
-  return currentUser.uuid === post.author.uuid
+  const { data: whoami } = useWhoami()
+
+  return whoami?.uuid === post.author.uuid
 }
 
 export default useIsOwnPost

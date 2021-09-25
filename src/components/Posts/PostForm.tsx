@@ -1,9 +1,10 @@
-import { Dispatch, FC, SetStateAction, useRef, useState } from "react"
+import { FC, useContext, useRef } from "react"
 import TextareaAutosize from "react-autosize-textarea/lib"
 
-import useRequestsAndAuth from "../../hooks/useRequestsAndAuth"
-import { ParentPost } from "../../api/Post"
 import { squish } from "../../utils"
+import { useCreatePost } from "../../api/requests"
+import { AuthContext } from "../../AuthContext"
+import { useIsAdmin } from "../../hooks/useIsAdmin"
 
 
 const FORM_PLACEHOLDER = squish(`
@@ -17,32 +18,24 @@ const FORM_PLACEHOLDER = squish(`
 
 
 type PostFormProps = {
-  doorNumber: string
-  setPosts: Dispatch<SetStateAction<ParentPost[]>>
+  door: number
   hideForm: () => void
 }
 
-const PostForm: FC<PostFormProps> = ({ doorNumber, setPosts, hideForm }) => {
-  const { isAuthenticated, isAdmin, createPost: createPostRequest } = useRequestsAndAuth()
+const PostForm: FC<PostFormProps> = ({ door, hideForm }) => {
+  const { mutate: doCreatePost, isLoading } = useCreatePost()
+  const { isFullyAuthenticated } = useContext(AuthContext)
+  const isAdmin = useIsAdmin()
   const inputRef = useRef<HTMLTextAreaElement>(null)
-  const [submitting, setSubmitting] = useState(false)
 
   const createPost = async () => {
     if (!inputRef.current) return
 
-    setSubmitting(true)
-    const { status, data } = await createPostRequest(doorNumber, inputRef.current.value)
-
-    if (status === 200) {
-      setPosts((posts) => [...posts, data])
-      hideForm()
-    }
-
-    setSubmitting(false)
+    doCreatePost({ door, content: inputRef.current.value }, { onSuccess: hideForm })
   }
 
   // Prevent admins from accidentially submitting posts without being logged in.
-  if (isAdmin && !isAuthenticated) return null
+  if (isAdmin && !isFullyAuthenticated) return null
 
   return (
     <div className="bg-gray-100 text-gray-700 rounded-md px-4 pt-4 pb-2 flex flex-col items-end">
@@ -52,7 +45,7 @@ const PostForm: FC<PostFormProps> = ({ doorNumber, setPosts, hideForm }) => {
         placeholder={FORM_PLACEHOLDER}
       />
       <div>
-        <button className="bg-none border-none cursor-pointer ml-4 p-4 font-medium" disabled={submitting} onClick={createPost} value="Lagre">KOMMENTER</button>
+        <button className="bg-none border-none cursor-pointer ml-4 p-4 font-medium" disabled={isLoading} onClick={createPost} value="Lagre">KOMMENTER</button>
       </div>
     </div>
   )

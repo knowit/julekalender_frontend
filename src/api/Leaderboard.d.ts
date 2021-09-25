@@ -1,3 +1,1 @@
-type Leaderboard = ([number, string[]])[]
-
-export default Leaderboard
+export type Leaderboard = Array<[number, string[]]>

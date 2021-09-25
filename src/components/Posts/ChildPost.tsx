@@ -43,8 +43,8 @@ const ChildPost: FC<ChildPostProps> = ({ post }) => {
           </div>
         : <footer>
             <div>
-              <LikeButton post={post} />
-            </div>
+            <LikeButton post={post} />
+          </div>
           </footer>
       }
     </PostWrapper>

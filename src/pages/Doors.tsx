@@ -19,7 +19,7 @@ const Lights = () => {
     prefetchChallenge(door)
     prefetchLikes()
 
-    if (solvedStatus[door])
+    if (solvedStatus?.[door])
       prefetchPosts(door)
   }
 

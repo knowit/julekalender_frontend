@@ -31,7 +31,15 @@ const PostForm: FC<PostFormProps> = ({ door, hideForm }) => {
   const createPost = async () => {
     if (!inputRef.current) return
 
-    doCreatePost({ door, content: inputRef.current.value }, { onSuccess: hideForm })
+    doCreatePost(
+      { door, content: inputRef.current.value },
+      {
+        onSuccess: ({ uuid }) => {
+          hideForm()
+          window.location.href = `#${uuid}`
+        }
+      }
+    )
   }
 
   // Prevent admins from accidentially submitting posts without being logged in.

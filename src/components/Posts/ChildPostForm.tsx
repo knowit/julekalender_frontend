@@ -6,6 +6,7 @@ import Button from "../Button"
 import { AuthContext } from "../../AuthContext"
 import { useCreateChildPost, useWhoami } from "../../api/requests"
 import { useIsAdmin } from "../../hooks/useIsAdmin"
+import { ParentPost } from "../../api"
 
 
 
@@ -13,11 +14,11 @@ type ChildPostFormProps = {
   showChildPostForm: boolean
   toggleShowForm: () => void
   door: number
-  parentUuid: string
+  parent: ParentPost
   className?: ClassValue
 }
 
-const ChildPostForm: FC<ChildPostFormProps> = ({ showChildPostForm, toggleShowForm, door, parentUuid, className }) => {
+const ChildPostForm: FC<ChildPostFormProps> = ({ showChildPostForm, toggleShowForm, door, parent, className }) => {
   const { data: whoami } = useWhoami()
   const { isFullyAuthenticated } = useContext(AuthContext)
   const { mutate: createChildPost, isLoading } = useCreateChildPost()

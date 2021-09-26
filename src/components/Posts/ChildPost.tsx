@@ -1,4 +1,4 @@
-import { FC, useCallback } from "react"
+import { FC, memo, useCallback } from "react"
 import clsx from "clsx"
 
 import { squish } from "../../utils"
@@ -51,4 +51,4 @@ const ChildPost: FC<ChildPostProps> = ({ post }) => {
   )
 }
 
-export default ChildPost
+export default memo(ChildPost)

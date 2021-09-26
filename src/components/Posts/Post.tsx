@@ -1,11 +1,12 @@
-import { FC, useCallback } from "react"
+import { FC, memo, useCallback } from "react"
 import { map } from "lodash"
 
 import { ParentPost } from "../../api/Post"
-import Button from "../Button"
 import useBooleanToggle from "../../hooks/useBooleanToggle"
 import { squish } from "../../utils"
 import { useDeletePost } from "../../api/requests"
+import AddChildPostButton from "../AddChildPostButton"
+import SubscribeButton from "../SubscribeButton"
 
 import LikeButton from "./LikeButton"
 import ChildPostForm from "./ChildPostForm"
@@ -52,15 +53,11 @@ const Post: FC<PostProps> = ({ post, door }) => {
         <div className="justify-self-start space-x-2 pl-2">
           {!post.deleted && (<>
             <LikeButton post={post} />
-            <Button
-              className="font-semibold"
-              underline={false}
-              onClick={toggleShowForm}
-              content="Kommenter innlegg"
-            />
+            <SubscribeButton post={post} className="text-sm align-middle -mt-1" />
           </>)}
         </div>
-        <div className="justify-self-end">
+        <div className="justify-self-end space-x-4">
+          <AddChildPostButton toggleShowForm={toggleShowForm} />
           <ToggleChildPostsButton
             showChildPosts={showChildPosts}
             toggleShowChildPosts={toggleShowChildPosts}
@@ -80,7 +77,7 @@ const Post: FC<PostProps> = ({ post, door }) => {
         showChildPostForm={showForm}
         toggleShowForm={toggleShowForm}
         door={door}
-        parentUuid={post.uuid}
+        parent={post}
         className="my-4"
       />
       {
@@ -91,14 +88,11 @@ const Post: FC<PostProps> = ({ post, door }) => {
       }
       {showChildPosts && (<div className="space-y-2 min-w-0">
         {map(post.children, (child) => (
-          <ChildPost
-            key={child.uuid}
-            post={child}
-          />
+          <ChildPost key={child.uuid} post={child} />
         ))}
       </div>)}
     </PostWrapper>
   )
 }
 
-export default Post
+export default memo(Post)

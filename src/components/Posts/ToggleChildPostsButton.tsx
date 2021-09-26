@@ -1,7 +1,8 @@
 import { FC } from "react"
 import clsx from "clsx"
+import { FaChevronDown } from "react-icons/fa"
 
-import { ReactComponent as Chevron } from "../svg/expand_more.svg"
+import { numberString } from "../../utils"
 
 
 type ToggleChildPostsButtonProps = {
@@ -15,9 +16,16 @@ const ToggleChildPostsButton: FC<ToggleChildPostsButtonProps> = ({ className, sh
   if (numChildPosts === 0) return null
 
   return (
-    <button className={clsx(className)} onClick={toggleShowChildPosts}>
-      <span className="w-4/5">{showChildPosts ? "Skjul" : "Vis"} {numChildPosts} svar</span>
-      <Chevron className={clsx("ml-1 inline w-4 transition-all duration-500", showChildPosts && "transform -rotate-180")} />
+    <button className={clsx("space-x-2 text-gray-600 hover:text-gray-800", className)} onClick={toggleShowChildPosts}>
+      <span className="!text-gray-700">
+        {showChildPosts ? "Skjul" : "Vis"} {numberString(numChildPosts, true)} svar
+      </span>
+      <FaChevronDown
+        className={clsx(
+          "-mt-0.5 inline w-4 transition-all ease-out-cubic duration-300",
+          showChildPosts && "transform -rotate-180"
+        )}
+      />
     </button>
   )
 }

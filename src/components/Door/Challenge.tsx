@@ -1,6 +1,7 @@
 import { FC, ReactNode } from "react"
 
 import { useChallenge } from "../../api/requests"
+import SubscribeButton from "../SubscribeButton"
 
 import Input from "./Input"
 
@@ -37,6 +38,9 @@ const Challenge: FC<ChallengeProps> = ({ door, withoutInput = false, preamble })
             <Input door={door} />
           </div>
         )}
+        <div className="absolute bottom-0 right-0">
+          <SubscribeButton door={door} className="text-xl" />
+        </div>
       </div>
     </div>
   )

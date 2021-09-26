@@ -72,13 +72,14 @@ export const [useSubscriptions, usePrefetchSubscriptions] = createKalenderQueryH
 const useKalenderMutation = <
   TResult = never,
   TVariables = unknown,
+  TContext = TResult,
   TError = { message: string }
 >(
   mutationKey: MutationKey,
   request: (data: TVariables) => Promise<AxiosResponse<TResult>>,
-  opts?: UseMutationOptions<TResult, TError, TVariables>
+  opts?: UseMutationOptions<TResult, TError, TVariables, TContext>
 ) => (
-  useMutation<TResult, TError, TVariables>(mutationKey, (data) => request(data).then((r) => r.data), opts)
+  useMutation<TResult, TError, TVariables, TContext>(mutationKey, (data) => request(data).then((r) => r.data), opts)
 )
 
 export type CreateSolutionResponse = { solved: boolean }
@@ -87,7 +88,7 @@ export const useCreateSolution = () => {
   const queryClient = useQueryClient()
 
   return useKalenderMutation<CreateSolutionResponse, CreateSolutionParameters>(
-    ["challenges", "solutions", "createSolution"],
+    ["solutions", "createSolution"],
     ({ door, answer }) => axios.post( `/challenges/${door}/solutions`, { solution: { answer } }),
     {
       onSuccess: async ({ solved }, { door }) => {
@@ -104,13 +105,29 @@ export type CreateLikeParameters = { postUuid: string }
 export const useCreateLike = () => {
   const queryClient = useQueryClient()
 
-  return useKalenderMutation<never, CreateLikeParameters>(
-    ["posts", "likes", "createLike"],
+  return useKalenderMutation<never, CreateLikeParameters, Like[]>(
+    ["likes", "createLike"],
     ({ postUuid }) => axios.post(`/posts/${postUuid}/likes`, {}),
     {
-      onSuccess: async (_, { postUuid }) => {
-        queryClient.setQueryData(["posts"], (likes: Like[] | undefined) => [...likes ?? [], { post_uuid: postUuid }])
-        queryClient.invalidateQueries(["likes", "posts"])
+      onSuccess: () => {
+        queryClient.invalidateQueries(["likes"])
+        queryClient.invalidateQueries(["posts"])
+      }
+    }
+  )
+}
+
+export type DeleteLikeParameters = { uuid: string }
+export const useDeleteLike = () => {
+  const queryClient = useQueryClient()
+
+  return useKalenderMutation<never, DeleteLikeParameters, Like[]>(
+    ["likes", "deleteLike"],
+    ({ uuid }) => axios.delete(`/likes/${uuid}`),
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries(["likes"])
+        queryClient.invalidateQueries(["posts"])
       }
     }
   )
@@ -124,9 +141,11 @@ export const useCreatePost = () => {
     ["posts", "createPost"],
     ({ door, content }) => axios.post(`/challenges/${door}/posts`, { post: { content } }),
     {
-      onSuccess: async (post) => {
+      onSuccess: (post) => {
         // Insert created post back into posts list, then refetch to ensure up-to-date data
         queryClient.setQueryData(["posts"], (posts: ParentPost[] | undefined) => [...posts ?? [], post])
+      },
+      onSettled: () => {
         queryClient.invalidateQueries(["posts"])
       }
     }
@@ -141,7 +160,7 @@ export const useCreateChildPost = () => {
     ["posts", "createChild"],
     ({ door, parentUuid, content }) => axios.post(`/challenges/${door}/posts`, { post: { content, parent_uuid: parentUuid } }),
     {
-      onSuccess: async (post, { parentUuid }) => {
+      onSuccess: (post, { parentUuid }) => {
         // Insert created child post back into posts list, then refetch to ensure up-to-date data
         queryClient.setQueryData(["posts"], (posts: ParentPost[] | undefined) => {
           const parent = find(posts, { uuid: parentUuid })
@@ -151,6 +170,8 @@ export const useCreateChildPost = () => {
 
           return [...posts ?? [], newParent]
         })
+      },
+      onSettled: () => {
         queryClient.invalidateQueries(["posts"])
       }
     }
@@ -165,7 +186,7 @@ export const useDeletePost = () => {
     ["posts", "deletePost"],
     ({ uuid }) => axios.delete(`/posts/${uuid}`),
     {
-      onSuccess: async () => queryClient.invalidateQueries(["posts"])
+      onSettled: () => queryClient.invalidateQueries(["posts"])
     }
   )
 }
@@ -174,11 +195,40 @@ export type CreateSubscriptionParameters = { door: number } | { postUuid: string
 export const useCreateSubscription = () => {
   const queryClient = useQueryClient()
 
-  return useKalenderMutation<never, CreateSubscriptionParameters>(
+  return useKalenderMutation<never, CreateSubscriptionParameters, Subscriptions>(
     ["subscriptions", "createSubscription"],
     (data) => axios.post("/subscriptions", data),
     {
-      onSuccess: async () => queryClient.invalidateQueries(["subscriptions"])
+      onMutate: async (subscription) => {
+        await queryClient.cancelQueries(["subscriptions"])
+        const subscriptions = queryClient.getQueryData<Subscriptions>(["subscriptions"])
+
+        queryClient.setQueryData<Subscriptions>(["subscriptions"], () => [...subscriptions ?? [], { ...subscription, uuid: "" }])
+
+        return subscriptions
+      },
+      onError: (_err, _vars, subscriptions) => {
+        if (subscriptions)
+          queryClient.setQueryData(["subscriptions"], subscriptions)
+      },
+      onSettled: () => {
+        queryClient.invalidateQueries(["subscriptions"])
+      }
+    }
+  )
+}
+
+export type DeleteSubscriptionParameters = { uuid: string }
+export const useDeleteSubscription = () => {
+  const queryClient = useQueryClient()
+
+  return useKalenderMutation<never, DeleteSubscriptionParameters, Subscriptions>(
+    ["subscriptions", "deleteSubscription"],
+    ({ uuid }) => axios.delete(`/subscriptions/${uuid}`),
+    {
+      onSettled: () => {
+        queryClient.invalidateQueries(["subscriptions"])
+      }
     }
   )
 }

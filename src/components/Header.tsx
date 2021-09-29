@@ -34,9 +34,9 @@ const Header: FC<HeaderProps> = ({ setLeaderboardHidden }) => {
   return (
     <header>
       <nav className="p-4">
-        <a className="inline-block float-left" href="https://www.knowit.no/" target="_blank" rel="noopener noreferrer" tabIndex={1}>
+        <Link className="inline-block float-left" tabIndex={4} to="/">
           <Logo className="h-7 md:h-10 fill-current" />
-        </a>
+        </Link>
         <div className="float-right space-x-2 sm:space-x-6 h-10 mt-0.5 md:mt-1">
           {isAdmin && <>
             <span className="text-green-500 uppercase tracking-wider hidden sm:inline">You are admin!</span>

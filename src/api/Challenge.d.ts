@@ -1,6 +1,7 @@
 export type Challenge = {
   door: number
   content: string
+  markdown_content: string
   author: string
   title: string
   answer: string

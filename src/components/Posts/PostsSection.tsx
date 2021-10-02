@@ -27,9 +27,9 @@ const PostsSection: FC<PostsSectionProps> = ({ door }) => {
         ? <PostForm door={door} hideForm={hideForm} />
         : (
             <div className="bg-gray-100 text-gray-700 rounded-md mx-auto px-8 py-4 w-96 space-y-4 flex flex-col justify-center">
-            <div className="text-center">Du finner kommentaren din nederst!</div>
-            <Button onClick={showForm} content="Legg igjen ny kommentar?" />
-          </div>
+              <div className="text-center">Du finner kommentaren din nederst!</div>
+              <Button onClick={showForm} content="Legg igjen ny kommentar?" />
+            </div>
           )
       }
       <div className="space-y-4">

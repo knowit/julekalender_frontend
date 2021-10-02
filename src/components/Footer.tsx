@@ -45,16 +45,15 @@ const Footer: FC = () => (
     </h2>
     <p>
       Dersom du ønsker å vite mer om Knowit må du gjerne ta kontakt med
-      en av våre alver på <a
-        className="underline"
+      en av våre alver på <a className="underline"
         href="mailto:julenissen@knowit.no">julenissen@knowit.no</a> for en
       uformell prat.
     </p>
     <div className="m-auto flex justify-between align-center w-32">
-      <a href="https://www.facebook.com/weareknowit" target="_blank" rel="noopener noreferrer"><FaFacebook aria-label="Facebook" /></a>
-      <a href="https://twitter.com/knowitnorge" target="_blank" rel="noopener noreferrer"><FaTwitter aria-label="Facebook" /></a>
-      <a href="https://github.com/knowit/" target="_blank" rel="noopener noreferrer"><FaGithub aria-label="Facebook" /></a>
-      <a href="https://knowitlabs.no/" target="_blank" rel="noopener noreferrer"><FaMedium aria-label="Facebook" /></a>
+      <a href="https://www.facebook.com/weareknowit" target="_blank" rel="noopener noreferrer"><FaFacebook aria-label="Facebook"/></a>
+      <a href="https://twitter.com/knowitnorge" target="_blank" rel="noopener noreferrer"><FaTwitter aria-label="Facebook"/></a>
+      <a href="https://github.com/knowit/" target="_blank" rel="noopener noreferrer"><FaGithub aria-label="Facebook"/></a>
+      <a href="https://knowitlabs.no/" target="_blank" rel="noopener noreferrer"><FaMedium aria-label="Facebook"/></a>
     </div>
   </footer>
 )

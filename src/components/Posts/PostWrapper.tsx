@@ -59,12 +59,12 @@ const PostWrapper: FC<PostWrapperProps> = ({
         px-2
         md:px-4
         `,
-      isDeepLinkedPost && `
+        isDeepLinkedPost && `
           ring-inset
           ring-4
           ring-lightbulb-yellow
         `,
-      wrapperClassName
+        wrapperClassName
       )}
     >
       {!post.deleted && (

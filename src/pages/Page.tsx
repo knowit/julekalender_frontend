@@ -11,16 +11,15 @@ type PageProps = {
 }
 
 const Page: FC<PageProps> = ({ className, wrapperClassName, children }) => (
-  <main
-    className={clsx(
-      "max-w-kodekalender",
-      "mx-auto",
-      "pointer-events-none", // Allow click through to animation toggle
-      "children:pointer-events-auto",
-      "pb-4",
-      "z-0",
-      wrapperClassName
-    )}>
+  <main className={clsx(
+    "max-w-kodekalender",
+    "mx-auto",
+    "pointer-events-none", // Allow click through to animation toggle
+    "children:pointer-events-auto",
+    "pb-4",
+    "z-0",
+    wrapperClassName
+  )}>
     <BackToDoorsButton />
     <DoorBorder />
 

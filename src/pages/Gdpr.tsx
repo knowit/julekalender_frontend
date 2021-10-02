@@ -71,8 +71,8 @@ const Gdpr = () => {
         {map(sections, ([header, content], i) => <GdprSection key={i} no={i + 1} header={header} content={content} />)}
 
         <div className="mt-8">
-          Henvendelser om hvilke opplysninger som er registrert, retting og
-          sletting kan sendes til <a href="mailto:julekalender@knowit.no">julekalender@knowit.no</a>
+            Henvendelser om hvilke opplysninger som er registrert, retting og
+            sletting kan sendes til <a href="mailto:julekalender@knowit.no">julekalender@knowit.no</a>
         </div>
       </div>
     </Page>

@@ -1,4 +1,4 @@
-import { FC, useCallback } from "react"
+import { FC, useCallback, useState } from "react"
 import { Link } from "react-router-dom"
 import { FaLock } from "react-icons/fa"
 import { useQueryClient } from "react-query"
@@ -21,15 +21,16 @@ const Header: FC<HeaderProps> = ({ setLeaderboardHidden }) => {
   const isAdmin = useIsAdmin()
   const queryClient = useQueryClient()
   const prefetchLeaderboard = usePrefetchLeaderboard()
-
+  const [count, setCount] = useState(0) // Used to force refresh on admin toggle
   const isLocalhost = window.location.hostname === "localhost"
 
   const toggleAdmin = useCallback(() => {
+    setCount((count) => count +1) // Used to force refresh on admin toggle
     queryClient.setQueryData(
       ["whoami"],
       (whoami: Whoami | undefined) => merge(whoami, { is_admin: !isAdmin })
     )
-  }, [queryClient, isAdmin])
+  }, [queryClient, isAdmin, setCount])
 
   return (
     <header>

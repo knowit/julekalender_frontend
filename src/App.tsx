@@ -8,7 +8,7 @@ import Door from "./pages/Door"
 import Header from "./components/Header"
 import StarBackground from "./components/StarBackground"
 import LeaderBoardAside from "./components/LeaderBoardAside"
-import Doors from "./pages/Lights/Doors"
+import Doors from "./pages/Doors"
 import Leaderboard from "./pages/Leaderboard"
 import { useIsAdmin } from "./hooks/useIsAdmin"
 

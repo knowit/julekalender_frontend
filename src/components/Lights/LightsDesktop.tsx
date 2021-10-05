@@ -1,10 +1,11 @@
+import clsx from "clsx"
 import { FC } from "react"
 import { Link } from "react-router-dom"
 
-import { getBulbClass, getLinkDateDependentProps, getTextClass, LightsProps } from "./light_utils"
+import { getBulbClass, getLinkDateDependentProps, getTextClass, LightsProps } from "./lights_utils"
 
 
-const LightsDesktop: FC<LightsProps> = ({ solvedStatus, prefetch }) => (
+const LightsDesktop: FC<LightsProps> = ({ solvedStatus, prefetch, className }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     x="0"
@@ -13,7 +14,7 @@ const LightsDesktop: FC<LightsProps> = ({ solvedStatus, prefetch }) => (
     overflow="visible"
     version="1.2"
     viewBox="0 0 2560 1241"
-    className="w-full hidden md:block"
+    className={clsx("w-full", className)}
   >
     <g>
       <g>

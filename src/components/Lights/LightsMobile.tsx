@@ -1,16 +1,17 @@
+import clsx from "clsx"
 import { FC } from "react"
 import { Link } from "react-router-dom"
 
-import { getBulbClass, getLinkDateDependentProps, getTextClass, LightsProps } from "./light_utils"
+import { getBulbClass, getLinkDateDependentProps, getTextClass, LightsProps } from "./lights_utils"
 
 
-const LightsMobile: FC<LightsProps> = ({ solvedStatus, prefetch }) => (<svg
+const LightsMobile: FC<LightsProps> = ({ solvedStatus, prefetch, className }) => (<svg
   xmlns="http://www.w3.org/2000/svg"
   x="0"
   y="0"
   baseProfile="basic"
   viewBox="0 0 375 1585.13"
-  className="md:hidden"
+  className={clsx("w-full", className)}
 >
   <g id="ring_under">
     <path

@@ -1,10 +1,9 @@
 import { get } from "lodash"
 
-import { usePrefetchChallenge, usePrefetchLikes, usePrefetchPosts, useSolvedStatus } from "../../api/requests"
-import Footer from "../../components/Footer"
-
-import LightsDesktop from "./LightsDesktop"
-import LightsMobile from "./LightsMobile"
+import { usePrefetchChallenge, usePrefetchLikes, usePrefetchPosts, useSolvedStatus } from "../api/requests"
+import Footer from "../components/Footer"
+import LightsDesktop from "../components/Lights/LightsDesktop"
+import LightsMobile from "../components/Lights/LightsMobile"
 
 
 const Doors = () => {
@@ -25,8 +24,8 @@ const Doors = () => {
   return (
     <>
       <main>
-        <LightsDesktop solvedStatus={solvedStatus} prefetch={prefetch} />
-        <LightsMobile solvedStatus={solvedStatus} prefetch={prefetch} />
+        <LightsDesktop solvedStatus={solvedStatus} prefetch={prefetch} className="hidden md:block" />
+        <LightsMobile solvedStatus={solvedStatus} prefetch={prefetch} className="md:hidden" />
       </main>
       <Footer />
     </>

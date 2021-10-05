@@ -1,4 +1,4 @@
-import clsx from "clsx"
+import clsx, { ClassValue } from "clsx"
 import { get } from "lodash"
 
 import { SolvedStatus } from "../../api/Challenge"
@@ -8,6 +8,7 @@ import { beforeDoorDate2020 } from "../../utils"
 export type LightsProps = {
   solvedStatus: SolvedStatus | undefined
   prefetch: (door: number) => void
+  className?: ClassValue
 }
 
 export const getBulbClass = (door: number, solvedStatus: SolvedStatus | undefined) => (

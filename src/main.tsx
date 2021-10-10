@@ -6,7 +6,7 @@ import { Auth0Provider } from "@auth0/auth0-react"
 import "../assets/css/base.scss"
 import "../assets/css/syntax_highlight.scss"
 
-import "./init"
+import "./axios"
 import App from "./App"
 import AuthContext from "./AuthContext"
 import TokenRefreshHandler from "./components/TokenRefreshHandler"

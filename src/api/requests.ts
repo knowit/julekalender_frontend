@@ -3,16 +3,16 @@ import { useCallback, useMemo } from "react"
 import { MutationKey, QueryKey, useMutation, UseMutationOptions, useQuery, useQueryClient, UseQueryOptions, UseQueryResult } from "react-query"
 import { find } from "lodash"
 
+import { QueryError } from "../axios"
+
 import { Challenge, Leaderboard, Like, ParentPost, Post, SolvedStatus, Subscriptions, Whoami } from "."
 
-
-export type Token = string | undefined
 
 // Easy interface for creating request and prefetch functions with token injected into options
 const createKalenderQueryHooks = <
   TResult,
   TArgs extends unknown[] = unknown[],
-  TError = { message: string }
+  TError = QueryError
 >(
   queryKeyGen: (...args: TArgs) => QueryKey,
   requestGen: (...args: TArgs) => Promise<AxiosResponse<TResult>>,
@@ -21,7 +21,7 @@ const createKalenderQueryHooks = <
   (...args: TArgs) => UseQueryResult<TResult, TError>,
   () => (...args: TArgs) => void
 ] => {
-  const request = (...args: TArgs) => () => requestGen(...args).then((r) => r.data)
+  const request = (...args: TArgs) => () => requestGen(...args).then(({ data }) => data)
 
   return [
     /*
@@ -58,6 +58,7 @@ const createKalenderQueryHooks = <
   ]
 }
 
+/* eslint-disable array-bracket-spacing */
 export const [useLikes,         usePrefetchLikes        ] = createKalenderQueryHooks<Like[]>(() => ["likes"], () => axios.get("/likes"), { staleTime: 60_000 })
 export const [useChallenge,     usePrefetchChallenge    ] = createKalenderQueryHooks<Challenge, [number]>((door) => ["challenges", door], (door) => axios.get(`/challenges/${door}`), { staleTime: 600_000 })
 export const [useSolvedStatus,  usePrefetchSolvedStatus ] = createKalenderQueryHooks<SolvedStatus>(() => ["solvedStatus"], () => axios.get("/challenges/solved"))
@@ -73,13 +74,13 @@ const useKalenderMutation = <
   TResult = never,
   TVariables = unknown,
   TContext = TResult,
-  TError = { message: string }
+  TError = QueryError
 >(
   mutationKey: MutationKey,
   request: (data: TVariables) => Promise<AxiosResponse<TResult>>,
   opts?: UseMutationOptions<TResult, TError, TVariables, TContext>
 ) => (
-  useMutation<TResult, TError, TVariables, TContext>(mutationKey, (data) => request(data).then((r) => r.data), opts)
+  useMutation<TResult, TError, TVariables, TContext>(mutationKey, (data) => request(data).then(({ data }) => data), opts)
 )
 
 export type CreateSolutionResponse = { solved: boolean }

@@ -19,15 +19,15 @@ const Door: FC = () => {
 
   return (
     <Page className="relative">
+      <div className="space-y-door-elements">
+        <Challenge door={door} />
+        {isFullyAuthenticated && solved && <PostsSection door={door} />}
+      </div>
       <Light
         door={door}
         solved={solved}
         className="w-20 lg:w-28 float-right mr-8 mt-10 lg:mt-12 absolute right-0 top-0"
       />
-      <div className="space-y-door-elements">
-        <Challenge door={door} />
-        {isFullyAuthenticated && solved && <PostsSection door={door} />}
-      </div>
     </Page>
   )
 }

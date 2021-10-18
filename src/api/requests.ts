@@ -1,27 +1,64 @@
 import axios, { AxiosResponse } from "axios"
 import { useCallback, useMemo } from "react"
-import { MutationKey, QueryKey, useMutation, UseMutationOptions, useQuery, useQueryClient, UseQueryOptions, UseQueryResult } from "react-query"
-import { find } from "lodash"
+import { FetchQueryOptions, MutationKey, QueryKey, useMutation, UseMutationOptions, useQuery, useQueryClient, UseQueryOptions, UseQueryResult } from "react-query"
+import { every, find, includes, isObject, keys, merge, omit, values } from "lodash"
 
-import { QueryError } from "../axios"
+import { QueryAxiosError, QueryError } from "../axios"
 
 import { Challenge, Leaderboard, Like, ParentPost, Post, SolvedStatus, Subscriptions, Whoami } from "."
 
 
-// Easy interface for creating request and prefetch functions with token injected into options
-const createKalenderQueryHooks = <
-  TResult,
-  TArgs extends unknown[] = unknown[],
-  TError = QueryError
->(
-  queryKeyGen: (...args: TArgs) => QueryKey,
-  requestGen: (...args: TArgs) => Promise<AxiosResponse<TResult>>,
-  opts?: UseQueryOptions<TResult, TError>
+const isQueryOpts = (obj: any) => (
+  isObject(obj) && every(keys(obj), (k) => includes(["mutationFn", "mutationKey", "onMutate", "onSuccess", "onError", "onSettled", "retry", "retryDelay", "useErrorBoundary"], k))
+)
+
+const isFetchOpts = (obj: any) => (
+  isObject(obj) && every(keys(obj), (k) => includes(["staleTime"], k))
+)
+
+/* eslint-disable no-redeclare */
+function createKalenderQueryHooks<TResult, TError extends QueryAxiosError = QueryError>(
+  queryKeyGen: () => QueryKey,
+  requestGen: () => Promise<AxiosResponse<TResult>>,
+  baseOpts?: UseQueryOptions<TResult, TError>
 ): [
-  (...args: TArgs) => UseQueryResult<TResult, TError>,
-  () => (...args: TArgs) => void
-] => {
-  const request = (...args: TArgs) => () => requestGen(...args).then(({ data }) => data)
+  (opts?: UseQueryOptions<TResult, TError>) => UseQueryResult<TResult, TError>,
+  () => (opts?: FetchQueryOptions<TResult, TError>) => void
+]
+
+function createKalenderQueryHooks<TResult, TArg1, TError extends QueryAxiosError = QueryError>(
+  queryKeyGen: (arg_0: TArg1) => QueryKey,
+  requestGen: (arg_0: TArg1) => Promise<AxiosResponse<TResult>>,
+  baseOpts?: UseQueryOptions<TResult, TError>
+): [
+  (arg_0: TArg1, opts?: UseQueryOptions<TResult, TError>) => UseQueryResult<TResult, TError>,
+  () => (arg_0: TArg1, opts?: FetchQueryOptions<TResult, TError>) => void
+]
+
+// Easy interface for creating request and prefetch functions with token injected into options
+function createKalenderQueryHooks<
+  TResult,
+  TArg1,
+  TError extends QueryAxiosError = QueryError
+>(
+  queryKeyGen: (() => QueryKey) | ((arg_0: TArg1) => QueryKey),
+  requestGen: (() => Promise<AxiosResponse<TResult>>) | ((arg_0: TArg1) => Promise<AxiosResponse<TResult>>),
+  baseOpts?: UseQueryOptions<TResult, TError>
+): [
+  (opts?: UseQueryOptions<TResult, TError>) => UseQueryResult<TResult, TError> | ((arg_0: TArg1 | UseQueryOptions<TResult, TError>, opts?: UseQueryOptions<TResult, TError>) => UseQueryResult<TResult, TError>),
+  () => (opts?: FetchQueryOptions<TResult, TError>) => void |(() => (arg_0: TArg1 | FetchQueryOptions<TResult, TError>, opts?: FetchQueryOptions<TResult, TError>) => void)
+] {
+  const makeRequest = (arg_0?: TArg1) => () => (
+    arg_0
+      ? (requestGen as (arg_0: TArg1) => Promise<AxiosResponse<TResult>>)(arg_0)
+      : (requestGen as () => Promise<AxiosResponse<TResult>>)()
+  ).then(({ data }) => data)
+  const makeQueryKey = (arg_0?: TArg1) => (
+    arg_0
+      ? (queryKeyGen as (arg_0: TArg1) => QueryKey)(arg_0)
+      : (queryKeyGen as () => QueryKey)()
+  )
+
 
   return [
     /*
@@ -37,10 +74,19 @@ const createKalenderQueryHooks = <
      *   return <span>{whoami.nickname}</span>
      * }
      */
-    (...args: TArgs) => {
-      const queryKey = useMemo(() => queryKeyGen(...args), [...args])
+    (maybeArg_0?: TArg1 | UseQueryOptions<TResult, TError>, maybeOpts?: UseQueryOptions<TResult, TError>) => {
+      let args: [TArg1?] = []
+      let opts: UseQueryOptions<TResult, TError> | undefined
+      if (isQueryOpts(maybeArg_0)) {
+        opts = maybeArg_0
+      } else {
+        args = [maybeArg_0 as TArg1]
+        opts = maybeOpts
+      }
 
-      return useQuery<TResult, TError>(queryKey, request(...args), opts)
+      const queryKey = useMemo(() => makeQueryKey(...args), args ? values(args) : [])
+
+      return useQuery<TResult, TError>(queryKey, makeRequest(...args), merge(baseOpts, opts))
     },
 
     /*
@@ -51,8 +97,17 @@ const createKalenderQueryHooks = <
     () => {
       const queryClient = useQueryClient()
 
-      return useCallback((...args: TArgs) => {
-        queryClient.prefetchQuery(queryKeyGen(...args), request(...args))
+      return useCallback((maybeArg_0?: TArg1 | FetchQueryOptions<TResult, TError>, maybeOpts?: FetchQueryOptions<TResult, TError>) => {
+        let args: [TArg1?] = []
+        let opts: UseQueryOptions<TResult, TError> | undefined
+        if (isFetchOpts(maybeArg_0)) {
+          opts = maybeArg_0
+        } else {
+          args = [maybeArg_0 as TArg1]
+          opts = maybeOpts
+        }
+
+        queryClient.prefetchQuery(makeQueryKey(...args), makeRequest(...args), opts)
       }, [queryClient])
     }
   ]
@@ -60,9 +115,9 @@ const createKalenderQueryHooks = <
 
 /* eslint-disable array-bracket-spacing */
 export const [useLikes,         usePrefetchLikes        ] = createKalenderQueryHooks<Like[]>(() => ["likes"], () => axios.get("/likes"), { staleTime: 60_000 })
-export const [useChallenge,     usePrefetchChallenge    ] = createKalenderQueryHooks<Challenge, [number]>((door) => ["challenges", door], (door) => axios.get(`/challenges/${door}`), { staleTime: 600_000 })
+export const [useChallenge,     usePrefetchChallenge    ] = createKalenderQueryHooks<Challenge, number>((door) => ["challenges", door], (door) => axios.get(`/challenges/${door}`), { staleTime: 600_000 })
 export const [useSolvedStatus,  usePrefetchSolvedStatus ] = createKalenderQueryHooks<SolvedStatus>(() => ["solvedStatus"], () => axios.get("/challenges/solved"))
-export const [usePosts,         usePrefetchPosts        ] = createKalenderQueryHooks<ParentPost[], [number]>((door) => ["posts", door], (door) => axios.get(`/challenges/${door}/posts`), { staleTime: 300_000 })
+export const [usePosts,         usePrefetchPosts        ] = createKalenderQueryHooks<ParentPost[], number>((door) => ["posts", door], (door) => axios.get(`/challenges/${door}/posts`), { staleTime: 300_000 })
 export const [useLeaderboard,   usePrefetchLeaderboard  ] = createKalenderQueryHooks<Leaderboard>(() => ["leaderboard"], () => axios.get("/leaderboard"), { staleTime: 300_000 })
 export const [useWhoami,        usePrefetchWhoami       ] = createKalenderQueryHooks<Whoami>(() => ["whoami"], () => axios.get("/users/whoami"))
 export const [useSubscriptions, usePrefetchSubscriptions] = createKalenderQueryHooks<Subscriptions>(() => ["subscriptions"], () => axios.get("/subscriptions"))

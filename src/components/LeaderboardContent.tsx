@@ -1,39 +1,44 @@
-import { FC, ReactElement, useEffect, useState } from "react"
+import { FC, ReactElement, useMemo } from "react"
 import { map, reduce, upperFirst } from "lodash"
 
 import { numberString } from "../utils"
-import useRequestsAndAuth from "../hooks/useRequestsAndAuth"
+import { useLeaderboard } from "../api/requests"
 
 
-type LeaderboardWithPosition = Array<[number, Array<{ username: string, position: number }>]>
+type LeaderboardGroup = [number, Array<{ username: string, position: number }>]
+type LeaderboardWithPosition = Array<LeaderboardGroup>
 
 type LeaderBoardContentProps = {
   CloseButton?: ReactElement
 }
 
 const LeaderBoardContent: FC<LeaderBoardContentProps> = () => {
-  const { fetchLeaderboard } = useRequestsAndAuth()
-  const [leaderboard, setLeaderboard] = useState<LeaderboardWithPosition>()
+  const { data: leaderboard } = useLeaderboard()
 
-  useEffect(() => {
-    fetchLeaderboard()
-      .then((response) => setLeaderboard(
-        reduce(response.data, (list, [solvedCount, usernames]) => (
-          [
-            ...list,
-            [
-              solvedCount,
-              map(usernames, (username, i) => ({
-                username,
-                position: reduce(list, (sum, [_, entries]) => sum + entries.length, 0) + i + 1
-              }))
-            ]
-          ]
-        ), [] as LeaderboardWithPosition)))
-  }, [fetchLeaderboard])
+  // Calculate overall position for each user, regardless of grouping.
+  const leaderboardWithPosition = useMemo(() => {
+    if (!leaderboard) return []
+
+    return reduce(leaderboard, (list, [solvedCount, usernames]) => {
+      const numPrecedingGroupedUsers = reduce(list, (sum, [_, entries]) => sum + entries.length, 0)
+
+      return [
+        ...list,
+        [
+          solvedCount,
+          map(usernames, (username, i) => ({
+            username,
+            position: numPrecedingGroupedUsers + i + 1
+          }))
+        ] as LeaderboardGroup
+      ]
+    }, [] as LeaderboardWithPosition)
+  }, [leaderboard])
+
+  if (!leaderboard) return null
 
   return (<>
-    {map(leaderboard, ([solvedCount, entries]) =>
+    {map(leaderboardWithPosition, ([solvedCount, entries]) =>
       <div key={solvedCount}>
         <h3 className="sticky top-0 py-1 bg-lightbulb-green rounded-md -space-y-1" key={solvedCount} >
           <div className="text-lg font-semibold tracking-wide">

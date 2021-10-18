@@ -1,9 +1,5 @@
-export type CurrentUser = {
-  uuid: string
-}
-
 export type Whoami = {
-  user: CurrentUser
+  uuid: string
+  is_admin: boolean
+  picture: string
 }
-
-export default CurrentUser

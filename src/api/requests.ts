@@ -1,86 +1,235 @@
-import Axios from "axios"
+import axios, { AxiosResponse } from "axios"
+import { useCallback, useMemo } from "react"
+import { MutationKey, QueryKey, useMutation, UseMutationOptions, useQuery, useQueryClient, UseQueryOptions, UseQueryResult } from "react-query"
+import { find } from "lodash"
 
-import { CreatePostPayload, ParentPost, Post } from "./Post"
-import Like from "./Like"
-import Challenge, { SolvedStatus } from "./Challenge"
-import { CreateLikePayload, CreateSolutionPayload, CreateSolutionResponse } from "./Solution"
-import Leaderboard from "./Leaderboard"
-import AdminStatus from "./admin"
-import { Whoami } from "./User"
+import { QueryError } from "../axios"
+
+import { Challenge, Leaderboard, Like, ParentPost, Post, SolvedStatus, Subscriptions, Whoami } from "."
 
 
-const apiUrl = import.meta.env.VITE_BACKEND_HOST
-const requestHeaders = { "Content-Type": "application/json" }
-const getHeaders = (token: Token) => (
-  token ? { ...requestHeaders, "Authorization": token } : requestHeaders
+// Easy interface for creating request and prefetch functions with token injected into options
+const createKalenderQueryHooks = <
+  TResult,
+  TArgs extends unknown[] = unknown[],
+  TError = QueryError
+>(
+  queryKeyGen: (...args: TArgs) => QueryKey,
+  requestGen: (...args: TArgs) => Promise<AxiosResponse<TResult>>,
+  opts?: UseQueryOptions<TResult, TError>
+): [
+  (...args: TArgs) => UseQueryResult<TResult, TError>,
+  () => (...args: TArgs) => void
+] => {
+  const request = (...args: TArgs) => () => requestGen(...args).then(({ data }) => data)
+
+  return [
+    /*
+     * Gets query key and request according to given generator functions and
+     * calls to useQuery for simple usage in components without having to write
+     * request handling and options every time, and no need to ensure correct
+     * query key is used. If same request is used in multiple components, will
+     * reuse data from cache because the query keys will be the same.
+     *
+     * e.g.
+     * const fc = () => {
+     *   const { data: whoami } = useWhoami()
+     *   return <span>{whoami.nickname}</span>
+     * }
+     */
+    (...args: TArgs) => {
+      const queryKey = useMemo(() => queryKeyGen(...args), [...args])
+
+      return useQuery<TResult, TError>(queryKey, request(...args), opts)
+    },
+
+    /*
+     * Same as above, but returns a prefetcher-function. App feels very smooth
+     * in use if links to use a given resource has the data prefetched already
+     * on `onMouseEnter`.
+     */
+    () => {
+      const queryClient = useQueryClient()
+
+      return useCallback((...args: TArgs) => {
+        queryClient.prefetchQuery(queryKeyGen(...args), request(...args))
+      }, [queryClient])
+    }
+  ]
+}
+
+/* eslint-disable array-bracket-spacing */
+export const [useLikes,         usePrefetchLikes        ] = createKalenderQueryHooks<Like[]>(() => ["likes"], () => axios.get("/likes"), { staleTime: 60_000 })
+export const [useChallenge,     usePrefetchChallenge    ] = createKalenderQueryHooks<Challenge, [number]>((door) => ["challenges", door], (door) => axios.get(`/challenges/${door}`), { staleTime: 600_000 })
+export const [useSolvedStatus,  usePrefetchSolvedStatus ] = createKalenderQueryHooks<SolvedStatus>(() => ["solvedStatus"], () => axios.get("/challenges/solved"))
+export const [usePosts,         usePrefetchPosts        ] = createKalenderQueryHooks<ParentPost[], [number]>((door) => ["posts", door], (door) => axios.get(`/challenges/${door}/posts`), { staleTime: 300_000 })
+export const [useLeaderboard,   usePrefetchLeaderboard  ] = createKalenderQueryHooks<Leaderboard>(() => ["leaderboard"], () => axios.get("/leaderboard"), { staleTime: 300_000 })
+export const [useWhoami,        usePrefetchWhoami       ] = createKalenderQueryHooks<Whoami>(() => ["whoami"], () => axios.get("/users/whoami"))
+export const [useSubscriptions, usePrefetchSubscriptions] = createKalenderQueryHooks<Subscriptions>(() => ["subscriptions"], () => axios.get("/subscriptions"))
+
+
+// Passes through arguments to useMutation, but sets some sensible default types
+// and unwraps data from response.
+const useKalenderMutation = <
+  TResult = never,
+  TVariables = unknown,
+  TContext = TResult,
+  TError = QueryError
+>(
+  mutationKey: MutationKey,
+  request: (data: TVariables) => Promise<AxiosResponse<TResult>>,
+  opts?: UseMutationOptions<TResult, TError, TVariables, TContext>
+) => (
+  useMutation<TResult, TError, TVariables, TContext>(mutationKey, (data) => request(data).then(({ data }) => data), opts)
 )
 
-export type Token = string | undefined
+export type CreateSolutionResponse = { solved: boolean }
+export type CreateSolutionParameters = { door: number, answer: string }
+export const useCreateSolution = () => {
+  const queryClient = useQueryClient()
 
-// TODO: Type endpoint with template string type?
-const baseFetch = <T>(endpoint: string, token: Token = undefined) => (
-  Axios.get<T>(`${apiUrl}${endpoint}`, { headers: getHeaders(token) })
-)
+  return useKalenderMutation<CreateSolutionResponse, CreateSolutionParameters>(
+    ["solutions", "createSolution"],
+    ({ door, answer }) => axios.post( `/challenges/${door}/solutions`, { solution: { answer } }),
+    {
+      onSuccess: async ({ solved }, { door }) => {
+        if (solved) {
+          queryClient.setQueryData(["solvedStatus"], (solvedStatus: SolvedStatus | undefined) => ({ ...solvedStatus, [door]: true }))
+          queryClient.invalidateQueries(["solvedStatus"])
+        }
+      }
+    }
+  )
+}
 
-const baseDelete = <T>(endpoint: string, token: Token = undefined) => (
-  Axios.delete<T>(`${apiUrl}${endpoint}`, { headers: getHeaders(token) })
-)
+export type CreateLikeParameters = { postUuid: string }
+export const useCreateLike = () => {
+  const queryClient = useQueryClient()
 
-type CreatePayload = CreateSolutionPayload | CreateLikePayload | CreatePostPayload
+  return useKalenderMutation<never, CreateLikeParameters, Like[]>(
+    ["likes", "createLike"],
+    ({ postUuid }) => axios.post(`/posts/${postUuid}/likes`, {}),
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries(["likes"])
+        queryClient.invalidateQueries(["posts"])
+      }
+    }
+  )
+}
 
-const baseCreate = <T>(endpoint: string, payload: CreatePayload, token: Token) => (
-  Axios.post<T>(`${apiUrl}${endpoint}`, payload, { headers: getHeaders(token) })
-)
+export type DeleteLikeParameters = { uuid: string }
+export const useDeleteLike = () => {
+  const queryClient = useQueryClient()
 
-export const fetchLikes = (token: Token) => () => (
-  baseFetch<Like[]>("/likes", token)
-)
+  return useKalenderMutation<never, DeleteLikeParameters, Like[]>(
+    ["likes", "deleteLike"],
+    ({ uuid }) => axios.delete(`/likes/${uuid}`),
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries(["likes"])
+        queryClient.invalidateQueries(["posts"])
+      }
+    }
+  )
+}
 
-export const fetchChallenge = (token: Token) => (doorNumber: number | string) => (
-  baseFetch<Challenge>(`/challenges/${doorNumber}`, token)
-)
+export type CreatePostParameters = { door: number, content: string }
+export const useCreatePost = () => {
+  const queryClient = useQueryClient()
 
-export const fetchSolvedStatus = (token: Token) => () => (
-  baseFetch<SolvedStatus>("/challenges/solved", token)
-)
+  return useKalenderMutation<ParentPost, CreatePostParameters>(
+    ["posts", "createPost"],
+    ({ door, content }) => axios.post(`/challenges/${door}/posts`, { post: { content } }),
+    {
+      onSuccess: (post) => {
+        // Insert created post back into posts list, then refetch to ensure up-to-date data
+        queryClient.setQueryData(["posts"], (posts: ParentPost[] | undefined) => [...posts ?? [], post])
+      },
+      onSettled: () => {
+        queryClient.invalidateQueries(["posts"])
+      }
+    }
+  )
+}
 
-export const createSolution = (token: Token) => (challenge_door: number | string, answer: string) => (
-  baseCreate<CreateSolutionResponse>(`/challenges/${challenge_door}/solutions`, { "solution": { "answer": answer } }, token)
-)
+export type CreateChildPostParameters = { door: number, parentUuid: string, content: string }
+export const useCreateChildPost = () => {
+  const queryClient = useQueryClient()
 
-export const createLike = (token: Token) => (postId: number | string) => (
-  baseCreate<never>(`/posts/${postId}/likes`, {}, token)
-)
+  return useKalenderMutation<Post, CreateChildPostParameters>(
+    ["posts", "createChild"],
+    ({ door, parentUuid, content }) => axios.post(`/challenges/${door}/posts`, { post: { content, parent_uuid: parentUuid } }),
+    {
+      onSuccess: (post, { parentUuid }) => {
+        // Insert created child post back into posts list, then refetch to ensure up-to-date data
+        queryClient.setQueryData(["posts"], (posts: ParentPost[] | undefined) => {
+          const parent = find(posts, { uuid: parentUuid })
+          if (!parent) return posts ?? []
 
-export const createPost = (token: Token) => (doorNumber: string | number, post: string) => (
-  baseCreate<ParentPost>(`/challenges/${doorNumber}/posts`, { post: { content: post } }, token)
-)
+          const newParent: ParentPost = { ...parent, children: [...parent.children, post] }
 
-export const createChildPost = (token: Token) => (doorNumber: string | number, post: string, parentId: string) => (
-  baseCreate<Post>(`/challenges/${doorNumber}/posts`, { post: { content: post, parent_uuid: parentId } }, token)
-)
+          return [...posts ?? [], newParent]
+        })
+      },
+      onSettled: () => {
+        queryClient.invalidateQueries(["posts"])
+      }
+    }
+  )
+}
 
-export const fetchPosts = (token: Token) => (doorNumber: number | string) => (
-  baseFetch<ParentPost[]>(`/challenges/${doorNumber}/posts`, token)
-)
+export type DeletePostParameters = { uuid: string }
+export const useDeletePost = () => {
+  const queryClient = useQueryClient()
 
-export const fetchSinglePost = (token: Token) => (doorNumber: number | string, postId: string) => (
-  baseFetch<ParentPost>(`/challenges/${doorNumber}/posts/${postId}`, token)
-)
+  return useKalenderMutation<never, DeletePostParameters>(
+    ["posts", "deletePost"],
+    ({ uuid }) => axios.delete(`/posts/${uuid}`),
+    {
+      onSettled: () => queryClient.invalidateQueries(["posts"])
+    }
+  )
+}
 
-export const deletePost = (token: Token) => (postId: string) => (
-  baseDelete<never>(`/posts/${postId}`, token)
-)
+export type CreateSubscriptionParameters = { door: number } | { postUuid: string }
+export const useCreateSubscription = () => {
+  const queryClient = useQueryClient()
 
-export const fetchLeaderboard = () => (
-  baseFetch<Leaderboard>("/leaderboard")
-)
+  return useKalenderMutation<never, CreateSubscriptionParameters, Subscriptions>(
+    ["subscriptions", "createSubscription"],
+    (data) => axios.post("/subscriptions", data),
+    {
+      onMutate: async (subscription) => {
+        await queryClient.cancelQueries(["subscriptions"])
+        const subscriptions = queryClient.getQueryData<Subscriptions>(["subscriptions"])
 
-export const fetchAdminStatus = (token: Token) => () => (
-  baseFetch<AdminStatus>("/users/admin", token)
-)
+        queryClient.setQueryData<Subscriptions>(["subscriptions"], () => [...subscriptions ?? [], { ...subscription, uuid: "" }])
 
-export const fetchWhoami = (token: Token) => () => (
-  baseFetch<Whoami>("/users/whoami", token)
-)
+        return subscriptions
+      },
+      onError: (_err, _vars, subscriptions) => {
+        if (subscriptions)
+          queryClient.setQueryData(["subscriptions"], subscriptions)
+      },
+      onSettled: () => {
+        queryClient.invalidateQueries(["subscriptions"])
+      }
+    }
+  )
+}
 
+export type DeleteSubscriptionParameters = { uuid: string }
+export const useDeleteSubscription = () => {
+  const queryClient = useQueryClient()
+
+  return useKalenderMutation<never, DeleteSubscriptionParameters, Subscriptions>(
+    ["subscriptions", "deleteSubscription"],
+    ({ uuid }) => axios.delete(`/subscriptions/${uuid}`),
+    {
+      onSettled: () => {
+        queryClient.invalidateQueries(["subscriptions"])
+      }
+    }
+  )
+}

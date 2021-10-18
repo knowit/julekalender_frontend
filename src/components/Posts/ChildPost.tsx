@@ -1,10 +1,9 @@
-import { FC, useCallback } from "react"
+import { FC, memo, useCallback } from "react"
 import clsx from "clsx"
 
-import { Post } from "../../api/Post"
-import Like from "../../api/Like"
-import useRequestsAndAuth from "../../hooks/useRequestsAndAuth"
 import { squish } from "../../utils"
+import { Post } from "../../api"
+import { useDeletePost } from "../../api/requests"
 
 import LikeButton from "./LikeButton"
 import PostWrapper from "./PostWrapper"
@@ -17,20 +16,16 @@ const DELETE_CONFIRM = squish(`
 
 type ChildPostProps = {
   post: Post
-  myLikes: Like[]
-  refreshParent: () => void
 }
 
-const ChildPost: FC<ChildPostProps> = ({ post, myLikes, refreshParent }) => {
-  const { deletePost: deletePostRequest } = useRequestsAndAuth()
+const ChildPost: FC<ChildPostProps> = ({ post }) => {
+  const { mutate: doDeletePost } = useDeletePost()
+
   const deletePost = useCallback(async () => {
     if (!window.confirm(DELETE_CONFIRM)) return
 
-    const { status } = await deletePostRequest(post.uuid)
-
-    if (status === 200)
-      refreshParent()
-  }, [post, deletePostRequest, refreshParent])
+    doDeletePost({ uuid: post.uuid })
+  }, [doDeletePost, post])
 
   return (
     <PostWrapper
@@ -44,16 +39,16 @@ const ChildPost: FC<ChildPostProps> = ({ post, myLikes, refreshParent }) => {
     >
       {post.deleted
         ? <div className="text-gray-600 font-light text-center p-2 sm:p-4">
-          <em>Slettet innlegg</em>
-        </div>
-        : <footer>
-          <div>
-            <LikeButton post={post} myLikes={myLikes} />
+            <em>Slettet innlegg</em>
           </div>
-        </footer>
+        : <footer>
+            <div>
+              <LikeButton post={post} />
+            </div>
+          </footer>
       }
     </PostWrapper>
   )
 }
 
-export default ChildPost
+export default memo(ChildPost)

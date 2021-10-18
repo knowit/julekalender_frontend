@@ -6,14 +6,19 @@ import { easeInOutCubic, easeOutCubic } from "../../utils"
 import Wrapper, { CheckmarkWrapperProps } from "./Wrapper"
 
 
-const offset = 65.1
-const r = 62.1
+const OFFSET = 65.1
+const R = 62.1
 
 export const CheckMark: FC<CheckmarkWrapperProps> = (props) => (
   <Wrapper {...props}>
     <svg className="text-green-600 stroke-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130.2 130.2">
       <motion.path
-        d={`M${offset} ${offset}m0 ${-r}a${r} ${r} 0 1 1 0 ${2*r}a${r} ${r} 0 1 1 0 ${-2*r}`}
+        d={`
+          M ${OFFSET} ${OFFSET}
+          m 0 ${-R}
+          a ${R}, ${R} 0 1, 1 0 ${2*R}
+          a ${R}, ${R} 0 1, 1 0 ${-2*R}
+        `}
         fill="none"
         strokeLinecap="round"
         strokeMiterlimit="10"
@@ -23,7 +28,11 @@ export const CheckMark: FC<CheckmarkWrapperProps> = (props) => (
         transition={{ duration: 0.4, ease: easeOutCubic }}
       />
       <motion.path
-        d="M29.8 67.5L51.5 88.8 100.2 40.2"
+        d={`
+          M ${OFFSET} ${OFFSET}
+          m -35.3 2.4
+          l 21.7 21.3, 44.7 -44.6
+        `}
         fill="none"
         strokeLinecap="round"
         strokeMiterlimit="10"

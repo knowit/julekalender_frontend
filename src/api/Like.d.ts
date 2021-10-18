@@ -1,5 +1,4 @@
-type Like = {
+export type Like = {
+  uuid: string
   post_uuid: string
 }
-
-export default Like

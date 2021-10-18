@@ -1,6 +1,3 @@
-import { constant } from "lodash"
-
-
 export type Post = {
   uuid: string
   parent_uuid: string | null
@@ -19,17 +16,3 @@ export type Post = {
 export type ParentPost = Post & {
   children: Post[]
 }
-
-export type CreatePostPayload = {
-  content: string
-  parent_uuid?: string
-}
-
-
-export const makeDeletedPost = constant({
-  content: "",
-  markdown_content: "",
-  edited_at: null,
-  likes: 0,
-  deleted: true
-})

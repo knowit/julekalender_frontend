@@ -1,31 +1,37 @@
 import { get } from "lodash"
+import { useCallback, useMemo } from "react"
 
-import { usePrefetchChallenge, usePrefetchLikes, usePrefetchPosts, useSolvedStatus } from "../api/requests"
+import { useChallenges, usePrefetchLikes, usePrefetchPosts, useSolvedStatus } from "../api/requests"
 import Footer from "../components/Footer"
 import LightsDesktop from "../components/Lights/LightsDesktop"
 import LightsMobile from "../components/Lights/LightsMobile"
 
 
 const Doors = () => {
+  const { data: challenges } = useChallenges()
   const { data: solvedStatus } = useSolvedStatus()
-  const prefetchChallenge = usePrefetchChallenge()
   const prefetchPosts = usePrefetchPosts()
   const prefetchLikes = usePrefetchLikes()
 
 
-  const prefetch = (door: number) => {
-    prefetchChallenge(door)
+  const prefetch = useCallback((door: number) => {
     prefetchLikes()
 
     if (get(solvedStatus, door))
       prefetchPosts(door)
-  }
+  }, [prefetchLikes, prefetchPosts, solvedStatus])
+
+  const lightProps = useMemo(() => ({
+    solvedStatus,
+    prefetch,
+    challenges
+  }), [solvedStatus, prefetch, challenges])
 
   return (
     <>
       <main>
-        <LightsDesktop solvedStatus={solvedStatus} prefetch={prefetch} className="hidden md:block" />
-        <LightsMobile solvedStatus={solvedStatus} prefetch={prefetch} className="md:hidden" />
+        <LightsDesktop {...lightProps} className="hidden md:block" />
+        <LightsMobile {...lightProps} className="md:hidden" />
       </main>
       <Footer />
     </>

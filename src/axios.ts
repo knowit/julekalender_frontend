@@ -37,4 +37,5 @@ axios.interceptors.response.use(
   }
 )
 
-export type QueryError<T extends Record<string, unknown> = { message: string }> = T & Partial<Pick<AxiosResponse, "headers" | "status" | "statusText">>
+export type QueryAxiosError = Partial<Pick<AxiosResponse, "headers" | "status" | "statusText">>
+export type QueryError<T extends Record<string, unknown> = { message: string }> = T & QueryAxiosError

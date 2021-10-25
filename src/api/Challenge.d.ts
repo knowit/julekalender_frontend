@@ -6,6 +6,8 @@ export type Challenge = {
   answer: string
 }
 
+export type ChallengeDict = Record<number, Challenge | undefined>
+
 export type SolvedStatus = {
-  [key: string]: boolean
+  [key: number]: boolean
 }

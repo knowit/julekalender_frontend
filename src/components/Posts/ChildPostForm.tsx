@@ -29,7 +29,7 @@ const ChildPostForm: FC<ChildPostFormProps> = ({ showChildPostForm, toggleShowFo
   const createPost = async () => {
     if (!inputRef.current) return
 
-    createChildPost({ door, parentUuid, content: inputRef.current.value }, { onSuccess: toggleShowForm })
+    createChildPost({ door, parentUuid: parent.uuid, content: inputRef.current.value }, { onSuccess: toggleShowForm })
   }
 
   // Focus textarea on every render. Should in practice only happen once, when

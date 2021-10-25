@@ -1,31 +1,31 @@
 import clsx, { ClassValue } from "clsx"
-import { get } from "lodash"
+import { get, has } from "lodash"
 
-import { SolvedStatus } from "../../api/Challenge"
-import { beforeDoorDate2020 } from "../../utils"
+import { ChallengeDict, SolvedStatus } from "../../api/Challenge"
 
 
 export type LightsProps = {
   solvedStatus: SolvedStatus | undefined
+  challenges: ChallengeDict | undefined
   prefetch: (door: number) => void
   className?: ClassValue
 }
 
-export const getBulbClass = (door: number, solvedStatus: SolvedStatus | undefined) => (
+export const getBulbClass = (door: number, solvedStatus: SolvedStatus | undefined, challenges: ChallengeDict | undefined) => (
   clsx("fill-current", get(solvedStatus, door)
     ? "text-lightbulb-green"
-    : beforeDoorDate2020(door)
-      ? "text-lightbulb-dim"
-      : "text-lightbulb-yellow"
+    : has(challenges, door)
+      ? "text-lightbulb-yellow"
+      : "text-lightbulb-dim"
   )
 )
 
-export const getTextClass = (door: number) => (
-  beforeDoorDate2020(door) ? "text-gray-800 opacity-25" : "text-gray-800"
+export const getTextClass = (door: number, challenges: ChallengeDict | undefined) => (
+  has(challenges, door) ? "text-gray-800" : "text-gray-800 opacity-25"
 )
 
-export const getLinkDateDependentProps = (door: number, prefetch: (door: number) => void) => (
-  beforeDoorDate2020(door)
-    ? { to: "/", className: "cursor-not-allowed" }
-    : { to: `/luke/${door}`, onMouseEnter: () => prefetch(door) }
+export const getLinkDateDependentProps = (door: number, challenges: ChallengeDict | undefined, prefetch: (door: number) => void) => (
+  has(challenges, door)
+    ? { to: `/luke/${door}`, onMouseEnter: () => prefetch(door) }
+    : { to: "/", className: "cursor-not-allowed" }
 )

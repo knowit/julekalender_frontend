@@ -2,6 +2,7 @@ import { createRoot } from "react-dom"
 import { QueryClient, QueryClientProvider } from "react-query"
 import { BrowserRouter } from "react-router-dom"
 import { Auth0Provider } from "@auth0/auth0-react"
+import { ReactQueryDevtools } from "react-query/devtools"
 
 import "../assets/css/base.scss"
 import "../assets/css/syntax_highlight.scss"
@@ -17,8 +18,7 @@ const Index = () => {
     defaultOptions: {
       queries: {
         refetchOnWindowFocus: false,
-        notifyOnChangeProps: "tracked",
-        refetchOnMount: false
+        notifyOnChangeProps: "tracked"
       }
     }
   })
@@ -36,6 +36,7 @@ const Index = () => {
       >
         <AuthContext>
           <QueryClientProvider client={queryClient}>
+            <ReactQueryDevtools />
             <TokenRefreshHandler />
 
             <App />

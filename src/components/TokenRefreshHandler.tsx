@@ -27,14 +27,14 @@ const TokenRefreshHandler = () => {
         set(config, "headers.Authorization", token)
       ))
 
-      queryClient.cancelQueries(["solvedStatus"])
+      queryClient.cancelQueries(["users", "solved"])
       queryClient.cancelQueries(["likes"])
       queryClient.cancelQueries(["posts"])
-      queryClient.cancelQueries(["whoami"])
-      queryClient.invalidateQueries(["solvedStatus"])
+      queryClient.cancelQueries(["users", "whoami"])
+      queryClient.invalidateQueries(["users", "solved"])
       queryClient.invalidateQueries(["likes"])
       queryClient.invalidateQueries(["posts"])
-      queryClient.invalidateQueries(["whoami"])
+      queryClient.invalidateQueries(["users", "whoami"])
     }
   }, [queryClient, lastToken, token])
 

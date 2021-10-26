@@ -1,5 +1,5 @@
 import clsx, { ClassValue } from "clsx"
-import { get, has } from "lodash"
+import { get, has, isNil } from "lodash"
 
 import { ChallengeDict, SolvedStatus } from "../../api/Challenge"
 
@@ -14,14 +14,14 @@ export type LightsProps = {
 export const getBulbClass = (door: number, solvedStatus: SolvedStatus | undefined, challenges: ChallengeDict | undefined) => (
   clsx("fill-current", get(solvedStatus, door)
     ? "text-lightbulb-green"
-    : has(challenges, door)
+    : isNil(challenges) || has(challenges, door)
       ? "text-lightbulb-yellow"
       : "text-lightbulb-dim"
   )
 )
 
 export const getTextClass = (door: number, challenges: ChallengeDict | undefined) => (
-  has(challenges, door) ? "text-gray-800" : "text-gray-800 opacity-25"
+  isNil(challenges) || has(challenges, door) ? "text-gray-800" : "text-gray-800 opacity-25"
 )
 
 export const getLinkDateDependentProps = (door: number, challenges: ChallengeDict | undefined, prefetch: (door: number) => void) => (

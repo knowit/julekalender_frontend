@@ -55,25 +55,23 @@ const Gdpr = () => {
   ]
 
   return (
-    <Page>
-      <div className="py-12 px-8 md:px-12 mx-4 md:mx-8 bg-gray-100 text-gray-700 rounded-md">
-        <h1 className="text-2xl">Personvernerklæring for Kodekalenderen 2021</h1>
-        <h2 className="mt-4 font-medium">
-          <em>TL;DR</em>
-        </h2>
-        <ul className="mt-2 ml-4 mb-8">
-          <li>Vi bruker cookies for innlogging.</li>
-          <li>Registrert e-postadresse kan brukes til å kontakte deg om du vinner.</li>
-          <li>Registrert visningsnavn og profilbilde hentet fra Gravatar er synlige i diskusjonsfeltet og ledertavlen.</li>
-          <li>Vi sletter alle persondata etter at vinner er trukket og kontaktet.</li>
-        </ul>
+    <Page className="py-12 px-8 md:px-12 mx-4 md:mx-8 bg-gray-100 text-gray-700 rounded-md">
+      <h1 className="text-2xl">Personvernerklæring for Kodekalenderen 2021</h1>
+      <h2 className="mt-4 font-medium">
+        <em>TL;DR</em>
+      </h2>
+      <ul className="mt-2 ml-4 mb-8">
+        <li>Vi bruker cookies for innlogging.</li>
+        <li>Registrert e-postadresse kan brukes til å kontakte deg om du vinner.</li>
+        <li>Registrert visningsnavn og profilbilde hentet fra Gravatar er synlige i diskusjonsfeltet og ledertavlen.</li>
+        <li>Vi sletter alle persondata etter at vinner er trukket og kontaktet.</li>
+      </ul>
 
-        {map(sections, ([header, content], i) => <GdprSection key={i} no={i + 1} header={header} content={content} />)}
+      {map(sections, ([header, content], i) => <GdprSection key={i} no={i + 1} header={header} content={content} />)}
 
-        <div className="mt-8">
-            Henvendelser om hvilke opplysninger som er registrert, retting og
-            sletting kan sendes til <a href="mailto:julekalender@knowit.no">julekalender@knowit.no</a>
-        </div>
+      <div className="mt-8">
+        Henvendelser om hvilke opplysninger som er registrert, retting og
+        sletting kan sendes til <a href="mailto:julekalender@knowit.no">julekalender@knowit.no</a>
       </div>
     </Page>
   )

@@ -1,4 +1,4 @@
-import { FC } from "react"
+import { FC, useState } from "react"
 import { map } from "lodash"
 
 import Button from "../Button"
@@ -7,6 +7,7 @@ import { usePosts } from "../../api/requests"
 
 import Post from "./Post"
 import PostForm from "./PostForm"
+import PreviewPost from "./PreviewPost"
 
 
 type PostsSectionProps = {
@@ -18,13 +19,14 @@ const PostsSection: FC<PostsSectionProps> = ({ door }) => {
 
   // const [postsWithLikes, setPostsWithLikes] = useState<(ParentPost & { liked: boolean })[]>([])
   const [isFormVisible, showForm, hideForm] = useBoolean(true)
+  const [commentData, setCommentData] = useState<string>("")
 
   if (!posts) return null
 
   return (
     <section className="mx-2 md:mx-8 lg:w-4/5 lg:mx-auto space-y-door-elements">
       {isFormVisible
-        ? <PostForm door={door} hideForm={hideForm} />
+        ? <PostForm door={door} hideForm={hideForm} setCommentData={setCommentData}/>
         : (
             <div className="bg-gray-100 text-gray-700 rounded-md mx-auto px-8 py-4 w-96 space-y-4 flex flex-col justify-center">
               <div className="text-center">Du finner kommentaren din nederst!</div>

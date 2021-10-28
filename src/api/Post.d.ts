@@ -16,3 +16,7 @@ export type Post = {
 export type ParentPost = Post & {
   children: Post[]
 }
+
+export type PostPreview = {
+  html: string
+}

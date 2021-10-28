@@ -11,6 +11,7 @@ import LeaderBoardAside from "./components/LeaderBoardAside"
 import Doors from "./pages/Doors"
 import Leaderboard from "./pages/Leaderboard"
 import { useIsAdmin } from "./hooks/useIsAdmin"
+import ServiceMessages from "./pages/ServiceMessages"
 
 
 const App = () => {
@@ -36,6 +37,7 @@ const App = () => {
           <Route path={isAdmin ? "/luke/:door" : doorPaths} component={Door} />
           <Route path="/leaderboard" component={Leaderboard} />
           <Route path="/gdpr" component={Gdpr} />
+          <Route path="/service_messages" component={ServiceMessages} />
           <Route path="/admin" component={Admin} />
 
           {/* 404? - Route to main view */}

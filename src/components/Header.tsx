@@ -8,6 +8,7 @@ import { usePrefetchLeaderboard } from "../api/requests"
 
 import LoginButton from "./LoginButton"
 import Button from "./Button"
+import useHasUnresolvedServiceMessage from "../hooks/useHasUnresolvedServiceMessage"
 
 
 type HeaderProps = {
@@ -16,6 +17,7 @@ type HeaderProps = {
 
 const Header: FC<HeaderProps> = ({ setLeaderboardHidden }) => {
   const isAdmin = useIsAdmin()
+  const hasUnresolvedServiceMessage = useHasUnresolvedServiceMessage()
   const prefetchLeaderboard = usePrefetchLeaderboard()
 
   return (
@@ -25,12 +27,19 @@ const Header: FC<HeaderProps> = ({ setLeaderboardHidden }) => {
           <Logo className="h-7 md:h-10 fill-current" />
         </a>
         <div className="float-right space-x-2 sm:space-x-6 h-10 mt-0.5 md:mt-1">
-          {isAdmin && <>
-            <Link to="/admin" title="Super secret admin pages">
-              <Button className="hidden sm:inline">Admin page</Button>
-              <Button className="sm:hidden"><FaLock /></Button>
-            </Link>
-          </>}
+          {isAdmin && (
+            <>
+              <Link to="/admin" title="Super secret admin pages">
+                <Button className="hidden sm:inline">Admin page</Button>
+                <Button className="sm:hidden"><FaLock /></Button>
+              </Link>
+            </>
+          )}
+
+          <Link className="relative" to="/service_messages" tabIndex={3}>
+            <Button>Driftsmeldinger</Button>
+            {hasUnresolvedServiceMessage && <span className="absolute top-[-.2rem] right-[-.8rem] w-2 h-2 mr-2 bg-red-600 rounded-full" />}
+          </Link>
 
           {/* Link to separate page on mobile */}
           <Button className="hidden sm:inline" onMouseEnter={prefetchLeaderboard} onClick={() => setLeaderboardHidden(false)} tabIndex={2}>Ledertavle</Button>

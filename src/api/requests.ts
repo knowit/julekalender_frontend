@@ -7,6 +7,7 @@ import { QueryError } from "../axios"
 import { AuthContext } from "../AuthContext"
 
 import { Challenge, ChallengeDict, Leaderboard, Like, ParentPost, Post, SolvedStatus, Subscriptions, Whoami } from "."
+import { ServiceMessage } from "./ServiceMessage"
 
 
 
@@ -65,7 +66,7 @@ export const usePrefetchPosts = () => {
 
 const getLeaderboard = () => axios.get("/leaderboard").then(({ data }) => data)
 export const useLeaderboard = () => (
-  useQuery<Leaderboard, QueryError>(["leaderboard"], getLeaderboard, { staleTime: 300_000 })
+  useQuery<Leaderboard, QueryError>(["leaderboard"], getLeaderboard, { staleTime: 300_000, refetchInterval: 300_000 })
 )
 export const usePrefetchLeaderboard = () => {
   const queryClient = useQueryClient()
@@ -83,6 +84,11 @@ export const useSubscriptions = () => {
 
   return useQuery<Subscriptions, QueryError>(["subscriptions"], getSubscriptions, { enabled: isFullyAuthenticated })
 }
+
+const getServiceMessages = () => axios.get("/service_messages").then(({ data }) => data)
+export const useServiceMessages = () => (
+  useQuery<ServiceMessage[], QueryError>(["serviceMessages"], getServiceMessages, { staleTime: 300_000, refetchInterval: 300_000 })
+)
 
 
 // MUTATIONS -------------------------------------------------------------------

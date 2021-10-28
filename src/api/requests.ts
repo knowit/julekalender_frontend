@@ -6,8 +6,9 @@ import { find, fromPairs, keyBy, property } from "lodash"
 import { QueryError } from "../axios"
 import { AuthContext } from "../AuthContext"
 
-import { Challenge, ChallengeDict, Leaderboard, Like, ParentPost, Post, SolvedStatus, Subscriptions, Whoami } from "."
 import { ServiceMessage } from "./ServiceMessage"
+
+import { Challenge, ChallengeDict, Leaderboard, Like, ParentPost, Post, PostPreview, SolvedStatus, Subscriptions, Whoami } from "."
 
 
 
@@ -88,6 +89,11 @@ export const useSubscriptions = () => {
 const getServiceMessages = () => axios.get("/service_messages").then(({ data }) => data)
 export const useServiceMessages = () => (
   useQuery<ServiceMessage[], QueryError>(["serviceMessages"], getServiceMessages, { staleTime: 300_000, refetchInterval: 300_000 })
+)
+
+export const getPostPreview = (content: string) => axios.post("/markdown", { content }).then(({ data }) => data)
+export const usePostPreview = (content: string) => (
+  useQuery<PostPreview, QueryError>(["postPreview", content], () => getPostPreview(content), { staleTime: Infinity })
 )
 
 

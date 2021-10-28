@@ -1,10 +1,13 @@
-import { FC, useContext, useRef } from "react"
+import { FC, useContext, useRef, useState } from "react"
 import TextareaAutosize from "react-autosize-textarea/lib"
+import clsx from "clsx"
 
 import { squish } from "../../utils"
 import { useCreatePost } from "../../api/requests"
 import { AuthContext } from "../../AuthContext"
 import { useIsAdmin } from "../../hooks/useIsAdmin"
+
+import PostPreview from "./PostPreview"
 
 
 const FORM_PLACEHOLDER = squish(`
@@ -25,6 +28,8 @@ type PostFormProps = {
 const PostForm: FC<PostFormProps> = ({ door, hideForm }) => {
   const { mutate: doCreatePost, isLoading } = useCreatePost()
   const { isFullyAuthenticated } = useContext(AuthContext)
+  const [shouldShowPreview, setShouldShowPreview] = useState<boolean>(false)
+  const [toBeConverted, setToBeConverted] = useState<string>("")
   const isAdmin = useIsAdmin()
   const inputRef = useRef<HTMLTextAreaElement>(null)
 
@@ -42,17 +47,41 @@ const PostForm: FC<PostFormProps> = ({ door, hideForm }) => {
     )
   }
 
+  const previewMarkdown = () => {
+    if (!inputRef.current) return
+    setToBeConverted(inputRef.current.value)
+  }
+
   // Prevent admins from accidentially submitting posts without being logged in.
   if (isAdmin && !isFullyAuthenticated) return null
 
   return (
     <div className="bg-gray-100 text-gray-700 rounded-md px-4 pt-4 pb-2 flex flex-col items-end">
+      <PostPreview
+        content={toBeConverted}
+        className={clsx(
+          !shouldShowPreview && "hidden",
+          "w-full min-h-[5rem]"
+        )}
+      />
       <TextareaAutosize
-        className="block w-full h-20 p-0 outline-none bg-transparent border-b-2 border-gray-700"
+        className={clsx(
+          shouldShowPreview && "hidden",
+          "block w-full h-20 p-0 outline-none bg-transparent border-b-2 border-gray-700"
+        )}
         ref={inputRef}
         placeholder={FORM_PLACEHOLDER}
       />
+
       <div>
+        <button
+          className="bg-none border-none cursor-pointer ml-4 p-4 font-medium"
+          disabled={isLoading}
+          onClick={() => setShouldShowPreview(!shouldShowPreview)}
+          onMouseEnter={previewMarkdown}
+        >
+          {shouldShowPreview ? "REDIGER" : "PREVIEW"}
+        </button>
         <button className="bg-none border-none cursor-pointer ml-4 p-4 font-medium" disabled={isLoading} onClick={createPost} value="Lagre">KOMMENTER</button>
       </div>
     </div>

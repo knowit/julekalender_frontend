@@ -8,7 +8,7 @@ import { AuthContext } from "../AuthContext"
 
 import { ServiceMessage } from "./ServiceMessage"
 
-import { Challenge, ChallengeDict, Leaderboard, Like, ParentPost, Post, PostPreview, SolvedStatus, Subscriptions, Whoami } from "."
+import { AdminChallenge, Challenge, ChallengeDict, Leaderboard, Like, ParentPost, Post, PostPreview, SolvedStatus, Subscriptions, Whoami } from "."
 
 
 
@@ -40,6 +40,11 @@ export const useChallenge = (door: number) => (
     getChallenges,
     { staleTime: 600_000, select: property(door) }
   )
+)
+
+const getAdminChallenge = (door: number) => axios.get(`/admin/challenges/${door}`).then(({ data }) => data)
+export const useAdminChallenge = (door: number) => (
+  useQuery<AdminChallenge, QueryError>(["adminChallenge", door], () => getAdminChallenge(door))
 )
 
 const getSolvedStatus = (): Promise<SolvedStatus> => axios.get("/users/solved").then(({ data: { solved_status } }) => fromPairs(solved_status))
@@ -129,6 +134,21 @@ export const useCreateLike = () => {
       onSuccess: () => {
         queryClient.invalidateQueries(["likes"])
         queryClient.invalidateQueries(["posts"])
+      }
+    }
+  )
+}
+
+export type UpdateChallengeParameters = { challenge: AdminChallenge }
+export const useUpdateChallenge = () => {
+  const queryClient = useQueryClient()
+
+  return useMutation<never, QueryError, UpdateChallengeParameters>(
+    ["admin", "challenges", "updateChallenge"],
+    ({ challenge }) => axios.patch(`/admin/challenges/${challenge.door}`, { challenge }),
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries(["admin", "challenges"])
       }
     }
   )

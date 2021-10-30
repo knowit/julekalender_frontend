@@ -8,7 +8,7 @@ import { AuthContext } from "../AuthContext"
 
 import { ServiceMessage } from "./ServiceMessage"
 
-import { AdminChallenge, Challenge, ChallengeDict, Leaderboard, Like, ParentPost, Post, PostPreview, SolvedStatus, Subscriptions, Whoami } from "."
+import { AdminChallenge, Challenge, ChallengeDict, ChallengePreview, Leaderboard, Like, ParentPost, Post, PostPreview, SolvedStatus, Subscriptions, Whoami } from "."
 
 
 
@@ -100,6 +100,12 @@ export const getPostPreview = (content: string) => axios.post("/markdown", { con
 export const usePostPreview = (content: string) => (
   useQuery<PostPreview, QueryError>(["postPreview", content], () => getPostPreview(content), { staleTime: Infinity })
 )
+
+export const getChallengePreview = (markdownContent: string) => axios.post("/admin/challenge_markdown", { markdown_content: markdownContent }).then(({ data }) => data)
+export const useChallengePreview = (markdownContent: string) => (
+  useQuery<ChallengePreview, QueryError>(["challengePreview", markdownContent], () => getChallengePreview(markdownContent), { staleTime: Infinity })
+)
+
 
 
 // MUTATIONS -------------------------------------------------------------------
@@ -269,3 +275,6 @@ export const useDeleteSubscription = () => {
     }
   )
 }
+
+
+

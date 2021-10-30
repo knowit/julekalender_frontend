@@ -8,7 +8,7 @@ import { AuthContext } from "../AuthContext"
 
 import { ServiceMessage } from "./ServiceMessage"
 
-import { AdminChallenge, Challenge, ChallengeDict, ChallengePreview, Leaderboard, Like, ParentPost, Post, PostPreview, SolvedStatus, Subscriptions, Whoami } from "."
+import { Challenge, ChallengeDict, Leaderboard, Like, ParentPost, Post, PostPreview, SolvedStatus, Subscriptions, Whoami } from "."
 
 
 
@@ -40,11 +40,6 @@ export const useChallenge = (door: number) => (
     getChallenges,
     { staleTime: 600_000, select: property(door) }
   )
-)
-
-const getAdminChallenge = (door: number) => axios.get(`/admin/challenges/${door}`).then(({ data }) => data)
-export const useAdminChallenge = (door: number) => (
-  useQuery<AdminChallenge, QueryError>(["adminChallenge", door], () => getAdminChallenge(door))
 )
 
 const getSolvedStatus = (): Promise<SolvedStatus> => axios.get("/users/solved").then(({ data: { solved_status } }) => fromPairs(solved_status))
@@ -81,7 +76,7 @@ export const usePrefetchLeaderboard = () => {
 
 const getWhoami = () => axios.get("/users/whoami").then(({ data }) => data)
 export const useWhoami = () => (
-  useQuery<Whoami, QueryError>(["users", "whoami"], getWhoami)
+  useQuery<Whoami, QueryError>(["users", "whoami"], getWhoami, { staleTime: Infinity })
 )
 
 const getSubscriptions = () => axios.get("/subscriptions").then(({ data }) => data)
@@ -99,11 +94,6 @@ export const useServiceMessages = () => (
 export const getPostPreview = (content: string) => axios.post("/markdown", { content }).then(({ data }) => data)
 export const usePostPreview = (content: string) => (
   useQuery<PostPreview, QueryError>(["postPreview", content], () => getPostPreview(content), { staleTime: Infinity })
-)
-
-export const getChallengePreview = (markdownContent: string) => axios.post("/admin/challenge_markdown", { markdown_content: markdownContent }).then(({ data }) => data)
-export const useChallengePreview = (markdownContent: string) => (
-  useQuery<ChallengePreview, QueryError>(["challengePreview", markdownContent], () => getChallengePreview(markdownContent), { staleTime: Infinity })
 )
 
 
@@ -140,21 +130,6 @@ export const useCreateLike = () => {
       onSuccess: () => {
         queryClient.invalidateQueries(["likes"])
         queryClient.invalidateQueries(["posts"])
-      }
-    }
-  )
-}
-
-export type UpdateChallengeParameters = { challenge: AdminChallenge }
-export const useUpdateChallenge = () => {
-  const queryClient = useQueryClient()
-
-  return useMutation<never, QueryError, UpdateChallengeParameters>(
-    ["admin", "challenges", "updateChallenge"],
-    ({ challenge }) => axios.patch(`/admin/challenges/${challenge.door}`, { challenge }),
-    {
-      onSuccess: () => {
-        queryClient.invalidateQueries(["admin", "challenges"])
       }
     }
   )

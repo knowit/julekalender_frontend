@@ -13,7 +13,7 @@ import AuthContext from "./AuthContext"
 import TokenRefreshHandler from "./components/TokenRefreshHandler"
 
 
-const Index = () => {
+const Main = () => {
   const queryClient = new QueryClient({
     defaultOptions: {
       queries: {
@@ -50,5 +50,5 @@ const Index = () => {
 const container = document.getElementById("root")
 if (container) {
   const root = createRoot(container)
-  root.render(<Index />)
+  root.render(<Main />)
 }

@@ -2,7 +2,7 @@ import { FC, useEffect, useRef, useState } from "react"
 import TextareaAutosize from "react-autosize-textarea/lib"
 
 import { AdminChallenge } from "../../api"
-import { useAdminChallenge } from "../../api/requests"
+import { useChallenge } from "../../api/adminRequests"
 import Button from "../Button"
 
 import ChallengePreview from "./ChallengePreview"
@@ -13,7 +13,7 @@ type EditBoxProps = {
 }
 
 const EditBox: FC<EditBoxProps> = ({ door }) => {
-  const { data: challenge, error } = useAdminChallenge(door)
+  const { data: challenge, error } = useChallenge(door)
   const [markdown, setMarkdown] = useState<string>("")
   const inputRef = useRef<HTMLTextAreaElement>(null)
   const [showPreview, setShowPreview] = useState<boolean>(false)

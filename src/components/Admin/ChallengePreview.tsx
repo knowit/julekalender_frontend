@@ -1,7 +1,7 @@
 import clsx from "clsx"
 import { VFC } from "react"
 
-import { useChallengePreview } from "../../api/requests"
+import { useChallengePreview } from "../../api/adminRequests"
 
 
 type ChallengePreviewProps = {

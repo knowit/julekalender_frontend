@@ -1,8 +1,7 @@
-import { memo, useState } from "react"
+import { lazy, memo, Suspense, useState } from "react"
 import { Switch, Route, Redirect } from "react-router-dom"
 import { map, range } from "lodash"
 
-import Admin from "./pages/Admin"
 import Gdpr from "./pages/Gdpr"
 import Door from "./pages/Door"
 import Header from "./components/Header"
@@ -13,6 +12,16 @@ import Leaderboard from "./pages/Leaderboard"
 import { useIsAdmin } from "./hooks/useIsAdmin"
 import ServiceMessages from "./pages/ServiceMessages"
 
+
+const LazyAdmin = () => {
+  const Component = lazy(() => import("./pages/Admin"))
+
+  return (
+    <Suspense fallback="Laster admin...">
+      <Component />
+    </Suspense>
+  )
+}
 
 const App = () => {
   const isAdmin = useIsAdmin()
@@ -38,7 +47,7 @@ const App = () => {
           <Route path="/leaderboard" component={Leaderboard} />
           <Route path="/gdpr" component={Gdpr} />
           <Route path="/service_messages" component={ServiceMessages} />
-          <Route path="/admin" component={Admin} />
+          <Route path="/admin" component={LazyAdmin} />
 
           {/* 404? - Route to main view */}
           <Route>

@@ -2,7 +2,8 @@ import { defineConfig } from "vite"
 import reactRefresh from "@vitejs/plugin-react-refresh"
 import svgr from "@svgr/rollup"
 import builtins from "rollup-plugin-node-builtins"
-// import path from "path"
+import { visualizer } from "rollup-plugin-visualizer"
+import optimizeLodashImports from "rollup-plugin-optimize-lodash-imports"
 
 const builtinsPlugin = {
   ...builtins({ crypto: true }),
@@ -17,7 +18,9 @@ export default defineConfig({
   plugins: [
     reactRefresh(),
     svgr({ memo: true }),
-    builtinsPlugin
+    builtinsPlugin,
+    optimizeLodashImports(),
+    visualizer()
   ],
   resolve: {
     alias: {

@@ -57,6 +57,7 @@ module.exports = {
     require("@tailwindcss/typography"),
     require("@tailwindcss/line-clamp"),
     require("tailwindcss-children"),
-    require("@whiterussianstudio/tailwind-easing")
+    require("@whiterussianstudio/tailwind-easing"),
+    require("@tailwindcss/forms")({ strategy: 'class' })
   ]
 }

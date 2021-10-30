@@ -1,24 +1,18 @@
 import { FC, ReactNode } from "react"
 
-import { useChallenge } from "../../api/requests"
 import SubscribeButton from "../SubscribeButton"
+import { Challenge as ChallengeType } from "../../api/Challenge"
 
 import Input from "./Input"
 
 
 type ChallengeProps = {
-  door: number
+  challenge: ChallengeType | undefined
   withoutInput?: boolean
   preamble?: ReactNode
 }
 
-const Challenge: FC<ChallengeProps> = ({ door, withoutInput = false, preamble }) => {
-  const { data: challenge, error } = useChallenge(door)
-
-  if (error) {
-    return <><h1>Ooops...</h1><pre>{error.message}</pre></>
-  }
-
+const Challenge: FC<ChallengeProps> = ({ challenge, withoutInput = false, preamble }) => {
   if (!challenge) return null
 
   return (
@@ -35,11 +29,11 @@ const Challenge: FC<ChallengeProps> = ({ door, withoutInput = false, preamble })
         />
         {!withoutInput && (
           <div className="w-56 py-3 px-6 mx-auto">
-            <Input door={door} />
+            <Input door={challenge.door} />
           </div>
         )}
         <div className="absolute bottom-0 right-0">
-          <SubscribeButton door={door} className="text-xl" />
+          <SubscribeButton door={challenge.door} className="text-xl" />
         </div>
       </div>
     </div>

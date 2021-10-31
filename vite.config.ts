@@ -19,7 +19,7 @@ export default defineConfig({
     reactRefresh(),
     svgr({ memo: true }),
     builtinsPlugin,
-    optimizeLodashImports(),
+    process.env.NODE_ENV == 'production' && optimizeLodashImports(),
     visualizer()
   ],
   resolve: {

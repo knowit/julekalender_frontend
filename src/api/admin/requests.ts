@@ -75,7 +75,7 @@ export const useDeleteChallenge = () => {
     {
       onSuccess: () => {
         queryClient.invalidateQueries("challenges")
-        // Don't invalidate admin challenges. This will trigger a re-fetch of the just deleted resource. Some race condition somewhere.
+        queryClient.invalidateQueries(["admin", "challenges"])
       }
     }
   )

@@ -4,7 +4,7 @@ import { useLocation } from "react-router"
 
 import { Post } from "../../api/Post"
 import useIsOwnPost from "../../hooks/useIsOwnPost"
-import { getTimeStamp } from "../../utils"
+import { getTimestamp } from "../../utils"
 import Button from "../Button"
 
 
@@ -31,7 +31,7 @@ const PostWrapper: FC<PostWrapperProps> = ({
   proseClassName,
   children
 }) => {
-  const timestamp = getTimeStamp(post.created_at)
+  const timestamp = getTimestamp(post.created_at)
   const isOwnPost = useIsOwnPost(post)
 
   const { hash } = useLocation()

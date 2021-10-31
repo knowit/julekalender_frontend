@@ -16,10 +16,6 @@ const FORM_PLACEHOLDER = squish(`
   tabeller, etc.) krever en hel linje whitespace rundt seg.
 `)
 
-// husk å inkludere språk i kodeblokkene dine om du vil være
-// sikker på ordentlig highlighting!
-
-
 type PostFormProps = {
   door: number
   hideForm: () => void
@@ -28,10 +24,12 @@ type PostFormProps = {
 const PostForm: FC<PostFormProps> = ({ door, hideForm }) => {
   const { mutate: doCreatePost, isLoading } = useCreatePost()
   const { isFullyAuthenticated } = useContext(AuthContext)
-  const [shouldShowPreview, setShouldShowPreview] = useState<boolean>(false)
-  const [toBeConverted, setToBeConverted] = useState<string>("")
-  const isAdmin = useIsAdmin()
+
   const inputRef = useRef<HTMLTextAreaElement>(null)
+  const [preview, setPreview] = useState(false)
+  const [toBeConverted, setToBeConverted] = useState<string>()
+
+  const isAdmin = useIsAdmin()
 
   const createPost = async () => {
     if (!inputRef.current) return
@@ -57,17 +55,18 @@ const PostForm: FC<PostFormProps> = ({ door, hideForm }) => {
 
   return (
     <div className="bg-gray-100 text-gray-700 rounded-md px-4 pt-4 pb-2 flex flex-col items-end">
-      <PostPreview
-        content={toBeConverted}
-        className={clsx(
-          !shouldShowPreview && "hidden",
-          "w-full min-h-[5rem]"
-        )}
-      />
+      {preview && (
+        <PostPreview
+          content={toBeConverted}
+          className="w-full min-h-[5rem] rounded-b-none border-b-2 border-gray-700"
+        />
+      )}
+
+      {/* If this element is unmounted, we must restore the current value. Easier to just hide. */}
       <TextareaAutosize
         className={clsx(
-          shouldShowPreview && "hidden",
-          "block w-full h-20 p-0 outline-none bg-transparent border-b-2 border-gray-700"
+          "block w-full h-20 p-0 outline-none bg-transparent border-b-2 border-gray-700",
+          preview && "hidden"
         )}
         ref={inputRef}
         placeholder={FORM_PLACEHOLDER}
@@ -75,12 +74,12 @@ const PostForm: FC<PostFormProps> = ({ door, hideForm }) => {
 
       <div>
         <button
-          className="bg-none border-none cursor-pointer ml-4 p-4 font-medium"
+          className="bg-none border-none cursor-pointer ml-4 p-4 font-medium uppercase"
           disabled={isLoading}
-          onClick={() => setShouldShowPreview(!shouldShowPreview)}
+          onClick={() => setPreview(!preview)}
           onMouseEnter={previewMarkdown}
         >
-          {shouldShowPreview ? "REDIGER" : "PREVIEW"}
+          {preview ? "Rediger" : "Preview"}
         </button>
         <button className="bg-none border-none cursor-pointer ml-4 p-4 font-medium" disabled={isLoading} onClick={createPost} value="Lagre">KOMMENTER</button>
       </div>

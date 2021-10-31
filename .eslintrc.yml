@@ -128,6 +128,9 @@ rules:
       ignoredNodes:
         - TSTypeParameterInstantiation
         - TSTypeAliasDeclaration *
+        # Let react/jsx-indent handle this
+        - JSXElement *
+        - JSXElement
 
   "@typescript-eslint/member-delimiter-style":
     - warn

@@ -1,35 +1,27 @@
-import { FC, useState } from "react"
-import { Redirect } from "react-router-dom"
-import { map, range } from "lodash"
+import { FC } from "react"
+import { Redirect, Route, Switch } from "react-router"
 
-import PostsSection from "../components/Posts/PostsSection"
-import Challenge from "../components/Door/Challenge"
-import { useIsAdmin } from "../hooks/useIsAdmin"
+import AdminHeader from "../components/Admin/AdminHeader"
 
+import Doors from "./admin/Doors"
+import EditDoor from "./admin/EditDoor"
+import NewDoor from "./admin/NewDoor"
 import Page from "./Page"
 
 
-const Admin: FC = () => {
-  const isAdmin = useIsAdmin()
-  const [door, setDoor] = useState(1)
+// TODO: Service messages. Attachments. Deleted posts? User list? Ban users?
+const Admin: FC = () => (
+  <Page className="py-12 px-8 md:px-12 mx-4 md:mx-8 bg-gray-100 text-gray-700 rounded-md space-y-8">
+    <AdminHeader />
 
-  if (!isAdmin) return <Redirect to="/" />
+    <Switch>
+      <Route exact path="/admin/doors" component={Doors} />
+      <Route path="/admin/doors/new" component={NewDoor} />
+      <Route path="/admin/doors/:door/edit" component={EditDoor} />
 
-  return (
-    <Page className="space-y-door-elements">
-      <Challenge
-        door={door}
-        withoutInput
-        preamble={<>
-          <span>Velg luke:&emsp;</span>
-          <select onChange={((e) => setDoor(parseInt(e.target.value)))}>
-            {map(range(1, 25), (door, i) => <option key={i} value={door}>{door}</option>)}
-          </select>
-        </>}
-      />
-      <PostsSection door={door} />
-    </Page>
-  )
-}
+      <Redirect to="/admin/doors" />
+    </Switch>
+  </Page>
+)
 
 export default Admin

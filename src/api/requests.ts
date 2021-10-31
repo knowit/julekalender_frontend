@@ -1,14 +1,14 @@
 import axios from "axios"
 import { useCallback, useContext } from "react"
 import { useMutation, useQuery, useQueryClient, UseQueryOptions } from "react-query"
-import { find, fromPairs, keyBy, property } from "lodash"
+import { find, fromPairs, isEmpty, keyBy, property } from "lodash"
 
 import { QueryError } from "../axios"
 import { AuthContext } from "../AuthContext"
 
 import { ServiceMessage } from "./ServiceMessage"
 
-import { Challenge, ChallengeDict, Leaderboard, Like, ParentPost, Post, PostPreview, SolvedStatus, Subscriptions, Whoami } from "."
+import { ChallengeDict, Leaderboard, Like, ParentPost, Post, PostPreview, SolvedStatus, Subscriptions, Whoami } from "."
 
 
 
@@ -35,7 +35,7 @@ export const useChallenges = () => (
   useQuery<ChallengeDict, QueryError>(["challenges"], getChallenges, { staleTime: 600_000 })
 )
 export const useChallenge = (door: number) => (
-  useQuery<ChallengeDict, QueryError, Challenge | undefined>(
+  useQuery<ChallengeDict, QueryError, ChallengeDict[number]>(
     ["challenges"],
     getChallenges,
     { staleTime: 600_000, select: property(door) }
@@ -76,7 +76,7 @@ export const usePrefetchLeaderboard = () => {
 
 const getWhoami = () => axios.get("/users/whoami").then(({ data }) => data)
 export const useWhoami = () => (
-  useQuery<Whoami, QueryError>(["users", "whoami"], getWhoami)
+  useQuery<Whoami, QueryError>(["users", "whoami"], getWhoami, { staleTime: Infinity })
 )
 
 const getSubscriptions = () => axios.get("/subscriptions").then(({ data }) => data)
@@ -91,10 +91,15 @@ export const useServiceMessages = () => (
   useQuery<ServiceMessage[], QueryError>(["serviceMessages"], getServiceMessages, { staleTime: 300_000, refetchInterval: 300_000 })
 )
 
-export const getPostPreview = (content: string) => axios.post("/markdown", { content }).then(({ data }) => data)
-export const usePostPreview = (content: string) => (
-  useQuery<PostPreview, QueryError>(["postPreview", content], () => getPostPreview(content), { staleTime: Infinity })
+export const getPostPreview = async (markdownContent: string | undefined | null) => {
+  if (isEmpty(markdownContent)) return
+
+  return await axios.post("/markdown", { markdown_content: markdownContent }).then(({ data }) => data)
+}
+export const usePostPreview = (markdownContent: string | null | undefined) => (
+  useQuery<PostPreview, QueryError>(["postPreview", markdownContent], () => getPostPreview(markdownContent), { staleTime: Infinity, cacheTime: 0 })
 )
+
 
 
 // MUTATIONS -------------------------------------------------------------------
@@ -249,3 +254,6 @@ export const useDeleteSubscription = () => {
     }
   )
 }
+
+
+

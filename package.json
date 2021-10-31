@@ -51,6 +51,8 @@
     "postcss-100vh-fix": "^1.0.2",
     "postcss-cli": "^8.3.1",
     "rollup-plugin-node-builtins": "^2.0.0",
+    "rollup-plugin-optimize-lodash-imports": "^1.0.2",
+    "rollup-plugin-visualizer": "^5.5.2",
     "sass": "^1.38.2",
     "svg-url-loader": "^6.0.0",
     "tailwindcss": "^2.2.7",

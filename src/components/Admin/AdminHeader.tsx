@@ -9,11 +9,8 @@ const AdminHeader: VFC = () => (
     <Link to="/admin/doors">
       <Button content="Luker" />
     </Link>
-    <Link to="/admin/new">
+    <Link to="/admin/doors/new">
       <Button>Ny luke</Button>
-    </Link>
-    <Link to="/admin/edit">
-      <Button>Rediger luke</Button>
     </Link>
   </header>
 )

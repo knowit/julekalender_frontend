@@ -2,6 +2,7 @@ import { FC } from "react"
 import { Link } from "react-router-dom"
 import { FaLock } from "react-icons/fa"
 import { isEmpty, some } from "lodash"
+import clsx from "clsx"
 
 import { ReactComponent as Logo } from "../img/knowitlogo.svg"
 import { useIsAdmin } from "../hooks/useIsAdmin"
@@ -10,6 +11,24 @@ import { usePrefetchLeaderboard, useServiceMessages } from "../api/requests"
 import LoginButton from "./LoginButton"
 import Button from "./Button"
 
+
+const ServiceMessageBadge = () => {
+  const { data: serviceMessages } = useServiceMessages()
+
+  const classes = "absolute w-full h-full bg-red-600 rounded-full"
+
+  // No unresolved service messages, no badge shown
+  if (!some(serviceMessages, { resolved_at: null })) return null
+
+  return (
+    <div className="absolute top-[-.2rem] right-[-.3rem] w-2 h-2">
+      <span className={classes} />
+
+      {/* Animate badge if there are any general service messages */}
+      {some(serviceMessages, { resolved_at: null }) && <span className={clsx(classes, "animate-ping")} />}
+    </div>
+  )
+}
 
 type HeaderProps = {
   setLeaderboardHidden: (state: boolean) => void
@@ -30,16 +49,17 @@ const Header: FC<HeaderProps> = ({ setLeaderboardHidden }) => {
           {isAdmin && (
             <>
               <Link to="/admin" title="Super secret admin pages">
-                <Button className="hidden sm:inline">Admin page</Button>
+                <Button className="hidden sm:inline">Adminside</Button>
                 <Button className="sm:hidden"><FaLock /></Button>
               </Link>
             </>
           )}
 
           {!isEmpty(serviceMessages) && (
+            // Only show link to service messages if there are any
             <Link className="relative" to="/service_messages" tabIndex={3}>
               <Button>Driftsmeldinger</Button>
-              {some(serviceMessages, { resolved_at: null }) && <span className="absolute top-[-.2rem] right-[-.8rem] w-2 h-2 mr-2 bg-red-600 rounded-full" />}
+              <ServiceMessageBadge />
             </Link>
           )}
 

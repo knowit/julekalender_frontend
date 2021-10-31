@@ -1,6 +1,8 @@
 import { lazy, memo, Suspense, useState } from "react"
 import { Switch, Route, Redirect } from "react-router-dom"
 import { map, range } from "lodash"
+import { FaCogs } from "react-icons/fa"
+import clsx from "clsx"
 
 import Gdpr from "./pages/Gdpr"
 import Door from "./pages/Door"
@@ -9,22 +11,37 @@ import StarBackground from "./components/StarBackground"
 import LeaderBoardAside from "./components/LeaderBoardAside"
 import Doors from "./pages/Doors"
 import Leaderboard from "./pages/Leaderboard"
-import { useIsAdmin } from "./hooks/useIsAdmin"
 import ServiceMessages from "./pages/ServiceMessages"
 
 
 const LazyAdmin = () => {
   const Component = lazy(() => import("./pages/Admin"))
 
+  const Fallback = (
+    <FaCogs
+      className={clsx(
+        "fixed",
+        "top-1/2",
+        "left-1/2",
+        "w-32",
+        "h-32",
+        "translate-x-[-50%]",
+        "translate-y-[-50%]",
+        "text-lightbulb-yellow",
+        "text-opacity-70",
+        "animate-pulse"
+      )}
+    />
+  )
+
   return (
-    <Suspense fallback="Laster admin...">
+    <Suspense fallback={Fallback}>
       <Component />
     </Suspense>
   )
 }
 
 const App = () => {
-  const isAdmin = useIsAdmin()
   const [leaderboardHidden, setLeaderboardHidden] = useState(true)
 
   // Match door 1-24 only
@@ -43,7 +60,7 @@ const App = () => {
 
         <Switch>
           <Route exact path="/" component={Doors} />
-          <Route path={isAdmin ? "/luke/:door" : doorPaths} component={Door} />
+          <Route path={doorPaths} component={Door} />
           <Route path="/leaderboard" component={Leaderboard} />
           <Route path="/gdpr" component={Gdpr} />
           <Route path="/service_messages" component={ServiceMessages} />

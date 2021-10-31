@@ -12,7 +12,7 @@ import Page from "./Page"
 
 
 const Door: FC = () => {
-  const { door: doorString } = useParams<Record<string, string>>()
+  const { door: doorString } = useParams<{ door: string }>()
   const door = parseInt(doorString)
 
   const { data: challenge } = useChallenge(door)

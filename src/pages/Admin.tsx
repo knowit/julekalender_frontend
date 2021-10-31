@@ -5,16 +5,19 @@ import AdminHeader from "../components/Admin/AdminHeader"
 
 import Doors from "./admin/Doors"
 import EditDoor from "./admin/EditDoor"
+import NewDoor from "./admin/NewDoor"
 import Page from "./Page"
 
 
+// TODO: Service messages. Attachments. Deleted posts? User list? Ban users?
 const Admin: FC = () => (
   <Page className="py-12 px-8 md:px-12 mx-4 md:mx-8 bg-gray-100 text-gray-700 rounded-md space-y-8">
     <AdminHeader />
 
     <Switch>
-      <Route path="/admin/doors" component={Doors} />
-      <Route path="/admin/edit" component={EditDoor} />
+      <Route exact path="/admin/doors" component={Doors} />
+      <Route path="/admin/doors/new" component={NewDoor} />
+      <Route path="/admin/doors/:door/edit" component={EditDoor} />
 
       <Redirect to="/admin/doors" />
     </Switch>

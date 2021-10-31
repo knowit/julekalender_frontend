@@ -1,30 +1,32 @@
-import { useState, VFC } from "react"
+import { VFC } from "react"
+import { useHistory, useParams } from "react-router-dom"
 
-import { useChallenge } from "../../api/admin/requests"
+import { AdminChallengePayload } from "../../api/admin/Challenge"
+import { useChallenge, useUpdateChallenge } from "../../api/admin/requests"
 import ChallengeForm from "../../components/Admin/ChallengeForm"
-import DoorSelect from "../../components/Admin/DoorSelect"
 
 
-// TODO: Make this a Link from Doors instead of selection
 const EditDoor: VFC = () => {
-  const [door, setDoor] = useState(1)
-  const { data: challenge } = useChallenge(door)
+  const { door: doorString } = useParams<{ door: string }>()
+  const door = parseInt(doorString)
+  const history = useHistory()
 
-  // TODO: Finish save
-  const save = () => {
-    // if (challenge && markdown) {
-    //   const ch: AdminChallenge = { ...challenge }
-    //   ch.markdown_content = markdown
-    //   // updateChallenge({ challenge: ch })
-    // }
+  const { data: challenge } = useChallenge(door)
+  const { mutate: updateChallenge } = useUpdateChallenge()
+
+  const submit = (challenge: AdminChallengePayload) => {
+    updateChallenge({ challenge }, { onSuccess: () => history.push(`/admin/doors?door=${challenge.door}`) })
   }
 
   if (!challenge) return null
 
   return (
     <div className="space-y-8">
-      <DoorSelect door={door} setDoor={setDoor} />
-      <ChallengeForm challenge={challenge} submit={save} />
+      <div className="text-center">
+        <span className="text-4xl font-semibold">Luke {door}</span>
+      </div>
+
+      <ChallengeForm challenge={challenge} submit={submit} />
     </div>
   )
 }

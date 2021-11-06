@@ -2,10 +2,22 @@ import axios, { AxiosError, AxiosResponse } from "axios"
 import { identity, merge } from "lodash"
 
 
+let token = ""
+
+export const setGlobalAuthorizationToken = (newToken: string) => token = newToken
+
+export const getGlobalHeaders = () => ({
+  Authorization: token
+})
+
+const activeStorageRegexp = new RegExp("/rails/active_storage/")
 axios.interceptors.request.use((config) => (
   merge(config, {
-    url: `${config.url}.json`, // Default to .json format for all endpoints
-    baseURL: import.meta.env.VITE_BACKEND_HOST
+    // Default to .json format for all normal endpoints
+    url: activeStorageRegexp.test(config.url ?? "") ? config.url : `${config.url}.json`,
+
+    baseURL: import.meta.env.VITE_BACKEND_HOST,
+    headers: getGlobalHeaders()
   })
 ))
 

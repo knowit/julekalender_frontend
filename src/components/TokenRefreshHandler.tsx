@@ -1,9 +1,9 @@
-import axios from "axios"
-import { isEmpty, set } from "lodash"
+import { isEmpty } from "lodash"
 import { useContext, useEffect, useState } from "react"
 import { useQueryClient } from "react-query"
 
 import { AuthContext } from "../AuthContext"
+import { setGlobalAuthorizationToken } from "../axios"
 
 
 // Handles react-query reset on token refresh
@@ -23,9 +23,7 @@ const TokenRefreshHandler = () => {
   useEffect(() => {
     if (isEmpty(lastToken) && !isEmpty(token)) {
       // Set authorization header globally for all axios requests
-      axios.interceptors.request.use((config) => (
-        set(config, "headers.Authorization", token)
-      ))
+      setGlobalAuthorizationToken(token!)
 
       queryClient.cancelQueries(["users", "solved"])
       queryClient.cancelQueries(["likes"])

@@ -11,6 +11,7 @@ import { getDefaultActiveFrom, getDefaultActiveTo, getTimestampForInputField } f
 import Button from "../Button"
 import Challenge from "../Door/Challenge"
 
+import AttachmentsInput from "./AttachmentsInput"
 import FormElement from "./FormElement"
 import FormElementCustom from "./FormElementCustom"
 
@@ -24,10 +25,10 @@ type ChallengeFormProps = {
 const ChallengeForm: VFC<ChallengeFormProps> = ({ challenge, newForm = false, submit }) => {
   const [preview, setPreview] = useState<boolean>(false)
 
-  const { register, handleSubmit, getValues, watch, formState: { dirtyFields: { door: isDoorDirty } } } = useForm<AdminChallengePayload>({ defaultValues: challenge })
+  const { register, handleSubmit, setValue, getValues, watch, formState: { dirtyFields: { door: isDoorDirty } } } = useForm<AdminChallengePayload>({ defaultValues: { ...challenge, files: map(challenge.files, "signed_id") } })
 
   const [challengePreview, setChallengePreview] = useState<AdminChallengePayload>()
-  const { data: markdownPreview } = useChallengePreview(challengePreview?.markdown_content, { enabled: preview })
+  const { data: markdownPreview } = useChallengePreview(challengePreview, { enabled: preview })
 
   const togglePreview = () => {
     setPreview((state) => {
@@ -66,7 +67,7 @@ const ChallengeForm: VFC<ChallengeFormProps> = ({ challenge, newForm = false, su
           <FormElement label="Aktiv fra" disabled type="datetime-local" value={getTimestampForInputField(activeFrom)} />
           <FormElement label="Aktiv til" disabled type="datetime-local" value={getTimestampForInputField(activeTo)} />
 
-          {/* TODO: Input and preview attachments. ActiveStorage? */}
+          <AttachmentsInput challenge={challenge} register={register} setValue={setValue} className="col-span-3" />
 
           <FormElementCustom label="Innhold" note="tittel-elementet blir erstattet med tittel fra over" className="col-span-3">
             <TextareaAutosize

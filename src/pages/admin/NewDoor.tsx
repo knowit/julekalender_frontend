@@ -31,7 +31,7 @@ const Newdoor: VFC = () => {
         <span className="text-4xl font-semibold">Ny luke</span>
       </div>
 
-      <ChallengeForm newForm challenge={{ door: availableDoors[0], title: "", author: "", answer: "", markdown_content: "" }} submit={submit} />
+      <ChallengeForm newForm challenge={{ door: availableDoors[0], title: "", author: "", answer: "", markdown_content: "", files: [] }} submit={submit} />
     </div>
   )
 }

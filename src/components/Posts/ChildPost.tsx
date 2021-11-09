@@ -3,7 +3,7 @@ import clsx from "clsx"
 
 import { squish } from "../../utils"
 import { Post } from "../../api"
-import { useDeletePost } from "../../api/requests"
+import { useDeletePost, useUpdatePost } from "../../api/requests"
 
 import LikeButton from "./LikeButton"
 import PostWrapper from "./PostWrapper"
@@ -20,6 +20,7 @@ type ChildPostProps = {
 
 const ChildPost: FC<ChildPostProps> = ({ post }) => {
   const { mutate: doDeletePost } = useDeletePost()
+  const { mutate: doUpdatePost } = useUpdatePost()
 
   const deletePost = useCallback(async () => {
     if (!window.confirm(DELETE_CONFIRM)) return
@@ -27,11 +28,15 @@ const ChildPost: FC<ChildPostProps> = ({ post }) => {
     doDeletePost({ uuid: post.uuid })
   }, [doDeletePost, post])
 
+  const updatePost = useCallback(async () => {
+    doUpdatePost({ content: "foobar", uuid: "abc" })
+  }, [doUpdatePost])
+
   return (
     <PostWrapper
       post={post}
       deletePost={deletePost}
-
+      updatePost={updatePost}
       // Imagine using some kind of Cascading Style Sheet to avoid
       // having to pass these variables around...
       wrapperClassName="bg-gray-200 sm:p-2"

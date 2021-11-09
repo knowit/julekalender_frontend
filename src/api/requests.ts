@@ -91,6 +91,11 @@ export const useServiceMessages = () => (
   useQuery<ServiceMessage[], QueryError>(["serviceMessages"], getServiceMessages, { staleTime: 300_000, refetchInterval: 300_000 })
 )
 
+const getPostMarkdown = (post_uuid: string) => axios.get("/markdown", { params: { post_uuid } }).then(({ data: { markdown } }) => markdown)
+export const usePostMarkdown = (post_uuid: string) => (
+  useQuery<string, QueryError>(["posts", "markdown", post_uuid], () => getPostMarkdown(post_uuid), { staleTime: 300_000 })
+)
+
 export const getPostPreview = async (markdownContent: string | undefined | null) => {
   if (isEmpty(markdownContent)) return
 
@@ -209,6 +214,21 @@ export const useDeletePost = () => {
     ({ uuid }) => axios.delete(`/posts/${uuid}`),
     {
       onSettled: () => queryClient.invalidateQueries(["posts"])
+    }
+  )
+}
+
+export type UpdatePostParameters = { content: string, uuid: string }
+export const useUpdatePost = () => {
+  const queryClient = useQueryClient()
+
+  return useMutation<ParentPost, QueryError, UpdatePostParameters>(
+    ["posts", "updatePost"],
+    ({ content, uuid }) => axios.put(`/posts/${uuid}`, { post: { content } }),
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries(["posts"])
+      }
     }
   )
 }

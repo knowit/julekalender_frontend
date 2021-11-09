@@ -87,8 +87,8 @@ export const useSubscriptions = () => {
 }
 
 const getServiceMessages = () => axios.get("/service_messages").then(({ data }) => data)
-export const useServiceMessages = () => (
-  useQuery<ServiceMessage[], QueryError>(["serviceMessages"], getServiceMessages, { staleTime: 300_000, refetchInterval: 300_000 })
+export const useServiceMessages = <TSelected = ServiceMessage[]>(options?: UseQueryOptions<ServiceMessage[], QueryError, TSelected>) => (
+  useQuery<ServiceMessage[], QueryError, TSelected>(["serviceMessages"], getServiceMessages, { ...options, staleTime: 300_000, refetchInterval: 300_000 })
 )
 
 export const getPostPreview = async (markdownContent: string | undefined | null) => {

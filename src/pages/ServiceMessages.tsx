@@ -17,7 +17,7 @@ const ServiceMessages = () => {
       <div className="text-center">
         <h1 className="text-4xl font-semibold">Driftsmeldinger</h1>
       </div>
-      <div className="space-y-4 grid grid-cols-1 justify-items-center">
+      <div className="grid grid-cols-1 gap-4 justify-items-center">
         {isEmpty(serviceMessages)
           ? <div>🎄 Ingen driftsmeldinger. Livet er herlig! 🎄</div>
           : map(serviceMessages, (serviceMessage) => {

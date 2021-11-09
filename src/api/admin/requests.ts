@@ -3,19 +3,21 @@ import axios, { AxiosRequestConfig } from "axios"
 import { isEmpty, isNumber, keyBy, pick, property } from "lodash"
 
 import { QueryError } from "../../axios"
-import { ChallengeDict } from "../Challenge"
 import { ParentPost } from "../Post"
+import { ServiceMessage } from "../ServiceMessage"
 
 import { AdminChallengeDict, AdminChallengePayload, ChallengePreview } from "./Challenge"
+import { AdminServiceMessagePayload } from "./ServiceMessage"
+import { useServiceMessages } from "../requests"
 
 
 const getChallenges = async () => await axios.get("/admin/challenges").then(({ data }) => keyBy(data, "door"))
-export const useChallenges = () => (
-  useQuery<ChallengeDict, QueryError>(["admin", "challenges"], getChallenges, { staleTime: 600_000 })
+export const useChallenges = <TSelected = AdminChallengeDict>(options?: UseQueryOptions<AdminChallengeDict, QueryError, TSelected>) => (
+  useQuery<AdminChallengeDict, QueryError, TSelected>(["admin", "challenges"], getChallenges, { ...options, staleTime: 600_000 })
 )
 export const useChallenge = (door: number | null | undefined) => (
   useQuery<AdminChallengeDict, QueryError, AdminChallengeDict[number]>(
-    ["challenges", door],
+    ["admin", "challenges"],
     getChallenges,
     { staleTime: 600_000, select: door ? property(door) : undefined }
   )
@@ -33,6 +35,7 @@ export const getChallengePreview = async (challenge: AdminChallengePayload | und
 export const useChallengePreview = (challenge: AdminChallengePayload | undefined, opts?: UseQueryOptions<ChallengePreview, QueryError>) => (
   useQuery<ChallengePreview, QueryError>(["admin", "challenges", "preview", challenge], () => getChallengePreview(challenge), { staleTime: Infinity, cacheTime: 0, ...opts })
 )
+
 
 export type CreateChallengeParameters = { challenge: AdminChallengePayload }
 export const useCreateChallenge = () => {
@@ -77,6 +80,52 @@ export const useDeleteChallenge = () => {
       onSuccess: () => {
         queryClient.invalidateQueries("challenges")
         queryClient.invalidateQueries(["admin", "challenges"])
+      }
+    }
+  )
+}
+
+
+export type CreateServiceMessageParameters = { service_message: AdminServiceMessagePayload }
+export const useCreateServiceMessage = () => {
+  const queryClient = useQueryClient()
+
+  return useMutation<ServiceMessage, QueryError, CreateServiceMessageParameters>(
+    ["admin", "serviceMessages", "create"],
+    (data) => axios.post("/admin/service_messages", data),
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries("serviceMessages")
+      }
+    }
+  )
+}
+
+export type UpdateServiceMessageParameters = { uuid: string, service_message: AdminServiceMessagePayload }
+export const useUpdateServiceMessage = () => {
+  const queryClient = useQueryClient()
+
+  return useMutation<ServiceMessage, QueryError, UpdateServiceMessageParameters>(
+    ["admin", "serviceMessages", "update"],
+    ({ uuid, ...data }) => axios.patch(`/admin/service_messages/${uuid}`, data),
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries("serviceMessages")
+      }
+    }
+  )
+}
+
+export type DeleteServiceMessageParameters = { uuid: string }
+export const useDeleteServiceMessage = () => {
+  const queryClient = useQueryClient()
+
+  return useMutation<never, QueryError, DeleteServiceMessageParameters>(
+    ["admin", "serviceMessages", "delete"],
+    ({ uuid }) => axios.delete(`/admin/service_messages/${uuid}`),
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries("serviceMessages")
       }
     }
   )

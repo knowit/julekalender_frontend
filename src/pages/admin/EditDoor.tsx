@@ -1,4 +1,4 @@
-import { VFC } from "react"
+import { useEffect, VFC } from "react"
 import { useHistory, useParams } from "react-router-dom"
 
 import { AdminChallengePayload } from "../../api/admin/Challenge"
@@ -11,14 +11,19 @@ const EditDoor: VFC = () => {
   const door = parseInt(doorString)
   const history = useHistory()
 
-  const { data: challenge } = useChallenge(door)
+  const { data: challenge, isLoading } = useChallenge(door)
   const { mutate: updateChallenge } = useUpdateChallenge()
 
   const submit = (challenge: AdminChallengePayload) => {
     updateChallenge({ challenge }, { onSuccess: () => history.push(`/admin/doors?door=${challenge.door}`) })
   }
 
-  if (!challenge) return null
+  useEffect(() => {
+    if (!isLoading && !challenge)
+      history.push("/admin/doors/new")
+  }, [isLoading, challenge, history])
+
+  if (isLoading || !challenge) return null
 
   return (
     <div className="space-y-8">

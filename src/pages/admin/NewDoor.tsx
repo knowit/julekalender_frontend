@@ -8,7 +8,7 @@ import ChallengeForm from "../../components/Admin/ChallengeForm"
 import useAvailableDoors from "../../hooks/admin/useAvailableDoors"
 
 
-const Newdoor: VFC = () => {
+const NewDoor: VFC = () => {
   const history = useHistory()
 
   const { mutate: createChallenge } = useCreateChallenge()
@@ -36,4 +36,4 @@ const Newdoor: VFC = () => {
   )
 }
 
-export default Newdoor
+export default NewDoor

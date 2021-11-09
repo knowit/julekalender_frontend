@@ -1,5 +1,5 @@
 import { useMutation, useQuery, useQueryClient, UseQueryOptions } from "react-query"
-import axios from "axios"
+import axios, { AxiosRequestConfig } from "axios"
 import { isEmpty, isNumber, keyBy, pick, property } from "lodash"
 
 import { QueryError } from "../../axios"
@@ -103,10 +103,10 @@ type CreateBlobResponse = {
 }
 
 export const useCreateBlob = () => (
-  useMutation<CreateBlobResponse, unknown, CreateBlobPayload>(
+  useMutation<CreateBlobResponse, unknown, { blob: CreateBlobPayload,  config?: AxiosRequestConfig }>(
     ["admin", "activeStorage", "createBlob"],
-    (blob) =>
-      axios.post("/rails/active_storage/direct_uploads", { blob }).then(({ data }) => data)
+    ({ blob, config }) =>
+      axios.post("/rails/active_storage/direct_uploads", { blob }, config).then(({ data }) => data)
   )
 )
 
@@ -116,8 +116,8 @@ type UploadFilePayload = {
 }
 
 export const useUploadFile = () => (
-  useMutation<never, unknown, UploadFilePayload>(
+  useMutation<never, unknown, { upload: UploadFilePayload, config?: AxiosRequestConfig }>(
     ["admin", "activeStorage", "uploadFile"],
-    ({ file, directUpload }) => axios.put(directUpload.url, file, { headers: directUpload.headers })
+    ({ upload: { file, directUpload }, config }) => axios.put(directUpload.url, file, { ...config, headers: directUpload.headers })
   )
 )

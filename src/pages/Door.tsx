@@ -30,11 +30,11 @@ const Door: FC = () => {
       <Light
         door={door}
         solved={solved}
-        className="w-20 lg:w-28 float-right absolute right-8 top-10 lg:top-12"
+        className="w-16 md:w-20 lg:w-28 float-right absolute right-2 md:right-12 lg:right-8 top-8 lg:top-6"
       />
       <ServiceMessageAlert
         door={door}
-        className="w-10 h-10 md:w-12 md:h-12 absolute left-12 md:left-20 top-16"
+        className="w-9 h-10 md:w-12 md:h-12 absolute left-12 md:left-20 top-16"
       />
     </Page>
   )

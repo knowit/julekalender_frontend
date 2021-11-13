@@ -53,7 +53,7 @@ const Input: FC<InputProps> = ({ door }) => {
   if (isDoorSolved) {
     return (
       <CheckMark
-        wrapperClassName="w-28 mx-auto"
+        wrapperClassName="w-16 md:w-28 mx-auto"
         message={`Bra jobba!${door === 24 ? <><br />Og god jul! 🥳</> : ""}`}
         scrollTo={attemptCount > 0}
       />
@@ -65,7 +65,7 @@ const Input: FC<InputProps> = ({ door }) => {
     return (
       <WaitMark
         wrapperClassName="w-48 mx-auto"
-        className="w-28"
+        className="w-16 md:w-28"
         message={error.message}
         retryAfter={rateLimitTimeout}
         scrollTo
@@ -88,7 +88,7 @@ const Input: FC<InputProps> = ({ door }) => {
       <button className="block mx-auto mt-2" disabled={!answer} onClick={() => submitAnswer()}>Send inn svar</button>
       {(isWrongAnswer || error) && (
         <WrongMark
-          wrapperClassName="w-28 mx-auto mt-8"
+          wrapperClassName="w-16 md:w-28 mx-auto mt-8"
           message={error?.message ?? "Feil svar!"}
           scrollTo
         />

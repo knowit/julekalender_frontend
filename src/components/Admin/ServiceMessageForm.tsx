@@ -24,7 +24,7 @@ const ServiceMessageForm: VFC<ServiceMessageFormProps> = ({ serviceMessage, newF
   const { register, handleSubmit, setValue } = useForm<AdminServiceMessagePayload>({
     defaultValues: {
       ...serviceMessage,
-      resolved_at: getTimestampForInputField(serviceMessage.resolved_at ?? formatISO(new Date))
+      ...(!newForm && ({ resolved_at: getTimestampForInputField(serviceMessage.resolved_at ?? formatISO(new Date)) }))
     }
   })
 

@@ -7,6 +7,7 @@ import Challenge from "../components/Door/Challenge"
 import { AuthContext } from "../AuthContext"
 import useIsDoorSolved from "../hooks/useIsDoorSolved"
 import { useChallenge } from "../api/requests"
+import ServiceMessageAlert from "../components/Door/ServiceMessageAlert"
 
 import Page from "./Page"
 
@@ -29,7 +30,11 @@ const Door: FC = () => {
       <Light
         door={door}
         solved={solved}
-        className="w-20 lg:w-28 float-right mr-8 mt-10 lg:mt-12 absolute right-0 top-0"
+        className="w-20 lg:w-28 float-right absolute right-8 top-10 lg:top-12"
+      />
+      <ServiceMessageAlert
+        door={door}
+        className="w-10 h-10 md:w-12 md:h-12 absolute left-12 md:left-20 top-16"
       />
     </Page>
   )

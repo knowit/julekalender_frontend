@@ -10,9 +10,14 @@ type ServiceMessageProps = {
   className?: string
 }
 
-const ServiceMessage: VFC<ServiceMessageProps> = ({ serviceMessage: { content, resolution_content, created_at, resolved_at, door }, className }) => (
+const ServiceMessage: VFC<ServiceMessageProps> = ({ serviceMessage: { content, resolution_content, created_at, resolved, resolved_at, door }, className }) => (
   <div className={clsx(className, "relative space-y-2")}>
-    <h3 className="text-xl">{door ? `Feilmelding for luke ${door}` : "Feilmelding"}</h3>
+    <h3 className="text-xl">
+      {resolved
+        ? (door ? `Feil ved luke ${door} (løst)` : "Feil (løst)")
+        : (door ? `Feil ved luke ${door}` : "Feil")
+      }
+    </h3>
     <time className="absolute top-1 right-3 text-xs">{getTimestamp(created_at)}{resolved_at && ` — ${getTimestamp(resolved_at)}`}</time>
 
     <p>{resolution_content ?? content}</p>

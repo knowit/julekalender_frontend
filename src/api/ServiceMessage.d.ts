@@ -5,6 +5,7 @@ export type ServiceMessage = {
 
   resolution_content: string | null
   resolved_at: string | null
+  resolved: boolean
 
-  door?: number
+  door: number | null
 }

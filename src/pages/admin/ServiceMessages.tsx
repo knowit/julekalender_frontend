@@ -1,8 +1,8 @@
 import clsx from "clsx"
 import { isEmpty, map } from "lodash"
 import { Link } from "react-router-dom"
-import { useDeleteServiceMessage } from "../../api/admin/requests"
 
+import { useDeleteServiceMessage } from "../../api/admin/requests"
 import { useServiceMessages } from "../../api/requests"
 import Button from "../../components/Button"
 import ServiceMessage from "../../components/ServiceMessage"
@@ -31,8 +31,8 @@ const ServiceMessages = () => {
           ? <div>🎄 Ingen driftsmeldinger. Livet er herlig! 🎄</div>
           : map(serviceMessages, (serviceMessage) => {
             const messageClasses = serviceMessage.resolved_at
-              ? "border-lightbulb-green border-opacity-90 text-gray-700 text-opacity-80"
-              : "border-lightbulb-yellow"
+              ? "border-lightbulb-yellow border-opacity-70 text-gray-700 text-opacity-70"
+              : "border-red-700 border-opacity-70"
 
             return (
               <div key={serviceMessage.uuid} className="w-full max-w-[40rem]">

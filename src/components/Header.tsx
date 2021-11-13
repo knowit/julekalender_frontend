@@ -1,7 +1,7 @@
 import { FC } from "react"
 import { Link } from "react-router-dom"
 import { FaLock } from "react-icons/fa"
-import { isEmpty, some } from "lodash"
+import { every, isEmpty, some } from "lodash"
 import clsx from "clsx"
 
 import { ReactComponent as Logo } from "../img/knowitlogo.svg"
@@ -15,17 +15,17 @@ import Button from "./Button"
 const ServiceMessageBadge = () => {
   const { data: serviceMessages } = useServiceMessages()
 
-  const classes = "absolute w-full h-full bg-red-600 rounded-full"
-
   // No unresolved service messages, no badge shown
-  if (!some(serviceMessages, { resolved_at: null })) return null
+  if (every(serviceMessages, { resolved: true })) return null
+
+  const classes = "absolute w-full h-full bg-red-600 rounded-full"
 
   return (
     <div className="absolute top-[-.2rem] right-[-.3rem] w-2 h-2">
       <span className={classes} />
 
       {/* Animate badge if there are any general service messages */}
-      {some(serviceMessages, { resolved_at: null }) && <span className={clsx(classes, "animate-ping")} />}
+      {some(serviceMessages, { resolved: false, door: null }) && <span className={clsx(classes, "animate-ping")} />}
     </div>
   )
 }

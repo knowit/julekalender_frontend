@@ -8,7 +8,6 @@ import { ServiceMessage } from "../ServiceMessage"
 
 import { AdminChallengeDict, AdminChallengePayload, ChallengePreview } from "./Challenge"
 import { AdminServiceMessagePayload } from "./ServiceMessage"
-import { useServiceMessages } from "../requests"
 
 
 const getChallenges = async () => await axios.get("/admin/challenges").then(({ data }) => keyBy(data, "door"))

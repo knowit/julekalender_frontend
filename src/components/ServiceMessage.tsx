@@ -14,8 +14,8 @@ const ServiceMessage: VFC<ServiceMessageProps> = ({ serviceMessage: { content, r
   <div className={clsx(className, "relative space-y-2")}>
     <h3 className="text-xl">
       {resolved
-        ? (door ? `Feil ved luke ${door} (løst)` : "Feil (løst)")
-        : (door ? `Feil ved luke ${door}` : "Feil")
+        ? (door ? `Feil på luke ${door} (rettet)` : "Feil (rettet)")
+        : (door ? `Feil på luke ${door}` : "Feil")
       }
     </h3>
     <time className="absolute top-1 right-3 text-xs">{getTimestamp(created_at)}{resolved_at && ` — ${getTimestamp(resolved_at)}`}</time>

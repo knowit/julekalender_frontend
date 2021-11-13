@@ -3,7 +3,7 @@ import { motion, useAnimation } from "framer-motion"
 
 import { easeInCubic, easeOutCubic } from "../../utils"
 
-import Wrapper, { CheckmarkWrapperProps } from "./Wrapper"
+import Wrapper, { CheckmarkWrapperProps } from "./CheckmarkWrapper"
 import clsx, { ClassValue } from "clsx"
 
 

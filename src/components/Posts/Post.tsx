@@ -4,7 +4,7 @@ import { map } from "lodash"
 import { ParentPost } from "../../api/Post"
 import useBooleanToggle from "../../hooks/useBooleanToggle"
 import { squish } from "../../utils"
-import { useDeletePost } from "../../api/requests"
+import { useDeletePost, useUpdatePost, usePostMarkdown, UpdatePostParameters } from "../../api/requests"
 import AddChildPostButton from "../AddChildPostButton"
 import SubscribeButton from "../SubscribeButton"
 
@@ -28,9 +28,15 @@ type PostProps = {
 
 const Post: FC<PostProps> = ({ post, door }) => {
   const { mutate: doDeletePost } = useDeletePost()
+  const { mutate: doUpdatePost } = useUpdatePost()
+  const { data: markdown } = usePostMarkdown(post.uuid)
 
   const [showForm, toggleShowForm] = useBooleanToggle(false)
   const [showChildPosts, toggleShowChildPosts] = useBooleanToggle(true)
+
+  const updatePost = (data: UpdatePostParameters) => {
+    doUpdatePost(data)
+  }
 
   const deletePost = useCallback(async () => {
     if (!window.confirm(DELETE_CONFIRM)) return
@@ -38,10 +44,13 @@ const Post: FC<PostProps> = ({ post, door }) => {
     doDeletePost({ uuid: post.uuid })
   }, [doDeletePost, post])
 
+
   return (
     <PostWrapper
       post={post}
       deletePost={deletePost}
+      updatePost={updatePost}
+      markdown={markdown}
       className="grid gap-2"
     >
       {post.deleted && (

@@ -6,13 +6,23 @@ type ButtonProps = {
   underline?: boolean
   content?: ReactNode
   disabled?: boolean
+  sm?: boolean
 } & DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>
 
-const Button: FC<ButtonProps> = ({ underline = true, content, disabled, children, className, ...restProps }) => (
+const Button: FC<ButtonProps> = ({
+  underline = true,
+  content,
+  disabled,
+  sm = false,
+  children,
+  className,
+  ...restProps
+}) => (
   <button
     className={clsx(
       underline && "hover:underline",
-      "uppercase sm:tracking-wider text-sm sm:text-lg whitespace-nowrap",
+      "uppercase sm:tracking-wider text-sm whitespace-nowrap",
+      sm ? "sm:text-base" : "sm:text-lg",
       disabled && "text-opacity-30 text-gray-700",
       className
     )}

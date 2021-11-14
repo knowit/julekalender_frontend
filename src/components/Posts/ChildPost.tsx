@@ -1,9 +1,8 @@
-import { FC, memo, useCallback } from "react"
+import { FC, memo } from "react"
 import clsx from "clsx"
 
 import { squish } from "../../utils"
-import { Post } from "../../api"
-import { useDeletePost, useUpdatePost } from "../../api/requests"
+import { ChildPost as ChildPostType } from "../../api"
 
 import LikeButton from "./LikeButton"
 import PostWrapper from "./PostWrapper"
@@ -15,45 +14,30 @@ const DELETE_CONFIRM = squish(`
 `)
 
 type ChildPostProps = {
-  post: Post
+  post: ChildPostType
 }
 
-const ChildPost: FC<ChildPostProps> = ({ post }) => {
-  const { mutate: doDeletePost } = useDeletePost()
-  const { mutate: doUpdatePost } = useUpdatePost()
-
-  const deletePost = useCallback(async () => {
-    if (!window.confirm(DELETE_CONFIRM)) return
-
-    doDeletePost({ uuid: post.uuid })
-  }, [doDeletePost, post])
-
-  const updatePost = useCallback(async () => {
-    doUpdatePost({ content: "foobar", uuid: "abc" })
-  }, [doUpdatePost])
-
-  return (
-    <PostWrapper
+const ChildPost: FC<ChildPostProps> = ({ post }) => (
+  <PostWrapper
       post={post}
-      deletePost={deletePost}
-      updatePost={updatePost}
+      deleteConfirmText={DELETE_CONFIRM}
+
       // Imagine using some kind of Cascading Style Sheet to avoid
       // having to pass these variables around...
       wrapperClassName="bg-gray-200 sm:p-2"
       contentClassName={clsx("!mr-0", post.deleted && "!ml-0")}
     >
-      {post.deleted
+    {post.deleted
         ? <div className="text-gray-600 font-light text-center p-2 sm:p-4">
-            <em>Slettet innlegg</em>
-          </div>
+          <em>Slettet innlegg</em>
+        </div>
         : <footer>
-            <div>
-              <LikeButton post={post} />
-            </div>
-          </footer>
+          <div>
+            <LikeButton post={post} />
+          </div>
+        </footer>
       }
-    </PostWrapper>
-  )
-}
+  </PostWrapper>
+)
 
 export default memo(ChildPost)

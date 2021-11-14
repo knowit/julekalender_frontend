@@ -1,7 +1,7 @@
 import axios from "axios"
 import { useCallback, useContext } from "react"
 import { useMutation, useQuery, useQueryClient, UseQueryOptions } from "react-query"
-import { find, fromPairs, isEmpty, keyBy, property } from "lodash"
+import { clone, findIndex, fromPairs, isEmpty, isNil, keyBy, property } from "lodash"
 
 import { QueryError } from "../axios"
 import { AuthContext } from "../AuthContext"
@@ -92,9 +92,13 @@ export const useServiceMessages = <TSelected = ServiceMessage[]>(options?: UseQu
 )
 
 const getPostMarkdown = (post_uuid: string) => axios.get("/markdown", { params: { post_uuid } }).then(({ data: { markdown } }) => markdown)
-export const usePostMarkdown = (post_uuid: string) => (
-  useQuery<string, QueryError>(["posts", "markdown", post_uuid], () => getPostMarkdown(post_uuid), { staleTime: 300_000 })
+export const usePostMarkdown = (post_uuid: string, options?: UseQueryOptions<string, QueryError>) => (
+  useQuery<string, QueryError>(["posts", "markdown", post_uuid], () => getPostMarkdown(post_uuid), { ...options, staleTime: 300_000 })
 )
+export const usePrefetchPostMarkdown = () => {
+  const queryClient = useQueryClient()
+  return useCallback((post_uuid:  string) => queryClient.prefetchQuery(["posts", "markdown", post_uuid], () => getPostMarkdown(post_uuid)), [queryClient])
+}
 
 export const getPostPreview = async (markdownContent: string | undefined | null) => {
   if (isEmpty(markdownContent)) return
@@ -160,74 +164,105 @@ export const useDeleteLike = () => {
   )
 }
 
-export type CreatePostParameters = { door: number, content: string }
+// Replace top-level or child post in its respective index in the given posts.
+// Returns a new array with elements replaced.
+const replacePost = (posts: ParentPost[] = [], post: Post) => {
+  const newPosts = clone(posts)
+  let replacementIdx: number
+  let replacementPost: ParentPost
+
+  if (post.parent_uuid === null) {
+    // Parent post; replace at top level
+    const idx = findIndex(posts, { uuid: post.uuid })
+
+    replacementIdx = idx
+    replacementPost = post
+  } else {
+    // Child post; replace in parent children then replace parent
+    const parentIdx = findIndex(posts, { uuid: post.parent_uuid })
+    if (parentIdx === -1) return posts
+    const parent = posts[parentIdx]
+
+    const childIdx = findIndex(parent.children, { uuid: post.uuid })
+
+    const newChildren = clone(parent.children)
+    if (childIdx === -1)
+      newChildren.push(post)
+    else
+      newChildren.splice(childIdx, 1, post)
+
+    replacementIdx = parentIdx
+    replacementPost = { ...parent, children: newChildren }
+  }
+
+  // Mutation
+  if (replacementIdx === -1)
+    newPosts.push(replacementPost)
+  else
+    newPosts.splice(replacementIdx, 1, replacementPost)
+
+  return newPosts
+}
+
+
+export type CreatePostParameters = { door: number, content: string, parent?: ParentPost }
 export const useCreatePost = () => {
   const queryClient = useQueryClient()
 
-  return useMutation<ParentPost, QueryError, CreatePostParameters>(
+  return useMutation<Post, QueryError, CreatePostParameters>(
     ["posts", "createPost"],
-    ({ door, content }) => axios.post(`/challenges/${door}/posts`, { post: { content } }).then(({ data }) => data),
+    ({ door, content, parent }) => axios.post(`/challenges/${door}/posts`, { post: { content, parent_uuid: parent?.uuid } }).then(({ data }) => data),
     {
       onSuccess: (post) => {
         // Insert created post back into posts list, then refetch to ensure up-to-date data
-        queryClient.setQueryData(["posts"], (posts: ParentPost[] | undefined) => [...posts ?? [], post])
-      },
-      onSettled: () => {
-        queryClient.invalidateQueries(["posts"])
+        queryClient.setQueryData<ParentPost[]>(["posts", post.door], (posts) => replacePost(posts, post))
+        queryClient.invalidateQueries(["posts", post.door])
       }
     }
   )
 }
 
-export type CreateChildPostParameters = { door: number, parentUuid: string, content: string }
-export const useCreateChildPost = () => {
-  const queryClient = useQueryClient()
-
-  return useMutation<Post, QueryError, CreateChildPostParameters>(
-    ["posts", "createChild"],
-    ({ door, parentUuid, content }) => axios.post(`/challenges/${door}/posts`, { post: { content, parent_uuid: parentUuid } }).then(({ data }) => data),
-    {
-      onSuccess: (post, { parentUuid }) => {
-        // Insert created child post back into posts list, then refetch to ensure up-to-date data
-        queryClient.setQueryData(["posts"], (posts: ParentPost[] | undefined) => {
-          const parent = find(posts, { uuid: parentUuid })
-          if (!parent) return posts ?? []
-
-          const newParent: ParentPost = { ...parent, children: [...parent.children, post] }
-
-          return [...posts ?? [], newParent]
-        })
-      },
-      onSettled: () => {
-        queryClient.invalidateQueries(["posts"])
-      }
-    }
-  )
-}
-
-export type DeletePostParameters = { uuid: string }
+export type DeletePostParameters = { post: Post }
 export const useDeletePost = () => {
   const queryClient = useQueryClient()
 
   return useMutation<never, QueryError, DeletePostParameters>(
     ["posts", "deletePost"],
-    ({ uuid }) => axios.delete(`/posts/${uuid}`),
+    ({ post }) => axios.delete(`/posts/${post.uuid}`),
     {
-      onSettled: () => queryClient.invalidateQueries(["posts"])
+      onSettled: (_data, _err, { post }) => queryClient.invalidateQueries(["posts", post.door])
     }
   )
 }
 
-export type UpdatePostParameters = { content: string, uuid: string }
+export type UpdatePostParameters = { post: Post, content: string, html?: string }
 export const useUpdatePost = () => {
   const queryClient = useQueryClient()
 
-  return useMutation<ParentPost, QueryError, UpdatePostParameters>(
+  return useMutation<Post, QueryError, UpdatePostParameters>(
     ["posts", "updatePost"],
-    ({ content, uuid }) => axios.put(`/posts/${uuid}`, { post: { content } }),
+    ({ post, content }) => axios.put(`/posts/${post.uuid}`, { post: { content } }),
     {
-      onSuccess: () => {
-        queryClient.invalidateQueries(["posts"])
+      onMutate: async ({ post, html }) => {
+        await queryClient.cancelQueries(["posts", post.door])
+        const posts = queryClient.getQueryData<ParentPost[]>(["posts", post.door])
+
+        if (!posts || isNil(html)) return posts
+
+        queryClient.setQueryData<ParentPost[]>(["posts", post.door], replacePost(posts, { ...post, content: html }))
+
+        return posts
+      },
+      onError: (_err, { post }, posts) => {
+        if (posts)
+          queryClient.setQueryData(["posts", post.door], posts)
+      },
+      onSuccess: (post) => {
+        queryClient.setQueryData<ParentPost[]>(["posts", post.door], (posts) => replacePost(posts, post))
+      },
+      onSettled: (_data, _err, { post }) => {
+        queryClient.invalidateQueries(["posts", post.door])
+        queryClient.invalidateQueries(["posts", "markdown", post.uuid])
       }
     }
   )

@@ -1,7 +1,4 @@
-import { FC, useState, Fragment, useEffect, useRef } from "react"
-import { Menu, Transition } from "@headlessui/react"
-import { BiDotsHorizontalRounded } from "react-icons/bi"
-import { BsTrash, BsPen } from "react-icons/bs"
+import { FC, useState, useEffect, useRef, useCallback } from "react"
 import clsx, { ClassValue } from "clsx"
 import { useLocation } from "react-router"
 import TextareaAutosize from "react-autosize-textarea/lib"
@@ -10,14 +7,17 @@ import { Post } from "../../api/Post"
 import useIsOwnPost from "../../hooks/useIsOwnPost"
 import { getTimestamp } from "../../utils"
 import Button from "../Button"
-import { UpdatePostParameters } from "../../api/requests"
+import { useDeletePost, usePostMarkdown, usePrefetchPostMarkdown, useUpdatePost } from "../../api/requests"
+import usePostPreviewState from "../../hooks/usePostPreviewState"
+
+import PostProse from "./PostProse"
+import PostPreview from "./PostPreview"
 
 
 type PostWrapperProps = {
   post: Post
-  deletePost: () => void
-  updatePost: (data: UpdatePostParameters) => void
-  markdown?: string
+  deleteConfirmText: string
+
   // classes passed on to children, intuitive at call site
   className?: ClassValue
 
@@ -30,9 +30,7 @@ type PostWrapperProps = {
 
 const PostWrapper: FC<PostWrapperProps> = ({
   post,
-  deletePost,
-  updatePost,
-  markdown,
+  deleteConfirmText,
   className,
   wrapperClassName,
   contentClassName,
@@ -41,72 +39,26 @@ const PostWrapper: FC<PostWrapperProps> = ({
 }) => {
   const timestamp = getTimestamp(post.created_at)
   const isOwnPost = useIsOwnPost(post)
-  const [isEditPostMode, setIsEditPostMode] = useState(false)
+
+  const [isEditing, setIsEditing] = useState(false)
+  const { data: markdown, isLoading: isMarkdownLoading } = usePostMarkdown(post.uuid, { enabled: isEditing })
+  const prefetchMarkdown = usePrefetchPostMarkdown()
+
   const editFieldRef = useRef<HTMLTextAreaElement>(null)
+  const [preview, previewHtml, previewLoading, togglePreview, updatePreviewContent] = usePostPreviewState(editFieldRef)
 
-  const toggleEditCommentMode = () => {
-    setIsEditPostMode(!isEditPostMode)
-  }
+  const { mutate: doUpdatePost, isLoading: isPostUpdating } = useUpdatePost()
+  const { mutate: doDeletePost } = useDeletePost()
 
-  const menuItemStyle = "group flex rounded-md items-center w-full px-2 py-2 text-sm"
-  const Dropdown = () => (
-    <div className="w-56 text-right">
-      <Menu as="div" className=" inline-block text-left">
-        <div>
-          <Menu.Button className="inline-flex justify-center w-full px-3 py-1 text-sm font-medium text-black ">
-            <BiDotsHorizontalRounded
-                className="w-5 h-5"
-                aria-hidden="true"
-              />
-          </Menu.Button>
-        </div>
-        <Transition
-            as={Fragment}
-            enter="transition ease-out duration-100"
-            enterFrom="transform opacity-0 scale-95"
-            enterTo="transform opacity-100 scale-100"
-            leave="transition ease-in duration-75"
-            leaveFrom="transform opacity-100 scale-100"
-            leaveTo="transform opacity-0 scale-95"
-          >
-          <Menu.Items className="absolute right-0 w-56 mt-2 origin-top-right divide-y divide-gray-100 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-            <div className="px-1 py-1 ">
-              <Menu.Item>
-                {({ active }) => (
-                  <Button
-                      className={clsx(active && "bg-gray-500 text-white", menuItemStyle)}
-                      underline={false}
-                      onClick={toggleEditCommentMode}
-                    >
-                    <BsPen
-                        className="w-5 h-5 mr-2"
-                        aria-hidden="true"
-                      />
-                    Rediger
-                  </Button>
-                  )}
-              </Menu.Item>
-              <Menu.Item>
-                {({ active }) => (
-                  <Button
-                      className={clsx(active && "bg-gray-500 text-white", menuItemStyle)}
-                      underline={false}
-                      onClick={deletePost}
-                    >
-                    <BsTrash
-                        className="w-5 h-5 mr-2"
-                        aria-hidden="true"
-                      />
-                    Slett innlegg
-                  </Button>
-                  )}
-              </Menu.Item>
-            </div>
-          </Menu.Items>
-        </Transition>
-      </Menu>
-    </div>
-  )
+  const deletePost = useCallback(async () => {
+    if (!window.confirm(deleteConfirmText)) return
+
+    doDeletePost({ post })
+  }, [deleteConfirmText, doDeletePost, post])
+
+  const toggleEditing = useCallback(() => {
+    setIsEditing((state) => !state)
+  }, [setIsEditing])
 
   const { hash } = useLocation()
   const isDeepLinkedPost = hash === `#${post.uuid}`
@@ -119,11 +71,12 @@ const PostWrapper: FC<PostWrapperProps> = ({
     scrollRef.current?.scrollIntoView({ behavior: "smooth", block: "start" })
   }, [])
 
-  const handleEditComment = () => {
-    setIsEditPostMode(false)
+  const updatePost = () => {
     if (!editFieldRef.current) return
 
-    updatePost({ content: editFieldRef.current.value, uuid: post.uuid })
+    doUpdatePost({ post, content: editFieldRef.current.value, html: previewHtml })
+    setIsEditing(false)
+    togglePreview()
   }
 
   // TODO: Replace classname overrides with isChild
@@ -131,20 +84,9 @@ const PostWrapper: FC<PostWrapperProps> = ({
     <article
       id={post.uuid}
       ref={scrollRef}
-      className={clsx(`
-        relative
-        rounded-md
-        bg-gray-100
-        text-gray-700
-        py-4
-        px-2
-        md:px-4
-        `,
-        isDeepLinkedPost && `
-          ring-inset
-          ring-4
-          ring-lightbulb-yellow
-        `,
+      className={clsx(
+        "relative rounded-md bg-gray-100 text-gray-700 py-4 px-2 md:px-4",
+        isDeepLinkedPost && "ring-inset ring-4 ring-lightbulb-yellow",
         wrapperClassName
       )}
     >
@@ -162,34 +104,52 @@ const PostWrapper: FC<PostWrapperProps> = ({
           <div className="font-semibold text-xl">
             {!post.deleted && post.author.nickname}
           </div>
+
           <div className="absolute top-0 right-0 flex flex-row-reverse space-x-reverse space-x-4">
             <time className="text-sm sm:text-base">{timestamp}</time>
-            {!post.deleted && isOwnPost && <Dropdown />}
+            {!post.deleted && isOwnPost && !isEditing && (
+              <div className="space-x-4 mt-[-2px]">
+                <Button sm onClick={toggleEditing} onMouseEnter={() => prefetchMarkdown(post.uuid)}>Rediger</Button>
+                <Button sm onClick={deletePost}>Slett</Button>
+              </div>
+            )}
           </div>
-          {!post.deleted && (
-            <div
-              onBlur={handleEditComment}
-              className={clsx(
-                "prose prose-sm md:prose max-w-none md:max-w-none break-words my-4 md:my-8",
-                proseClassName
+
+          {isEditing && !isMarkdownLoading && (
+            <div className="space-y-2 my-4">
+              {preview && (
+                <PostPreview
+                  html={previewHtml}
+                  isLoading={previewLoading}
+                  className="w-full min-h-[5rem] p-2 rounded-t border-b-2 border-gray-700 bg-gray-200"
+                />
               )}
-              dangerouslySetInnerHTML={{ __html: post.content }}
-            />
-          )}
-          {isEditPostMode && (
-            <>
+
               <TextareaAutosize
+                autoFocus
                 ref={editFieldRef}
-                className="w-full p-2 text-base border-b-2 outline-none"
+                className={clsx(
+                  "block w-full min-h-[5rem] p-2 text-sm md:text-base outline-none rounded-t bg-gray-200 border-b-2 border-gray-700",
+                  preview && "hidden"
+                )}
                 defaultValue={markdown}
               />
-              <Button
-                className="bg-green-600 text-white px-4 py-1 border-none cursor-pointer mb-4 font-medium"
-                onClick={handleEditComment}
-                content="Lagre"
-              />
-            </>
+
+              <div className="flex justify-between">
+                <Button sm underline={false} onClick={() => setIsEditing(false)} content="Avbryt" />
+
+                <div className="space-x-4">
+                  <Button sm underline={false} disabled={isPostUpdating} onClick={togglePreview} onMouseEnter={updatePreviewContent} content={preview ? "Rediger" : "Forhåndsvis"} />
+                  <Button sm underline={false} disabled={isPostUpdating} onClick={updatePost} content="Lagre" />
+                </div>
+              </div>
+            </div>
           )}
+
+          {!isEditing && !post.deleted && (
+            <PostProse html={post.content} className="my-4 md:my-8" />
+          )}
+
           <div className={clsx(className)}>
             {children}
           </div>

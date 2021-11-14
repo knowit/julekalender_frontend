@@ -1,7 +1,7 @@
-export type Post = {
+export type BasePost = {
   uuid: string
-  parent_uuid: string | null
   content: string // '' if deleted
+  door: number
   author: {
     uuid: string
     nickname: string
@@ -13,9 +13,16 @@ export type Post = {
   deleted: boolean
 }
 
-export type ParentPost = Post & {
-  children: Post[]
+export type ChildPost = BasePost & {
+  parent_uuid: string
 }
+
+export type ParentPost = BasePost & {
+  parent_uuid: null
+  children: ChildPost[]
+}
+
+export type Post = ChildPost | ParentPost
 
 export type PostPreview = {
   html: string

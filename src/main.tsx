@@ -1,7 +1,6 @@
 import { createRoot } from "react-dom"
 import { QueryClient, QueryClientProvider } from "react-query"
 import { BrowserRouter } from "react-router-dom"
-import { Auth0Provider } from "@auth0/auth0-react"
 import { ReactQueryDevtools } from "react-query/devtools"
 
 import "../assets/css/base.scss"
@@ -25,24 +24,14 @@ const Main = () => {
 
   return (
     <BrowserRouter>
-      <Auth0Provider
-        domain="knowit-konkurranser.eu.auth0.com"
-        clientId="6TmycgoSWgFT8EU6COixHKne9JmLx5F4"
-        redirectUri={window.location.origin} // TODO: Redirect back to luke
-        audience="https://knowit-konkurranser.eu.auth0.com/api/v2/"
-
-        cacheLocation="localstorage"
-        useRefreshTokens
-      >
+      <QueryClientProvider client={queryClient}>
         <AuthContext>
-          <QueryClientProvider client={queryClient}>
-            <ReactQueryDevtools />
-            <TokenRefreshHandler />
+          <ReactQueryDevtools />
+          <TokenRefreshHandler />
 
-            <App />
-          </QueryClientProvider>
+          <App />
         </AuthContext>
-      </Auth0Provider>
+      </QueryClientProvider>
     </BrowserRouter>
   )
 }

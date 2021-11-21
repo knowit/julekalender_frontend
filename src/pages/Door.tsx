@@ -18,14 +18,14 @@ const Door: FC = () => {
 
   const { data: challenge } = useChallenge(door)
 
-  const { isFullyAuthenticated } = useContext(AuthContext)
+  const { isAuthenticated } = useContext(AuthContext)
   const solved = useIsDoorSolved(door)
 
   return (
     <Page className="relative">
       <div className="space-y-door-elements">
         <Challenge challenge={challenge} />
-        {isFullyAuthenticated && solved && <PostsSection door={door} />}
+        {isAuthenticated && solved && <PostsSection door={door} />}
       </div>
       <Light
         door={door}

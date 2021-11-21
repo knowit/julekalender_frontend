@@ -11,22 +11,21 @@ import { ServiceMessage } from "./ServiceMessage"
 import { ChallengeDict, Leaderboard, Like, ParentPost, Post, PostPreview, SolvedStatus, Subscriptions, Whoami } from "."
 
 
-
 // QUERIES ---------------------------------------------------------------------
 
 const getLikes = () => axios.get("/likes").then(({ data }) => data)
 export const useLikes = () => {
-  const { isFullyAuthenticated } = useContext(AuthContext)
+  const { isAuthenticated } = useContext(AuthContext)
 
-  return useQuery<Like[], QueryError>(["likes"], getLikes, { staleTime: 60_000, enabled: isFullyAuthenticated })
+  return useQuery<Like[], QueryError>(["likes"], getLikes, { staleTime: 60_000, enabled: isAuthenticated })
 }
 export const usePrefetchLikes = () => {
-  const { isFullyAuthenticated } = useContext(AuthContext)
+  const { isAuthenticated } = useContext(AuthContext)
   const queryClient = useQueryClient()
 
   return useCallback(
-    () => isFullyAuthenticated && queryClient.prefetchQuery(["likes"], getLikes),
-    [queryClient, isFullyAuthenticated]
+    () => isAuthenticated && queryClient.prefetchQuery(["likes"], getLikes),
+    [queryClient, isAuthenticated]
   )
 }
 
@@ -44,24 +43,24 @@ export const useChallenge = (door: number) => (
 
 const getSolvedStatus = (): Promise<SolvedStatus> => axios.get("/users/solved").then(({ data: { solved_status } }) => fromPairs(solved_status))
 export const useSolvedStatus = (opts?: UseQueryOptions<SolvedStatus, QueryError>) => {
-  const { isFullyAuthenticated } = useContext(AuthContext)
+  const { isAuthenticated } = useContext(AuthContext)
 
-  return useQuery<SolvedStatus, QueryError>(["users", "solved"], getSolvedStatus, { staleTime: 300_000, enabled: isFullyAuthenticated, ...opts })
+  return useQuery<SolvedStatus, QueryError>(["users", "solved"], getSolvedStatus, { staleTime: 300_000, enabled: isAuthenticated, ...opts })
 }
 
 const getPosts = (door: number) => axios.get(`/challenges/${door}/posts`).then(({ data }) => data)
 export const usePosts = (door: number) => {
-  const { isFullyAuthenticated } = useContext(AuthContext)
+  const { isAuthenticated } = useContext(AuthContext)
 
-  return useQuery<ParentPost[], QueryError>(["posts", door], () => getPosts(door), { staleTime: 300_000, enabled: isFullyAuthenticated })
+  return useQuery<ParentPost[], QueryError>(["posts", door], () => getPosts(door), { staleTime: 300_000, enabled: isAuthenticated })
 }
 export const usePrefetchPosts = () => {
-  const { isFullyAuthenticated } = useContext(AuthContext)
+  const { isAuthenticated } = useContext(AuthContext)
   const queryClient = useQueryClient()
 
   return useCallback(
-    (door: number) => isFullyAuthenticated && queryClient.prefetchQuery(["posts", door], () => getPosts(door)),
-    [queryClient, isFullyAuthenticated]
+    (door: number) => isAuthenticated && queryClient.prefetchQuery(["posts", door], () => getPosts(door)),
+    [queryClient, isAuthenticated]
   )
 }
 
@@ -74,16 +73,11 @@ export const usePrefetchLeaderboard = () => {
   return useCallback(() => queryClient.prefetchQuery(["leaderboard"], getLeaderboard), [queryClient])
 }
 
-const getWhoami = () => axios.get("/users/whoami").then(({ data }) => data)
-export const useWhoami = () => (
-  useQuery<Whoami, QueryError>(["users", "whoami"], getWhoami, { staleTime: Infinity })
-)
-
 const getSubscriptions = () => axios.get("/subscriptions").then(({ data }) => data)
 export const useSubscriptions = () => {
-  const { isFullyAuthenticated } = useContext(AuthContext)
+  const { isAuthenticated } = useContext(AuthContext)
 
-  return useQuery<Subscriptions, QueryError>(["subscriptions"], getSubscriptions, { enabled: isFullyAuthenticated })
+  return useQuery<Subscriptions, QueryError>(["subscriptions"], getSubscriptions, { enabled: isAuthenticated })
 }
 
 const getServiceMessages = () => axios.get("/service_messages").then(({ data }) => data)

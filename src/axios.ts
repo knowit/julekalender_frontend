@@ -7,17 +7,18 @@ let token = ""
 export const setGlobalAuthorizationToken = (newToken: string) => token = newToken
 
 export const getGlobalHeaders = () => ({
-  Authorization: token
+  // Authorization: token
 })
 
 const activeStorageRegexp = new RegExp("/rails/active_storage/")
 axios.interceptors.request.use((config) => (
   merge(config, {
-    // Default to .json format for all normal endpoints
+    // Default to .json format for all normal endpoints. Active Storage attachments are not served as JSON.
     url: activeStorageRegexp.test(config.url ?? "") ? config.url : `${config.url}.json`,
 
     baseURL: import.meta.env.VITE_BACKEND_HOST,
-    headers: getGlobalHeaders()
+    headers: getGlobalHeaders(),
+    withCredentials: true
   })
 ))
 

@@ -5,6 +5,7 @@ import { VFC } from "react"
 import { FaExclamationTriangle } from "react-icons/fa"
 
 import { useServiceMessages } from "../../api/requests"
+import Divider from "../Divider"
 import ServiceMessage from "../ServiceMessage"
 
 
@@ -41,12 +42,7 @@ const ServiceMessageAlert: VFC<ServiceMessageAlertProps> = ({ door, className })
             {map(doorServiceMessages, (serviceMessage, idx) => (
               <>
                 {idx > 0 && (
-                  <div
-                    className={clsx(
-                      "w-11/12 h-[2px] bg-opacity-70 rounded-full",
-                      hasErrors ? "bg-red-700" : "bg-lightbulb-yellow"
-                    )}
-                  />
+                  <Divider bgClasses={clsx("bg-opacity-70", hasErrors ? "bg-red-700" : "bg-lightbulb-yellow")} />
                 )}
                 <ServiceMessage
                   key={serviceMessage.uuid}

@@ -25,7 +25,7 @@ type PostFormProps = {
 
 const PostForm: FC<PostFormProps> = ({ door, hideForm }) => {
   const { mutate: doCreatePost, isLoading } = useCreatePost()
-  const { isFullyAuthenticated } = useContext(AuthContext)
+  const { isAuthenticated } = useContext(AuthContext)
 
   const inputRef = useRef<HTMLTextAreaElement>(null)
   const [preview, previewHtml, previewLoading, togglePreview, updatePreviewContent] = usePostPreviewState(inputRef)
@@ -47,7 +47,7 @@ const PostForm: FC<PostFormProps> = ({ door, hideForm }) => {
   }
 
   // Prevent admins from accidentially submitting posts without being logged in.
-  if (isAdmin && !isFullyAuthenticated) return null
+  if (isAdmin && !isAuthenticated) return null
 
   return (
     <div className="bg-gray-100 text-gray-700 rounded-md px-4 pt-4 pb-2 flex flex-col items-end">

@@ -14,7 +14,7 @@ type InputProps = {
 }
 
 const Input: FC<InputProps> = ({ door }) => {
-  const { isFullyAuthenticated } = useContext(AuthContext)
+  const { isAuthenticated } = useContext(AuthContext)
 
   const [attemptCount, setAttemptCount] = useState(0)
   const [answer, setAnswer] = useState("")
@@ -48,7 +48,7 @@ const Input: FC<InputProps> = ({ door }) => {
 
   const isWrongAnswer = !isDoorSolved && attemptCount > 0 && !isLoading && !dirty
 
-  if (!isDoorSolved && !isFullyAuthenticated) return <p>Logg inn for å delta!</p>
+  if (!isDoorSolved && !isAuthenticated) return <p>Logg inn for å delta!</p>
 
   if (isDoorSolved) {
     return (

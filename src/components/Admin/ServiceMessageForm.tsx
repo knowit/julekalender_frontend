@@ -3,7 +3,6 @@ import { formatISO } from "date-fns"
 import { isEmpty, keys, map, parseInt, toString } from "lodash"
 import { VFC, memo } from "react"
 import { useForm } from "react-hook-form"
-import { FaTimes } from "react-icons/fa"
 
 import { useChallenges } from "../../api/admin/requests"
 import { AdminServiceMessagePayload } from "../../api/admin/ServiceMessage"

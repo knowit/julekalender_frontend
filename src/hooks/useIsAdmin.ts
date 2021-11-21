@@ -1,4 +1,4 @@
-import { useWhoami } from "../api/requests"
+import { useWhoami } from "../api/users/requests"
 
 
 export const useIsAdmin = () => {

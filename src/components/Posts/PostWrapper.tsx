@@ -94,7 +94,7 @@ const PostWrapper: FC<PostWrapperProps> = ({
         <div className="absolute w-4 sm:w-8 lg:w-10 xl:w-avatar">
           <img
             className="rounded-full w-full flex items-center justify-center"
-            src={post.author.picture}
+            src={post.author.avatar ?? ""} // TODO: Placeholder avatar
             alt="User avatar"
           />
         </div>
@@ -102,7 +102,7 @@ const PostWrapper: FC<PostWrapperProps> = ({
       <div className={clsx("mx-4 sm:mx-8 lg:mx-10 xl:mx-avatar", contentClassName)}>
         <div className="relative px-1 sm:px-2 md:px-4">
           <div className="font-semibold text-xl">
-            {!post.deleted && post.author.nickname}
+            {!post.deleted && post.author.username}
           </div>
 
           <div className="absolute top-0 right-0 flex flex-row-reverse space-x-reverse space-x-4">

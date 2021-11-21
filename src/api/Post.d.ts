@@ -4,8 +4,8 @@ export type BasePost = {
   door: number
   author: {
     uuid: string
-    nickname: string
-    picture: string
+    username: string
+    avatar: string | null
   }
   created_at: string
   edited_at: string | null

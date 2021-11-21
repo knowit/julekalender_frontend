@@ -45,7 +45,7 @@ const Header: FC<HeaderProps> = ({ setLeaderboardHidden }) => {
         <a className="inline-block float-left" href="https://www.knowit.no/" target="_blank" rel="noopener noreferrer" tabIndex={1}>
           <Logo className="h-7 md:h-10 fill-current" />
         </a>
-        <div className="float-right space-x-4 md:space-x-6 h-10 mt-0.5 md:mt-1">
+        <div className="float-right space-x-4 md:space-x-8 h-10 mt-0.5 md:mt-1">
           {isAdmin && (
             <>
               <Link to="/admin" title="Super secret admin pages">

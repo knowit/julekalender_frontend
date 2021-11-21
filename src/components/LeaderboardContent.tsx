@@ -1,5 +1,5 @@
 import { FC, ReactElement, useMemo } from "react"
-import { map, reduce, upperFirst } from "lodash"
+import { isEmpty, isNil, map, reduce, upperFirst } from "lodash"
 
 import { numberString } from "../utils"
 import { useLeaderboard } from "../api/requests"
@@ -35,7 +35,14 @@ const LeaderBoardContent: FC<LeaderBoardContentProps> = () => {
     }, [] as LeaderboardWithPosition)
   }, [leaderboard])
 
-  if (!leaderboard) return null
+  if (isNil(leaderboard)) return null
+  if (isEmpty(leaderboard)) return (
+    <div className="relative h-full">
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+        Ingen snille barn!
+      </div>
+    </div>
+  )
 
   return (<>
     {map(leaderboardWithPosition, ([solvedCount, entries]) =>

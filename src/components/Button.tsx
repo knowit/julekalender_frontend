@@ -2,7 +2,7 @@ import { ButtonHTMLAttributes, DetailedHTMLProps, FC, ReactNode } from "react"
 import clsx from "clsx"
 
 
-type ButtonProps = {
+export type ButtonProps = {
   underline?: boolean
   content?: ReactNode
   disabled?: boolean

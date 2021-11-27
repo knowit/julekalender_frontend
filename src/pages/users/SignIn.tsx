@@ -1,12 +1,10 @@
 import { FC } from "react"
 import { useForm } from "react-hook-form"
-import { FaApple, FaGithub, FaGoogle } from "react-icons/fa"
 import { Link, useHistory } from "react-router-dom"
 
 import { SignInParameters, useSignIn } from "../../api/users/requests"
 import FormElement from "../../components/Admin/FormElement"
 import Button from "../../components/Button"
-import Divider from "../../components/Divider"
 
 import UserPage from "./UserPage"
 
@@ -53,21 +51,17 @@ const SignIn: FC = () => {
         </Link>
       </div>
 
-      <Divider content="Eller" />
+      {/* SSO section. */}
+      {/* <Divider content="Eller" />
 
       <div className="space-y-4 children:block text-center">
-        <Link to="/">
-          <Button sm><FaGithub className="inline-block mr-2" />Logg inn med GitHub</Button>
-        </Link>
-        <Link to="/">
-          <Button sm><FaGoogle className="inline-block mr-2" />Logg inn med Google</Button>
-        </Link>
-        <Link to="/">
-          <Button sm><FaApple className="inline-block mr-2" />Logg inn med Apple</Button>
-        </Link>
-      </div>
+        <OAuthLinkButton provider="github" sm><FaGithub className="inline-block mr-2" />Logg inn med GitHub</OAuthLinkButton>
+        <OAuthLinkButton provider="google" sm><FaGoogle className="inline-block mr-2" />Logg inn med Google</OAuthLinkButton>
+        <OAuthLinkButton provider="apple" sm><FaApple className="inline-block mr-2" />Logg inn med Apple</OAuthLinkButton>
+      </div> */}
     </UserPage>
   )
 }
+
 
 export default SignIn

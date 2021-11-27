@@ -3,7 +3,7 @@ import { useContext, useEffect, useState } from "react"
 import { useQueryClient } from "react-query"
 
 import { AuthContext } from "../AuthContext"
-import { setGlobalAuthorizationToken } from "../axios"
+import { setGAuthorizationToken } from "../axios"
 
 
 // Handles react-query reset on token refresh

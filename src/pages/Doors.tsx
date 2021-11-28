@@ -28,13 +28,12 @@ const Doors = () => {
   }), [solvedStatus, prefetch, challenges])
 
   return (
-    <>
-      <main>
-        <LightsDesktop {...lightProps} className="hidden md:block" />
-        <LightsMobile {...lightProps} className="md:hidden" />
-      </main>
+    <main>
+      <LightsDesktop {...lightProps} className="hidden md:block" />
+      <LightsMobile {...lightProps} className="md:hidden" />
+
       <Footer />
-    </>
+    </main>
   )
 }
 

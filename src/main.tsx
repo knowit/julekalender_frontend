@@ -9,7 +9,6 @@ import "../assets/css/syntax_highlight.scss"
 import "./axios"
 import App from "./App"
 import AuthContext from "./AuthContext"
-import TokenRefreshHandler from "./components/TokenRefreshHandler"
 
 
 const Main = () => {
@@ -27,7 +26,6 @@ const Main = () => {
       <QueryClientProvider client={queryClient}>
         <AuthContext>
           <ReactQueryDevtools />
-          <TokenRefreshHandler />
 
           <App />
         </AuthContext>

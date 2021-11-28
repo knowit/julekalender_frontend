@@ -1,5 +1,5 @@
 import axios, { AxiosError, AxiosResponse } from "axios"
-import { identity, includes, merge } from "lodash"
+import { includes, merge } from "lodash"
 
 
 export let authorizationToken: string | undefined = undefined
@@ -9,7 +9,7 @@ export const setAuthorizationToken = (newToken: string) => authorizationToken = 
 export const setCsrfToken = (newToken: string) => csrfToken = newToken
 
 const activeStorageRegexp = new RegExp("/rails/active_storage/")
-const csrfMethods = ["post", "patch", "put", "delete"]
+const csrfMethods = ["post", "patch", "put", "delete", "POST", "PATCH", "PUT", "DELETE"]
 
 axios.interceptors.request.use((config) => {
   const headers: Record<string, string> = {}
@@ -30,7 +30,14 @@ axios.interceptors.request.use((config) => {
 })
 
 axios.interceptors.response.use(
-  identity,
+  (response) => {
+    // Fetch new CSRF token from headers
+    const csrfToken = response.headers["x-kodekalender-csrf-token"]
+    if (csrfToken)
+      setCsrfToken(csrfToken)
+
+    return response
+  },
   (error: AxiosError<{ message: string }>) => {
     let err: QueryError
 

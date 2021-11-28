@@ -33,7 +33,6 @@ export const useSignUp = () => {
     {
       onSuccess: (data) => {
         queryClient.setQueryData<Whoami>(["users", "whoami"], data)
-        queryClient.invalidateQueries(["csrfToken"])
       }
     }
   )
@@ -53,7 +52,6 @@ export const useSignIn = () => {
     {
       onSuccess: (data) => {
         queryClient.setQueryData<Whoami>(["users", "whoami"], data)
-        queryClient.invalidateQueries(["csrfToken"])
       }
     }
   )
@@ -133,7 +131,6 @@ export const useSignOut = () => {
     {
       onSuccess: () => {
         queryClient.invalidateQueries(["users", "whoami"])
-        queryClient.invalidateQueries(["csrfToken"])
       }
     }
   )

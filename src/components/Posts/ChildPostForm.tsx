@@ -1,4 +1,4 @@
-import { FC, useRef } from "react"
+import { FC, useCallback, useRef, useState } from "react"
 import TextareaAutosize from "react-autosize-textarea/lib"
 import clsx, { ClassValue } from "clsx"
 
@@ -23,6 +23,8 @@ const ChildPostForm: FC<ChildPostFormProps> = ({ toggleShowForm, door, parent, c
   const { mutate: doCreatePost, isLoading } = useCreatePost()
 
   const inputRef = useRef<HTMLTextAreaElement>(null)
+  const [isDirty, setIsDirty] = useState(false)
+  const setDirty = useCallback(() => setIsDirty(true), [setIsDirty])
   const [preview, previewHtml, previewLoading, togglePreview, updatePreviewContent] = usePostPreviewState(inputRef)
 
   const createPost = async () => {
@@ -49,6 +51,7 @@ const ChildPostForm: FC<ChildPostFormProps> = ({ toggleShowForm, door, parent, c
           "block w-full min-h-[5rem] p-2 text-base rounded-t bg-gray-200 border-b-2 border-gray-700 outline-none",
           preview && "hidden"
         )}
+        onChange={setDirty}
         placeholder="Svar på kommentar"
       />
 
@@ -56,7 +59,7 @@ const ChildPostForm: FC<ChildPostFormProps> = ({ toggleShowForm, door, parent, c
         <Button sm underline={false} onClick={toggleShowForm} content="Avbryt" />
 
         <div className="space-x-4">
-          <Button sm underline={false} disabled={isLoading} onClick={togglePreview} onMouseEnter={updatePreviewContent} content={preview ? "Rediger" : "Forhåndsvis"} />
+          {isDirty && <Button sm underline={false} disabled={isLoading} onClick={togglePreview} onMouseEnter={updatePreviewContent} content={preview ? "Rediger" : "Forhåndsvis"} />}
           <Button sm underline={false} disabled={isLoading} onClick={createPost} content="Svar" />
         </div>
       </div>

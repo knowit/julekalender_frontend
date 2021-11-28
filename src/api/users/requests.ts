@@ -1,6 +1,6 @@
 import axios from "axios"
-import { forEach } from "lodash"
-import { useQueryClient, useMutation, useQuery, UseMutationOptions } from "react-query"
+import { forEach, isNil } from "lodash"
+import { useQueryClient, useMutation, useQuery } from "react-query"
 
 import { LoggedInWhoami, Whoami } from ".."
 import { QueryError } from "../../axios"
@@ -14,7 +14,7 @@ export const useWhoami = () => (
 type SignUpResponse = LoggedInWhoami
 export type SignUpParameters = {
   email: string
-  username: string
+  username: string | undefined
   avatar: File | undefined
   avatar_url: string | undefined
   password: string
@@ -84,7 +84,7 @@ export const useResetPassword = () => (
 type UpdateUserResponse = LoggedInWhoami
 export type UpdateUserParameters = {
   email?: string
-  username?: string
+  username?: string | null
   avatar?: File
   avatar_url?: string
   password?: string
@@ -97,7 +97,7 @@ export const useUpdateUser = () => {
     ["users", "udate"],
     (payload) => {
       const formData = new FormData
-      forEach(payload, (value, key) => value && formData.append(`user[${key}]`, value))
+      forEach(payload, (value, key) => !isNil(value) && formData.append(`user[${key}]`, value))
       return axios.patch("/users", formData).then(({ data }) => data)
     },
     {

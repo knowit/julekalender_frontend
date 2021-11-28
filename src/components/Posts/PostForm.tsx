@@ -1,13 +1,14 @@
-import { FC, useContext, useRef } from "react"
+import { FC, useCallback, useRef, useState } from "react"
 import TextareaAutosize from "react-autosize-textarea/lib"
 import clsx from "clsx"
+import { isNil } from "lodash"
+import { Link } from "react-router-dom"
 
 import Button from "../Button"
 import { squish } from "../../utils"
 import { useCreatePost, useRefreshCsrfToken } from "../../api/requests"
-import { AuthContext } from "../../AuthContext"
-import { useIsAdmin } from "../../hooks/useIsAdmin"
 import usePostPreviewState from "../../hooks/usePostPreviewState"
+import { useWhoami } from "../../api/users/requests"
 
 import PostPreview from "./PostPreview"
 
@@ -20,19 +21,20 @@ const FORM_PLACEHOLDER = squish(`
 
 type PostFormProps = {
   door: number
-  hideForm: () => void
 }
 
-const PostForm: FC<PostFormProps> = ({ door, hideForm }) => {
+const PostForm: FC<PostFormProps> = ({ door }) => {
   useRefreshCsrfToken()
 
+  const [isSubmitted, setIsSubmitted] = useState(false)
+  const { data: whoami } = useWhoami()
+
   const { mutate: doCreatePost, isLoading } = useCreatePost()
-  const { isAuthenticated } = useContext(AuthContext)
 
   const inputRef = useRef<HTMLTextAreaElement>(null)
+  const [isDirty, setIsDirty] = useState(false)
+  const setDirty = useCallback(() => setIsDirty(true), [setIsDirty])
   const [preview, previewHtml, previewLoading, togglePreview, updatePreviewContent] = usePostPreviewState(inputRef)
-
-  const isAdmin = useIsAdmin()
 
   const createPost = async () => {
     if (!inputRef.current) return
@@ -41,20 +43,37 @@ const PostForm: FC<PostFormProps> = ({ door, hideForm }) => {
       { door, content: inputRef.current.value },
       {
         onSuccess: ({ uuid }) => {
-          hideForm()
+          setIsSubmitted(true)
           window.location.href = `#${uuid}`
         }
       }
     )
   }
 
-  // TODO: Prevent posting if user has no username or avatar
+  if (isSubmitted) {
+    return (
+      <div className="bg-gray-100 text-gray-700 rounded-md px-8 py-4 w-96 space-y-4 grid place-content-center">
+        <p className="text-center">Du finner kommentaren din nederst!</p>
+        <Button onClick={() => { setIsSubmitted(false); setIsDirty(false) }} content="Legg igjen ny kommentar?" />
+      </div>
+    )
+  }
 
-  // Prevent admins from accidentially submitting posts without being logged in.
-  if (isAdmin && !isAuthenticated) return null
+  if (!whoami) return null
+
+  if (isNil(whoami.username)) {
+    return (
+      <div className="bg-gray-100 text-gray-700 rounded-md px-8 py-4 w-96 space-y-4 grid place-content-center">
+        <p className="text-center">Du må oppgi et brukernavn for å kunne delta i kommentarfeltet.</p>
+        <Link className="mx-auto" to="/users/edit">
+          <Button content="Rediger bruker" />
+        </Link>
+      </div>
+    )
+  }
 
   return (
-    <div className="bg-gray-100 text-gray-700 rounded-md px-4 pt-4 pb-2 flex flex-col items-end">
+    <div className="bg-gray-100 text-gray-700 w-full rounded-md px-4 pt-4 pb-2 flex flex-col items-end">
       {preview && (
         <PostPreview
           html={previewHtml}
@@ -70,18 +89,21 @@ const PostForm: FC<PostFormProps> = ({ door, hideForm }) => {
           preview && "hidden"
         )}
         ref={inputRef}
+        onChange={setDirty}
         placeholder={FORM_PLACEHOLDER}
       />
 
       <div>
-        <Button
-          className="font-medium"
-          underline={false}
-          disabled={isLoading}
-          onClick={togglePreview}
-          onMouseEnter={updatePreviewContent}
-          content={preview ? "Rediger" : "Forhåndsvis"}
-        />
+        {isDirty && (
+          <Button
+            className="font-medium"
+            underline={false}
+            disabled={isLoading}
+            onClick={togglePreview}
+            onMouseEnter={updatePreviewContent}
+            content={preview ? "Rediger" : "Forhåndsvis"}
+          />
+        )}
         <Button
           className="bg-none border-none cursor-pointer ml-4 p-4 font-medium uppercase"
           underline={false}

@@ -26,6 +26,9 @@ module.exports = {
       space: {
         "door-elements": "4rem"
       },
+      gap: {
+        "door-elements": "4rem"
+      },
       fontSize: {
         "lightbulb": ["4.125rem", { lineHeight: "1" }]
       },

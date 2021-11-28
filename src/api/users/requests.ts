@@ -131,6 +131,7 @@ export const useSignOut = () => {
     {
       onSuccess: () => {
         queryClient.invalidateQueries(["users", "whoami"])
+        queryClient.invalidateQueries(["csrfToken"])
       }
     }
   )

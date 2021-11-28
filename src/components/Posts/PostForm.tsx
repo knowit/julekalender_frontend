@@ -48,6 +48,8 @@ const PostForm: FC<PostFormProps> = ({ door, hideForm }) => {
     )
   }
 
+  // TODO: Prevent posting if user has no username or avatar
+
   // Prevent admins from accidentially submitting posts without being logged in.
   if (isAdmin && !isAuthenticated) return null
 

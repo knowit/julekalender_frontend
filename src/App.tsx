@@ -16,7 +16,6 @@ import SignIn from "./pages/users/SignIn"
 import SignUp from "./pages/users/SignUp"
 import LostPassword from "./pages/users/LostPassword"
 import ResetPassword from "./pages/users/ResetPassword"
-import { useWhoami } from "./api/users/requests"
 import EditUser from "./pages/users/EditUser"
 
 
@@ -49,7 +48,6 @@ const LazyAdmin = () => {
 
 const App = () => {
   const [leaderboardHidden, setLeaderboardHidden] = useState(true)
-  const { data: whoami } = useWhoami()
 
   // Match door 1-24 only
   const doorPaths = map(range(1, 25), (door) => `/luke/:door(${door})`)
@@ -73,23 +71,17 @@ const App = () => {
           <Route path="/service_messages" component={ServiceMessages} />
           <Route path="/admin" component={LazyAdmin} />
 
-          {whoami && whoami.is_user && (<>
-            <Route path="/users/edit" component={EditUser} />
-            <Route path="/users"><Redirect to="/users/edit" /></Route>
-          </>)}
-          {whoami && whoami.is_guest && (<>
-            <Route path="/users/sign_in" component={SignIn} />
-            <Route path="/users/sign_up" component={SignUp} />
-            <Route path="/users/lost_password" component={LostPassword} />
-            <Route path="/users/password/edit" component={ResetPassword} />
-          </>)}
+          <Route path="/users/edit" component={EditUser} />
+          <Route path="/users/sign_in" component={SignIn} />
+          <Route path="/users/sign_up" component={SignUp} />
+          <Route path="/users/lost_password" component={LostPassword} />
+          <Route path="/users/password/edit" component={ResetPassword} />
+          <Route path="/users"><Redirect to="/users/edit" /></Route>
 
           {/* 404? - Route to main view */}
-          {whoami && (
-            <Route>
-              <Redirect to="/" />
-            </Route>
-          )}
+          <Route>
+            <Redirect to="/" />
+          </Route>
         </Switch>
       </div>
     </div>

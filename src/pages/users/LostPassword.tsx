@@ -26,7 +26,10 @@ const LostPassword: VFC = () => {
   if (isSubmitSuccessful && !isLoading && !error) {
     return (
       <UserPage title="Tilbakestillingsinstrukser sendt">
-        <div className="text-center">Dersom det finnes en konto med e-postadressen du oppga vil du snarlig få en e-post med instrukser for å tilbakestille ditt passord. </div>
+        <div className="text-center">
+          Dersom det finnes en konto med e-postadressen du oppga vil du snarlig
+          få en e-post med instrukser for å tilbakestille ditt passord.
+        </div>
       </UserPage>
     )
   }

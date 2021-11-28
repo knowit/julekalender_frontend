@@ -4,7 +4,7 @@ import clsx from "clsx"
 import CheckMark from "../checkmarks/CheckMark"
 import WrongMark from "../checkmarks/WrongMark"
 import { AuthContext } from "../../AuthContext"
-import { useCreateSolution } from "../../api/requests"
+import { useCreateSolution, useRefreshCsrfToken } from "../../api/requests"
 import useIsDoorSolved from "../../hooks/useIsDoorSolved"
 import WaitMark from "../checkmarks/WaitMark"
 
@@ -14,6 +14,8 @@ type InputProps = {
 }
 
 const Input: FC<InputProps> = ({ door }) => {
+  useRefreshCsrfToken()
+
   const { isAuthenticated } = useContext(AuthContext)
 
   const [attemptCount, setAttemptCount] = useState(0)

@@ -3,7 +3,7 @@ import TextareaAutosize from "react-autosize-textarea/lib"
 import clsx, { ClassValue } from "clsx"
 
 import Button from "../Button"
-import { useCreatePost } from "../../api/requests"
+import { useCreatePost, useRefreshCsrfToken } from "../../api/requests"
 import { ParentPost } from "../../api"
 import usePostPreviewState from "../../hooks/usePostPreviewState"
 
@@ -18,6 +18,8 @@ type ChildPostFormProps = {
 }
 
 const ChildPostForm: FC<ChildPostFormProps> = ({ toggleShowForm, door, parent, className }) => {
+  useRefreshCsrfToken()
+
   const { mutate: doCreatePost, isLoading } = useCreatePost()
 
   const inputRef = useRef<HTMLTextAreaElement>(null)

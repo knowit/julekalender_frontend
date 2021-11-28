@@ -1,12 +1,12 @@
 import { forEach, join } from "lodash"
 import { useEffect, useRef, VFC } from "react"
 import { useForm } from "react-hook-form"
-import { FaWindowMinimize } from "react-icons/fa"
 import { UseMutateFunction } from "react-query"
 import { useHistory } from "react-router"
 import { useDebounce } from "use-debounce"
 
-import { LoggedInWhoami, Whoami } from "../../api"
+import { LoggedInWhoami } from "../../api"
+import { useRefreshCsrfToken } from "../../api/requests"
 import { SignUpParameters, UpdateUserParameters, useDeleteUser } from "../../api/users/requests"
 import { QueryError } from "../../axios"
 import UserPage from "../../pages/users/UserPage"
@@ -29,6 +29,8 @@ type UserFormProps = {
 }
 
 const UserForm: VFC<UserFormProps> = ({ user, submit, submitError, newForm = false }) => {
+  useRefreshCsrfToken()
+
   const history = useHistory()
 
   const { register, reset, handleSubmit, watch, setValue, setError, clearErrors, formState: { errors, dirtyFields } } = useForm<SignUpParameters>({

@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form"
 
 import { AdminChallenge, AdminChallengePayload } from "../../api/admin/Challenge"
 import { useChallengePreview } from "../../api/admin/requests"
+import { useRefreshCsrfToken } from "../../api/requests"
 import useAvailableDoors from "../../hooks/admin/useAvailableDoors"
 import { getDefaultActiveFrom, getDefaultActiveTo, getTimestampForInputField } from "../../utils"
 import Button from "../Button"
@@ -23,6 +24,8 @@ type ChallengeFormProps = {
 }
 
 const ChallengeForm: VFC<ChallengeFormProps> = ({ challenge, newForm = false, submit }) => {
+  useRefreshCsrfToken()
+
   const [preview, setPreview] = useState<boolean>(false)
 
   const { register, handleSubmit, setValue, getValues, watch, formState: { dirtyFields: { door: isDoorDirty } } } = useForm<AdminChallengePayload>({ defaultValues: { ...challenge, files: map(challenge.files, "signed_id") } })

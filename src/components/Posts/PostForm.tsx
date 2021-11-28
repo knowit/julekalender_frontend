@@ -4,7 +4,7 @@ import clsx from "clsx"
 
 import Button from "../Button"
 import { squish } from "../../utils"
-import { useCreatePost } from "../../api/requests"
+import { useCreatePost, useRefreshCsrfToken } from "../../api/requests"
 import { AuthContext } from "../../AuthContext"
 import { useIsAdmin } from "../../hooks/useIsAdmin"
 import usePostPreviewState from "../../hooks/usePostPreviewState"
@@ -24,6 +24,8 @@ type PostFormProps = {
 }
 
 const PostForm: FC<PostFormProps> = ({ door, hideForm }) => {
+  useRefreshCsrfToken()
+
   const { mutate: doCreatePost, isLoading } = useCreatePost()
   const { isAuthenticated } = useContext(AuthContext)
 

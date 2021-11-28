@@ -2,6 +2,7 @@ import { FC } from "react"
 import { useForm } from "react-hook-form"
 import { Link, useHistory } from "react-router-dom"
 
+import { useRefreshCsrfToken } from "../../api/requests"
 import { SignInParameters, useSignIn } from "../../api/users/requests"
 import FormElement from "../../components/Admin/FormElement"
 import Button from "../../components/Button"
@@ -10,6 +11,8 @@ import UserPage from "./UserPage"
 
 
 const SignIn: FC = () => {
+  useRefreshCsrfToken()
+
   const history = useHistory()
 
   const { register, handleSubmit, watch } = useForm<SignInParameters>()

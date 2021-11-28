@@ -13,6 +13,12 @@ import { ChallengeDict, Leaderboard, Like, ParentPost, Post, PostPreview, Solved
 
 // QUERIES ---------------------------------------------------------------------
 
+// Dummy request to refresh csrf token through cookie
+export const refreshCsrfToken = () => axios.get("/csrf_tokens")
+export const useRefreshCsrfToken = () => (
+  useQuery<unknown>(["csrfToken"], refreshCsrfToken, { staleTime: 60_000 })
+)
+
 const getLikes = () => axios.get("/likes").then(({ data }) => data)
 export const useLikes = () => {
   const { isAuthenticated } = useContext(AuthContext)

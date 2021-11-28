@@ -1,4 +1,4 @@
-import { forEach, isElement, isEmpty, join } from "lodash"
+import { forEach, isNil, join } from "lodash"
 import { useEffect, useRef, VFC } from "react"
 import { useForm } from "react-hook-form"
 import { UseMutateFunction } from "react-query"
@@ -14,6 +14,7 @@ import { squish } from "../../utils"
 import FormElement from "../Admin/FormElement"
 import FormElementCustom from "../Admin/FormElementCustom"
 import Button from "../Button"
+import CheckMark from "../checkmarks/CheckMark"
 import FormError from "../FormError"
 
 
@@ -25,15 +26,17 @@ type UserFormProps = {
   user?: LoggedInWhoami
   submit: UseMutateFunction<any, any, any>
   submitError: QueryError<{ errors: Record<keyof SignUpParameters, string[]> }> | null
+  isSubmitting?: boolean
+  isSuccess?: boolean
   newForm?: boolean
 }
 
-const UserForm: VFC<UserFormProps> = ({ user, submit, submitError, newForm = false }) => {
+const UserForm: VFC<UserFormProps> = ({ user, submit, submitError, isSubmitting, isSuccess, newForm = false }) => {
   useRefreshCsrfToken()
 
   const history = useHistory()
 
-  const { register, reset, handleSubmit, watch, setValue, setError, clearErrors, formState: { errors, dirtyFields } } = useForm<SignUpParameters>({
+  const { register, handleSubmit, watch, setValue, setError, clearErrors, formState: { errors, isDirty, dirtyFields } } = useForm<SignUpParameters>({
     defaultValues: {
       email: user?.email ?? undefined,
       username: user?.username ?? undefined
@@ -53,7 +56,7 @@ const UserForm: VFC<UserFormProps> = ({ user, submit, submitError, newForm = fal
 
   const onSubmit = (data: UpdateUserParameters) => {
     if (newForm || !dirtyFields.email || window.confirm("Du vil motta en e-post med instrukser for å re-aktivere din konto for en ny e-postadresse.")) {
-      submit(data, { onSuccess: () => reset() })
+      submit(data)
     }
   }
 
@@ -153,7 +156,8 @@ const UserForm: VFC<UserFormProps> = ({ user, submit, submitError, newForm = fal
       </div>
 
 
-      <Button type="submit" underline={false} className="mt-8 block mx-auto" content={newForm ? "Opprett bruker" : "Lagre"} />
+      {!isNil(isSubmitting) && !isNil(isSuccess) && isDirty && !isSubmitting && isSuccess && <CheckMark wrapperClassName="mx-auto w-16" message="Lagret!" />}
+      <Button type="submit" disabled={isNil(isSubmitting) ? false : isSubmitting} underline={false} className="mt-8 block mx-auto" content={newForm ? "Opprett bruker" : "Lagre"} />
       {!newForm && <Button type="button" onClick={deleteUser} underline={false} className="mt-4 block mx-auto text-red-700" content="Slett bruker" />}
     </UserPage>
   )

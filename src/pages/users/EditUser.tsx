@@ -6,7 +6,7 @@ import UserForm from "../../components/users/UserForm"
 
 const EditUser: VFC = () => {
   const { data: whoami, isLoading } = useWhoami()
-  const { mutate: updateUser, error } = useUpdateUser()
+  const { mutate: updateUser, isLoading: isSubmitting, isSuccess, error } = useUpdateUser()
 
   const submit = (data: UpdateUserParameters) => {
     updateUser(data)
@@ -19,6 +19,8 @@ const EditUser: VFC = () => {
       user={whoami}
       submit={submit}
       submitError={error}
+      isSubmitting={isSubmitting}
+      isSuccess={isSuccess}
     />
   )
 }

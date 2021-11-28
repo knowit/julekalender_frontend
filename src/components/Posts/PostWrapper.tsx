@@ -7,7 +7,7 @@ import { Post } from "../../api/Post"
 import useIsOwnPost from "../../hooks/useIsOwnPost"
 import { getTimestamp } from "../../utils"
 import Button from "../Button"
-import { useDeletePost, usePostMarkdown, usePrefetchPostMarkdown, useRefreshCsrfToken, useUpdatePost } from "../../api/requests"
+import { useDeletePost, usePostMarkdown, usePrefetchPostMarkdown, useUpdatePost } from "../../api/requests"
 import usePostPreviewState from "../../hooks/usePostPreviewState"
 
 import PostProse from "./PostProse"
@@ -37,8 +37,6 @@ const PostWrapper: FC<PostWrapperProps> = ({
   proseClassName,
   children
 }) => {
-  useRefreshCsrfToken()
-
   const timestamp = getTimestamp(post.created_at)
   const isOwnPost = useIsOwnPost(post)
 

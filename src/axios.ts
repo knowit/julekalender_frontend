@@ -1,5 +1,5 @@
 import axios, { AxiosError, AxiosResponse } from "axios"
-import { find, includes, map, merge, split, trim } from "lodash"
+import { identity, includes, merge } from "lodash"
 
 
 export let authorizationToken: string | undefined = undefined
@@ -29,22 +29,8 @@ axios.interceptors.request.use((config) => {
   })
 })
 
-const readCookie = (name: string): string | undefined => {
-  const cookieTuple = find(map(split(document.cookie, ";"), (cookie) => split(trim(cookie), "=")), ([cookieName]) => cookieName === name)
-  return cookieTuple && decodeURIComponent(cookieTuple[1])
-}
-
 axios.interceptors.response.use(
-  (response) => {
-    // Fetch potentially new CSRF token from cookie
-    const csrfToken = readCookie("X-KODEKALENDER-CSRF-TOKEN")
-    if (csrfToken) {
-      // console.log(`Setting csrfToken to '${csrfToken}'`)
-      setCsrfToken(csrfToken)
-    }
-
-    return response
-  },
+  identity,
   (error: AxiosError<{ message: string }>) => {
     let err: QueryError
 

@@ -2,7 +2,6 @@ import { VFC } from "react"
 import { useForm } from "react-hook-form"
 import { useLocation } from "react-router"
 
-import { useRefreshCsrfToken } from "../../api/requests"
 import { InitiateResetPasswordParameters, useInitiateResetPassword } from "../../api/users/requests"
 import FormElement from "../../components/Admin/FormElement"
 import Button from "../../components/Button"
@@ -11,8 +10,6 @@ import UserPage from "./UserPage"
 
 
 const LostPassword: VFC = () => {
-  useRefreshCsrfToken()
-
   const { search } = useLocation()
   const paramMatch = search.match(/email=(?<email>\S+)/)?.groups
 

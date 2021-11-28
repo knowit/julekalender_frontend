@@ -3,7 +3,6 @@ import { useEffect, VFC } from "react"
 import { useForm } from "react-hook-form"
 import { useLocation } from "react-router"
 
-import { useRefreshCsrfToken } from "../../api/requests"
 import { ResetPasswordParameters, useResetPassword } from "../../api/users/requests"
 import FormElement from "../../components/Admin/FormElement"
 import Button from "../../components/Button"
@@ -13,8 +12,6 @@ import UserPage from "./UserPage"
 
 
 const ResetPassword: VFC = () => {
-  useRefreshCsrfToken()
-
   const { search } = useLocation()
   const paramMatch = search.match(/reset_password_token=(?<resetPasswordToken>\S+)/)?.groups
 

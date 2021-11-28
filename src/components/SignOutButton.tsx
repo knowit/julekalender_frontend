@@ -1,7 +1,6 @@
 import { useContext } from "react"
 import { useHistory } from "react-router"
 
-import { useRefreshCsrfToken } from "../api/requests"
 import { useSignOut } from "../api/users/requests"
 import { AuthContext } from "../AuthContext"
 
@@ -9,8 +8,6 @@ import Button from "./Button"
 
 
 const SignOutButton = () => {
-  useRefreshCsrfToken()
-
   const history = useHistory()
 
   const { isAuthenticated } = useContext(AuthContext)

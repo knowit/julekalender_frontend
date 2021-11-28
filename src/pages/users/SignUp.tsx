@@ -1,7 +1,6 @@
 import { FC } from "react"
 import { useHistory } from "react-router"
 
-import { useRefreshCsrfToken } from "../../api/requests"
 import { SignUpParameters, useSignUp } from "../../api/users/requests"
 import Button from "../../components/Button"
 import UserForm from "../../components/users/UserForm"
@@ -10,8 +9,6 @@ import UserPage from "./UserPage"
 
 
 const SignUp: FC = () => {
-  useRefreshCsrfToken()
-
   const history = useHistory()
 
   const { mutate: signUp, isSuccess, error } = useSignUp()

@@ -6,7 +6,7 @@ import { Link } from "react-router-dom"
 
 import Button from "../Button"
 import { squish } from "../../utils"
-import { useCreatePost, useRefreshCsrfToken } from "../../api/requests"
+import { useCreatePost } from "../../api/requests"
 import usePostPreviewState from "../../hooks/usePostPreviewState"
 import { useWhoami } from "../../api/users/requests"
 
@@ -24,8 +24,6 @@ type PostFormProps = {
 }
 
 const PostForm: FC<PostFormProps> = ({ door }) => {
-  useRefreshCsrfToken()
-
   const [isSubmitted, setIsSubmitted] = useState(false)
   const { data: whoami } = useWhoami()
 

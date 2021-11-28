@@ -8,8 +8,9 @@ import { ReactComponent as Logo } from "../img/knowitlogo.svg"
 import { useIsAdmin } from "../hooks/useIsAdmin"
 import { usePrefetchLeaderboard, useServiceMessages } from "../api/requests"
 
-import LoginButton from "./LoginButton"
+import SignInButton from "./SignInButton"
 import Button from "./Button"
+import SignOutButton from "./SignOutButton"
 
 
 const ServiceMessageBadge = () => {
@@ -70,7 +71,8 @@ const Header: FC<HeaderProps> = ({ setLeaderboardHidden }) => {
             <Button onMouseEnter={prefetchLeaderboard}>Ledertavle</Button>
           </Link>
 
-          <LoginButton />
+          <SignInButton />
+          <SignOutButton />
         </div>
       </nav>
     </header>

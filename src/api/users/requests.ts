@@ -121,3 +121,17 @@ export const useDeleteUser = () => {
     }
   )
 }
+
+export const useSignOut = () => {
+  const queryClient = useQueryClient()
+
+  return useMutation<unknown, QueryError, unknown>(
+    ["users", "signOut"],
+    () => axios.delete("/users/sign_out").then(({ data }) => data),
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries(["users", "whoami"])
+      }
+    }
+  )
+}

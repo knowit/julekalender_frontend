@@ -8,8 +8,7 @@ import { AuthContext } from "../AuthContext"
 import Button from "./Button"
 
 
-// TODO: Dropdown menu for edit/logout
-const LoginButton = () => {
+const SignInButton = () => {
   const { isAuthenticated } = useContext(AuthContext)
   const { data: whoami } = useWhoami()
 
@@ -23,4 +22,4 @@ const LoginButton = () => {
   )
 }
 
-export default LoginButton
+export default SignInButton

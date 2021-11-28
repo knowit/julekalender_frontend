@@ -38,8 +38,10 @@ axios.interceptors.response.use(
   (response) => {
     // Fetch potentially new CSRF token from cookie
     const csrfToken = readCookie("X-KODEKALENDER-CSRF-TOKEN")
-    if (csrfToken)
+    if (csrfToken) {
+      // console.log(`Setting csrfToken to '${csrfToken}'`)
       setCsrfToken(csrfToken)
+    }
 
     return response
   },

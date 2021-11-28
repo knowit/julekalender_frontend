@@ -59,31 +59,29 @@ const App = () => {
       closeHandler={() => setLeaderboardHidden(true)}
     />
 
-    <div className="space-y-16">
-      <div className="space-y-10">
-        <Header setLeaderboardHidden={setLeaderboardHidden} />
+    <div className="-space-y-4">
+      <Header setLeaderboardHidden={setLeaderboardHidden} />
 
-        <Switch>
-          <Route exact path="/" component={Doors} />
-          <Route path={doorPaths} component={Door} />
-          <Route path="/leaderboard" component={Leaderboard} />
-          <Route path="/gdpr" component={Gdpr} />
-          <Route path="/service_messages" component={ServiceMessages} />
-          <Route path="/admin" component={LazyAdmin} />
+      <Switch>
+        <Route exact path="/" component={Doors} />
+        <Route path={doorPaths} component={Door} />
+        <Route path="/leaderboard" component={Leaderboard} />
+        <Route path="/gdpr" component={Gdpr} />
+        <Route path="/service_messages" component={ServiceMessages} />
+        <Route path="/admin" component={LazyAdmin} />
 
-          <Route path="/users/edit" component={EditUser} />
-          <Route path="/users/sign_in" component={SignIn} />
-          <Route path="/users/sign_up" component={SignUp} />
-          <Route path="/users/lost_password" component={LostPassword} />
-          <Route path="/users/password/edit" component={ResetPassword} />
-          <Route path="/users"><Redirect to="/users/edit" /></Route>
+        <Route path="/users/edit" component={EditUser} />
+        <Route path="/users/sign_in" component={SignIn} />
+        <Route path="/users/sign_up" component={SignUp} />
+        <Route path="/users/lost_password" component={LostPassword} />
+        <Route path="/users/password/edit" component={ResetPassword} />
+        <Route path="/users"><Redirect to="/users/edit" /></Route>
 
-          {/* 404? - Route to main view */}
-          <Route>
-            <Redirect to="/" />
-          </Route>
-        </Switch>
-      </div>
+        {/* 404? - Route to main view */}
+        <Route>
+          <Redirect to="/" />
+        </Route>
+      </Switch>
     </div>
   </>)
 }

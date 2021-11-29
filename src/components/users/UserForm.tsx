@@ -35,7 +35,7 @@ const UserForm: VFC<UserFormProps> = ({ user, submit, submitError, newForm = fal
   const { register, handleSubmit, watch, setValue, setError, clearErrors, formState: { isSubmitting, isSubmitSuccessful, errors, isDirty, dirtyFields } } = useForm<SignUpParameters>()
 
   useEffect(() => {
-    if (!newForm) return
+    if (newForm) return
 
     setValue("email", user?.email ?? "")
     setValue("username", user?.username ?? undefined)

@@ -1,7 +1,7 @@
 import { FC } from "react"
 import { useHistory } from "react-router"
 
-import { SignUpParameters, useSignUp } from "../../api/users/requests"
+import { useSignUp } from "../../api/users/requests"
 import Button from "../../components/Button"
 import UserForm from "../../components/users/UserForm"
 
@@ -11,11 +11,7 @@ import UserPage from "./UserPage"
 const SignUp: FC = () => {
   const history = useHistory()
 
-  const { mutate: signUp, isLoading, isSuccess, error } = useSignUp()
-
-  const submit = (data: SignUpParameters) => {
-    signUp(data)
-  }
+  const { mutateAsync: signUp, error, isSuccess } = useSignUp()
 
   if (isSuccess) {
     return (
@@ -36,13 +32,11 @@ const SignUp: FC = () => {
     )
   }
 
-
   return (
     <UserForm
-      submit={submit}
+      submit={signUp}
       submitError={error}
       newForm
-      isSubmitting={isLoading}
     />
   )
 }

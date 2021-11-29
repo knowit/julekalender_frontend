@@ -34,7 +34,7 @@ const Footer: FC = () => (
       <a className="underline" href="mailto:julekalender@knowit.no">julekalender@knowit.no</a>
       <br />
       Følg utviklingen og kom med innspill på vårt{" "}
-      <Link className="underline" to="https://github.com/knowit/julekalender_frontend" title="GitHub repo">GitHub repo</Link>
+      <a className="underline" href="https://github.com/knowit/julekalender_frontend" target="_blank" rel="noopener noreferrer" title="GitHub repo">GitHub repo</a>
       !
     </p>
 

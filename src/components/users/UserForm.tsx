@@ -1,7 +1,8 @@
-import { forEach, isNil, join } from "lodash"
+import { Popover } from "@headlessui/react"
+import { forEach, join } from "lodash"
 import { useEffect, useRef, VFC } from "react"
 import { useForm } from "react-hook-form"
-import { UseMutateFunction } from "react-query"
+import { UseMutateAsyncFunction } from "react-query"
 import { useHistory } from "react-router"
 import { useDebounce } from "use-debounce"
 
@@ -23,22 +24,24 @@ const DELETE_USER_CONFIRM = squish(`
 
 type UserFormProps = {
   user?: LoggedInWhoami
-  submit: UseMutateFunction<any, any, any>
+  submit: UseMutateAsyncFunction<any, any, any>
   submitError: QueryError<{ errors: Record<keyof SignUpParameters, string[]> }> | null
-  isSubmitting?: boolean
-  isSuccess?: boolean
   newForm?: boolean
 }
 
-const UserForm: VFC<UserFormProps> = ({ user, submit, submitError, isSubmitting, isSuccess, newForm = false }) => {
+const UserForm: VFC<UserFormProps> = ({ user, submit, submitError, newForm = false }) => {
   const history = useHistory()
 
-  const { register, handleSubmit, watch, setValue, setError, clearErrors, formState: { errors, isDirty, dirtyFields } } = useForm<SignUpParameters>({
-    defaultValues: {
-      email: user?.email ?? undefined,
-      username: user?.username ?? undefined
-    }
-  })
+  const { register, handleSubmit, watch, setValue, setError, clearErrors, formState: { isSubmitting, isSubmitSuccessful, errors, isDirty, dirtyFields } } = useForm<SignUpParameters>()
+
+  useEffect(() => {
+    if (!newForm) return
+
+    setValue("email", user?.email ?? "")
+    setValue("username", user?.username ?? undefined)
+  }, [newForm, user, setValue])
+
+
   useEffect(() => {
     forEach(submitError?.errors, (messages, key) => setError(key as any, { message: join(messages, ", ") }))
   }, [submitError, setError])
@@ -75,6 +78,18 @@ const UserForm: VFC<UserFormProps> = ({ user, submit, submitError, isSubmitting,
           {...register("email", { required: newForm })}
         />
         <FormError error={errors.email} />
+        {newForm && (
+          <Popover>
+            <Popover.Button>
+              <div className="text-opacity-30 text-gray-700">
+                Jobber du i Knowit?
+              </div>
+            </Popover.Button>
+            <Popover.Panel className="bg-gray-200 rounded p-2">
+              Du vil ikke kunne delta i premietrekningen. Vennligst registrer deg med Knowit-adresse.
+            </Popover.Panel>
+          </Popover>
+        )}
 
         <FormElement
           label="Passord"
@@ -128,7 +143,7 @@ const UserForm: VFC<UserFormProps> = ({ user, submit, submitError, isSubmitting,
                 return
               }
 
-              setValue("avatar", file)
+              setValue("avatar", file, { shouldDirty: true })
             }}
           />
           <Button
@@ -153,8 +168,8 @@ const UserForm: VFC<UserFormProps> = ({ user, submit, submitError, isSubmitting,
       </div>
 
 
-      {!isNil(isSubmitting) && !isNil(isSuccess) && isDirty && !isSubmitting && isSuccess && <CheckMark wrapperClassName="mx-auto w-16" message="Lagret!" />}
-      <Button type="submit" disabled={isNil(isSubmitting) ? false : isSubmitting} underline={false} className="mt-8 block mx-auto" content={newForm ? "Opprett bruker" : "Lagre"} />
+      {!newForm && isDirty && !isSubmitting && isSubmitSuccessful && <CheckMark wrapperClassName="mx-auto w-16" message="Lagret!" />}
+      <Button type="submit" disabled={!isDirty || isSubmitting} underline={false} className="mt-8 block mx-auto" content={newForm ? "Opprett bruker" : "Lagre"} />
       {!newForm && <Button type="button" onClick={deleteUser} underline={false} className="mt-4 block mx-auto text-red-700" content="Slett bruker" />}
     </UserPage>
   )

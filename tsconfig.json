@@ -27,5 +27,8 @@
   "include": [
     "src",
     "types"
+  ],
+  "exclude": [
+    "**/__*"
   ]
 }

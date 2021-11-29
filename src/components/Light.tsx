@@ -1,13 +1,16 @@
-import { FC } from "react";
+import { FC } from "react"
+import clsx from "clsx"
+
 
 type LightParams = {
-  nr: Number;
-  solved: boolean;
+  door: number
+  solved: boolean
+  className?: string
 }
 
-const Light: FC<LightParams> = ({nr, solved}) => (
+const Light: FC<LightParams> = ({ door, solved, className }) => (
   <svg
-    className={`w-20 lg:w-28 float-right mr-8 mt-10 lg:mt-12 absolute right-0 top-0`}
+    className={className}
     xmlns="http://www.w3.org/2000/svg"
     x="0"
     y="0"
@@ -17,7 +20,7 @@ const Light: FC<LightParams> = ({nr, solved}) => (
     viewBox="0 0 139.26 171.48"
     xmlSpace="preserve"
   >
-  <g className={`${solved ? 'text-lightbulb-green' : 'text-lightbulb-yellow'} fill-current`}>
+    <g className={clsx(solved ? "text-lightbulb-green" : "text-lightbulb-yellow", "fill-current")}>
       <path
         fill="#D9D4CB"
         d="M72.67 54.15c-1.73-7.76 10.43-14.62 17.11-23.44.4-.52 1.48-1.96 3.23-2.29 1.87-.35 3.52.86 4.14 1.3 3.84 2.74 7.98 5.04 11.81 7.81 8.38 6.05 13.38 6.39 13.98 10.65.13.9-.04 1.63-.38 3.09-1.07 4.67-3.32 6.24-7.99 12.53-3.53 4.77-2.79 2.79-8.73 9.43-2.8 3.14-3.04 3.52-3.9 3.77-4.05 1.19-7.52-4.76-16.9-12.62-9.14-7.65-11.6-6.81-12.37-10.23z"
@@ -38,9 +41,9 @@ const Light: FC<LightParams> = ({nr, solved}) => (
       transform="translate(22.576 125.867)"
     >
       {/* Om tallet har ett siffer, prefix med nbsp for å sentrere det bedre i lyset*/}
-      {nr < 10 ? `\u00A0${nr}` : nr}
+      {door < 10 ? `\u00A0${door}` : door}
     </text>
   </svg>
-);
+)
 
-export default Light;
+export default Light

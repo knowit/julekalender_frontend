@@ -4,11 +4,24 @@
 
 @layer base {
   html, body {
-    height: 100vh;
-    overflow: auto;
+    @apply h-screen overflow-auto;
   }
 
   body {
-      background-color: rgba(18, 38, 32, 1);
+    @apply bg-background-green text-gray-200;
+  }
+
+  // Cannot style dynamic inner HTML directly, so must do it here
+  code {
+    @apply tracking-tight md:tracking-normal;
+
+    // Remove backticks around inline code and whitespace after block code
+    &:before, &:after {
+      content: none !important;
+    }
+
+    :not(pre) > & {
+      @apply shadow-md rounded-sm py-0.5 px-1;
+    }
   }
 }

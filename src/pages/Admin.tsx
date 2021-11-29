@@ -1,42 +1,34 @@
-import { FC, useState } from 'react';
-import { Redirect } from 'react-router-dom';
-import BackToDoorsButton from '../components/BackToDoorsButton';
-import CommentsSection from '../components/Comments/CommentsSection';
-import Challenge from '../components/Door/Challenge';
-import useRequestsAndAuth from '../hooks/useRequestsAndAuth';
+import { FC } from "react"
+import { Redirect, Route, Switch } from "react-router"
+
+import AdminHeader from "../components/Admin/AdminHeader"
+
+import Doors from "./admin/Doors"
+import EditDoor from "./admin/EditDoor"
+import EditServiceMessage from "./admin/EditServiceMessage"
+import NewDoor from "./admin/NewDoor"
+import NewServiceMessage from "./admin/NewServiceMessage"
+import ServiceMessages from "./admin/ServiceMessages"
+import Page from "./Page"
 
 
-interface AdminProps {
+// TODO: Service messages. Attachments. Deleted posts? User list? Ban users?
+const Admin: FC = () => (
+  <Page className="py-12 px-8 md:px-12 mx-4 md:mx-8 bg-gray-100 text-gray-700 rounded-md space-y-8">
+    <AdminHeader />
 
-};
+    <Switch>
+      <Route exact path="/admin/doors" component={Doors} />
+      <Route path="/admin/doors/new" component={NewDoor} />
+      <Route path="/admin/doors/:door/edit" component={EditDoor} />
 
-const Admin: FC<AdminProps> = () => {
-  const { isAdmin } = useRequestsAndAuth();
-  const [doorNumber, setDoorNumber] = useState('1');
-  const doorOptions = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24].map(
-    (door) => <option value={door}>{door}</option>
-  );
+      <Route exact path="/admin/service_messages" component={ServiceMessages} />
+      <Route path="/admin/service_messages/new" component={NewServiceMessage} />
+      <Route path="/admin/service_messages/:uuid/edit" component={EditServiceMessage} />
 
-  if (!isAdmin) return <Redirect to="/" />;
+      <Redirect to="/admin/doors" />
+    </Switch>
+  </Page>
+)
 
-  return (
-    <main className="max-w-kodekalender mx-auto mt-10">
-      <BackToDoorsButton />
-      <div className="py-12 px-8 md:px12 mx4 md:mx-8 text-gray-700 rounded-md">
-        <div className="py-8 px-8 md:px-12 mx-4 md:mx-8 bg-gray-100 rounded-md">
-          <select onChange={((e) => setDoorNumber(e.target.value))}>
-            {doorOptions}
-          </select>
-          <Challenge
-            doorNumber={doorNumber}
-            isDoorSolved={true}
-            setIsDoorSolved={() => {}}
-          />
-        </div>
-        <CommentsSection doorNumber={doorNumber} />
-      </div>
-    </main>
-  );
-}
-
-export default Admin;
+export default Admin

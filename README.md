@@ -9,3 +9,7 @@ ______
 ### Lokal utvikling
 
 Frontenden er en Vite app. `npm install` og `npm run serve` for å beskue underverket. API-et og backenden ønsker vi å holde skjult enn så lenge, men det er bare å prøve å kjøre appen lokalt mens kalenderen kjører i desember.
+
+______
+
+For Knowitere: Nødvendige secrets for development finnes i 1Password (spør om tilgang).

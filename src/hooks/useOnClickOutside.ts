@@ -1,25 +1,25 @@
-import { RefObject, useEffect } from 'react';
+import { DependencyList, RefObject, useEffect } from "react"
 
 // From: https://usehooks.com/useOnClickOutside/
-const useOnClickOutside = <T>(ref: RefObject<HTMLElement>, handler: (e: MouseEvent | TouchEvent) => void, dependencies: any[] = []) => {
+const useOnClickOutside = (ref: RefObject<HTMLElement>, handler: (e: MouseEvent | TouchEvent) => void, dependencies: DependencyList = []) => {
   useEffect(
     () => {
       const listener = (event: MouseEvent | TouchEvent) => {
         // Do nothing if clicking ref's element or descendent elements
         if (!ref.current || ref.current.contains(event.target as HTMLElement)) {
-          return;
+          return
         }
 
-        handler(event);
-      };
+        handler(event)
+      }
 
-      document.addEventListener('mousedown', listener);
-      document.addEventListener('touchstart', listener);
+      document.addEventListener("mousedown", listener)
+      document.addEventListener("touchstart", listener)
 
       return () => {
-        document.removeEventListener('mousedown', listener);
-        document.removeEventListener('touchstart', listener);
-      };
+        document.removeEventListener("mousedown", listener)
+        document.removeEventListener("touchstart", listener)
+      }
     },
 
     /*
@@ -31,7 +31,7 @@ const useOnClickOutside = <T>(ref: RefObject<HTMLElement>, handler: (e: MouseEve
      */
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [ref, handler, ...dependencies]
-  );
+  )
 }
 
-export default useOnClickOutside;
+export default useOnClickOutside

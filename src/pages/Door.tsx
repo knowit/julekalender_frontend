@@ -1,5 +1,5 @@
 import { FC, useContext } from "react"
-import { useParams } from "react-router-dom"
+import { useHistory, useParams } from "react-router-dom"
 
 import Light from "../components/Light"
 import PostsSection from "../components/Posts/PostsSection"
@@ -16,10 +16,16 @@ const Door: FC = () => {
   const { door: doorString } = useParams<{ door: string }>()
   const door = parseInt(doorString)
 
-  const { data: challenge } = useChallenge(door)
+  const history = useHistory()
+
+  const { data: challenge, isLoading } = useChallenge(door)
 
   const { isAuthenticated } = useContext(AuthContext)
   const solved = useIsDoorSolved(door)
+
+  // Redirect home if no challenge found.
+  if (!isLoading && !challenge)
+    history.push("/")
 
   return (
     <Page className="relative">

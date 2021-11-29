@@ -11,7 +11,7 @@ import UserPage from "./UserPage"
 const SignUp: FC = () => {
   const history = useHistory()
 
-  const { mutate: signUp, isSuccess, error } = useSignUp()
+  const { mutate: signUp, isLoading, isSuccess, error } = useSignUp()
 
   const submit = (data: SignUpParameters) => {
     signUp(data)
@@ -39,6 +39,7 @@ const SignUp: FC = () => {
       submit={submit}
       submitError={error}
       newForm
+      isSubmitting={isLoading}
     />
   )
 }

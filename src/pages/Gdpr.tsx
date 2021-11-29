@@ -18,7 +18,7 @@ const Gdpr = () => {
     ],
     [
       "Personopplysninger som lagres",
-      "Vi lagrer følgende personopplysninger om våre brukere: e-post, visningsnavn og eventuelt profilbilde hentet fra Gravatar. Visningsnavn og profilbilde vil være synlig i løsningen."
+      "Vi lagrer følgende personopplysninger om våre brukere: e-post, brukernavn og eventuelt profilbilde lastet opp eller oppgitt ved URL. Brukernavn og profilbilde er synlig i løsningen."
     ],
     [
       "Formål med behandlingen",
@@ -38,7 +38,7 @@ const Gdpr = () => {
     ],
     [
       "Sletting av personopplysninger",
-      "Personopplysninger vi har mottatt i forbindelse med deltagelse slettes etter at vinner er trukket og kontaktet."
+      "Personopplysninger vi har mottatt i forbindelse med deltagelse vil lagres for at brukere skal kunne bruke samme konto om igjen neste gang julekalenderen holdes. Brukerdata kan slettes permanent via nettsiden eller ved å kontakte oss via en av e-postadressene under."
     ],
     [
       "Rettigheter for den registrerte",
@@ -56,22 +56,23 @@ const Gdpr = () => {
 
   return (
     <Page className="py-12 px-8 md:px-12 mx-4 md:mx-8 bg-gray-100 text-gray-700 rounded-md">
-      <h1 className="text-2xl">Personvernerklæring for Kodekalenderen 2021</h1>
-      <h2 className="mt-4 font-medium">
+      <h1 className="text-4xl text-center font-semibold">Personvernerklæring for Kodekalenderen 2021</h1>
+      <h2 className="mt-8 font-medium">
         <em>TL;DR</em>
       </h2>
-      <ul className="mt-2 ml-4 mb-8">
+      <ul className="mt-2 ml-4 mb-12">
         <li>Vi bruker cookies for innlogging.</li>
         <li>Registrert e-postadresse kan brukes til å kontakte deg om du vinner.</li>
-        <li>Registrert visningsnavn og profilbilde hentet fra Gravatar er synlige i diskusjonsfeltet og ledertavlen.</li>
-        <li>Vi sletter alle persondata etter at vinner er trukket og kontaktet.</li>
+        <li>Registrert brukernavn og profilbilde er synlige i diskusjonsfeltet og ledertavlen.</li>
+        <li>Dersom du vil slette brukerdataen din kan du gjøre dette på brukersiden din, eller ved å kontakte oss.</li>
       </ul>
 
       {map(sections, ([header, content], i) => <GdprSection key={i} no={i + 1} header={header} content={content} />)}
 
-      <div className="mt-8">
+      <div className="mt-12">
         Henvendelser om hvilke opplysninger som er registrert, retting og
-        sletting kan sendes til <a href="mailto:julekalender@knowit.no">julekalender@knowit.no</a>
+        sletting kan sendes til <a className="underline" href="mailto:julekalender@knowit.no">julekalender@knowit.no</a>{' '}
+        eller <a className="underline" href="mailto:personvern@knowit.no">personvern@knowit.no</a>
       </div>
     </Page>
   )

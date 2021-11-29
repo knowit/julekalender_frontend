@@ -24,7 +24,7 @@ const SignUp: FC = () => {
           i premietrekningen og du synes ikke på ledertavlen dersom du ikke
           aktiverer din konto.
         </p>
-        <p>
+        <p className="text-center">
           P.S. Husk å sjekke spam-mappa di!
         </p>
         <Button className="block mx-auto" onClick={() => history.push("/")} content="Gå til lukene" />

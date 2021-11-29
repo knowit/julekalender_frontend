@@ -1,5 +1,5 @@
 import { Popover } from "@headlessui/react"
-import { forEach, join } from "lodash"
+import { forEach, join, pickBy } from "lodash"
 import { useEffect, useRef, VFC } from "react"
 import { useForm } from "react-hook-form"
 import { UseMutateAsyncFunction } from "react-query"
@@ -32,15 +32,14 @@ type UserFormProps = {
 const UserForm: VFC<UserFormProps> = ({ user, submit, submitError, newForm = false }) => {
   const history = useHistory()
 
-  const { register, handleSubmit, watch, setValue, setError, clearErrors, formState: { isSubmitting, isSubmitSuccessful, errors, isDirty, dirtyFields } } = useForm<SignUpParameters>()
+  const { register, handleSubmit, watch, setValue, reset, setError, clearErrors, formState: { isSubmitting, isSubmitSuccessful, errors, isDirty, dirtyFields } } = useForm<SignUpParameters>()
 
   useEffect(() => {
-    if (!newForm) return
+    if (newForm) return
 
-    setValue("email", user?.email ?? "")
-    setValue("username", user?.username ?? undefined)
-  }, [newForm, user, setValue])
-
+    reset({ email: user?.email ?? "", username: user?.username ?? "" })
+    clearErrors()
+  }, [newForm, user, reset, clearErrors])
 
   useEffect(() => {
     forEach(submitError?.errors, (messages, key) => setError(key as any, { message: join(messages, ", ") }))
@@ -56,7 +55,13 @@ const UserForm: VFC<UserFormProps> = ({ user, submit, submitError, newForm = fal
 
   const onSubmit = (data: UpdateUserParameters) => {
     if (newForm || !dirtyFields.email || window.confirm("Du vil motta en e-post med instrukser for å re-aktivere din konto for en ny e-postadresse.")) {
-      submit(data)
+      submit(
+        newForm
+          ? data
+
+          // Submit only dirty data to avoid overwriting with null values
+          : pickBy(data, (_value, key) => dirtyFields[key as keyof UpdateUserParameters] === true)
+      )
     }
   }
 

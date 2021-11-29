@@ -96,6 +96,8 @@ export const useUpdateUser = () => {
   return useMutation<UpdateUserResponse, QueryError<{ errors: Record<keyof UpdateUserParameters, string[]> }>, UpdateUserParameters>(
     ["users", "udate"],
     (payload) => {
+      console.log("user updating:")
+      console.log({ payload })
       const formData = new FormData
       forEach(payload, (value, key) => !isNil(value) && formData.append(`user[${key}]`, value))
       return axios.patch("/users", formData).then(({ data }) => data)

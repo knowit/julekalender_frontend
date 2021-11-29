@@ -12,7 +12,7 @@ import ServiceMessages from "./admin/ServiceMessages"
 import Page from "./Page"
 
 
-// TODO: Service messages. Attachments. Deleted posts? User list? Ban users?
+// TODO: Deleted posts? User list? Ban users?
 const Admin: FC = () => (
   <Page className="py-12 px-8 md:px-12 mx-4 md:mx-8 bg-gray-100 text-gray-700 rounded-md space-y-8">
     <AdminHeader />

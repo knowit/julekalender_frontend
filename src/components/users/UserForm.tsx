@@ -1,3 +1,4 @@
+import { Popover } from "@headlessui/react"
 import { forEach, isNil, join } from "lodash"
 import { useEffect, useRef, VFC } from "react"
 import { useForm } from "react-hook-form"
@@ -75,6 +76,18 @@ const UserForm: VFC<UserFormProps> = ({ user, submit, submitError, isSubmitting,
           {...register("email", { required: newForm })}
         />
         <FormError error={errors.email} />
+        {newForm && (
+          <Popover>
+            <Popover.Button>
+              <div className="text-opacity-30 text-gray-700">
+                Jobber du i Knowit?
+              </div>
+            </Popover.Button>
+            <Popover.Panel className="bg-gray-200 rounded p-2">
+              Du vil ikke kunne delta i premietrekningen. Vennligst registrer deg med Knowit-adresse.
+            </Popover.Panel>
+          </Popover>
+        )}
 
         <FormElement
           label="Passord"

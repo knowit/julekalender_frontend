@@ -141,7 +141,7 @@ const UserForm: VFC<UserFormProps> = ({ user, submit, submitError, isSubmitting,
                 return
               }
 
-              setValue("avatar", file)
+              setValue("avatar", file, { shouldDirty: true })
             }}
           />
           <Button

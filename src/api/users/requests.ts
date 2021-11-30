@@ -105,6 +105,7 @@ export const useUpdateUser = () => {
     {
       onSuccess: () => {
         queryClient.invalidateQueries(["users", "whoami"])
+        queryClient.invalidateQueries(["posts"])
       }
     }
   )
@@ -119,6 +120,10 @@ export const useDeleteUser = () => {
     {
       onSuccess: () => {
         queryClient.invalidateQueries(["users", "whoami"])
+        queryClient.invalidateQueries(["likes"])
+        queryClient.invalidateQueries(["users", "solved"])
+        queryClient.invalidateQueries(["subscriptions"])
+        queryClient.invalidateQueries(["posts"])
       }
     }
   )
@@ -133,6 +138,10 @@ export const useSignOut = () => {
     {
       onSuccess: () => {
         queryClient.invalidateQueries(["users", "whoami"])
+        queryClient.invalidateQueries(["likes"])
+        queryClient.invalidateQueries(["users", "solved"])
+        queryClient.invalidateQueries(["subscriptions"])
+        queryClient.invalidateQueries(["posts"])
       }
     }
   )

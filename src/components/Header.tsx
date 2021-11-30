@@ -34,9 +34,10 @@ const ServiceMessageBadge = () => {
 
 type HeaderProps = {
   setLeaderboardHidden: (state: boolean) => void
+  className?: string
 }
 
-const Header: FC<HeaderProps> = ({ setLeaderboardHidden }) => {
+const Header: FC<HeaderProps> = ({ setLeaderboardHidden, className }) => {
   const isAdmin = useIsAdmin()
   const { data: serviceMessages } = useServiceMessages()
   const prefetchLeaderboard = usePrefetchLeaderboard()
@@ -49,7 +50,7 @@ const Header: FC<HeaderProps> = ({ setLeaderboardHidden }) => {
         </a>
         {/* <div className="float-right h-10 mt-0.5 md:mt-1 flex flex-row-reverse flex-wrap space-x-reverse space-x-2 md:space-x-8 space-y-reverse space-y-2"> */}
         <div
-          className={squish(`
+          className={clsx(squish(`
             float-right
             mt-0.5
             md:mt-1
@@ -65,7 +66,7 @@ const Header: FC<HeaderProps> = ({ setLeaderboardHidden }) => {
             md:children:gap-8
             children:items-center
             children:flex-wrap
-          `)}
+          `), className)}
         >
           <div>
             <SignOutButton />

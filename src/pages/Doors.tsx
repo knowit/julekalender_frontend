@@ -29,8 +29,9 @@ const Doors = () => {
 
   return (
     <main>
-      <LightsDesktop {...lightProps} className="hidden md:block" />
-      <LightsMobile {...lightProps} className="md:hidden" />
+      {/* Visibility toggle done with media queries in CSS */}
+      <LightsDesktop {...lightProps} />
+      <LightsMobile {...lightProps} />
 
       <Footer />
     </main>

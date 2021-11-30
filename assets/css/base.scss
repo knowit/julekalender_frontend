@@ -4,7 +4,7 @@
 
 @layer base {
   html, body {
-    @apply h-screen overflow-auto;
+    @apply min-h-screen;
   }
 
   body {
@@ -23,5 +23,28 @@
     :not(pre) > & {
       @apply shadow-md rounded-sm py-0.5 px-1;
     }
+  }
+
+  // Shrink a little more to avoid notch in landscape mode. Also looks decent on desktop.
+  @media only screen and (orientation: landscape) {
+    #content-container {
+      width: 90%;
+      margin: 0 auto;
+    }
+  }
+
+  #lights-desktop, #lights-mobile { display: none; }
+
+  // Mobile lights are shown only in portrait mode (vh > vw) and below the sm: breakpoint.
+  @media only screen and (max-width: 640px) and (orientation: portrait) {
+    #lights-mobile  { display: block; }
+  }
+  @media only screen and (min-width: 640px) and (orientation: portrait) {
+    #lights-desktop { display: block; }
+  }
+
+  // Desktop lights are always shown in landscape mode (vw > vh)
+  @media only screen and (orientation: landscape) {
+    #lights-desktop { display: block; }
   }
 }

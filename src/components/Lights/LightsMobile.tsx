@@ -6,6 +6,7 @@ import { getBulbClass, getLinkDateDependentProps, getTextClass, LightsProps } fr
 
 
 const LightsMobile: FC<LightsProps> = ({ solvedStatus, challenges, prefetch, className }) => (<svg
+  id="lights-mobile"
   xmlns="http://www.w3.org/2000/svg"
   x="0"
   y="0"

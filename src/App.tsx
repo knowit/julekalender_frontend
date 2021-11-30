@@ -1,4 +1,4 @@
-import { lazy, memo, Suspense, useState } from "react"
+import { lazy, memo, Suspense, useCallback, useState } from "react"
 import { Switch, Route, Redirect } from "react-router-dom"
 import { map, range } from "lodash"
 import { FaCogs } from "react-icons/fa"
@@ -17,6 +17,7 @@ import SignUp from "./pages/users/SignUp"
 import LostPassword from "./pages/users/LostPassword"
 import ResetPassword from "./pages/users/ResetPassword"
 import EditUser from "./pages/users/EditUser"
+import BackgroundPauseButton from "./components/BackgroundPauseButton"
 
 
 const LazyAdmin = () => {
@@ -52,8 +53,16 @@ const App = () => {
   // Match door 1-24 only
   const doorPaths = map(range(1, 25), (door) => `/luke/:door(${door})`)
 
+  const [bgAnimationPaused, setBgAnimationPaused] = useState(localStorage.getItem("stars-paused") === "true")
+  const togglePaused = useCallback(() => {
+    setBgAnimationPaused((state) => {
+      localStorage.setItem("stars-paused", state ? "false" : "true")
+      return !state
+    })
+  }, [setBgAnimationPaused])
+
   return (<>
-    <StarBackground />
+    <StarBackground paused={bgAnimationPaused} />
     <LeaderBoardAside
       hidden={leaderboardHidden}
       closeHandler={() => setLeaderboardHidden(true)}
@@ -82,6 +91,8 @@ const App = () => {
           <Redirect to="/" />
         </Route>
       </Switch>
+
+      <BackgroundPauseButton paused={bgAnimationPaused} onTogglePaused={togglePaused} />
     </div>
   </>)
 }

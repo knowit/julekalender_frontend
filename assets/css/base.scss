@@ -31,6 +31,11 @@
       width: 90%;
       margin: 0 auto;
     }
+
+    // Account for bottom inset explicitly
+    @supports(padding:max(0px)) {
+      padding-bottom: max(0vmin, env(safe-area-inset-bottom));
+    }
   }
 
   #lights-desktop, #lights-mobile { display: none; }

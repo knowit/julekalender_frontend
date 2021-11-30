@@ -4,7 +4,7 @@
 
 @layer base {
   html, body {
-    @apply h-screen overflow-auto;
+    @apply min-h-screen;
   }
 
   body {
@@ -22,6 +22,14 @@
 
     :not(pre) > & {
       @apply shadow-md rounded-sm py-0.5 px-1;
+    }
+  }
+
+  // Shrink a little more to avoid notch in landscape mode. Also looks decent on desktop.
+  @media only screen and (orientation: landscape) {
+    #content-container {
+      width: 90%;
+      margin: 0 auto;
     }
   }
 }

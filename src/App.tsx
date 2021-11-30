@@ -59,8 +59,8 @@ const App = () => {
       closeHandler={() => setLeaderboardHidden(true)}
     />
 
-    <div className="-space-y-4">
-      <Header setLeaderboardHidden={setLeaderboardHidden} />
+    <div id="content-container">
+      <Header className="-mb-4" setLeaderboardHidden={setLeaderboardHidden} />
 
       <Switch>
         <Route exact path="/" component={Doors} />

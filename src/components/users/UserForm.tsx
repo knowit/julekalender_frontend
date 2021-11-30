@@ -173,7 +173,7 @@ const UserForm: VFC<UserFormProps> = ({ user, submit, submitError, newForm = fal
       </div>
 
 
-      {!newForm && isDirty && !isSubmitting && isSubmitSuccessful && <CheckMark wrapperClassName="mx-auto w-16" message="Lagret!" />}
+      {!newForm && isDirty && !isSubmitting && isSubmitSuccessful && !submitError && <CheckMark wrapperClassName="mx-auto w-16" message="Lagret!" />}
       <Button type="submit" disabled={!isDirty || isSubmitting} underline={false} className="mt-8 block mx-auto" content={newForm ? "Opprett bruker" : "Lagre"} />
       {!newForm && <Button type="button" onClick={deleteUser} underline={false} className="mt-4 block mx-auto text-red-700" content="Slett bruker" />}
     </UserPage>

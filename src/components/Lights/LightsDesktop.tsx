@@ -2773,7 +2773,7 @@ const LightsDesktop: FC<LightsProps> = ({ solvedStatus, challenges, prefetch, cl
       <circle fill="#AD4A4A" cx="1854.41" cy="89.99" r="12.5" />
       <circle fill="#AD4A4A" cx="2153.45" cy="89.14" r="12.5" />
     </g>
-    <g id="heading">
+    <g>
       <path
         fill="#FFFFFF"
         d="M1809.9,988.34c17.56,1.17,22.91,9.3,23.58,29.89c0.34,20.93,1.66,30.72,10.79,33.04

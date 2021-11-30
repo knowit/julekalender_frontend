@@ -14,7 +14,7 @@ const LightsMobile: FC<LightsProps> = ({ solvedStatus, challenges, prefetch, cla
   viewBox="0 0 375 1585.13"
   className={clsx("w-full", className)}
 >
-  <g id="ring_under">
+  <g>
     <path
       fill="#DAD6CD"
       stroke="#DAD6CD"
@@ -268,7 +268,7 @@ const LightsMobile: FC<LightsProps> = ({ solvedStatus, challenges, prefetch, cla
 		c-0.44,1.21-0.26,2.7,1.06,3.2c1.11,0.45,2.82,0.09,3.26-1.25c1.4-3.56,2.46-7.16,2.97-10.98c0.29-1.88,0.43-3.88-0.17-5.62
 		c-0.53-1.67-1.54-3.23-2.94-4.2c-1.48-1.03-3.2-1.35-4.89-1" />
   </g>
-  <g id="lenke">
+  <g>
     <path
       fill="none"
       stroke="#275751"
@@ -279,8 +279,8 @@ const LightsMobile: FC<LightsProps> = ({ solvedStatus, challenges, prefetch, cla
 		c65.02,18.42,148,24,148,24s-17.5,120.5-109.5,178c-58.76,36.73-199.5,52-199.5,52s85.82,112.43,161,142.5
 		c67.5,27,150.5,14.5,150.5,14.5s-7.47,128.59-133,190c-76.24,34.1-148.12,50.6-213.95,56.03c-1.89,0.16-3.78,0.3-5.67,0.44" />
   </g>
-  <g id="grener_med_baer">
-    <g id="HGrener">
+  <g>
+    <g>
       <g>
         <path
           fill="#6DAC86"
@@ -3413,7 +3413,7 @@ const LightsMobile: FC<LightsProps> = ({ solvedStatus, challenges, prefetch, cla
         <circle fill="#AE4B4B" cx="336.19" cy="1447.23" r="3.9" />
       </g>
     </g>
-    <g id="_VGrener">
+    <g>
       <g>
         <path
           fill="#6DAC86"
@@ -6614,9 +6614,9 @@ const LightsMobile: FC<LightsProps> = ({ solvedStatus, challenges, prefetch, cla
 		c-0.46,1.71-0.7,3.39-0.7,5c0,0.92,0.08,1.83,0.23,2.71c0.19,1.11,0.49,2.13,0.75,3.03c0.34,1.16,0.64,2.17,0.64,3.1
 		c0,0.69-0.17,1.29-0.51,1.82c-0.43,0.66-1.43,1.6-2.29,1.33C361.3,1394.12,360.88,1392.73,360.88,1390.14z" />
   </g>
-  <g id="luker" className="cursor-pointer font-semibold text-lightbulb">
+  <g className="cursor-pointer font-semibold text-lightbulb">
     <Link {...getLinkDateDependentProps(24, challenges, prefetch)} tabIndex={27} title="Luke 24">
-      <g id="Luke_24">
+      <g>
         <g>
           <path
             fill="#DAD6CD"
@@ -6638,7 +6638,7 @@ const LightsMobile: FC<LightsProps> = ({ solvedStatus, challenges, prefetch, cla
 				c0,0,0.46-0.52,0.2-0.22c-0.27,0.3,0.27-0.16,0.27-0.16c0.07-0.07,0.27-0.16,0.34-0.24c0.54-0.32-0.34,0.1,0.2-0.09
 				c0.14-0.01,0.34-0.1,0.41-0.17" />
         </g>
-        <g id="Paere_24" className={getBulbClass(24, solvedStatus, challenges)}>
+        <g className={getBulbClass(24, solvedStatus, challenges)}>
           <path
             d="M97.39,1487.67c-5.72,6.28-1.65,18.28,2.64,31.28c3.24,9.67,7.15,14.47,14.85,24.08
 				c1.64,1.98,4.06,4.92,7.14,4.58c3.08-0.34,5.3-4.11,7.31-8.21c8.02-16.65,7.88-32.77,7.93-33.53
@@ -6663,7 +6663,7 @@ const LightsMobile: FC<LightsProps> = ({ solvedStatus, challenges, prefetch, cla
       </g>
     </Link>
     <Link {...getLinkDateDependentProps(23, challenges, prefetch)} tabIndex={26} title="Luke 23">
-      <g id="Luke_23">
+      <g>
         <g>
           <path
             fill="#DAD6CD"
@@ -6684,7 +6684,7 @@ const LightsMobile: FC<LightsProps> = ({ solvedStatus, challenges, prefetch, cla
 				c0.12-0.42-0.19,0.5,0.06-0.21c0.06-0.21,0.13-0.29,0.19-0.5c0.13-0.29,0.26-0.44,0.39-0.72c-0.26,0.44,0.07-0.07,0.13-0.15
 				c0,0,0.46-0.52,0.2-0.22c-0.27,0.3,0.27-0.16,0.27-0.16c0.07-0.07,0.27-0.16,0.34-0.24c0.54-0.32-0.34,0.1,0.2-0.09" />
         </g>
-        <g id="Paere_23" className={getBulbClass(23, solvedStatus, challenges)}>
+        <g className={getBulbClass(23, solvedStatus, challenges)}>
           <path
             d="M199.69,1447.04c-5.72,6.28-1.65,18.28,2.64,31.28c3.24,9.67,7.15,14.47,14.85,24.08
 				c1.64,1.98,4.06,4.92,7.14,4.58c3.08-0.34,5.3-4.11,7.31-8.21c8.02-16.65,7.88-32.77,7.93-33.53
@@ -6709,7 +6709,7 @@ const LightsMobile: FC<LightsProps> = ({ solvedStatus, challenges, prefetch, cla
       </g>
     </Link>
     <Link {...getLinkDateDependentProps(22, challenges, prefetch)} tabIndex={25} title="Luke 22">
-      <g id="Luke_22">
+      <g>
         <g>
           <path
             fill="#DAD6CD"
@@ -6730,7 +6730,7 @@ const LightsMobile: FC<LightsProps> = ({ solvedStatus, challenges, prefetch, cla
 				c0.12-0.42-0.19,0.5,0.06-0.21c0.06-0.21,0.13-0.29,0.19-0.5c0.13-0.29,0.26-0.44,0.39-0.72c-0.26,0.44,0.07-0.07,0.13-0.15
 				c0,0,0.46-0.52,0.2-0.22c-0.27,0.3,0.27-0.16,0.27-0.16c0.07-0.07,0.27-0.16,0.34-0.24c0.54-0.32-0.34,0.1,0.2-0.09" />
         </g>
-        <g id="Paere_22" className={getBulbClass(22, solvedStatus, challenges)}>
+        <g className={getBulbClass(22, solvedStatus, challenges)}>
           <path
             d="M266.97,1395.32c-5.72,6.28-1.65,18.28,2.64,31.28c3.24,9.67,7.15,14.47,14.85,24.08
 				c1.64,1.98,4.06,4.92,7.14,4.58c3.08-0.34,5.3-4.11,7.31-8.21c8.02-16.65,7.88-32.77,7.93-33.53
@@ -6755,7 +6755,7 @@ const LightsMobile: FC<LightsProps> = ({ solvedStatus, challenges, prefetch, cla
       </g>
     </Link>
     <Link {...getLinkDateDependentProps(21, challenges, prefetch)} tabIndex={24} title="Luke 21">
-      <g id="Luke_21">
+      <g>
         <g>
           <path
             fill="#DAD6CD"
@@ -6777,7 +6777,7 @@ const LightsMobile: FC<LightsProps> = ({ solvedStatus, challenges, prefetch, cla
 				c0,0,0.34-0.61,0.14-0.26c-0.19,0.35,0.23-0.22,0.23-0.22c0.05-0.09,0.23-0.22,0.28-0.3c0.45-0.43-0.31,0.17,0.18-0.13
 				c0.13-0.04,0.31-0.17,0.36-0.26c-0.44,0.21,0,0,0.13-0.04c0.13-0.04,0.61-0.12,0.13-0.04c0.47-0.08-0.08-0.05,0.43,0.01" />
         </g>
-        <g id="Paere_21_2_" className={getBulbClass(21, solvedStatus, challenges)}>
+        <g className={getBulbClass(21, solvedStatus, challenges)}>
           <path
             d="M226.27,1262.68c-4.18,7.39,2.44,18.19,9.52,29.91c5.3,8.71,10.19,12.52,19.83,20.18
 				c2.04,1.57,5.05,3.9,7.97,2.88c2.92-1.02,4.25-5.19,5.3-9.62c4.12-18.01,0.41-33.7,0.28-34.45
@@ -6803,7 +6803,7 @@ const LightsMobile: FC<LightsProps> = ({ solvedStatus, challenges, prefetch, cla
       </g>
     </Link>
     <Link {...getLinkDateDependentProps(20, challenges, prefetch)} tabIndex={23} title="Luke 20">
-      <g id="Luke_20">
+      <g>
         <g>
           <path
             fill="#DAD6CD"
@@ -6825,7 +6825,7 @@ const LightsMobile: FC<LightsProps> = ({ solvedStatus, challenges, prefetch, cla
 				c0,0,0.59-0.37,0.25-0.16c-0.34,0.21,0.3-0.08,0.3-0.08c0.08-0.05,0.3-0.08,0.39-0.13c0.61-0.16-0.35,0,0.22-0.03
 				c0.13,0.03,0.35,0,0.44-0.05" />
         </g>
-        <g id="Paere_20" className={getBulbClass(20, solvedStatus, challenges)}>
+        <g className={getBulbClass(20, solvedStatus, challenges)}>
           <path
             d="M147.56,1236.29c-7.25,4.41-6.74,17.07-6.29,30.76c0.38,10.19,2.78,15.9,7.46,27.29
 				c1.01,2.36,2.5,5.87,5.55,6.41c3.05,0.54,6.24-2.45,9.32-5.81c12.39-13.71,16.8-29.22,17.06-29.93
@@ -6850,7 +6850,7 @@ const LightsMobile: FC<LightsProps> = ({ solvedStatus, challenges, prefetch, cla
       </g>
     </Link>
     <Link {...getLinkDateDependentProps(19, challenges, prefetch)} tabIndex={22} title="Luke 19">
-      <g id="Luke_19">
+      <g>
         <g>
           <path
             fill="#DAD6CD"
@@ -6872,7 +6872,7 @@ const LightsMobile: FC<LightsProps> = ({ solvedStatus, challenges, prefetch, cla
 			c0,0,0.59-0.37,0.25-0.16c-0.34,0.21,0.3-0.08,0.3-0.08c0.08-0.05,0.3-0.08,0.39-0.13c0.61-0.16-0.35,0,0.22-0.03
 			c0.13,0.03,0.35,0,0.44-0.05c-0.49-0.03,0,0,0.13,0.03c0.13,0.03,0.59,0.19,0.13,0.03" />
         </g>
-        <g id="Paere_19" className={getBulbClass(19, solvedStatus, challenges)}>
+        <g className={getBulbClass(19, solvedStatus, challenges)}>
           <path
             d="M71.19,1177.13c-7.25,4.41-6.74,17.07-6.29,30.76c0.38,10.19,2.78,15.9,7.46,27.29
 			c1.01,2.36,2.5,5.87,5.55,6.41c3.05,0.54,6.24-2.45,9.32-5.81c12.39-13.71,16.8-29.22,17.06-29.93
@@ -6897,7 +6897,7 @@ const LightsMobile: FC<LightsProps> = ({ solvedStatus, challenges, prefetch, cla
       </g>
     </Link>
     <Link {...getLinkDateDependentProps(18, challenges, prefetch)} tabIndex={21} title="Luke 18">
-      <g id="Luke_18">
+      <g>
         <g>
           <path
             fill="#DAD6CD"
@@ -6919,7 +6919,7 @@ const LightsMobile: FC<LightsProps> = ({ solvedStatus, challenges, prefetch, cla
 			c0,0,0.34-0.61,0.14-0.26c-0.19,0.35,0.23-0.22,0.23-0.22c0.05-0.09,0.23-0.22,0.28-0.3c0.45-0.43-0.31,0.17,0.18-0.13
 			c0.13-0.04,0.31-0.17,0.36-0.26" />
         </g>
-        <g className={getBulbClass(18, solvedStatus, challenges)} id="Paere_18">
+        <g className={getBulbClass(18, solvedStatus, challenges)}>
           <path
             d="M104.6,1094.83c-4.18,7.39,2.44,18.19,9.52,29.91c5.3,8.71,10.19,12.52,19.83,20.18
 			c2.04,1.57,5.05,3.9,7.97,2.88c2.92-1.02,4.25-5.19,5.3-9.62c4.12-18.01,0.41-33.7,0.28-34.45
@@ -6945,7 +6945,7 @@ const LightsMobile: FC<LightsProps> = ({ solvedStatus, challenges, prefetch, cla
       </g>
     </Link>
     <Link {...getLinkDateDependentProps(17, challenges, prefetch)} tabIndex={20} title="Luke 17">
-      <g id="Luke_17">
+      <g>
         <g>
           <path
             fill="#DAD6CD"
@@ -6966,7 +6966,7 @@ const LightsMobile: FC<LightsProps> = ({ solvedStatus, challenges, prefetch, cla
 			c0.07-0.44-0.12,0.52,0.03-0.22c0.03-0.22,0.09-0.3,0.12-0.52c0.09-0.3,0.2-0.47,0.29-0.77c-0.2,0.47,0.06-0.08,0.11-0.17
 			c0,0,0.39-0.58,0.17-0.25c-0.22,0.33,0.25-0.2,0.25-0.2c0.06-0.08,0.25-0.2,0.3-0.28" />
         </g>
-        <g className={getBulbClass(17, solvedStatus, challenges)} id="Paere_17">
+        <g className={getBulbClass(17, solvedStatus, challenges)}>
           <path
             d="M215.12,1057.54c-4.81,6.99,0.83,18.33,6.85,30.64c4.52,9.14,9.04,13.37,17.97,21.85
 			c1.89,1.74,4.69,4.33,7.69,3.57c3-0.76,4.69-4.79,6.13-9.12c5.69-17.58,3.38-33.54,3.32-34.29
@@ -6992,7 +6992,7 @@ const LightsMobile: FC<LightsProps> = ({ solvedStatus, challenges, prefetch, cla
       </g>
     </Link>
     <Link {...getLinkDateDependentProps(16, challenges, prefetch)} tabIndex={19} title="Luke 16">
-      <g id="Luke_16">
+      <g>
         <g>
           <path
             fill="#DAD6CD"
@@ -7013,7 +7013,7 @@ const LightsMobile: FC<LightsProps> = ({ solvedStatus, challenges, prefetch, cla
 			c0.03-0.44-0.08,0.53,0.01-0.22c0.01-0.22,0.06-0.31,0.08-0.53c0.06-0.31,0.16-0.48,0.22-0.79c-0.16,0.48,0.05-0.09,0.1-0.17
 			c0,0,0.34-0.61,0.14-0.26c-0.19,0.35,0.23-0.22,0.23-0.22c0.05-0.09,0.23-0.22,0.28-0.3" />
         </g>
-        <g className={getBulbClass(16, solvedStatus, challenges)} id="Paere_16_1_">
+        <g className={getBulbClass(16, solvedStatus, challenges)}>
           <path
             d="M282.14,996.72c-4.18,7.39,2.44,18.19,9.52,29.91c5.3,8.71,10.19,12.52,19.83,20.18
 			c2.04,1.57,5.05,3.9,7.97,2.88c2.92-1.02,4.25-5.19,5.3-9.62c4.12-18.01,0.41-33.7,0.28-34.45
@@ -7039,7 +7039,7 @@ const LightsMobile: FC<LightsProps> = ({ solvedStatus, challenges, prefetch, cla
       </g>
     </Link>
     <Link {...getLinkDateDependentProps(15, challenges, prefetch)} tabIndex={18} title="Luke 15">
-      <g id="Luke_15">
+      <g>
         <g>
           <path
             fill="#DAD6CD"
@@ -7061,7 +7061,7 @@ const LightsMobile: FC<LightsProps> = ({ solvedStatus, challenges, prefetch, cla
 			c0,0,0.34-0.61,0.14-0.26c-0.19,0.35,0.23-0.22,0.23-0.22c0.05-0.09,0.23-0.22,0.28-0.3c0.45-0.43-0.31,0.17,0.18-0.13
 			c0.13-0.04,0.31-0.17,0.36-0.26c-0.44,0.21,0,0,0.13-0.04c0.13-0.04,0.61-0.12,0.13-0.04c0.47-0.08-0.08-0.05,0.43,0.01" />
         </g>
-        <g id="Paere_15" className={getBulbClass(15, solvedStatus, challenges)}>
+        <g className={getBulbClass(15, solvedStatus, challenges)}>
           <path
             d="M255.4,867.57c-4.18,7.39,2.44,18.19,9.52,29.91c5.3,8.71,10.19,12.52,19.83,20.18
 			c2.04,1.57,5.05,3.9,7.97,2.88c2.92-1.02,4.25-5.19,5.3-9.62c4.12-18.01,0.41-33.7,0.28-34.45
@@ -7087,7 +7087,7 @@ const LightsMobile: FC<LightsProps> = ({ solvedStatus, challenges, prefetch, cla
       </g>
     </Link>
     <Link {...getLinkDateDependentProps(14, challenges, prefetch)} tabIndex={17} title="Luke 14">
-      <g id="Luke_14">
+      <g>
         <g>
           <path
             fill="#DAD6CD"
@@ -7109,7 +7109,7 @@ const LightsMobile: FC<LightsProps> = ({ solvedStatus, challenges, prefetch, cla
 			c0,0,0.59-0.37,0.25-0.16c-0.34,0.21,0.3-0.08,0.3-0.08c0.08-0.05,0.3-0.08,0.39-0.13c0.61-0.16-0.35,0,0.22-0.03
 			c0.13,0.03,0.35,0,0.44-0.05" />
         </g>
-        <g id="Paere_14" className={getBulbClass(14, solvedStatus, challenges)}>
+        <g className={getBulbClass(14, solvedStatus, challenges)}>
           <path
             d="M157.96,845.13c-7.25,4.41-6.74,17.07-6.29,30.76c0.38,10.19,2.78,15.9,7.46,27.29
 			c1.01,2.36,2.5,5.87,5.55,6.41c3.05,0.54,6.24-2.45,9.32-5.81c12.39-13.71,16.8-29.22,17.06-29.93
@@ -7134,7 +7134,7 @@ const LightsMobile: FC<LightsProps> = ({ solvedStatus, challenges, prefetch, cla
       </g>
     </Link>
     <Link {...getLinkDateDependentProps(13, challenges, prefetch)} tabIndex={16} title="Luke 13">
-      <g id="Luke_13">
+      <g>
         <g>
           <path
             fill="#DAD6CD"
@@ -7156,7 +7156,7 @@ const LightsMobile: FC<LightsProps> = ({ solvedStatus, challenges, prefetch, cla
 			c0,0,0.59-0.37,0.25-0.16c-0.34,0.21,0.3-0.08,0.3-0.08c0.08-0.05,0.3-0.08,0.39-0.13c0.61-0.16-0.35,0,0.22-0.03
 			c0.13,0.03,0.35,0,0.44-0.05" />
         </g>
-        <g id="Paere_13" className={getBulbClass(13, solvedStatus, challenges)}>
+        <g className={getBulbClass(13, solvedStatus, challenges)}>
           <path
             d="M78.15,782.97c-7.25,4.41-6.74,17.07-6.29,30.76c0.38,10.19,2.78,15.9,7.46,27.29
 			c1.01,2.36,2.5,5.87,5.55,6.41c3.05,0.54,6.24-2.45,9.32-5.81c12.39-13.71,16.8-29.22,17.06-29.93
@@ -7181,7 +7181,7 @@ const LightsMobile: FC<LightsProps> = ({ solvedStatus, challenges, prefetch, cla
       </g>
     </Link>
     <Link {...getLinkDateDependentProps(12, challenges, prefetch)} tabIndex={15} title="Luke 12">
-      <g id="Luke_12">
+      <g>
         <g>
           <path
             fill="#DAD6CD"
@@ -7203,7 +7203,7 @@ const LightsMobile: FC<LightsProps> = ({ solvedStatus, challenges, prefetch, cla
 			c0,0,0.27-0.65,0.11-0.28c-0.15,0.37,0.2-0.24,0.2-0.24c0.04-0.09,0.2-0.24,0.24-0.33c0.4-0.48-0.29,0.21,0.16-0.15
 			c0.13-0.06,0.29-0.21,0.33-0.3c-0.41,0.26,0,0,0.13-0.06c0.13-0.06,0.59-0.19,0.13-0.06c0.46-0.13-0.09-0.04,0.42-0.04" />
         </g>
-        <g id="Paere_12_1_" className={getBulbClass(12, solvedStatus, challenges)}>
+        <g className={getBulbClass(12, solvedStatus, challenges)}>
           <path
             d="M103.75,695.37c-3.33,7.81,4.46,17.8,12.8,28.67c6.24,8.06,11.52,11.31,21.95,17.85
 			c2.2,1.33,5.45,3.31,8.25,1.98c2.79-1.34,3.65-5.63,4.2-10.15c2.09-18.36-3.35-33.54-3.56-34.27
@@ -7228,7 +7228,7 @@ const LightsMobile: FC<LightsProps> = ({ solvedStatus, challenges, prefetch, cla
       </g>
     </Link>
     <Link {...getLinkDateDependentProps(11, challenges, prefetch)} tabIndex={14} title="Luke 11">
-      <g id="Luke_11">
+      <g>
         <g>
           <path
             fill="#DAD6CD"
@@ -7250,7 +7250,7 @@ const LightsMobile: FC<LightsProps> = ({ solvedStatus, challenges, prefetch, cla
 			c0,0,0.27-0.65,0.11-0.28c-0.15,0.37,0.2-0.24,0.2-0.24c0.04-0.09,0.2-0.24,0.24-0.33c0.4-0.48-0.29,0.21,0.16-0.15
 			c0.13-0.06,0.29-0.21,0.33-0.3" />
         </g>
-        <g id="Paere_11" className={getBulbClass(11, solvedStatus, challenges)}>
+        <g className={getBulbClass(11, solvedStatus, challenges)}>
           <path
             d="M219.22,673.73c-3.33,7.81,4.46,17.8,12.8,28.67c6.24,8.06,11.52,11.31,21.95,17.85
 			c2.2,1.33,5.45,3.31,8.25,1.98c2.79-1.34,3.65-5.63,4.2-10.15c2.09-18.36-3.35-33.54-3.56-34.27
@@ -7275,7 +7275,7 @@ const LightsMobile: FC<LightsProps> = ({ solvedStatus, challenges, prefetch, cla
       </g>
     </Link>
     <Link {...getLinkDateDependentProps(10, challenges, prefetch)} tabIndex={13} title="Luke 10">
-      <g id="Luke_10">
+      <g>
         <g>
           <path
             fill="#DAD6CD"
@@ -7297,7 +7297,7 @@ const LightsMobile: FC<LightsProps> = ({ solvedStatus, challenges, prefetch, cla
 			c0,0,0.42-0.56,0.18-0.24c-0.24,0.32,0.25-0.18,0.25-0.18c0.06-0.08,0.25-0.18,0.31-0.26c0.51-0.37-0.33,0.13,0.19-0.1
 			c0.14-0.02,0.33-0.13,0.39-0.21" />
         </g>
-        <g className={getBulbClass(10, solvedStatus, challenges)} id="Paere_10">
+        <g className={getBulbClass(10, solvedStatus, challenges)}>
           <path
             d="M277.96,607.09c-5.14,6.76-0.04,18.35,5.38,30.93c4.07,9.35,8.4,13.78,16.91,22.68
 			c1.8,1.83,4.47,4.55,7.51,3.94c3.04-0.61,4.92-4.56,6.56-8.82c6.52-17.29,4.98-33.34,4.95-34.1
@@ -7322,7 +7322,7 @@ const LightsMobile: FC<LightsProps> = ({ solvedStatus, challenges, prefetch, cla
       </g>
     </Link>
     <Link {...getLinkDateDependentProps(9, challenges, prefetch)} tabIndex={12} title="Luke 9">
-      <g id="Luke_9">
+      <g>
         <g>
           <path
             fill="#DAD6CD"
@@ -7344,7 +7344,7 @@ const LightsMobile: FC<LightsProps> = ({ solvedStatus, challenges, prefetch, cla
 			c0,0,0.34-0.61,0.14-0.26c-0.19,0.35,0.23-0.22,0.23-0.22c0.05-0.09,0.23-0.22,0.28-0.3c0.45-0.43-0.31,0.17,0.18-0.13
 			c0.13-0.04,0.31-0.17,0.36-0.26c-0.44,0.21,0,0,0.13-0.04c0.13-0.04,0.61-0.12,0.13-0.04c0.47-0.08-0.08-0.05,0.43,0.01" />
         </g>
-        <g id="Paere_9" className={getBulbClass(9, solvedStatus, challenges)}>
+        <g className={getBulbClass(9, solvedStatus, challenges)}>
           <path
             d="M225.9,518.32c-4.18,7.39,2.44,18.19,9.52,29.91c5.3,8.71,10.19,12.52,19.83,20.18
 			c2.04,1.57,5.05,3.9,7.97,2.88c2.92-1.02,4.25-5.19,5.3-9.62c4.12-18.01,0.41-33.7,0.28-34.45
@@ -7370,7 +7370,7 @@ const LightsMobile: FC<LightsProps> = ({ solvedStatus, challenges, prefetch, cla
       </g>
     </Link>
     <Link {...getLinkDateDependentProps(8, challenges, prefetch)} tabIndex={11} title="Luke 8">
-      <g id="Luke_8">
+      <g>
         <g>
           <path
             fill="#DAD6CD"
@@ -7392,7 +7392,7 @@ const LightsMobile: FC<LightsProps> = ({ solvedStatus, challenges, prefetch, cla
 			c0,0,0.59-0.37,0.25-0.16c-0.34,0.21,0.3-0.08,0.3-0.08c0.08-0.05,0.3-0.08,0.39-0.13c0.61-0.16-0.35,0,0.22-0.03
 			c0.13,0.03,0.35,0,0.44-0.05c-0.49-0.03,0,0,0.13,0.03c0.13,0.03,0.59,0.19,0.13,0.03" />
         </g>
-        <g id="Paere_8" className={getBulbClass(8, solvedStatus, challenges)}>
+        <g className={getBulbClass(8, solvedStatus, challenges)}>
           <path
             d="M141.54,480.78c-7.25,4.41-6.74,17.07-6.29,30.76c0.38,10.19,2.78,15.9,7.46,27.29
 				c1.01,2.36,2.5,5.87,5.55,6.41c3.05,0.54,6.24-2.45,9.32-5.81c12.39-13.71,16.8-29.22,17.06-29.93
@@ -7417,7 +7417,7 @@ const LightsMobile: FC<LightsProps> = ({ solvedStatus, challenges, prefetch, cla
       </g>
     </Link>
     <Link {...getLinkDateDependentProps(7, challenges, prefetch)} tabIndex={10} title="Luke 7">
-      <g id="Luke_7">
+      <g>
         <g>
           <path
             fill="#DAD6CD"
@@ -7439,7 +7439,7 @@ const LightsMobile: FC<LightsProps> = ({ solvedStatus, challenges, prefetch, cla
 			c0,0,0.59-0.37,0.25-0.16c-0.34,0.21,0.3-0.08,0.3-0.08c0.08-0.05,0.3-0.08,0.39-0.13c0.61-0.16-0.35,0,0.22-0.03
 			c0.13,0.03,0.35,0,0.44-0.05c-0.49-0.03,0,0,0.13,0.03c0.13,0.03,0.59,0.19,0.13,0.03c0.45,0.16-0.05-0.08,0.37,0.21" />
         </g>
-        <g id="Paere_7" className={getBulbClass(7, solvedStatus, challenges)}>
+        <g className={getBulbClass(7, solvedStatus, challenges)}>
           <path
             d="M72.26,418.34c-7.25,4.41-6.74,17.07-6.29,30.76c0.38,10.19,2.78,15.9,7.46,27.29
 			c1.01,2.36,2.5,5.87,5.55,6.41c3.05,0.54,6.24-2.45,9.32-5.81c12.39-13.71,16.8-29.22,17.06-29.93
@@ -7464,7 +7464,7 @@ const LightsMobile: FC<LightsProps> = ({ solvedStatus, challenges, prefetch, cla
       </g>
     </Link>
     <Link {...getLinkDateDependentProps(6, challenges, prefetch)} tabIndex={9} title="Luke 6">
-      <g id="Luke_6">
+      <g>
         <g>
           <path
             fill="#DAD6CD"
@@ -7486,7 +7486,7 @@ const LightsMobile: FC<LightsProps> = ({ solvedStatus, challenges, prefetch, cla
 			c0,0,0.34-0.61,0.14-0.26c-0.19,0.35,0.23-0.22,0.23-0.22c0.05-0.09,0.23-0.22,0.28-0.3c0.45-0.43-0.31,0.17,0.18-0.13
 			c0.13-0.04,0.31-0.17,0.36-0.26c-0.44,0.21,0,0,0.13-0.04s0.61-0.12,0.13-0.04" />
         </g>
-        <g className={getBulbClass(6, solvedStatus, challenges)} id="Paere_6">
+        <g className={getBulbClass(6, solvedStatus, challenges)}>
           <path
             d="M122.21,351.1c-4.18,7.39,2.44,18.19,9.52,29.91c5.3,8.71,10.19,12.52,19.83,20.18
 			c2.04,1.57,5.05,3.9,7.97,2.88c2.92-1.02,4.25-5.19,5.3-9.62c4.12-18.01,0.41-33.7,0.28-34.45
@@ -7512,7 +7512,7 @@ const LightsMobile: FC<LightsProps> = ({ solvedStatus, challenges, prefetch, cla
       </g>
     </Link>
     <Link {...getLinkDateDependentProps(5, challenges, prefetch)} tabIndex={8} title="Luke 5">
-      <g id="Luke_5">
+      <g>
         <g>
           <path
             fill="#DAD6CD"
@@ -7533,7 +7533,7 @@ const LightsMobile: FC<LightsProps> = ({ solvedStatus, challenges, prefetch, cla
 			c0.03-0.22,0.09-0.3,0.12-0.52c0.09-0.3,0.2-0.47,0.29-0.77c-0.2,0.47,0.06-0.08,0.11-0.17c0,0,0.39-0.58,0.17-0.25
 			c-0.22,0.33,0.25-0.2,0.25-0.2c0.06-0.08,0.25-0.2,0.3-0.28" />
         </g>
-        <g className={getBulbClass(5, solvedStatus, challenges)} id="Paere_5">
+        <g className={getBulbClass(5, solvedStatus, challenges)}>
           <path
             d="M207.46,316.81c-4.81,6.99,0.83,18.33,6.85,30.64c4.51,9.14,9.04,13.37,17.97,21.85
 			c1.89,1.74,4.69,4.33,7.69,3.57c3-0.76,4.69-4.79,6.13-9.12c5.69-17.58,3.38-33.54,3.32-34.29
@@ -7559,7 +7559,7 @@ const LightsMobile: FC<LightsProps> = ({ solvedStatus, challenges, prefetch, cla
       </g>
     </Link>
     <Link {...getLinkDateDependentProps(4, challenges, prefetch)} tabIndex={7} title="Luke 4">
-      <g id="Luke_4">
+      <g>
         <g>
           <path
             fill="#DAD6CD"
@@ -7582,7 +7582,7 @@ const LightsMobile: FC<LightsProps> = ({ solvedStatus, challenges, prefetch, cla
 			c0.58-3.78,0.82-7.52,0.46-11.36c-0.14-1.9-0.44-3.88-1.41-5.44c-0.89-1.51-2.21-2.8-3.8-3.44c-2.37-0.96-4.93-0.42-6.88,1.36
 			c-1.72,1.56-2.5,3.76-2.72,5.91c-0.07,0.7-0.06,1.4,0,2.09" />
         </g>
-        <g className={getBulbClass(4, solvedStatus, challenges)} id="Paere_4">
+        <g className={getBulbClass(4, solvedStatus, challenges)}>
           <path
             d="M275.13,263.81c-4.18,7.39,2.44,18.19,9.52,29.91c5.3,8.71,10.19,12.52,19.83,20.18
 			c2.04,1.57,5.05,3.9,7.97,2.88c2.92-1.02,4.25-5.19,5.3-9.62c4.12-18.01,0.41-33.7,0.28-34.45
@@ -7608,7 +7608,7 @@ const LightsMobile: FC<LightsProps> = ({ solvedStatus, challenges, prefetch, cla
       </g>
     </Link>
     <Link {...getLinkDateDependentProps(3, challenges, prefetch)} tabIndex={6} title="Luke 3">
-      <g id="Luke_3">
+      <g>
         <g>
           <path
             fill="#DAD6CD"
@@ -7631,7 +7631,7 @@ const LightsMobile: FC<LightsProps> = ({ solvedStatus, challenges, prefetch, cla
 			c0.12,0.07,0.33,0.12,0.43,0.09c-0.45-0.19,0,0,0.12,0.07c0.12,0.07,0.5,0.37,0.12,0.07c0.38,0.3-0.02-0.09,0.28,0.32
 			c0,0,0.25,0.62,0.18,0.34c-0.06-0.27,0.09,0.37,0.09,0.37" />
         </g>
-        <g className={getBulbClass(4, solvedStatus, challenges)} id="Paere_3">
+        <g className={getBulbClass(4, solvedStatus, challenges)}>
           <path
             d="M208.73,188.07c-8.3,1.82-11.93,13.95-15.96,27.04c-2.96,9.76-2.54,15.93-1.83,28.22
 			c0.19,2.56,0.46,6.36,3.17,7.86c2.71,1.5,6.7-0.29,10.71-2.47c16.18-8.94,25.41-22.17,25.88-22.76
@@ -7657,7 +7657,7 @@ const LightsMobile: FC<LightsProps> = ({ solvedStatus, challenges, prefetch, cla
       </g>
     </Link>
     <Link {...getLinkDateDependentProps(2, challenges, prefetch)} tabIndex={5} title="Luke 2">
-      <g id="Luke_2">
+      <g>
         <g>
           <path
             fill="#DAD6CD"
@@ -7677,7 +7677,7 @@ const LightsMobile: FC<LightsProps> = ({ solvedStatus, challenges, prefetch, cla
 			c0.6,0-0.3-0.1,0.2,0c0.4-0.1,0.7,0,0.8-0.1c-0.5-0.2,0,0,0.1,0.1c0.1,0.1,0.5,0.3,0.1,0.1c0.4,0.3,0-0.1,0.3,0.3
 			c0,0,0.3,0.6,0.2,0.3s0.1,0.3,0.1,0.3c0.1,0.2,0.1,0.3,0.1,0.4c-0.2-0.5,0,0,0.1,0.2" />
         </g>
-        <g className={getBulbClass(2, solvedStatus, challenges)} id="Paere_2">
+        <g className={getBulbClass(2, solvedStatus, challenges)}>
           <path
             d="M129.52,168.75c-8.1,2.4-10.8,14.8-13.8,28.2c-2.2,10-1.3,16.1,0.3,28.3c0.4,2.5,0.9,6.3,3.8,7.6
 			c2.8,1.3,6.7-0.8,10.5-3.3c15.4-10.1,23.6-24,24.1-24.7c5.6-9.6,11.5-19.9,7.3-25.9c-0.6-0.8-1.6-2-14-6
@@ -7699,7 +7699,7 @@ const LightsMobile: FC<LightsProps> = ({ solvedStatus, challenges, prefetch, cla
       </g>
     </Link>
     <Link {...getLinkDateDependentProps(1, challenges, prefetch)} tabIndex={4} title="Luke 1">
-      <g id="Luke_1">
+      <g>
         <g>
           <path
             fill="#DAD6CD"
@@ -7714,7 +7714,7 @@ const LightsMobile: FC<LightsProps> = ({ solvedStatus, challenges, prefetch, cla
 			c-0.2,0.28-0.4,0.47-0.6,0.75c-0.1,0.09-0.2,0.28-0.3,0.38c0.2-0.28,0.2-0.19,0,0c-2.2,2.63-4.8,4.98-7.6,7.05
 			c-1.1,0.75-0.9,2.54,0,3.29c1.1,1.03,2.5,0.75,3.5,0c2.9-2.16,5.5-4.51,7.8-7.24c1.2-1.5,2.4-3.01,2.8-4.89L99.43,100.6z" />
         </g>
-        <g className={getBulbClass(1, solvedStatus, challenges)} id="Paere_1">
+        <g className={getBulbClass(1, solvedStatus, challenges)}>
           <path
             d="M67.42,124.56c-8.2,2.16-11,14.38-14,27.53c-2.3,9.87-1.4,15.97,0.2,28.1c0.3,2.54,0.9,6.3,3.7,7.61
 			c2.9,1.32,6.7-0.56,10.5-2.91c15.6-9.58,23.91-23.02,24.31-23.68c5.7-9.4,11.7-19.36,7.5-25.56c-0.5-0.75-1.6-2.07-14.1-6.39
@@ -7738,8 +7738,8 @@ const LightsMobile: FC<LightsProps> = ({ solvedStatus, challenges, prefetch, cla
       </g>
     </Link>
   </g>
-  <g id="Heading">
-    <g id="tekst">
+  <g>
+    <g>
       <path
         fill="#FFFFFF"
         d="M74.46,36.36c5.91,0.39,7.72,3.13,7.94,10.06c0.11,7.05,0.56,10.34,3.63,11.13

@@ -68,7 +68,7 @@ const App = () => {
       closeHandler={() => setLeaderboardHidden(true)}
     />
 
-    <div id="content-container">
+    <div id="content-container" className="relative min-h-[calc(100vh+1.5rem)] h-[calc(100%+1.5rem)]">
       <Header className="-mb-4" setLeaderboardHidden={setLeaderboardHidden} />
 
       <Switch>

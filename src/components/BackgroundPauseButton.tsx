@@ -11,6 +11,9 @@ const BackgroundPauseButton: VFC<BackgroundPauseButtonProps> = ({ paused, onTogg
   <label
       title="Varm laptop? 🔥"
       className={clsx(
+        "absolute",
+        "bottom-0",
+        "left-0",
         "p-1",
         "text-gray-500",
         "shadow",

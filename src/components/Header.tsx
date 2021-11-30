@@ -75,8 +75,8 @@ const Header: FC<HeaderProps> = ({ setLeaderboardHidden, className }) => {
 
           <div>
             {/* Link to separate page on mobile */}
-            <Button className="hidden md:inline" onMouseEnter={prefetchLeaderboard} onClick={() => setLeaderboardHidden(false)} tabIndex={2}>Ledertavle</Button>
-            <Link className="md:hidden" to="/leaderboard" tabIndex={2}>
+            <Button className="hidden lg:inline" onMouseEnter={prefetchLeaderboard} onClick={() => setLeaderboardHidden(false)} tabIndex={2}>Ledertavle</Button>
+            <Link className="lg:hidden" to="/leaderboard" tabIndex={2}>
               <Button onMouseEnter={prefetchLeaderboard}>Ledertavle</Button>
             </Link>
 

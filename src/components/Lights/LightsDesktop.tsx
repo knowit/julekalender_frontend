@@ -7,6 +7,7 @@ import { getBulbClass, getLinkDateDependentProps, getTextClass, LightsProps } fr
 
 const LightsDesktop: FC<LightsProps> = ({ solvedStatus, challenges, prefetch, className }) => (
   <svg
+    id="lights-desktop"
     xmlns="http://www.w3.org/2000/svg"
     x="0"
     y="0"

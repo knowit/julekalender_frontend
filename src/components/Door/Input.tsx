@@ -79,6 +79,7 @@ const Input: FC<InputProps> = ({ door }) => {
         className={clsx("h-8 w-full p-0 bg-transparent border-0 border-current border-b", { "text-red-700": isWrongAnswer })}
         placeholder="Ditt svar:"
         value={answer}
+        maxLength={128}
         onChange={(e) => {
           setAnswer(e.target.value)
           setDirty(true)

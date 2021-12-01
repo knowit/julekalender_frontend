@@ -79,6 +79,7 @@ const UserForm: VFC<UserFormProps> = ({ user, submit, submitError, newForm = fal
           label="E-post"
           note="Innlogging og kontakt ved premiering."
           type="email"
+          maxLength={128}
           className="w-full"
           {...register("email", { required: newForm })}
         />
@@ -100,6 +101,8 @@ const UserForm: VFC<UserFormProps> = ({ user, submit, submitError, newForm = fal
           label="Passord"
           note={!newForm ? "La være blank for å beholde passord" : undefined}
           type="password"
+          minLength={newForm ? 8 : undefined}
+          maxLength={128}
           labelClassName="mt-4"
           className="w-full"
           {...register("password", { required: newForm })}
@@ -109,6 +112,8 @@ const UserForm: VFC<UserFormProps> = ({ user, submit, submitError, newForm = fal
         <FormElement
           label="Bekreft passord"
           type="password"
+          minLength={newForm ? 8 : undefined}
+          maxLength={128}
           labelClassName="mt-4"
           className="w-full"
           {...register("password_confirmation", { required: newForm })}
@@ -125,6 +130,7 @@ const UserForm: VFC<UserFormProps> = ({ user, submit, submitError, newForm = fal
           autoComplete="nickname"
           label="Brukernavn"
           type="text"
+          maxLength={30}
           labelClassName="mt-1"
           className="w-full"
           {...register("username")}
@@ -162,6 +168,7 @@ const UserForm: VFC<UserFormProps> = ({ user, submit, submitError, newForm = fal
         </FormElementCustom>
         <input
           type="url"
+          maxLength={256}
           placeholder="... eller oppgi URL"
           className="mt-1 form-input w-full"
           {...register("avatar_url")}

@@ -1,5 +1,6 @@
 import { get } from "lodash"
 import { useCallback, useMemo } from "react"
+import { useHistory } from "react-router"
 
 import { useChallenges, usePrefetchLikes, usePrefetchPosts, useSolvedStatus } from "../api/requests"
 import Footer from "../components/Footer"
@@ -8,6 +9,8 @@ import LightsMobile from "../components/Lights/LightsMobile"
 
 
 const Doors = () => {
+  const history = useHistory()
+
   const { data: challenges } = useChallenges()
   const { data: solvedStatus } = useSolvedStatus()
   const prefetchPosts = usePrefetchPosts()
@@ -21,11 +24,16 @@ const Doors = () => {
       prefetchPosts(door)
   }, [prefetchLikes, prefetchPosts, solvedStatus])
 
+  const navigateToDoor = useCallback((door: number) => {
+    history.push(`/luke/${door}`)
+  }, [history])
+
   const lightProps = useMemo(() => ({
+    challenges,
     solvedStatus,
     prefetch,
-    challenges
-  }), [solvedStatus, prefetch, challenges])
+    navigateToDoor
+  }), [challenges, solvedStatus, prefetch, navigateToDoor])
 
   return (
     <main>

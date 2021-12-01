@@ -1,6 +1,5 @@
 import { FC } from "react"
 import { Link } from "react-router-dom"
-import { FaExclamationTriangle, FaLock } from "react-icons/fa"
 import { every, isEmpty, some } from "lodash"
 import clsx from "clsx"
 
@@ -11,7 +10,6 @@ import { usePrefetchLeaderboard, useServiceMessages } from "../api/requests"
 import SignInButton from "./SignInButton"
 import Button from "./Button"
 import SignOutButton from "./SignOutButton"
-import { squish } from "../utils"
 
 
 const ServiceMessageBadge = () => {
@@ -50,23 +48,24 @@ const Header: FC<HeaderProps> = ({ setLeaderboardHidden, className }) => {
         </a>
         {/* <div className="float-right h-10 mt-0.5 md:mt-1 flex flex-row-reverse flex-wrap space-x-reverse space-x-2 md:space-x-8 space-y-reverse space-y-2"> */}
         <div
-          className={clsx(squish(`
-            float-right
-            mt-0.5
-            md:mt-1
-            w-full
-            flex
-            flex-col
-            gap-2
-            md:gap-8
-            md:flex-row-reverse
-            children:flex
-            children:flex-row-reverse
-            children:gap-4
-            md:children:gap-8
-            children:items-center
-            children:flex-wrap
-          `), className)}
+          className={clsx(
+            "float-right",
+            "mt-0.5",
+            "md:mt-1",
+            "w-full",
+            "flex",
+            "flex-col",
+            "gap-2",
+            "md:gap-8",
+            "md:flex-row-reverse",
+            "children:flex",
+            "children:flex-row-reverse",
+            "children:gap-4",
+            "md:children:gap-8",
+            "children:items-center",
+            "children:flex-wrap",
+            className
+          )}
         >
           <div>
             <SignOutButton />
@@ -75,8 +74,8 @@ const Header: FC<HeaderProps> = ({ setLeaderboardHidden, className }) => {
 
           <div>
             {/* Link to separate page on mobile */}
-            <Button className="hidden md:inline" onMouseEnter={prefetchLeaderboard} onClick={() => setLeaderboardHidden(false)} tabIndex={2}>Ledertavle</Button>
-            <Link className="md:hidden" to="/leaderboard" tabIndex={2}>
+            <Button className="hidden lg:inline" onMouseEnter={prefetchLeaderboard} onClick={() => setLeaderboardHidden(false)} tabIndex={2}>Ledertavle</Button>
+            <Link className="lg:hidden" to="/leaderboard" tabIndex={2}>
               <Button onMouseEnter={prefetchLeaderboard}>Ledertavle</Button>
             </Link>
 

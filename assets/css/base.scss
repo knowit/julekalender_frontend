@@ -4,7 +4,7 @@
 
 @layer base {
   html, body {
-    @apply min-h-screen;
+    @apply min-h-screen overflow-x-hidden;
   }
 
   body {
@@ -30,6 +30,11 @@
     #content-container {
       width: 90%;
       margin: 0 auto;
+    }
+
+    // Account for bottom inset explicitly
+    @supports(padding:max(0px)) {
+      padding-bottom: max(0vmin, env(safe-area-inset-bottom));
     }
   }
 

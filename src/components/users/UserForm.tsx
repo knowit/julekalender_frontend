@@ -101,7 +101,7 @@ const UserForm: VFC<UserFormProps> = ({ user, submit, submitError, newForm = fal
           label="Passord"
           note={!newForm ? "La være blank for å beholde passord" : undefined}
           type="password"
-          minLength={newForm ? 8 : undefined}
+          minLength={8}
           maxLength={128}
           labelClassName="mt-4"
           className="w-full"
@@ -112,7 +112,7 @@ const UserForm: VFC<UserFormProps> = ({ user, submit, submitError, newForm = fal
         <FormElement
           label="Bekreft passord"
           type="password"
-          minLength={newForm ? 8 : undefined}
+          minLength={8}
           maxLength={128}
           labelClassName="mt-4"
           className="w-full"

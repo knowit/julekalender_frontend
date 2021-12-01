@@ -82,3 +82,33 @@ export const numberString = (n: number, neutral = false): string => {
 
   return str
 }
+
+const RANDOM_NAMES = [
+  ["Ukjent snilt barn", "🧒"],
+  ["Ukjent nissefar", "🎅"],
+  ["Ukjent nissemor", "🧑‍🎄"],
+  ["Ukjent alv", "🧝‍♀️"],
+  ["Ukjent reinsdyr", "🦌"],
+  ["Ukjent uåpnet pakke", "🎁"],
+  ["Ukjent juletre", "🎄"]
+]
+
+export const getRandomDisplayName = () => RANDOM_NAMES[Math.floor(Math.random() * RANDOM_NAMES.length)]
+
+// Weakmap to hold unique references to objects for use with React's required
+// `key` props for mapping in JSX. Weakmap holds WEAK references to its keys,
+// thus will not prevent garbage collection.
+const keyMap = new WeakMap<object, number>()
+let keyId = 0
+
+// Get a unique key for an object. Use this when you need a key for a JSX map
+// and there is no easy way to generate a string|number key for the object.
+export const getObjKey = (obj: object) => {
+  let key = keyMap.get(obj)
+  if (key !== undefined) return key
+
+  key = keyId++
+  keyMap.set(obj, key)
+
+  return key
+}

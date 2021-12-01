@@ -2,10 +2,10 @@ import clsx from "clsx"
 import { FC } from "react"
 import { Link } from "react-router-dom"
 
-import { getBulbClass, getLinkDateDependentProps, getTextClass, LightsProps } from "./lights_utils"
+import { getBulbProps, getLinkProps, getTextProps, LightsProps } from "./lights_utils"
 
 
-const LightsMobile: FC<LightsProps> = ({ solvedStatus, challenges, prefetch, className }) => (<svg
+const LightsMobile: FC<LightsProps> = ({ className, ...props }) => (<svg
   id="lights-mobile"
   xmlns="http://www.w3.org/2000/svg"
   x="0"
@@ -6615,7 +6615,7 @@ const LightsMobile: FC<LightsProps> = ({ solvedStatus, challenges, prefetch, cla
 		c0,0.69-0.17,1.29-0.51,1.82c-0.43,0.66-1.43,1.6-2.29,1.33C361.3,1394.12,360.88,1392.73,360.88,1390.14z" />
   </g>
   <g className="cursor-pointer font-semibold text-lightbulb">
-    <Link {...getLinkDateDependentProps(24, challenges, prefetch)} tabIndex={27} title="Luke 24">
+    <Link {...getLinkProps({ door: 24, ...props })}>
       <g>
         <g>
           <path
@@ -6638,7 +6638,7 @@ const LightsMobile: FC<LightsProps> = ({ solvedStatus, challenges, prefetch, cla
 				c0,0,0.46-0.52,0.2-0.22c-0.27,0.3,0.27-0.16,0.27-0.16c0.07-0.07,0.27-0.16,0.34-0.24c0.54-0.32-0.34,0.1,0.2-0.09
 				c0.14-0.01,0.34-0.1,0.41-0.17" />
         </g>
-        <g className={getBulbClass(24, solvedStatus, challenges)}>
+        <g {...getBulbProps({ door: 24, ...props })}>
           <path
             d="M97.39,1487.67c-5.72,6.28-1.65,18.28,2.64,31.28c3.24,9.67,7.15,14.47,14.85,24.08
 				c1.64,1.98,4.06,4.92,7.14,4.58c3.08-0.34,5.3-4.11,7.31-8.21c8.02-16.65,7.88-32.77,7.93-33.53
@@ -6659,10 +6659,10 @@ const LightsMobile: FC<LightsProps> = ({ solvedStatus, challenges, prefetch, cla
 				c-1.78-2.24-3.43-4.64-4.88-7.12c-3.32-5.61-5.29-11.89-7.19-18.1c-0.99-3.28-1.98-6.55-2.49-9.94c-0.36-2.71-0.51-5.52,0.37-8.2
 				c0.32-0.78,0.84-1.79,1.5-2.54C101.27,1486.7,97.75,1483.59,95.63,1486.11z" />
         </g>
-        <text className={getTextClass(24, challenges)} transform="matrix(1 0 0 1 96.5699 1515.4358)" fill="#020203" fontFamily="'Arial'" fontSize="37px">24</text>
+        <text {...getTextProps({ door: 24, ...props })} transform="matrix(1 0 0 1 96.5699 1515.4358)" fill="#020203" fontSize="37px">24</text>
       </g>
     </Link>
-    <Link {...getLinkDateDependentProps(23, challenges, prefetch)} tabIndex={26} title="Luke 23">
+    <Link {...getLinkProps({ door: 23, ...props })}>
       <g>
         <g>
           <path
@@ -6684,7 +6684,7 @@ const LightsMobile: FC<LightsProps> = ({ solvedStatus, challenges, prefetch, cla
 				c0.12-0.42-0.19,0.5,0.06-0.21c0.06-0.21,0.13-0.29,0.19-0.5c0.13-0.29,0.26-0.44,0.39-0.72c-0.26,0.44,0.07-0.07,0.13-0.15
 				c0,0,0.46-0.52,0.2-0.22c-0.27,0.3,0.27-0.16,0.27-0.16c0.07-0.07,0.27-0.16,0.34-0.24c0.54-0.32-0.34,0.1,0.2-0.09" />
         </g>
-        <g className={getBulbClass(23, solvedStatus, challenges)}>
+        <g {...getBulbProps({ door: 23, ...props })}>
           <path
             d="M199.69,1447.04c-5.72,6.28-1.65,18.28,2.64,31.28c3.24,9.67,7.15,14.47,14.85,24.08
 				c1.64,1.98,4.06,4.92,7.14,4.58c3.08-0.34,5.3-4.11,7.31-8.21c8.02-16.65,7.88-32.77,7.93-33.53
@@ -6705,10 +6705,10 @@ const LightsMobile: FC<LightsProps> = ({ solvedStatus, challenges, prefetch, cla
 				c-1.78-2.24-3.43-4.64-4.88-7.12c-3.32-5.61-5.29-11.89-7.19-18.1c-0.99-3.28-1.98-6.55-2.49-9.94c-0.35-2.71-0.51-5.52,0.37-8.2
 				c0.32-0.78,0.84-1.79,1.5-2.54C203.58,1446.07,200.05,1442.96,197.93,1445.48z" />
         </g>
-        <text transform="matrix(1 0 0 1 198.8754 1474.8057)" className={getTextClass(23, challenges)} fill="#020203" fontFamily="'Arial'" fontSize="37px">23</text>
+        <text transform="matrix(1 0 0 1 198.8754 1474.8057)" {...getTextProps({ door: 23, ...props })} fill="#020203" fontSize="37px">23</text>
       </g>
     </Link>
-    <Link {...getLinkDateDependentProps(22, challenges, prefetch)} tabIndex={25} title="Luke 22">
+    <Link {...getLinkProps({ door: 22, ...props })}>
       <g>
         <g>
           <path
@@ -6730,7 +6730,7 @@ const LightsMobile: FC<LightsProps> = ({ solvedStatus, challenges, prefetch, cla
 				c0.12-0.42-0.19,0.5,0.06-0.21c0.06-0.21,0.13-0.29,0.19-0.5c0.13-0.29,0.26-0.44,0.39-0.72c-0.26,0.44,0.07-0.07,0.13-0.15
 				c0,0,0.46-0.52,0.2-0.22c-0.27,0.3,0.27-0.16,0.27-0.16c0.07-0.07,0.27-0.16,0.34-0.24c0.54-0.32-0.34,0.1,0.2-0.09" />
         </g>
-        <g className={getBulbClass(22, solvedStatus, challenges)}>
+        <g {...getBulbProps({ door: 22, ...props })}>
           <path
             d="M266.97,1395.32c-5.72,6.28-1.65,18.28,2.64,31.28c3.24,9.67,7.15,14.47,14.85,24.08
 				c1.64,1.98,4.06,4.92,7.14,4.58c3.08-0.34,5.3-4.11,7.31-8.21c8.02-16.65,7.88-32.77,7.93-33.53
@@ -6751,10 +6751,10 @@ const LightsMobile: FC<LightsProps> = ({ solvedStatus, challenges, prefetch, cla
 				c-1.78-2.24-3.43-4.64-4.88-7.12c-3.32-5.61-5.29-11.89-7.19-18.1c-0.99-3.28-1.98-6.55-2.49-9.94c-0.35-2.71-0.51-5.52,0.37-8.2
 				c0.32-0.78,0.84-1.79,1.5-2.54C270.86,1394.36,267.33,1391.24,265.21,1393.77z" />
         </g>
-        <text className={getTextClass(22, challenges)} transform="matrix(1 0 0 1 266.1566 1423.0916)" fill="#020203" fontFamily="'Arial'" fontSize="37px">22</text>
+        <text {...getTextProps({ door: 22, ...props })} transform="matrix(1 0 0 1 266.1566 1423.0916)" fill="#020203" fontSize="37px">22</text>
       </g>
     </Link>
-    <Link {...getLinkDateDependentProps(21, challenges, prefetch)} tabIndex={24} title="Luke 21">
+    <Link {...getLinkProps({ door: 21, ...props })}>
       <g>
         <g>
           <path
@@ -6777,7 +6777,7 @@ const LightsMobile: FC<LightsProps> = ({ solvedStatus, challenges, prefetch, cla
 				c0,0,0.34-0.61,0.14-0.26c-0.19,0.35,0.23-0.22,0.23-0.22c0.05-0.09,0.23-0.22,0.28-0.3c0.45-0.43-0.31,0.17,0.18-0.13
 				c0.13-0.04,0.31-0.17,0.36-0.26c-0.44,0.21,0,0,0.13-0.04c0.13-0.04,0.61-0.12,0.13-0.04c0.47-0.08-0.08-0.05,0.43,0.01" />
         </g>
-        <g className={getBulbClass(21, solvedStatus, challenges)}>
+        <g {...getBulbProps({ door: 21, ...props })}>
           <path
             d="M226.27,1262.68c-4.18,7.39,2.44,18.19,9.52,29.91c5.3,8.71,10.19,12.52,19.83,20.18
 				c2.04,1.57,5.05,3.9,7.97,2.88c2.92-1.02,4.25-5.19,5.3-9.62c4.12-18.01,0.41-33.7,0.28-34.45
@@ -6799,10 +6799,10 @@ const LightsMobile: FC<LightsProps> = ({ solvedStatus, challenges, prefetch, cla
 				c-4.49-4.73-7.8-10.41-11.03-16.05c-1.69-2.97-3.38-5.95-4.63-9.14c-0.95-2.57-1.72-5.27-1.46-8.08c0.14-0.84,0.42-1.93,0.9-2.81
 				C229.82,1260.89,225.69,1258.63,224.19,1261.56z" />
         </g>
-        <text className={getTextClass(21, challenges)} transform="matrix(1 0 0 1 231.9933 1289.6365)" fill="#020203" fontFamily="'Arial'" fontSize="37px">21</text>
+        <text {...getTextProps({ door: 21, ...props })} transform="matrix(1 0 0 1 231.9933 1289.6365)" fill="#020203" fontSize="37px">21</text>
       </g>
     </Link>
-    <Link {...getLinkDateDependentProps(20, challenges, prefetch)} tabIndex={23} title="Luke 20">
+    <Link {...getLinkProps({ door: 20, ...props })}>
       <g>
         <g>
           <path
@@ -6825,7 +6825,7 @@ const LightsMobile: FC<LightsProps> = ({ solvedStatus, challenges, prefetch, cla
 				c0,0,0.59-0.37,0.25-0.16c-0.34,0.21,0.3-0.08,0.3-0.08c0.08-0.05,0.3-0.08,0.39-0.13c0.61-0.16-0.35,0,0.22-0.03
 				c0.13,0.03,0.35,0,0.44-0.05" />
         </g>
-        <g className={getBulbClass(20, solvedStatus, challenges)}>
+        <g {...getBulbProps({ door: 20, ...props })}>
           <path
             d="M147.56,1236.29c-7.25,4.41-6.74,17.07-6.29,30.76c0.38,10.19,2.78,15.9,7.46,27.29
 				c1.01,2.36,2.5,5.87,5.55,6.41c3.05,0.54,6.24-2.45,9.32-5.81c12.39-13.71,16.8-29.22,17.06-29.93
@@ -6846,10 +6846,10 @@ const LightsMobile: FC<LightsProps> = ({ solvedStatus, challenges, prefetch, cla
 				c-1.08-2.65-1.99-5.41-2.68-8.2c-1.61-6.31-1.73-12.89-1.81-19.38c-0.03-3.42-0.05-6.84,0.41-10.23c0.42-2.7,1.07-5.43,2.67-7.76
 				c0.53-0.66,1.31-1.48,2.16-2.01C151.49,1236.47,148.99,1232.49,146.24,1234.31z" />
         </g>
-        <text className={getTextClass(20, challenges)} transform="matrix(1 0 0 1 142.5047 1272.8135)" fill="#020203" fontFamily="'Arial'" fontSize="37px">20</text>
+        <text {...getTextProps({ door: 20, ...props })} transform="matrix(1 0 0 1 142.5047 1272.8135)" fill="#020203" fontSize="37px">20</text>
       </g>
     </Link>
-    <Link {...getLinkDateDependentProps(19, challenges, prefetch)} tabIndex={22} title="Luke 19">
+    <Link {...getLinkProps({ door: 19, ...props })}>
       <g>
         <g>
           <path
@@ -6872,7 +6872,7 @@ const LightsMobile: FC<LightsProps> = ({ solvedStatus, challenges, prefetch, cla
 			c0,0,0.59-0.37,0.25-0.16c-0.34,0.21,0.3-0.08,0.3-0.08c0.08-0.05,0.3-0.08,0.39-0.13c0.61-0.16-0.35,0,0.22-0.03
 			c0.13,0.03,0.35,0,0.44-0.05c-0.49-0.03,0,0,0.13,0.03c0.13,0.03,0.59,0.19,0.13,0.03" />
         </g>
-        <g className={getBulbClass(19, solvedStatus, challenges)}>
+        <g {...getBulbProps({ door: 19, ...props })}>
           <path
             d="M71.19,1177.13c-7.25,4.41-6.74,17.07-6.29,30.76c0.38,10.19,2.78,15.9,7.46,27.29
 			c1.01,2.36,2.5,5.87,5.55,6.41c3.05,0.54,6.24-2.45,9.32-5.81c12.39-13.71,16.8-29.22,17.06-29.93
@@ -6893,10 +6893,10 @@ const LightsMobile: FC<LightsProps> = ({ solvedStatus, challenges, prefetch, cla
 			c-1.08-2.65-1.99-5.41-2.68-8.2c-1.61-6.31-1.73-12.89-1.81-19.38c-0.03-3.42-0.05-6.84,0.41-10.23c0.42-2.7,1.07-5.43,2.67-7.76
 			c0.53-0.66,1.31-1.48,2.16-2.01C75.12,1177.31,72.62,1173.33,69.87,1175.15z" />
         </g>
-        <text className={getTextClass(19, challenges)} transform="matrix(1 0 0 1 63.1348 1216.0925)" fill="#020203" fontFamily="'Arial'" fontSize="37px">19</text>
+        <text {...getTextProps({ door: 19, ...props })} transform="matrix(1 0 0 1 63.1348 1216.0925)" fill="#020203" fontSize="37px">19</text>
       </g>
     </Link>
-    <Link {...getLinkDateDependentProps(18, challenges, prefetch)} tabIndex={21} title="Luke 18">
+    <Link {...getLinkProps({ door: 18, ...props })}>
       <g>
         <g>
           <path
@@ -6919,7 +6919,7 @@ const LightsMobile: FC<LightsProps> = ({ solvedStatus, challenges, prefetch, cla
 			c0,0,0.34-0.61,0.14-0.26c-0.19,0.35,0.23-0.22,0.23-0.22c0.05-0.09,0.23-0.22,0.28-0.3c0.45-0.43-0.31,0.17,0.18-0.13
 			c0.13-0.04,0.31-0.17,0.36-0.26" />
         </g>
-        <g className={getBulbClass(18, solvedStatus, challenges)}>
+        <g {...getBulbProps({ door: 18, ...props })}>
           <path
             d="M104.6,1094.83c-4.18,7.39,2.44,18.19,9.52,29.91c5.3,8.71,10.19,12.52,19.83,20.18
 			c2.04,1.57,5.05,3.9,7.97,2.88c2.92-1.02,4.25-5.19,5.3-9.62c4.12-18.01,0.41-33.7,0.28-34.45
@@ -6941,10 +6941,10 @@ const LightsMobile: FC<LightsProps> = ({ solvedStatus, challenges, prefetch, cla
 			c-4.49-4.73-7.8-10.41-11.03-16.05c-1.69-2.97-3.38-5.95-4.63-9.14c-0.95-2.57-1.72-5.26-1.46-8.08c0.14-0.84,0.42-1.93,0.9-2.81
 			C108.15,1093.04,104.03,1090.78,102.52,1093.71z" />
         </g>
-        <text className={getTextClass(18, challenges)} transform="matrix(1 0 0 1 105.2968 1123.334)" fill="#020203" fontFamily="'Arial'" fontSize="37px">18</text>
+        <text {...getTextProps({ door: 18, ...props })} transform="matrix(1 0 0 1 105.2968 1123.334)" fill="#020203" fontSize="37px">18</text>
       </g>
     </Link>
-    <Link {...getLinkDateDependentProps(17, challenges, prefetch)} tabIndex={20} title="Luke 17">
+    <Link {...getLinkProps({ door: 17, ...props })}>
       <g>
         <g>
           <path
@@ -6966,7 +6966,7 @@ const LightsMobile: FC<LightsProps> = ({ solvedStatus, challenges, prefetch, cla
 			c0.07-0.44-0.12,0.52,0.03-0.22c0.03-0.22,0.09-0.3,0.12-0.52c0.09-0.3,0.2-0.47,0.29-0.77c-0.2,0.47,0.06-0.08,0.11-0.17
 			c0,0,0.39-0.58,0.17-0.25c-0.22,0.33,0.25-0.2,0.25-0.2c0.06-0.08,0.25-0.2,0.3-0.28" />
         </g>
-        <g className={getBulbClass(17, solvedStatus, challenges)}>
+        <g {...getBulbProps({ door: 17, ...props })}>
           <path
             d="M215.12,1057.54c-4.81,6.99,0.83,18.33,6.85,30.64c4.52,9.14,9.04,13.37,17.97,21.85
 			c1.89,1.74,4.69,4.33,7.69,3.57c3-0.76,4.69-4.79,6.13-9.12c5.69-17.58,3.38-33.54,3.32-34.29
@@ -6988,10 +6988,10 @@ const LightsMobile: FC<LightsProps> = ({ solvedStatus, challenges, prefetch, cla
 			c-1.42-3.11-2.85-6.22-3.81-9.51c-0.72-2.64-1.25-5.39-0.74-8.18c0.21-0.82,0.59-1.89,1.15-2.72
 			C218.81,1056.08,214.89,1053.47,213.13,1056.26z" />
         </g>
-        <text className={getTextClass(17, challenges)} transform="matrix(1 0 0 1 216.3063 1091.1262)" fill="#020203" fontFamily="'Arial'" fontSize="37px">17</text>
+        <text {...getTextProps({ door: 17, ...props })} transform="matrix(1 0 0 1 216.3063 1091.1262)" fill="#020203" fontSize="37px">17</text>
       </g>
     </Link>
-    <Link {...getLinkDateDependentProps(16, challenges, prefetch)} tabIndex={19} title="Luke 16">
+    <Link {...getLinkProps({ door: 16, ...props })}>
       <g>
         <g>
           <path
@@ -7013,7 +7013,7 @@ const LightsMobile: FC<LightsProps> = ({ solvedStatus, challenges, prefetch, cla
 			c0.03-0.44-0.08,0.53,0.01-0.22c0.01-0.22,0.06-0.31,0.08-0.53c0.06-0.31,0.16-0.48,0.22-0.79c-0.16,0.48,0.05-0.09,0.1-0.17
 			c0,0,0.34-0.61,0.14-0.26c-0.19,0.35,0.23-0.22,0.23-0.22c0.05-0.09,0.23-0.22,0.28-0.3" />
         </g>
-        <g className={getBulbClass(16, solvedStatus, challenges)}>
+        <g {...getBulbProps({ door: 16, ...props })}>
           <path
             d="M282.14,996.72c-4.18,7.39,2.44,18.19,9.52,29.91c5.3,8.71,10.19,12.52,19.83,20.18
 			c2.04,1.57,5.05,3.9,7.97,2.88c2.92-1.02,4.25-5.19,5.3-9.62c4.12-18.01,0.41-33.7,0.28-34.45
@@ -7035,10 +7035,10 @@ const LightsMobile: FC<LightsProps> = ({ solvedStatus, challenges, prefetch, cla
 			c-4.49-4.73-7.8-10.41-11.03-16.05c-1.69-2.97-3.38-5.95-4.63-9.14c-0.95-2.57-1.72-5.26-1.46-8.08c0.14-0.84,0.42-1.93,0.9-2.81
 			C285.7,994.93,281.57,992.67,280.06,995.6z" />
         </g>
-        <text className={getTextClass(16, challenges)} transform="matrix(1 0 0 1 284.7007 1026.5807)" fill="#020203" fontFamily="'Arial'" fontSize="37px">16</text>
+        <text {...getTextProps({ door: 16, ...props })} transform="matrix(1 0 0 1 284.7007 1026.5807)" fill="#020203" fontSize="37px">16</text>
       </g>
     </Link>
-    <Link {...getLinkDateDependentProps(15, challenges, prefetch)} tabIndex={18} title="Luke 15">
+    <Link {...getLinkProps({ door: 15, ...props })}>
       <g>
         <g>
           <path
@@ -7061,7 +7061,7 @@ const LightsMobile: FC<LightsProps> = ({ solvedStatus, challenges, prefetch, cla
 			c0,0,0.34-0.61,0.14-0.26c-0.19,0.35,0.23-0.22,0.23-0.22c0.05-0.09,0.23-0.22,0.28-0.3c0.45-0.43-0.31,0.17,0.18-0.13
 			c0.13-0.04,0.31-0.17,0.36-0.26c-0.44,0.21,0,0,0.13-0.04c0.13-0.04,0.61-0.12,0.13-0.04c0.47-0.08-0.08-0.05,0.43,0.01" />
         </g>
-        <g className={getBulbClass(15, solvedStatus, challenges)}>
+        <g {...getBulbProps({ door: 15, ...props })}>
           <path
             d="M255.4,867.57c-4.18,7.39,2.44,18.19,9.52,29.91c5.3,8.71,10.19,12.52,19.83,20.18
 			c2.04,1.57,5.05,3.9,7.97,2.88c2.92-1.02,4.25-5.19,5.3-9.62c4.12-18.01,0.41-33.7,0.28-34.45
@@ -7083,10 +7083,10 @@ const LightsMobile: FC<LightsProps> = ({ solvedStatus, challenges, prefetch, cla
 			c-4.49-4.73-7.8-10.41-11.03-16.05c-1.69-2.97-3.38-5.95-4.63-9.14c-0.95-2.57-1.72-5.26-1.46-8.08c0.14-0.84,0.42-1.93,0.9-2.81
 			C258.96,865.78,254.83,863.52,253.32,866.45z" />
         </g>
-        <text className={getTextClass(15, challenges)} transform="matrix(1 0 0 1 256.6138 896.7153)" fill="#020203" fontFamily="'Arial'" fontSize="37px">15</text>
+        <text {...getTextProps({ door: 15, ...props })} transform="matrix(1 0 0 1 256.6138 896.7153)" fill="#020203" fontSize="37px">15</text>
       </g>
     </Link>
-    <Link {...getLinkDateDependentProps(14, challenges, prefetch)} tabIndex={17} title="Luke 14">
+    <Link {...getLinkProps({ door: 14, ...props })}>
       <g>
         <g>
           <path
@@ -7109,7 +7109,7 @@ const LightsMobile: FC<LightsProps> = ({ solvedStatus, challenges, prefetch, cla
 			c0,0,0.59-0.37,0.25-0.16c-0.34,0.21,0.3-0.08,0.3-0.08c0.08-0.05,0.3-0.08,0.39-0.13c0.61-0.16-0.35,0,0.22-0.03
 			c0.13,0.03,0.35,0,0.44-0.05" />
         </g>
-        <g className={getBulbClass(14, solvedStatus, challenges)}>
+        <g {...getBulbProps({ door: 14, ...props })}>
           <path
             d="M157.96,845.13c-7.25,4.41-6.74,17.07-6.29,30.76c0.38,10.19,2.78,15.9,7.46,27.29
 			c1.01,2.36,2.5,5.87,5.55,6.41c3.05,0.54,6.24-2.45,9.32-5.81c12.39-13.71,16.8-29.22,17.06-29.93
@@ -7130,10 +7130,10 @@ const LightsMobile: FC<LightsProps> = ({ solvedStatus, challenges, prefetch, cla
 			c-1.08-2.65-1.99-5.41-2.68-8.2c-1.61-6.31-1.73-12.89-1.81-19.38c-0.03-3.42-0.05-6.84,0.41-10.23c0.42-2.7,1.07-5.43,2.67-7.76
 			c0.53-0.66,1.31-1.48,2.16-2.01C161.9,845.31,159.39,841.33,156.64,843.15z" />
         </g>
-        <text className={getTextClass(14, challenges)} transform="matrix(1 0 0 1 149.373 881.7825)" fill="#020203" fontFamily="'Arial'" fontSize="37px">14</text>
+        <text {...getTextProps({ door: 14, ...props })} transform="matrix(1 0 0 1 149.373 881.7825)" fill="#020203" fontSize="37px">14</text>
       </g>
     </Link>
-    <Link {...getLinkDateDependentProps(13, challenges, prefetch)} tabIndex={16} title="Luke 13">
+    <Link {...getLinkProps({ door: 13, ...props })}>
       <g>
         <g>
           <path
@@ -7156,7 +7156,7 @@ const LightsMobile: FC<LightsProps> = ({ solvedStatus, challenges, prefetch, cla
 			c0,0,0.59-0.37,0.25-0.16c-0.34,0.21,0.3-0.08,0.3-0.08c0.08-0.05,0.3-0.08,0.39-0.13c0.61-0.16-0.35,0,0.22-0.03
 			c0.13,0.03,0.35,0,0.44-0.05" />
         </g>
-        <g className={getBulbClass(13, solvedStatus, challenges)}>
+        <g {...getBulbProps({ door: 13, ...props })}>
           <path
             d="M78.15,782.97c-7.25,4.41-6.74,17.07-6.29,30.76c0.38,10.19,2.78,15.9,7.46,27.29
 			c1.01,2.36,2.5,5.87,5.55,6.41c3.05,0.54,6.24-2.45,9.32-5.81c12.39-13.71,16.8-29.22,17.06-29.93
@@ -7177,10 +7177,10 @@ const LightsMobile: FC<LightsProps> = ({ solvedStatus, challenges, prefetch, cla
 			c-1.08-2.65-1.99-5.41-2.68-8.2c-1.61-6.31-1.73-12.89-1.81-19.38c-0.03-3.42-0.05-6.84,0.41-10.23c0.42-2.7,1.07-5.43,2.67-7.76
 			c0.53-0.66,1.31-1.48,2.16-2.01C82.08,783.15,79.58,779.17,76.83,780.99z" />
         </g>
-        <text className={getTextClass(13, challenges)} transform="matrix(1 0 0 1 70.1456 819.7119)" fill="#020203" fontFamily="'Arial'" fontSize="37px">13</text>
+        <text {...getTextProps({ door: 13, ...props })} transform="matrix(1 0 0 1 70.1456 819.7119)" fill="#020203" fontSize="37px">13</text>
       </g>
     </Link>
-    <Link {...getLinkDateDependentProps(12, challenges, prefetch)} tabIndex={15} title="Luke 12">
+    <Link {...getLinkProps({ door: 12, ...props })}>
       <g>
         <g>
           <path
@@ -7203,7 +7203,7 @@ const LightsMobile: FC<LightsProps> = ({ solvedStatus, challenges, prefetch, cla
 			c0,0,0.27-0.65,0.11-0.28c-0.15,0.37,0.2-0.24,0.2-0.24c0.04-0.09,0.2-0.24,0.24-0.33c0.4-0.48-0.29,0.21,0.16-0.15
 			c0.13-0.06,0.29-0.21,0.33-0.3c-0.41,0.26,0,0,0.13-0.06c0.13-0.06,0.59-0.19,0.13-0.06c0.46-0.13-0.09-0.04,0.42-0.04" />
         </g>
-        <g className={getBulbClass(12, solvedStatus, challenges)}>
+        <g {...getBulbProps({ door: 12, ...props })}>
           <path
             d="M103.75,695.37c-3.33,7.81,4.46,17.8,12.8,28.67c6.24,8.06,11.52,11.31,21.95,17.85
 			c2.2,1.33,5.45,3.31,8.25,1.98c2.79-1.34,3.65-5.63,4.2-10.15c2.09-18.36-3.35-33.54-3.56-34.27
@@ -7224,10 +7224,10 @@ const LightsMobile: FC<LightsProps> = ({ solvedStatus, challenges, prefetch, cla
 			c-2.42-1.53-4.77-3.25-6.95-5.11c-4.98-4.2-8.91-9.48-12.75-14.73c-2.01-2.77-4.03-5.54-5.62-8.57
 			c-1.23-2.45-2.29-5.04-2.35-7.87c0.04-0.85,0.2-1.97,0.58-2.89C107.1,693.18,102.74,691.39,101.57,694.48z" />
         </g>
-        <text className={getTextClass(12, challenges)} transform="matrix(1 0 0 1 106.4968 720.868)" fill="#020203" fontFamily="'Arial'" fontSize="37px">12</text>
+        <text {...getTextProps({ door: 12, ...props })} transform="matrix(1 0 0 1 106.4968 720.868)" fill="#020203" fontSize="37px">12</text>
       </g>
     </Link>
-    <Link {...getLinkDateDependentProps(11, challenges, prefetch)} tabIndex={14} title="Luke 11">
+    <Link {...getLinkProps({ door: 11, ...props })}>
       <g>
         <g>
           <path
@@ -7250,7 +7250,7 @@ const LightsMobile: FC<LightsProps> = ({ solvedStatus, challenges, prefetch, cla
 			c0,0,0.27-0.65,0.11-0.28c-0.15,0.37,0.2-0.24,0.2-0.24c0.04-0.09,0.2-0.24,0.24-0.33c0.4-0.48-0.29,0.21,0.16-0.15
 			c0.13-0.06,0.29-0.21,0.33-0.3" />
         </g>
-        <g className={getBulbClass(11, solvedStatus, challenges)}>
+        <g {...getBulbProps({ door: 11, ...props })}>
           <path
             d="M219.22,673.73c-3.33,7.81,4.46,17.8,12.8,28.67c6.24,8.06,11.52,11.31,21.95,17.85
 			c2.2,1.33,5.45,3.31,8.25,1.98c2.79-1.34,3.65-5.63,4.2-10.15c2.09-18.36-3.35-33.54-3.56-34.27
@@ -7271,10 +7271,10 @@ const LightsMobile: FC<LightsProps> = ({ solvedStatus, challenges, prefetch, cla
 			c-2.42-1.53-4.77-3.25-6.95-5.11c-4.98-4.2-8.91-9.48-12.75-14.73c-2.01-2.77-4.03-5.54-5.62-8.57
 			c-1.23-2.45-2.29-5.04-2.35-7.87c0.04-0.85,0.2-1.97,0.58-2.89C222.57,671.54,218.21,669.76,217.04,672.84z" />
         </g>
-        <text className={getTextClass(11, challenges)} transform="matrix(1 0 0 1 223.6046 701.4891)" fill="#020203" fontFamily="'Arial'" fontSize="37px">11</text>
+        <text {...getTextProps({ door: 11, ...props })} transform="matrix(1 0 0 1 223.6046 701.4891)" fill="#020203" fontSize="37px">11</text>
       </g>
     </Link>
-    <Link {...getLinkDateDependentProps(10, challenges, prefetch)} tabIndex={13} title="Luke 10">
+    <Link {...getLinkProps({ door: 10, ...props })}>
       <g>
         <g>
           <path
@@ -7297,7 +7297,7 @@ const LightsMobile: FC<LightsProps> = ({ solvedStatus, challenges, prefetch, cla
 			c0,0,0.42-0.56,0.18-0.24c-0.24,0.32,0.25-0.18,0.25-0.18c0.06-0.08,0.25-0.18,0.31-0.26c0.51-0.37-0.33,0.13,0.19-0.1
 			c0.14-0.02,0.33-0.13,0.39-0.21" />
         </g>
-        <g className={getBulbClass(10, solvedStatus, challenges)}>
+        <g {...getBulbProps({ door: 10, ...props })}>
           <path
             d="M277.96,607.09c-5.14,6.76-0.04,18.35,5.38,30.93c4.07,9.35,8.4,13.78,16.91,22.68
 			c1.8,1.83,4.47,4.55,7.51,3.94c3.04-0.61,4.92-4.56,6.56-8.82c6.52-17.29,4.98-33.34,4.95-34.1
@@ -7318,10 +7318,10 @@ const LightsMobile: FC<LightsProps> = ({ solvedStatus, challenges, prefetch, cla
 			c-1.97-2.08-3.83-4.32-5.48-6.66c-3.8-5.29-6.32-11.38-8.75-17.4c-1.27-3.18-2.55-6.35-3.35-9.68c-0.59-2.67-0.99-5.45-0.35-8.21
 			c0.25-0.81,0.68-1.86,1.27-2.66C281.74,605.79,277.96,603,276.07,605.7z" />
         </g>
-        <text className={getTextClass(10, challenges)} transform="matrix(1 0 0 1 275.8252 643.0407)" fill="#020203" fontFamily="'Arial'" fontSize="37px">10</text>
+        <text {...getTextProps({ door: 10, ...props })} transform="matrix(1 0 0 1 275.8252 643.0407)" fill="#020203" fontSize="37px">10</text>
       </g>
     </Link>
-    <Link {...getLinkDateDependentProps(9, challenges, prefetch)} tabIndex={12} title="Luke 9">
+    <Link {...getLinkProps({ door: 9, ...props })}>
       <g>
         <g>
           <path
@@ -7344,7 +7344,7 @@ const LightsMobile: FC<LightsProps> = ({ solvedStatus, challenges, prefetch, cla
 			c0,0,0.34-0.61,0.14-0.26c-0.19,0.35,0.23-0.22,0.23-0.22c0.05-0.09,0.23-0.22,0.28-0.3c0.45-0.43-0.31,0.17,0.18-0.13
 			c0.13-0.04,0.31-0.17,0.36-0.26c-0.44,0.21,0,0,0.13-0.04c0.13-0.04,0.61-0.12,0.13-0.04c0.47-0.08-0.08-0.05,0.43,0.01" />
         </g>
-        <g className={getBulbClass(9, solvedStatus, challenges)}>
+        <g {...getBulbProps({ door: 9, ...props })}>
           <path
             d="M225.9,518.32c-4.18,7.39,2.44,18.19,9.52,29.91c5.3,8.71,10.19,12.52,19.83,20.18
 			c2.04,1.57,5.05,3.9,7.97,2.88c2.92-1.02,4.25-5.19,5.3-9.62c4.12-18.01,0.41-33.7,0.28-34.45
@@ -7366,10 +7366,10 @@ const LightsMobile: FC<LightsProps> = ({ solvedStatus, challenges, prefetch, cla
 			c-4.49-4.73-7.8-10.41-11.03-16.05c-1.69-2.97-3.38-5.95-4.63-9.14c-0.95-2.57-1.72-5.26-1.46-8.08c0.14-0.84,0.42-1.93,0.9-2.81
 			C229.46,516.53,225.33,514.27,223.83,517.2z" />
         </g>
-        <text className={getTextClass(9, challenges)} transform="matrix(1 0 0 1 240.2409 549.3744)" fill="#020203" fontFamily="'Arial'" fontSize="37px">9</text>
+        <text {...getTextProps({ door: 9, ...props })} transform="matrix(1 0 0 1 240.2409 549.3744)" fill="#020203" fontSize="37px">9</text>
       </g>
     </Link>
-    <Link {...getLinkDateDependentProps(8, challenges, prefetch)} tabIndex={11} title="Luke 8">
+    <Link {...getLinkProps({ door: 8, ...props })}>
       <g>
         <g>
           <path
@@ -7392,7 +7392,7 @@ const LightsMobile: FC<LightsProps> = ({ solvedStatus, challenges, prefetch, cla
 			c0,0,0.59-0.37,0.25-0.16c-0.34,0.21,0.3-0.08,0.3-0.08c0.08-0.05,0.3-0.08,0.39-0.13c0.61-0.16-0.35,0,0.22-0.03
 			c0.13,0.03,0.35,0,0.44-0.05c-0.49-0.03,0,0,0.13,0.03c0.13,0.03,0.59,0.19,0.13,0.03" />
         </g>
-        <g className={getBulbClass(8, solvedStatus, challenges)}>
+        <g {...getBulbProps({ door: 8, ...props })}>
           <path
             d="M141.54,480.78c-7.25,4.41-6.74,17.07-6.29,30.76c0.38,10.19,2.78,15.9,7.46,27.29
 				c1.01,2.36,2.5,5.87,5.55,6.41c3.05,0.54,6.24-2.45,9.32-5.81c12.39-13.71,16.8-29.22,17.06-29.93
@@ -7413,10 +7413,10 @@ const LightsMobile: FC<LightsProps> = ({ solvedStatus, challenges, prefetch, cla
 				c-1.08-2.65-1.99-5.41-2.68-8.2c-1.61-6.31-1.73-12.89-1.81-19.38c-0.03-3.42-0.05-6.84,0.41-10.23c0.42-2.7,1.07-5.43,2.67-7.76
 				c0.53-0.66,1.31-1.48,2.16-2.01C145.48,480.96,142.97,476.97,140.22,478.79z" />
         </g>
-        <text className={getTextClass(8, challenges)} transform="matrix(1 0 0 1 144.0656 522.3608)" fill="#020203" fontFamily="'Arial'" fontSize="37px">8</text>
+        <text {...getTextProps({ door: 8, ...props })} transform="matrix(1 0 0 1 144.0656 522.3608)" fill="#020203" fontSize="37px">8</text>
       </g>
     </Link>
-    <Link {...getLinkDateDependentProps(7, challenges, prefetch)} tabIndex={10} title="Luke 7">
+    <Link {...getLinkProps({ door: 7, ...props })}>
       <g>
         <g>
           <path
@@ -7439,7 +7439,7 @@ const LightsMobile: FC<LightsProps> = ({ solvedStatus, challenges, prefetch, cla
 			c0,0,0.59-0.37,0.25-0.16c-0.34,0.21,0.3-0.08,0.3-0.08c0.08-0.05,0.3-0.08,0.39-0.13c0.61-0.16-0.35,0,0.22-0.03
 			c0.13,0.03,0.35,0,0.44-0.05c-0.49-0.03,0,0,0.13,0.03c0.13,0.03,0.59,0.19,0.13,0.03c0.45,0.16-0.05-0.08,0.37,0.21" />
         </g>
-        <g className={getBulbClass(7, solvedStatus, challenges)}>
+        <g {...getBulbProps({ door: 7, ...props })}>
           <path
             d="M72.26,418.34c-7.25,4.41-6.74,17.07-6.29,30.76c0.38,10.19,2.78,15.9,7.46,27.29
 			c1.01,2.36,2.5,5.87,5.55,6.41c3.05,0.54,6.24-2.45,9.32-5.81c12.39-13.71,16.8-29.22,17.06-29.93
@@ -7460,10 +7460,10 @@ const LightsMobile: FC<LightsProps> = ({ solvedStatus, challenges, prefetch, cla
 			c-1.08-2.65-1.99-5.41-2.68-8.2c-1.61-6.31-1.73-12.89-1.81-19.38c-0.03-3.42-0.05-6.84,0.41-10.23c0.42-2.7,1.07-5.43,2.67-7.76
 			c0.53-0.66,1.31-1.48,2.16-2.01C76.19,418.52,73.69,414.54,70.94,416.36z" />
         </g>
-        <text className={getTextClass(7, challenges)} transform="matrix(1 0 0 1 72.695 460.6763)" fill="#020203" fontFamily="'Arial'" fontSize="37px">7</text>
+        <text {...getTextProps({ door: 7, ...props })} transform="matrix(1 0 0 1 72.695 460.6763)" fill="#020203" fontSize="37px">7</text>
       </g>
     </Link>
-    <Link {...getLinkDateDependentProps(6, challenges, prefetch)} tabIndex={9} title="Luke 6">
+    <Link {...getLinkProps({ door: 6, ...props })}>
       <g>
         <g>
           <path
@@ -7486,7 +7486,7 @@ const LightsMobile: FC<LightsProps> = ({ solvedStatus, challenges, prefetch, cla
 			c0,0,0.34-0.61,0.14-0.26c-0.19,0.35,0.23-0.22,0.23-0.22c0.05-0.09,0.23-0.22,0.28-0.3c0.45-0.43-0.31,0.17,0.18-0.13
 			c0.13-0.04,0.31-0.17,0.36-0.26c-0.44,0.21,0,0,0.13-0.04s0.61-0.12,0.13-0.04" />
         </g>
-        <g className={getBulbClass(6, solvedStatus, challenges)}>
+        <g {...getBulbProps({ door: 6, ...props })}>
           <path
             d="M122.21,351.1c-4.18,7.39,2.44,18.19,9.52,29.91c5.3,8.71,10.19,12.52,19.83,20.18
 			c2.04,1.57,5.05,3.9,7.97,2.88c2.92-1.02,4.25-5.19,5.3-9.62c4.12-18.01,0.41-33.7,0.28-34.45
@@ -7508,10 +7508,10 @@ const LightsMobile: FC<LightsProps> = ({ solvedStatus, challenges, prefetch, cla
 			c-4.49-4.73-7.8-10.41-11.03-16.05c-1.69-2.97-3.38-5.95-4.63-9.14c-0.95-2.57-1.72-5.26-1.46-8.08c0.14-0.84,0.42-1.93,0.9-2.81
 			C125.77,349.31,121.64,347.05,120.13,349.98z" />
         </g>
-        <text className={getTextClass(6, challenges)} transform="matrix(1 0 0 1 135.7435 383.8319)" fill="#020203" fontFamily="'Arial'" fontSize="37px">6</text>
+        <text {...getTextProps({ door: 6, ...props })} transform="matrix(1 0 0 1 135.7435 383.8319)" fill="#020203" fontSize="37px">6</text>
       </g>
     </Link>
-    <Link {...getLinkDateDependentProps(5, challenges, prefetch)} tabIndex={8} title="Luke 5">
+    <Link {...getLinkProps({ door: 5, ...props })}>
       <g>
         <g>
           <path
@@ -7533,7 +7533,7 @@ const LightsMobile: FC<LightsProps> = ({ solvedStatus, challenges, prefetch, cla
 			c0.03-0.22,0.09-0.3,0.12-0.52c0.09-0.3,0.2-0.47,0.29-0.77c-0.2,0.47,0.06-0.08,0.11-0.17c0,0,0.39-0.58,0.17-0.25
 			c-0.22,0.33,0.25-0.2,0.25-0.2c0.06-0.08,0.25-0.2,0.3-0.28" />
         </g>
-        <g className={getBulbClass(5, solvedStatus, challenges)}>
+        <g {...getBulbProps({ door: 5, ...props })}>
           <path
             d="M207.46,316.81c-4.81,6.99,0.83,18.33,6.85,30.64c4.51,9.14,9.04,13.37,17.97,21.85
 			c1.89,1.74,4.69,4.33,7.69,3.57c3-0.76,4.69-4.79,6.13-9.12c5.69-17.58,3.38-33.54,3.32-34.29
@@ -7555,10 +7555,10 @@ const LightsMobile: FC<LightsProps> = ({ solvedStatus, challenges, prefetch, cla
 			c-1.42-3.11-2.85-6.22-3.81-9.51c-0.72-2.64-1.25-5.39-0.74-8.18c0.21-0.82,0.59-1.89,1.15-2.72
 			C211.15,315.34,207.24,312.73,205.48,315.52z" />
         </g>
-        <text className={getTextClass(5, challenges)} transform="matrix(1 0 0 1 219.9662 349.6287)" fill="#020203" fontFamily="'Arial'" fontSize="37px">5</text>
+        <text {...getTextProps({ door: 5, ...props })} transform="matrix(1 0 0 1 219.9662 349.6287)" fill="#020203" fontSize="37px">5</text>
       </g>
     </Link>
-    <Link {...getLinkDateDependentProps(4, challenges, prefetch)} tabIndex={7} title="Luke 4">
+    <Link {...getLinkProps({ door: 4, ...props })}>
       <g>
         <g>
           <path
@@ -7582,7 +7582,7 @@ const LightsMobile: FC<LightsProps> = ({ solvedStatus, challenges, prefetch, cla
 			c0.58-3.78,0.82-7.52,0.46-11.36c-0.14-1.9-0.44-3.88-1.41-5.44c-0.89-1.51-2.21-2.8-3.8-3.44c-2.37-0.96-4.93-0.42-6.88,1.36
 			c-1.72,1.56-2.5,3.76-2.72,5.91c-0.07,0.7-0.06,1.4,0,2.09" />
         </g>
-        <g className={getBulbClass(4, solvedStatus, challenges)}>
+        <g {...getBulbProps({ door: 4, ...props })}>
           <path
             d="M275.13,263.81c-4.18,7.39,2.44,18.19,9.52,29.91c5.3,8.71,10.19,12.52,19.83,20.18
 			c2.04,1.57,5.05,3.9,7.97,2.88c2.92-1.02,4.25-5.19,5.3-9.62c4.12-18.01,0.41-33.7,0.28-34.45
@@ -7604,10 +7604,10 @@ const LightsMobile: FC<LightsProps> = ({ solvedStatus, challenges, prefetch, cla
 			c-4.49-4.73-7.8-10.41-11.03-16.05c-1.69-2.97-3.38-5.95-4.63-9.14c-0.95-2.57-1.72-5.26-1.46-8.08c0.14-0.84,0.42-1.93,0.9-2.81
 			C278.69,262.02,274.56,259.76,273.05,262.69z" />
         </g>
-        <text className={getTextClass(4, challenges)} transform="matrix(1 0 0 1 286.3141 293.5153)" fill="#020203" fontFamily="'Arial'" fontSize="37px">4</text>
+        <text {...getTextProps({ door: 4, ...props })} transform="matrix(1 0 0 1 286.3141 293.5153)" fill="#020203" fontSize="37px">4</text>
       </g>
     </Link>
-    <Link {...getLinkDateDependentProps(3, challenges, prefetch)} tabIndex={6} title="Luke 3">
+    <Link {...getLinkProps({ door: 3, ...props })}>
       <g>
         <g>
           <path
@@ -7631,7 +7631,7 @@ const LightsMobile: FC<LightsProps> = ({ solvedStatus, challenges, prefetch, cla
 			c0.12,0.07,0.33,0.12,0.43,0.09c-0.45-0.19,0,0,0.12,0.07c0.12,0.07,0.5,0.37,0.12,0.07c0.38,0.3-0.02-0.09,0.28,0.32
 			c0,0,0.25,0.62,0.18,0.34c-0.06-0.27,0.09,0.37,0.09,0.37" />
         </g>
-        <g className={getBulbClass(4, solvedStatus, challenges)}>
+        <g {...getBulbProps({ door: 3, ...props })}>
           <path
             d="M208.73,188.07c-8.3,1.82-11.93,13.95-15.96,27.04c-2.96,9.76-2.54,15.93-1.83,28.22
 			c0.19,2.56,0.46,6.36,3.17,7.86c2.71,1.5,6.7-0.29,10.71-2.47c16.18-8.94,25.41-22.17,25.88-22.76
@@ -7653,10 +7653,10 @@ const LightsMobile: FC<LightsProps> = ({ solvedStatus, challenges, prefetch, cla
 			c1.09-3.24,2.18-6.49,3.72-9.55c1.28-2.42,2.78-4.79,5.06-6.47c0.71-0.45,1.72-0.98,2.69-1.2
 			C212.46,189.52,211.39,184.94,208.2,185.77z" />
         </g>
-        <text className={getTextClass(4, challenges)} transform="matrix(1 0 0 1 201.0289 233.7073)" fill="#020203" fontFamily="'Arial'" fontSize="37px">3</text>
+        <text {...getTextProps({ door: 3, ...props })} transform="matrix(1 0 0 1 201.0289 233.7073)" fill="#020203" fontSize="37px">3</text>
       </g>
     </Link>
-    <Link {...getLinkDateDependentProps(2, challenges, prefetch)} tabIndex={5} title="Luke 2">
+    <Link {...getLinkProps({ door: 2, ...props })}>
       <g>
         <g>
           <path
@@ -7677,7 +7677,7 @@ const LightsMobile: FC<LightsProps> = ({ solvedStatus, challenges, prefetch, cla
 			c0.6,0-0.3-0.1,0.2,0c0.4-0.1,0.7,0,0.8-0.1c-0.5-0.2,0,0,0.1,0.1c0.1,0.1,0.5,0.3,0.1,0.1c0.4,0.3,0-0.1,0.3,0.3
 			c0,0,0.3,0.6,0.2,0.3s0.1,0.3,0.1,0.3c0.1,0.2,0.1,0.3,0.1,0.4c-0.2-0.5,0,0,0.1,0.2" />
         </g>
-        <g className={getBulbClass(2, solvedStatus, challenges)}>
+        <g {...getBulbProps({ door: 2, ...props })}>
           <path
             d="M129.52,168.75c-8.1,2.4-10.8,14.8-13.8,28.2c-2.2,10-1.3,16.1,0.3,28.3c0.4,2.5,0.9,6.3,3.8,7.6
 			c2.8,1.3,6.7-0.8,10.5-3.3c15.4-10.1,23.6-24,24.1-24.7c5.6-9.6,11.5-19.9,7.3-25.9c-0.6-0.8-1.6-2-14-6
@@ -7695,10 +7695,10 @@ const LightsMobile: FC<LightsProps> = ({ solvedStatus, challenges, prefetch, cla
 			c-1.5,1-3,1.8-4.7,2.3c-2.9,0.7-3.7-1.8-4.1-4.1c-0.7-3.1-0.9-6.6-1.3-9.8c-0.4-2.8-0.6-5.7-0.5-8.6c0-6.5,1.6-12.9,3.2-19.2
 			c0.8-3.3,1.7-6.6,3-9.8c1.1-2.5,2.4-5,4.5-6.8c0.7-0.5,1.6-1.1,2.6-1.4C133.42,169.95,131.92,165.45,128.82,166.45z" />
         </g>
-        <text className={getTextClass(2, challenges)} transform="matrix(1 0 0 1 124.0396 213.3561)" fill="#020203" fontFamily="'Arial'" fontSize="37px">2</text>
+        <text {...getTextProps({ door: 2, ...props })} transform="matrix(1 0 0 1 124.0396 213.3561)" fill="#020203" fontSize="37px">2</text>
       </g>
     </Link>
-    <Link {...getLinkDateDependentProps(1, challenges, prefetch)} tabIndex={4} title="Luke 1">
+    <Link {...getLinkProps({ door: 1, ...props })}>
       <g>
         <g>
           <path
@@ -7714,7 +7714,7 @@ const LightsMobile: FC<LightsProps> = ({ solvedStatus, challenges, prefetch, cla
 			c-0.2,0.28-0.4,0.47-0.6,0.75c-0.1,0.09-0.2,0.28-0.3,0.38c0.2-0.28,0.2-0.19,0,0c-2.2,2.63-4.8,4.98-7.6,7.05
 			c-1.1,0.75-0.9,2.54,0,3.29c1.1,1.03,2.5,0.75,3.5,0c2.9-2.16,5.5-4.51,7.8-7.24c1.2-1.5,2.4-3.01,2.8-4.89L99.43,100.6z" />
         </g>
-        <g className={getBulbClass(1, solvedStatus, challenges)}>
+        <g {...getBulbProps({ door: 1, ...props })}>
           <path
             d="M67.42,124.56c-8.2,2.16-11,14.38-14,27.53c-2.3,9.87-1.4,15.97,0.2,28.1c0.3,2.54,0.9,6.3,3.7,7.61
 			c2.9,1.32,6.7-0.56,10.5-2.91c15.6-9.58,23.91-23.02,24.31-23.68c5.7-9.4,11.7-19.36,7.5-25.56c-0.5-0.75-1.6-2.07-14.1-6.39
@@ -7734,7 +7734,7 @@ const LightsMobile: FC<LightsProps> = ({ solvedStatus, challenges, prefetch, cla
 			c0.2-6.58,2-13.16,3.7-19.45c0.8-2.91,1.7-5.92,3-8.74c1.1-2.26,2.3-4.42,4.4-5.92c0.6-0.47,1.6-0.94,2.4-1.13
 			C71.22,125.97,69.92,121.46,66.82,122.3z" />
         </g>
-        <text className={getTextClass(1, challenges)} transform="matrix(1 0 0 1 59.696 168.5205)" fill="#020203" fontFamily="'Arial'" fontSize="37px">1</text>
+        <text {...getTextProps({ door: 1, ...props })} transform="matrix(1 0 0 1 59.696 168.5205)" fill="#020203" fontSize="37px">1</text>
       </g>
     </Link>
   </g>

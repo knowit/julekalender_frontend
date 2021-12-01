@@ -1,11 +1,11 @@
-import { FC, ReactElement, useMemo } from "react"
+import { FC, ReactElement, ReactNode, useMemo } from "react"
 import { isEmpty, isNil, map, reduce, upperFirst } from "lodash"
 
-import { numberString } from "../utils"
+import { getRandomDisplayName, getObjKey, numberString } from "../utils"
 import { useLeaderboard } from "../api/requests"
 
 
-type LeaderboardGroup = [number, Array<{ username: string, position: number }>]
+type LeaderboardGroup = [number, Array<{ username: string | null, position: number }>]
 type LeaderboardWithPosition = Array<LeaderboardGroup>
 
 type LeaderBoardContentProps = {
@@ -56,11 +56,20 @@ const LeaderBoardContent: FC<LeaderBoardContentProps> = () => {
           </div>
         </h3>
         <div className="pt-2 pb-4 space-y-1">
-          {map(entries, ({ username, position }) =>
-            <p key={username}>
-              <span className="text-gray-200 text-opacity-40 text-xs tracking-wide">{position}.</span>
-              &nbsp;{username}
-            </p>)}
+          {map(entries, (user) => {
+            let displayName: ReactNode = user.username
+            if (!displayName) {
+              const [name, emoji] = getRandomDisplayName()
+              displayName = <span><em>{name}</em>&nbsp;{emoji}</span>
+            }
+
+            return (
+              <p key={getObjKey(user)}>
+                <span className="text-gray-200 text-opacity-40 text-xs tracking-wide">{user.position}.</span>
+                &nbsp;{displayName}
+              </p>
+            )
+            })}
         </div>
       </div>
     )}

@@ -155,6 +155,11 @@ rules:
   "@typescript-eslint/no-unnecessary-condition":
     - warn
     - allowConstantLoopConditions: true
+  "@typescript-eslint/ban-types":
+    - warn
+    - types:
+        object: false
+
 
   # React
   react/function-component-definition:

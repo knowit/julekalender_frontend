@@ -74,12 +74,6 @@ const Post: FC<PostProps> = ({ post, door }) => {
         />
       )}
 
-      {
-        /*
-        * Having min-w-0 (min-width: 0) prevents the content of the grid cells from growing outside of their cell:
-        * https://stackoverflow.com/questions/43311943/prevent-content-from-expanding-grid-items
-        */
-      }
       {showChildPosts && (<div className="space-y-2 min-w-0">
         {map(post.children, (child) => (
           <ChildPost key={child.uuid} post={child} />

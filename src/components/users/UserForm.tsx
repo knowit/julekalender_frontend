@@ -119,7 +119,7 @@ const UserForm: VFC<UserFormProps> = ({ user, submit, submitError, newForm = fal
 
       <div className="!mt-12">
         <div className="text-opacity-60 text-gray-700">
-          <em>Dersom du vil delta i kommentarfeltet.{newForm && (<><br />Du kan endre dette senere.</>)}</em>
+          <em>Dersom du vil delta i kommentarfeltet.<br />Brukernavnet vises i kommentarfeltet og på ledertavlen.{newForm && " Du kan endre dette senere."}</em>
         </div>
         <FormElement
           autoComplete="nickname"

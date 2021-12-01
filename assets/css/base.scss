@@ -41,7 +41,7 @@
   #lights-desktop, #lights-mobile { display: none; }
 
   // Mobile lights are shown only in portrait mode (vh > vw) and below the sm: breakpoint.
-  @media only screen and (max-width: 640px) and (orientation: portrait) {
+  @media only screen and (max-width: 639px) and (orientation: portrait) {
     #lights-mobile  { display: block; }
   }
   @media only screen and (min-width: 640px) and (orientation: portrait) {

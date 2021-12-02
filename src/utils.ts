@@ -77,7 +77,7 @@ export const numberString = (n: number, neutral = false): string => {
 
     // n < 20
     const low = lowNumbers(neutral, isEmpty(str))[n]
-    if (low) return str + (isEmpty(str) || !and ? low : `${str} og ${low}`)
+    if (low) return str + (isEmpty(str) || !and ? low : ` og ${low}`)
   } while (n > 0)
 
   return str

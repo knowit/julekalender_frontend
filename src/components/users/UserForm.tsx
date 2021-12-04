@@ -49,6 +49,7 @@ const UserForm: VFC<UserFormProps> = ({ user, submit, submitError, newForm = fal
 
   const fileInputRef = useRef<HTMLInputElement | null>(null)
 
+  const username = watch("username")
   const avatar = watch("avatar")
   const avatarUrl = watch("avatar_url")
   const [debouncedAvatarUrl] = useDebounce(avatarUrl, 500)
@@ -136,6 +137,7 @@ const UserForm: VFC<UserFormProps> = ({ user, submit, submitError, newForm = fal
           {...register("username")}
         />
         <FormError error={errors.username} />
+        {/^.+@.+\..+$/.test(username ?? "") && <FormError error={{ type: "pattern", message: "Dette ser ut som en e-postadresse! Er du sikker på at du mente å sette dette som brukernavn (synlig for alle)?" }} />}
 
         <FormElementCustom label="Profilbilde" className="mt-4 w-full">
           <input

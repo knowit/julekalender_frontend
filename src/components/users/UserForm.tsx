@@ -11,11 +11,11 @@ import { SignUpParameters, UpdateUserParameters, useDeleteUser } from "../../api
 import { QueryError } from "../../axios"
 import UserPage from "../../pages/users/UserPage"
 import { squish } from "../../utils"
-import FormElement from "../Admin/FormElement"
-import FormElementCustom from "../Admin/FormElementCustom"
+import FormElement from "../form/FormElement"
+import FormElementCustom from "../form/FormElementCustom"
 import Button from "../Button"
 import CheckMark from "../checkmarks/CheckMark"
-import FormError from "../FormError"
+import FormError from "../form/FormError"
 
 
 const DELETE_USER_CONFIRM = squish(`

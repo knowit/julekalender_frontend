@@ -9,8 +9,7 @@ import { AdminChallenge, AdminChallengePayload, File as ChallengeFile } from "..
 import Button from "../Button"
 import { useCreateBlob, useUploadFile } from "../../api/admin/requests"
 import useIsMounted from "../../hooks/useIsMounted"
-
-import FormElementCustom from "./FormElementCustom"
+import FormElementCustom from "../form/FormElementCustom"
 
 
 

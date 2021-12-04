@@ -4,9 +4,9 @@ import { useForm } from "react-hook-form"
 import { useLocation } from "react-router"
 
 import { ResetPasswordParameters, useResetPassword } from "../../api/users/requests"
-import FormElement from "../../components/Admin/FormElement"
+import FormElement from "../../components/form/FormElement"
 import Button from "../../components/Button"
-import FormError from "../../components/FormError"
+import FormError from "../../components/form/FormError"
 
 import UserPage from "./UserPage"
 

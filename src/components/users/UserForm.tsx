@@ -55,15 +55,13 @@ const UserForm: VFC<UserFormProps> = ({ user, submit, submitError, newForm = fal
   const [debouncedAvatarUrl] = useDebounce(avatarUrl, 500)
 
   const onSubmit = (data: UpdateUserParameters) => {
-    if (newForm || !dirtyFields.email || window.confirm("Du vil motta en e-post med instrukser for å re-aktivere din konto for en ny e-postadresse.")) {
-      submit(
-        newForm
-          ? data
+    submit(
+      newForm
+        ? data
 
-          // Submit only dirty data to avoid overwriting with null values
-          : pickBy(data, (_value, key) => dirtyFields[key as keyof UpdateUserParameters] === true)
-      )
-    }
+        // Submit only dirty data to avoid overwriting with null values
+        : pickBy(data, (_value, key) => dirtyFields[key as keyof UpdateUserParameters] === true)
+    )
   }
 
   const deleteUser = () => {

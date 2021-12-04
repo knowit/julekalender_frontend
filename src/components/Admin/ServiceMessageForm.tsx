@@ -8,9 +8,8 @@ import { useChallenges } from "../../api/admin/requests"
 import { AdminServiceMessagePayload } from "../../api/admin/ServiceMessage"
 import { getTimestampForInputField } from "../../utils"
 import Button from "../Button"
-
-import FormElement from "./FormElement"
-import FormElementCustom from "./FormElementCustom"
+import FormElement from "../form/FormElement"
+import FormElementCustom from "../form/FormElementCustom"
 
 
 type ServiceMessageFormProps = {

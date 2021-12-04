@@ -12,36 +12,44 @@ import LeaderBoardAside from "./components/LeaderBoardAside"
 import Doors from "./pages/Doors"
 import Leaderboard from "./pages/Leaderboard"
 import ServiceMessages from "./pages/ServiceMessages"
-import SignIn from "./pages/users/SignIn"
-import SignUp from "./pages/users/SignUp"
-import LostPassword from "./pages/users/LostPassword"
-import ResetPassword from "./pages/users/ResetPassword"
-import EditUser from "./pages/users/EditUser"
 import BackgroundPauseButton from "./components/BackgroundPauseButton"
+import Page from "./pages/Page"
 
 
 const LazyAdmin = () => {
   const Component = lazy(() => import("./pages/Admin"))
 
   const Fallback = (
-    <FaCogs
-      className={clsx(
-        "fixed",
-        "top-1/2",
-        "left-1/2",
-        "w-32",
-        "h-32",
-        "translate-x-[-50%]",
-        "translate-y-[-50%]",
-        "text-lightbulb-yellow",
-        "text-opacity-70",
-        "animate-pulse"
-      )}
-    />
+    <Page>
+      <FaCogs
+        className={clsx(
+          "fixed",
+          "top-1/2",
+          "left-1/2",
+          "w-32",
+          "h-32",
+          "translate-x-[-50%]",
+          "translate-y-[-50%]",
+          "text-lightbulb-yellow",
+          "text-opacity-70",
+          "animate-pulse"
+        )}
+      />
+    </Page>
   )
 
   return (
     <Suspense fallback={Fallback}>
+      <Component />
+    </Suspense>
+  )
+}
+
+const LazyUser = () => {
+  const Component = lazy(() => import("./pages/User"))
+
+  return (
+    <Suspense fallback={<Page />}>
       <Component />
     </Suspense>
   )
@@ -77,14 +85,9 @@ const App = () => {
         <Route path="/leaderboard" component={Leaderboard} />
         <Route path="/gdpr" component={Gdpr} />
         <Route path="/service_messages" component={ServiceMessages} />
-        <Route path="/admin" component={LazyAdmin} />
 
-        <Route path="/users/edit" component={EditUser} />
-        <Route path="/users/sign_in" component={SignIn} />
-        <Route path="/users/sign_up" component={SignUp} />
-        <Route path="/users/lost_password" component={LostPassword} />
-        <Route path="/users/password/edit" component={ResetPassword} />
-        <Route path="/users"><Redirect to="/users/edit" /></Route>
+        <Route path="/admin" component={LazyAdmin} />
+        <Route path="/users" component={LazyUser} />
 
         {/* 404? - Route to main view */}
         <Route>

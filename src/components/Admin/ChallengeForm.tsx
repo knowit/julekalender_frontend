@@ -10,10 +10,10 @@ import useAvailableDoors from "../../hooks/admin/useAvailableDoors"
 import { getDefaultActiveFrom, getDefaultActiveTo, getTimestampForInputField } from "../../utils"
 import Button from "../Button"
 import Challenge from "../Door/Challenge"
+import FormElement from "../form/FormElement"
+import FormElementCustom from "../form/FormElementCustom"
 
 import AttachmentsInput from "./AttachmentsInput"
-import FormElement from "./FormElement"
-import FormElementCustom from "./FormElementCustom"
 
 
 type ChallengeFormProps = {

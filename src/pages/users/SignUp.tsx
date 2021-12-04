@@ -21,8 +21,7 @@ const SignUp: FC = () => {
         </p>
         <p className="text-center">
           Du vil kunne delta i kalenderen allerede nå, men du vil ikke være med
-          i premietrekningen og du synes ikke på ledertavlen dersom du ikke
-          aktiverer din konto.
+          i premietrekningen dersom du ikke aktiverer din konto.
         </p>
         <p className="text-center">
           P.S. Husk å sjekke spam-mappa di!

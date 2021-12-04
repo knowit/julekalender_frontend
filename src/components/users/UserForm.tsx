@@ -84,7 +84,7 @@ const UserForm: VFC<UserFormProps> = ({ user, submit, submitError, newForm = fal
         <FormError error={errors.email} />
         {newForm && (
           <Popover>
-            <Popover.Button>
+            <Popover.Button tabIndex={-1}>
               <div className="text-opacity-30 text-gray-700">
                 Jobber du i Knowit?
               </div>

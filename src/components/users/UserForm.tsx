@@ -2,7 +2,6 @@ import { Popover } from "@headlessui/react"
 import { forEach, join, pickBy } from "lodash"
 import { useEffect, useRef, VFC } from "react"
 import { useForm } from "react-hook-form"
-import { UseMutateAsyncFunction } from "react-query"
 import { useHistory } from "react-router"
 import { useDebounce } from "use-debounce"
 
@@ -24,7 +23,7 @@ const DELETE_USER_CONFIRM = squish(`
 
 type UserFormProps = {
   user?: LoggedInWhoami
-  submit: UseMutateAsyncFunction<any, any, any>
+  submit: (data: any) => void
   submitError: QueryError<{ errors: Record<keyof SignUpParameters, string[]> }> | null
   newForm?: boolean
 }
@@ -85,7 +84,7 @@ const UserForm: VFC<UserFormProps> = ({ user, submit, submitError, newForm = fal
         <FormError error={errors.email} />
         {newForm && (
           <Popover>
-            <Popover.Button>
+            <Popover.Button tabIndex={-1}>
               <div className="text-opacity-30 text-gray-700">
                 Jobber du i Knowit?
               </div>

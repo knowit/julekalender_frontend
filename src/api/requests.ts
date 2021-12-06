@@ -8,7 +8,7 @@ import { AuthContext } from "../AuthContext"
 
 import { ServiceMessage } from "./ServiceMessage"
 
-import { ChallengeDict, Leaderboard, Like, ParentPost, Post, PostPreview, SolvedStatus, Subscriptions, Whoami } from "."
+import { ChallengeDict, Leaderboard, Like, ParentPost, Post, PostPreview, SolvedStatus, Subscriptions } from "."
 
 
 // QUERIES ---------------------------------------------------------------------
@@ -17,7 +17,7 @@ const getLikes = () => axios.get("/likes").then(({ data }) => data)
 export const useLikes = () => {
   const { isAuthenticated } = useContext(AuthContext)
 
-  return useQuery<Like[], QueryError>(["likes"], getLikes, { staleTime: 60_000, enabled: isAuthenticated })
+  return useQuery<Like[], QueryError>(["users", "likes"], getLikes, { staleTime: 600_000, enabled: isAuthenticated })
 }
 export const usePrefetchLikes = () => {
   const { isAuthenticated } = useContext(AuthContext)
@@ -45,14 +45,14 @@ const getSolvedStatus = (): Promise<SolvedStatus> => axios.get("/users/solved").
 export const useSolvedStatus = (opts?: UseQueryOptions<SolvedStatus, QueryError>) => {
   const { isAuthenticated } = useContext(AuthContext)
 
-  return useQuery<SolvedStatus, QueryError>(["users", "solved"], getSolvedStatus, { staleTime: 300_000, enabled: isAuthenticated, ...opts })
+  return useQuery<SolvedStatus, QueryError>(["users", "solved"], getSolvedStatus, { staleTime: 600_000, enabled: isAuthenticated, ...opts })
 }
 
 const getPosts = (door: number) => axios.get(`/challenges/${door}/posts`).then(({ data }) => data)
 export const usePosts = (door: number) => {
   const { isAuthenticated } = useContext(AuthContext)
 
-  return useQuery<ParentPost[], QueryError>(["posts", door], () => getPosts(door), { staleTime: 300_000, enabled: isAuthenticated })
+  return useQuery<ParentPost[], QueryError>(["posts", door], () => getPosts(door), { refetchInterval: 300_000, enabled: isAuthenticated })
 }
 export const usePrefetchPosts = () => {
   const { isAuthenticated } = useContext(AuthContext)
@@ -77,7 +77,7 @@ const getSubscriptions = () => axios.get("/subscriptions").then(({ data }) => da
 export const useSubscriptions = () => {
   const { isAuthenticated } = useContext(AuthContext)
 
-  return useQuery<Subscriptions, QueryError>(["subscriptions"], getSubscriptions, { enabled: isAuthenticated })
+  return useQuery<Subscriptions, QueryError>(["users", "subscriptions"], getSubscriptions, { staleTime: 600_000, enabled: isAuthenticated })
 }
 
 const getServiceMessages = () => axios.get("/service_messages").then(({ data }) => data)
@@ -87,7 +87,7 @@ export const useServiceMessages = <TSelected = ServiceMessage[]>(options?: UseQu
 
 const getPostMarkdown = (post_uuid: string) => axios.get("/markdown", { params: { post_uuid } }).then(({ data: { markdown } }) => markdown)
 export const usePostMarkdown = (post_uuid: string, options?: UseQueryOptions<string, QueryError>) => (
-  useQuery<string, QueryError>(["posts", "markdown", post_uuid], () => getPostMarkdown(post_uuid), { ...options, staleTime: 300_000 })
+  useQuery<string, QueryError>(["posts", "markdown", post_uuid], () => getPostMarkdown(post_uuid), { ...options, staleTime: 600_000 })
 )
 export const usePrefetchPostMarkdown = () => {
   const queryClient = useQueryClient()
@@ -100,7 +100,7 @@ export const getPostPreview = async (markdownContent: string | undefined | null)
   return await axios.post("/markdown", { markdown_content: markdownContent }).then(({ data }) => data)
 }
 export const usePostPreview = (markdownContent: string | null | undefined) => (
-  useQuery<PostPreview, QueryError>(["postPreview", markdownContent], () => getPostPreview(markdownContent), { staleTime: Infinity, cacheTime: 0 })
+  useQuery<PostPreview, QueryError>(["postPreview", markdownContent], () => getPostPreview(markdownContent), { staleTime: 600_000, cacheTime: 0 })
 )
 
 
@@ -135,7 +135,7 @@ export const useCreateLike = () => {
     ({ postUuid }) => axios.post(`/posts/${postUuid}/likes`, {}),
     {
       onSuccess: () => {
-        queryClient.invalidateQueries(["likes"])
+        queryClient.invalidateQueries(["users", "likes"])
         queryClient.invalidateQueries(["posts"])
       }
     }
@@ -151,7 +151,7 @@ export const useDeleteLike = () => {
     ({ uuid }) => axios.delete(`/likes/${uuid}`),
     {
       onSuccess: () => {
-        queryClient.invalidateQueries(["likes"])
+        queryClient.invalidateQueries(["users", "likes"])
         queryClient.invalidateQueries(["posts"])
       }
     }
@@ -271,19 +271,19 @@ export const useCreateSubscription = () => {
     (data) => axios.post("/subscriptions", data),
     {
       onMutate: async (subscription) => {
-        await queryClient.cancelQueries(["subscriptions"])
-        const subscriptions = queryClient.getQueryData<Subscriptions>(["subscriptions"])
+        await queryClient.cancelQueries(["users", "subscriptions"])
+        const subscriptions = queryClient.getQueryData<Subscriptions>(["users", "subscriptions"])
 
-        queryClient.setQueryData<Subscriptions>(["subscriptions"], () => [...subscriptions ?? [], { ...subscription, uuid: "" }])
+        queryClient.setQueryData<Subscriptions>(["users", "subscriptions"], () => [...subscriptions ?? [], { ...subscription, uuid: "" }])
 
         return subscriptions
       },
       onError: (_err, _vars, subscriptions) => {
         if (subscriptions)
-          queryClient.setQueryData(["subscriptions"], subscriptions)
+          queryClient.setQueryData(["users", "subscriptions"], subscriptions)
       },
       onSettled: () => {
-        queryClient.invalidateQueries(["subscriptions"])
+        queryClient.invalidateQueries(["users", "subscriptions"])
       }
     }
   )
@@ -298,7 +298,7 @@ export const useDeleteSubscription = () => {
     ({ uuid }) => axios.delete(`/subscriptions/${uuid}`),
     {
       onSettled: () => {
-        queryClient.invalidateQueries(["subscriptions"])
+        queryClient.invalidateQueries(["users", "subscriptions"])
       }
     }
   )

@@ -1,4 +1,4 @@
-import { FC, useState } from "react"
+import { FC } from "react"
 import { find, some } from "lodash"
 import clsx from "clsx"
 
@@ -20,8 +20,6 @@ const LikeButton: FC<LikeProps> = ({ post }) => {
   const liked = some(likes, { post_uuid: post.uuid })
   const isOwnPost = useIsOwnPost(post)
 
-  const [hovering, setHovering] = useState(false)
-
   const likePost = () => {
     if (!liked && !isOwnPost)
       createLike({ postUuid: post.uuid })
@@ -36,19 +34,15 @@ const LikeButton: FC<LikeProps> = ({ post }) => {
   return (
     <button
       className={clsx(
-        isOwnPost ? "cursor-default" : "cursor-pointer",
+        isOwnPost ? "cursor-default" : "cursor-pointer hover:children:text-red-500 hover:children:scale-[120%]",
         "inline-block space-x-0.5"
       )}
-      onMouseEnter={() => setHovering(true)}
-      onMouseLeave={() => setHovering(false)}
       onClick={liked ? unlikePost : likePost}
     >
       <Favorite
         className={clsx(
           "inline-block -mt-1 fill-current w-3 transition duration-200 ease-out-cubic",
-          hovering
-            ? "text-red-500 scale-[120%]"
-            : post.likes > 0 ? "text-red-500" : "text-red-300"
+            post.likes > 0 ? "text-red-500" : "text-red-300"
         )}
       />
       <span className="!text-gray-700">{post.likes}</span>

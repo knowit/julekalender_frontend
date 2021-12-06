@@ -15,7 +15,6 @@ const Main = () => {
   const queryClient = new QueryClient({
     defaultOptions: {
       queries: {
-        refetchOnWindowFocus: false,
         notifyOnChangeProps: "tracked"
       }
     }

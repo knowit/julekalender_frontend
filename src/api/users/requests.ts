@@ -105,7 +105,7 @@ export const useUpdateUser = () => {
     {
       onSuccess: () => {
         queryClient.invalidateQueries(["users", "whoami"])
-        queryClient.invalidateQueries(["posts"])
+        queryClient.invalidateQueries("posts")
       }
     }
   )
@@ -119,11 +119,8 @@ export const useDeleteUser = () => {
     () => axios.delete("/users").then(({ data }) => data),
     {
       onSuccess: () => {
-        queryClient.invalidateQueries(["users", "whoami"])
-        queryClient.invalidateQueries(["likes"])
-        queryClient.invalidateQueries(["users", "solved"])
-        queryClient.invalidateQueries(["subscriptions"])
-        queryClient.invalidateQueries(["posts"])
+        queryClient.invalidateQueries("users")
+        queryClient.invalidateQueries("posts")
       }
     }
   )
@@ -137,11 +134,8 @@ export const useSignOut = () => {
     () => axios.delete("/users/sign_out").then(({ data }) => data),
     {
       onSuccess: () => {
-        queryClient.invalidateQueries(["users", "whoami"])
-        queryClient.invalidateQueries(["likes"])
-        queryClient.invalidateQueries(["users", "solved"])
-        queryClient.invalidateQueries(["subscriptions"])
-        queryClient.invalidateQueries(["posts"])
+        queryClient.invalidateQueries("users")
+        queryClient.invalidateQueries("posts")
       }
     }
   )

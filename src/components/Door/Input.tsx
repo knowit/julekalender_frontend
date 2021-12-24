@@ -54,7 +54,7 @@ const Input: FC<InputProps> = ({ door }) => {
     return (
       <CheckMark
         wrapperClassName="w-16 md:w-28 mx-auto"
-        message={`Bra jobba!${door === 24 ? <><br />Og god jul! 🥳</> : ""}`}
+        message={`Bra jobba!${door === 24 ? "Og god jul! 🥳": ""}`}
         scrollTo={attemptCount > 0}
       />
     )

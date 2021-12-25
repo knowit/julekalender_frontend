@@ -6,8 +6,16 @@ export const NBSP = "\u00a0"
 export const getTimestamp = (dateString: string) => format(new Date(dateString), `dd.MM'${NBSP}kl${NBSP}'HH:mm`)
 export const getTimestampForInputField = (dateString: string) => format(new Date(dateString), "yyyy-MM-dd'T'kk:mm")
 
-export const getDefaultActiveFrom = (door: number) => `${new Date().getFullYear()}-12-${padStart(toString(door), 2, "0")}T04:00+0100`
-export const getDefaultActiveTo = () => `${new Date().getFullYear()}-12-25T04:00+0100`
+export const getActiveYear = () => {
+  const date = new Date()
+  const year = date.getFullYear()
+
+  // Active year rolls into January
+  return date.getMonth() == 1 ? year - 1 : year
+}
+export const getDefaultActiveFrom = (door: number) => `${getActiveYear()}-12-${padStart(toString(door), 2, "0")}T04:00+0100`
+export const getDefaultActiveTo = () => `${getActiveYear()}-12-26T04:00+0100`
+export const getRaffleEnd = () => new Date(`${getActiveYear()}-12-26T04:00+0100`)
 
 export const squish = (str: string) => replace(trim(str), /\s+/g, " ")
 

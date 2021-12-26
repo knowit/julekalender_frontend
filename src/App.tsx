@@ -14,6 +14,7 @@ import Leaderboard from "./pages/Leaderboard"
 import ServiceMessages from "./pages/ServiceMessages"
 import BackgroundPauseButton from "./components/BackgroundPauseButton"
 import Page from "./pages/Page"
+import Solutions from "./pages/Solutions"
 
 
 const LazyAdmin = () => {
@@ -85,6 +86,7 @@ const App = () => {
         <Route path="/leaderboard" component={Leaderboard} />
         <Route path="/gdpr" component={Gdpr} />
         <Route path="/service_messages" component={ServiceMessages} />
+        <Route path="/solutions" component={Solutions} />
 
         <Route path="/admin" component={LazyAdmin} />
         <Route path="/users" component={LazyUser} />

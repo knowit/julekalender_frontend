@@ -6,8 +6,7 @@ import { useChallenges, usePrefetchLikes, usePrefetchPosts, useSolvedStatus } fr
 import Footer from "../components/Footer"
 import LightsDesktop from "../components/Lights/LightsDesktop"
 import LightsMobile from "../components/Lights/LightsMobile"
-import useCurrentTime from "../hooks/useCurrentTime"
-import { getRaffleEnd } from "../utils"
+import RaffleNotification from "../components/RaffleNotification"
 
 
 const Doors = () => {
@@ -17,8 +16,6 @@ const Doors = () => {
   const { data: solvedStatus } = useSolvedStatus()
   const prefetchPosts = usePrefetchPosts()
   const prefetchLikes = usePrefetchLikes()
-
-  const currentTime = useCurrentTime()
 
 
   const prefetch = useCallback((door: number) => {
@@ -41,13 +38,7 @@ const Doors = () => {
 
   return (
     <main>
-      {currentTime >= getRaffleEnd() && (
-        <div className="mx-auto text-center p-4 w-10/12 max-w-[40rem]">
-          NB!<br />
-          Konkurransen er over for i år, men du kan fortsette å svare på luker
-          og skrive innlegg til vi skrur av tjenesten en gang i løpet av januar.
-        </div>
-      )}
+      <RaffleNotification />
 
       {/* Visibility toggle done with media queries in CSS */}
       <LightsDesktop {...lightProps} />

@@ -14,7 +14,7 @@ const RaffleNotification: VFC = () => {
     <div className="mx-auto text-center p-4 w-10/12 max-w-[40rem]">
       NB!
       <br />
-      Konkurransen er over for i år, men du kan fortsette å svare på luker
+      Konkurransen er over for denne gang, men du kan fortsette å svare på luker
       og skrive innlegg til vi skrur av tjenesten en gang i løpet av januar.
       <br />
       Løsninger for årets luker finner du <Link to="/solutions" className="underline">her</Link>.

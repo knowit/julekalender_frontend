@@ -23,7 +23,7 @@ const App = () => {
         <div className="mx-auto text-center w-10/12 max-w-[60rem] text-2xl">
           Vinneren av Kodekalenderen 2021 er <b>Håkon Flatval</b> med 13 løste luker. Gratulerer!
           <br />
-          Vi ses forhåpentligvis igjen neste år! 🎅
+          Vi ses forhåpentligvis igjen neste desember! 🎅
         </div>
       </div>
 

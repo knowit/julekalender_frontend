@@ -21,7 +21,9 @@ const App = () => {
 
       <div className="absolute top-0 left-0 w-full h-full grid content-center">
         <div className="mx-auto text-center w-10/12 max-w-[60rem] text-2xl">
-          Desember er rett rundt hjørnet, og det er Knowits Kodekalender også. Ses snart 🎅!
+          Desember er rett rundt hjørnet, og det er Knowits Kodekalender også!
+          <br />
+          Ses snart 🎅
         </div>
       </div>
 

@@ -8,7 +8,7 @@ ______
 
 ### Lokal utvikling
 
-Frontenden er en Vite app. `npm install` og `npm run serve` for å beskue underverket. API-et og backenden ønsker vi å holde skjult enn så lenge, men det er bare å prøve å kjøre appen lokalt mens kalenderen kjører i desember.
+Frontenden er en Vite app. `yarn install` og `yarn run serve` for å beskue underverket. API-et og backenden ønsker vi å holde skjult enn så lenge, men det er bare å prøve å kjøre appen lokalt mens kalenderen kjører i desember.
 
 ______
 

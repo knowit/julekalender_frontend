@@ -23,6 +23,8 @@ const App = () => {
         <div className="mx-auto text-center w-10/12 max-w-[60rem] text-2xl">
           Desember er rett rundt hjørnet, og det er Knowits Kodekalender også!
           <br />
+          Følg med fra 1. desember 🎄
+          <br />
           Ses snart 🎅
         </div>
       </div>

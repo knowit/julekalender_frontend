@@ -1,14 +1,9 @@
 import { defineConfig } from "vite"
 import reactRefresh from "@vitejs/plugin-react-refresh"
 import svgr from "@svgr/rollup"
-import builtins from "rollup-plugin-node-builtins"
 import { visualizer } from "rollup-plugin-visualizer"
 import optimizeLodashImports from "rollup-plugin-optimize-lodash-imports"
 
-const builtinsPlugin = {
-  ...builtins({ crypto: true }),
-  name: "rollup-plugin-node-builtins"
-}
 
 export default defineConfig({
   server: {
@@ -18,7 +13,6 @@ export default defineConfig({
   plugins: [
     reactRefresh(),
     svgr({ memo: true }),
-    builtinsPlugin,
     process.env.NODE_ENV == 'production' && optimizeLodashImports(),
     visualizer()
   ],

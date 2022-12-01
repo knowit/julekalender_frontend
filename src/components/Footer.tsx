@@ -39,7 +39,7 @@ const Footer: FC = () => (
     </p>
 
     <h2 className="text-xl pt-4">
-      <a className="underline" href="https://www.knowit.no/karriere/" target="_blank" rel="noopener noreferrer">
+      <a className="underline" href="https://careernorway.knowit.no/jobs/1480266-systemutvikler-backend-mobil-og-eller-frontend" target="_blank" rel="noopener noreferrer">
         Jobbe i Knowit?
       </a>
     </h2>

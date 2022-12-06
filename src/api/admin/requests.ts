@@ -5,6 +5,7 @@ import { isEmpty, isNumber, keyBy, pick, property } from "lodash"
 import { QueryError } from "../../axios"
 import { ParentPost } from "../Post"
 import { ServiceMessage } from "../ServiceMessage"
+import { challengeIdParam } from "../requests"
 
 import { AdminChallengeDict, AdminChallengePayload, ChallengePreview } from "./Challenge"
 import { AdminServiceMessagePayload } from "./ServiceMessage"
@@ -22,7 +23,7 @@ export const useChallenge = (door: number | null | undefined) => (
   )
 )
 
-const getPosts = (door: number) => axios.get(`/admin/challenges/${door}/posts`).then(({ data }) => data)
+const getPosts = (door: number) => axios.get(`/admin/challenges/${challengeIdParam(door)}/posts`).then(({ data }) => data)
 export const usePosts = (door: number) => useQuery<ParentPost[], QueryError>(["admin", "posts", door], () => getPosts(door), { staleTime: 300_000 })
 
 export const getChallengePreview = async (challenge: AdminChallengePayload | undefined) => {
@@ -58,7 +59,7 @@ export const useUpdateChallenge = () => {
 
   return useMutation<never, QueryError, UpdateChallengeParameters>(
     ["admin", "challenges", "update"],
-    ({ challenge }) => axios.patch(`/admin/challenges/${challenge.door}`, { challenge }),
+    ({ challenge }) => axios.patch(`/admin/challenges/${challengeIdParam(challenge.door)}`, { challenge }),
     {
       onSuccess: () => {
         queryClient.invalidateQueries("challenges")
@@ -74,7 +75,7 @@ export const useDeleteChallenge = () => {
 
   return useMutation<unknown, QueryError, DeleteChallengeParameters>(
     ["admin", "challenges", "destroy"],
-    async ({ door }) => isNumber(door) && axios.delete(`/admin/challenges/${door}`),
+    async ({ door }) => isNumber(door) && axios.delete(`/admin/challenges/${challengeIdParam(door)}`),
     {
       onSuccess: () => {
         queryClient.invalidateQueries("challenges")

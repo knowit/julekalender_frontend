@@ -1,15 +1,18 @@
 import axios from "axios"
 import { useCallback, useContext } from "react"
 import { useMutation, useQuery, useQueryClient, UseQueryOptions } from "react-query"
-import { clone, findIndex, fromPairs, isEmpty, isNil, keyBy, property } from "lodash"
+import { clone, findIndex, fromPairs, isEmpty, isNil, keyBy, padStart, property, toString } from "lodash"
 
 import { QueryError } from "../axios"
 import { AuthContext } from "../AuthContext"
+import { getActiveYear } from "../utils"
 
 import { ServiceMessage } from "./ServiceMessage"
 
 import { ChallengeDict, Leaderboard, Like, ParentPost, Post, PostPreview, SolvedStatus, Subscriptions } from "."
 
+
+export const challengeIdParam = (door: number) => `${getActiveYear()}-${padStart(toString(door), 2, "0")}`
 
 // QUERIES ---------------------------------------------------------------------
 
@@ -48,7 +51,7 @@ export const useSolvedStatus = (opts?: UseQueryOptions<SolvedStatus, QueryError>
   return useQuery<SolvedStatus, QueryError>(["users", "solved"], getSolvedStatus, { staleTime: 600_000, enabled: isAuthenticated, ...opts })
 }
 
-const getPosts = (door: number) => axios.get(`/challenges/${door}/posts`).then(({ data }) => data)
+const getPosts = (door: number) => axios.get(`/challenges/${challengeIdParam(door)}/posts`).then(({ data }) => data)
 export const usePosts = (door: number) => {
   const { isAuthenticated } = useContext(AuthContext)
 
@@ -114,7 +117,7 @@ export const useCreateSolution = () => {
 
   return useMutation<CreateSolutionResponse, QueryError, CreateSolutionParameters>(
     ["solutions", "createSolution"],
-    ({ door, answer }) => axios.post( `/challenges/${door}/solutions`, { solution: { answer } }).then(({ data }) => data),
+    ({ door, answer }) => axios.post( `/challenges/${challengeIdParam(door)}/solutions`, { solution: { answer } }).then(({ data }) => data),
     {
       onSuccess: async ({ solved }, { door }) => {
         if (solved) {
@@ -205,7 +208,7 @@ export const useCreatePost = () => {
 
   return useMutation<Post, QueryError, CreatePostParameters>(
     ["posts", "createPost"],
-    ({ door, content, parent }) => axios.post(`/challenges/${door}/posts`, { post: { content, parent_uuid: parent?.uuid } }).then(({ data }) => data),
+    ({ door, content, parent }) => axios.post(`/challenges/${challengeIdParam(door)}/posts`, { post: { content, parent_uuid: parent?.uuid } }).then(({ data }) => data),
     {
       onSuccess: (post) => {
         // Insert created post back into posts list, then refetch to ensure up-to-date data

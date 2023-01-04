@@ -30,7 +30,7 @@ const Solutions = () => {
           : map(compact(values(challenges)), (challenge) => (
             <div className="grid gap-1 justify-items-center">
               <div className="tracking-wide">Luke {challenge.door} <span className="text-gray-700 text-opacity-40">&mdash;</span> <em>{challenge.title}</em></div>
-              <div className="font-mono font-semibold text-lg max-w-full overflow-x-scroll">{challenge.answer}</div>
+              <div className="font-mono font-semibold text-lg max-w-full overflow-x-auto">{challenge.answer}</div>
             </div>
           ))
         }

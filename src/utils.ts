@@ -11,7 +11,7 @@ export const getActiveYear = () => {
   const year = date.getFullYear()
 
   // Active year rolls into January
-  return date.getMonth() == 1 ? year - 1 : year
+  return date.getMonth() < 11 ? year - 1 : year
 }
 export const getDefaultActiveFrom = (door: number) => `${getActiveYear()}-12-${padStart(toString(door), 2, "0")}T04:00+0100`
 export const getDefaultActiveTo = () => `${getActiveYear()}-12-26T04:00+0100`

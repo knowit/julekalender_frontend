@@ -18,7 +18,7 @@ const DoorSelect: VFC<DoorSelectProps> = ({ door, setDoor }) => {
     <label className="block space-x-4">
       <select className="form-select" defaultValue={door} onChange={((e) => setDoor(parseInt(e.target.value)))}>
         {map(sortBy(compact(values(challenges)), "door"), ({ door, title }, i) =>
-          <option key={i} value={door} label={`Luke ${door}: ${title}`} />
+          <option key={i} value={door} label={`Luke ${door}: ${title}`}>{`Luke ${door}: ${title}`}</option>
         )}
       </select>
     </label>
